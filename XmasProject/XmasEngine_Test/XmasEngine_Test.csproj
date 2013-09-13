@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{68325050-1899-46C1-B116-D17B95A3FB7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XmasEngine_Test</RootNamespace>
+    <AssemblyName>XmasEngine_Test</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\Downloads\NUnit-2.6.2\bin\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExampleObjects\Unit.cs" />
+    <Compile Include="ExampleObjects\DamageUnitTargetAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExampleObjects\Player.cs" />
+    <Compile Include="ExampleObjects\PowerUp.cs" />
+    <Compile Include="ExampleObjects\UnitTakesDamagePostEvent.cs" />
+    <Compile Include="ExampleObjects\UnitTakesDamagePreEvent.cs" />
+    <Compile Include="ExampleObjects\Wall.cs" />
+    <Compile Include="Model\Conversion\GooseConversionToolTest.cs" />
+    <Compile Include="Model\Data\PointTest.cs" />
+    <Compile Include="Model\EIS\EISAgentControllerTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\Entities\MapEntities\TileTest.cs" />
+    <Compile Include="Model\GameManagement\GameManagerTest.cs" />
+    <Compile Include="Model\GameManagement\TriggerManagerTest.cs" />
+    <Compile Include="Model\GameMapTest.cs" />
+    <Compile Include="Model\GameWorldTest.cs" />
+    <Compile Include="Model\Percepts\VisionTest.cs" />
+    <Compile Include="Model\Rule\RuleHierarchyTest.cs" />
+    <Compile Include="Model\Rule\TransformationRuleTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Conversion\EIS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JSLibrary\JSLibrary.csproj">
+      <Project>{D1BFB5F5-681E-4D5F-9910-69403B11C5B5}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineController\XmasEngineController.csproj">
+      <Project>{0FAE1368-42FC-48F7-A82B-58CF276188C1}</Project>
+      <Name>XmasEngineController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineExtensions\XmasEngineExtensions.csproj">
+      <Project>{F0965EBC-FEAF-4445-A43B-998D0A8D249D}</Project>
+      <Name>XmasEngineExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineModel\XmasEngineModel.csproj">
+      <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>
+      <Name>XmasEngineModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngineView\XmasEngineView.csproj">
+      <Project>{99F1F1F4-2DF4-4C9E-8A33-5CD538D2C002}</Project>
+      <Name>XmasEngineView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XmasEngine\XmasEngine.csproj">
+      <Project>{935B3FA0-D1DE-4395-A69C-8F64159791F9}</Project>
+      <Name>XmasEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

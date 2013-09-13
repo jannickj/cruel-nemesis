@@ -1,0 +1,8 @@
+bin/
+obj/
+.metadata/
+/FlamingGoose/GooseEngine/*.suo
+TestResults/
+*.user
+*.suo
+*.userprefs
