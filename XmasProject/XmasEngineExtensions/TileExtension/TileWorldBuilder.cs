@@ -65,6 +65,25 @@ namespace XmasEngineExtensions.TileExtension
 			foreach (Point p in points)
 				AddEntity (constructEntity (), p);
 		}
+
+
+		public void AddMapOfEntities(Func<XmasEntity>[] ctormap, int width, int height)
+		{
+			int offx = this.Size.Width;
+			int offy = this.Size.Height;
+			for (int x = 0; x < width; x++)
+			{
+				for (int y = 0; y < height; y++)
+				{
+					Func<XmasEntity> c = ctormap[x + y * width];
+
+					int realx = x - offx;
+					int realy = offy - y;
+					if (c != null)
+						this.AddEntity(c(), new Point(realx, realy));
+				}
+			}
+		}
 		
 //		public void RemoveChunk<TEntity>(Point start, Point stop)
 //			where TEntity : Entity, new()

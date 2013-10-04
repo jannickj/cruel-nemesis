@@ -77,6 +77,11 @@ namespace XmasEngineModel
 			}
 		}
 
+		public void Update()
+		{
+			ActionManager.ExecuteActions();
+		}
+
         /// <summary>
         /// Checks if the engine has momentarily creashed
         /// </summary>

@@ -44,7 +44,32 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Test.cs" />
+     <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
+     <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
+     <Compile Include="Assets\GameLogic\Map\Terrain\TerrainEntity.cs" />
+     <Compile Include="Assets\GameLogic\Map\Terrain\TextureType.cs" />
+     <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\MapHandler.cs" />
+     <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
+     <Compile Include="Assets\UnityLogic\TextureDictionary.cs" />
+ <Reference Include="XmasEngineView">
+ <HintPath>Assets\dlls\XmasEngineView.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineExtensions">
+ <HintPath>Assets\dlls\XmasEngineExtensions.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineController">
+ <HintPath>Assets\dlls\XmasEngineController.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineModel">
+ <HintPath>Assets\dlls\XmasEngineModel.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngine">
+ <HintPath>Assets\dlls\XmasEngine.dll</HintPath>
+ </Reference>
+ <Reference Include="JSLibrary">
+ <HintPath>Assets\dlls\JSLibrary.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
