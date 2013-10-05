@@ -4,31 +4,51 @@ using System.Linq;
 using System.Text;
 using Assets.Map.Terrain;
 using UnityEngine;
+using System.IO;
+using Assets.GameLogic.Unit;
 
 namespace Assets.UnityLogic
 {
 	public class TextureDictionary
 	{
-        private static Dictionary<TerrainTypes, string> texdic = new Dictionary<TerrainTypes, string>();
-        private static Dictionary<TerrainTypes, Texture2D> loadedtexdic = new Dictionary<TerrainTypes, Texture2D>();
+        private static Dictionary<string, Texture> loadedtexdic = new Dictionary<string, Texture>();
         
         static TextureDictionary()
         {
-            texdic.Add(TerrainTypes.Default,"prototype_map_tex");
+            
         }   
 
-        public static Texture2D GetTexture(TerrainTypes type)
+        public static Texture GetTexture(TerrainTypes type)
         {
-            return loadedtexdic[type];
+            
+            return loadedtexdic["terrain_"+type.ToString().ToLower()];
         }
 
-        public static void LoadTexturesFrom(string path)
+        public static Texture GetTexture(string textureid)
         {
-            foreach (KeyValuePair<TerrainTypes, string> kv in texdic)
+            return loadedtexdic[textureid];
+        }
+
+        public static void LoadTextures()
+        {
+            string path = "Resources/Textures";
+            //Debug.Log("loading textures");
+            string fullpath = Application.dataPath+"/"+path;
+            string[] files = Directory.GetFiles(fullpath,"*.*",SearchOption.AllDirectories);
+           
+            foreach (string f in files)
             {
-				var fullpath = path + "/" + kv.Value;
-                object tex = Resources.Load(fullpath);
-                loadedtexdic.Add(kv.Key, (Texture2D)tex);
+                string newf = f.Replace("\\", "/").Replace(Application.dataPath+"/Resources/","");
+                newf = newf.Substring(0,newf.LastIndexOf("."));
+                //Debug.Log(newf);
+                Texture tex = Resources.Load(newf) as Texture2D;
+                //Debug.Log(tex);
+                if (tex == null)
+                    continue;
+                newf = newf.Replace("Textures/", "").Replace("/", "_").ToLower();
+                //Debug.Log(newf);
+
+                loadedtexdic.Add(newf, tex);
             }
         }
 

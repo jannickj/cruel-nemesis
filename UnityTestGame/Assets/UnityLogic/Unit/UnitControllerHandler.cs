@@ -1,13 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using Assets.UnityLogic;
 
-public class ResourceLoader : MonoBehaviour {
-
+public class UnitControllerHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        TextureDictionary.LoadTextures();
 	
 	}
 	

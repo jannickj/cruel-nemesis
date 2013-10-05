@@ -18,6 +18,7 @@ public class MapHandler : MonoBehaviour {
 	void Start () {
         XmasModel eng = EngineHandler.GetEngine();
         eng.EventManager.Register(new Trigger<EntityAddedEvent>(ent => ent.AddedXmasEntity is TerrainEntity,OnTerrainEntity));
+        
 	}
 	
 	// Update is called once per frame
@@ -30,6 +31,7 @@ public class MapHandler : MonoBehaviour {
         TerrainEntity terEnt = (TerrainEntity)evt.AddedXmasEntity;
         TilePosition posinfo = (TilePosition)evt.AddedPosition;
         Point pos = posinfo.Point;
+       
         var  transform = (Transform)Instantiate(Terrain,new Vector3((float)pos.X,(float)pos.Y),Terrain.rotation);
         transform.renderer.sharedMaterial.SetTexture("_MainTex", TextureDictionary.GetTexture(terEnt.TextureType));
     }

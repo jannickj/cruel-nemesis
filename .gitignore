@@ -6,5 +6,5 @@ TestResults/
 *.user
 *.suo
 *.userprefs
-Library/metadata/
+metadata/
 Temp/

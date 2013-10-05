@@ -1,0 +1,49 @@
+using UnityEngine;
+using System.Collections;
+using Assets.GameLogic.Unit;
+using Assets.UnityLogic.Unit;
+
+public class UnitViewHandler : MonoBehaviour {
+
+    private UnitEntity entity;
+    private UnitGraphics graphics;
+    private StandardUnitAnimations curAni = StandardUnitAnimations.Idle;
+
+	// Use this for initialization
+	void Start () 
+    {
+        UnitInformation info = this.gameObject.GetComponent<UnitInformation>();
+        entity = info.Entity;
+        graphics = info.Graphics;
+        
+
+        setFrame(currentFrame());
+	}
+	
+	// Update is called once per frame
+	void Update () 
+    {
+        UpdateFrame();
+	}
+
+    private Frame currentFrame()
+    {
+        return graphics.GetAnimation(curAni).CurrentFrame();
+    }
+
+    private void setFrame(Frame f)
+    {
+        
+        this.renderer.sharedMaterial.SetTexture("_MainTex", f.Texture);
+        this.renderer.sharedMaterial.SetTextureOffset("_MainTex", f.OffSet);
+        this.renderer.sharedMaterial.SetTextureScale("_MainTex", f.Size);
+    }
+
+    public void UpdateFrame()
+    {
+        UnitAnimation ani = graphics.GetAnimation(this.curAni);
+        ani.NextFrame();
+        setFrame(ani.CurrentFrame());
+
+    }
+}
