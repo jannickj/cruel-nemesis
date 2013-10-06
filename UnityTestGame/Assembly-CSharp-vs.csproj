@@ -1,88 +1,100 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7BFBAF65-BEBC-F1DC-A018-C48E81A13049}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>
-    </RootNamespace>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{7BFBAF65-BEBC-F1DC-A018-C48E81A13049}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_2;UNITY_4_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_2;UNITY_4_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>Temp\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+	<Reference Include="System" />
     <Reference Include="System.XML" />
-    <Reference Include="System.Core" />
-    <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
+	<Reference Include="System.Core" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
-    <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
-    <Compile Include="Assets\GameLogic\Map\Terrain\TerrainEntity.cs" />
-    <Compile Include="Assets\GameLogic\Map\Terrain\TextureType.cs" />
-    <Compile Include="Assets\GameLogic\Unit\GruntUnit.cs" />
-    <Compile Include="Assets\GameLogic\Unit\UnitEntity.cs" />
-    <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
-    <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
-    <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
-    <Compile Include="Assets\UnityLogic\MapHandler.cs" />
-    <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
-    <Compile Include="Assets\UnityLogic\TextureDictionary.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\Frame.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\StandardUnitAnimations.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\UnitGraphics.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\UnitInformation.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\UnitTypes\GruntGraphics.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\UnitAnimation.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\UnitControllerHandler.cs" />
-    <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
-    <Reference Include="JSLibrary">
-      <HintPath>Assets\dlls\JSLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="XmasEngine">
-      <HintPath>Assets\dlls\XmasEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="XmasEngineController">
-      <HintPath>Assets\dlls\XmasEngineController.dll</HintPath>
-    </Reference>
-    <Reference Include="XmasEngineExtensions">
-      <HintPath>Assets\dlls\XmasEngineExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="XmasEngineModel">
-      <HintPath>Assets\dlls\XmasEngineModel.dll</HintPath>
-    </Reference>
-    <Reference Include="XmasEngineView">
-      <HintPath>Assets\dlls\XmasEngineView.dll</HintPath>
-    </Reference>
+     <Compile Include="Assets\GameLogic\Events\GameStartEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PhaseChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerGainedPriorityEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerJoinedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerLeftEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerPassedPriorityEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerPerformedActionEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayersTurnChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
+     <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
+     <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
+     <Compile Include="Assets\GameLogic\Map\Terrain\TerrainEntity.cs" />
+     <Compile Include="Assets\GameLogic\Map\Terrain\TextureType.cs" />
+     <Compile Include="Assets\GameLogic\Player.cs" />
+     <Compile Include="Assets\GameLogic\TurnLogic\Phases.cs" />
+     <Compile Include="Assets\GameLogic\TurnLogic\TurnManager.cs" />
+     <Compile Include="Assets\GameLogic\Unit\GruntUnit.cs" />
+     <Compile Include="Assets\GameLogic\Unit\UnitEntity.cs" />
+     <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
+     <Compile Include="Assets\UnityLogic\MapHandler.cs" />
+     <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
+     <Compile Include="Assets\UnityLogic\TextureDictionary.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\Frame.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\StandardUnitAnimations.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitControllerHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitInformation.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitTypes\GruntGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
+     <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
+     <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
+ <Reference Include="JSLibrary">
+ <HintPath>Assets\dlls\JSLibrary.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngine">
+ <HintPath>Assets\dlls\XmasEngine.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineController">
+ <HintPath>Assets\dlls\XmasEngineController.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineExtensions">
+ <HintPath>Assets\dlls\XmasEngineExtensions.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineModel">
+ <HintPath>Assets\dlls\XmasEngineModel.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngineView">
+ <HintPath>Assets\dlls\XmasEngineView.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -92,4 +104,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  
 </Project>

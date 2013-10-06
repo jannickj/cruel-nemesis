@@ -12,8 +12,6 @@ namespace Assets.UnityLogic.Unit
         private Texture texture;
         private int frameIndex = 0;
         private int frameRepeated = 0;
-        private int SubImageWidth;
-        private int SubImageHeight;
         private Vector2 TileSize;
         private int columns;
         private int rows;

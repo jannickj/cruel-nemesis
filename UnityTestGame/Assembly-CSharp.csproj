@@ -44,13 +44,26 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameLogic\Events\GameStartEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PhaseChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerGainedPriorityEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerJoinedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerLeftEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerPassedPriorityEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerPerformedActionEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayersTurnChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
      <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
      <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
      <Compile Include="Assets\GameLogic\Map\Terrain\TerrainEntity.cs" />
      <Compile Include="Assets\GameLogic\Map\Terrain\TextureType.cs" />
+     <Compile Include="Assets\GameLogic\Player.cs" />
+     <Compile Include="Assets\GameLogic\TurnLogic\Phases.cs" />
+     <Compile Include="Assets\GameLogic\TurnLogic\TurnManager.cs" />
      <Compile Include="Assets\GameLogic\Unit\GruntUnit.cs" />
      <Compile Include="Assets\GameLogic\Unit\UnitEntity.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
      <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
      <Compile Include="Assets\UnityLogic\TextureDictionary.cs" />
