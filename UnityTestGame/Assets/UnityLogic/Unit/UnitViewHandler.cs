@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using Assets.GameLogic.Unit;
 using Assets.UnityLogic.Unit;
+using XmasEngineModel.Management;
+using Assets.GameLogic.Events;
 
 public class UnitViewHandler : MonoBehaviour {
 
@@ -15,7 +17,8 @@ public class UnitViewHandler : MonoBehaviour {
         UnitInformation info = this.gameObject.GetComponent<UnitInformation>();
         entity = info.Entity;
         graphics = info.Graphics;
-        
+
+        entity.Register(new Trigger<BeginMoveEvent>(OnUnitBeginMove));
 
         setFrame(currentFrame());
 	}
@@ -25,6 +28,13 @@ public class UnitViewHandler : MonoBehaviour {
     {
         UpdateFrame();
 	}
+
+    private void OnUnitBeginMove(BeginMoveEvent evt)
+    {
+        Vector3 v;
+        UnitHandler.ConvertUnitPos(evt.To, out v);
+        this.gameObject.transform.localPosition = v;
+    }
 
     private Frame currentFrame()
     {

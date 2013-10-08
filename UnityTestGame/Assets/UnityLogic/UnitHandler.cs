@@ -27,6 +27,11 @@ public class UnitHandler : MonoBehaviour {
 	
 	}
 
+    public static void ConvertUnitPos(Point pos, out Vector3 v)
+    {
+        v = new Vector3((float)pos.X, (float)pos.Y + 0.5f, 0.3f);
+    }
+
     private void OnUnitEntity(EntityAddedEvent evt)
     {
         UnitEntity unitEnt = (UnitEntity)evt.AddedXmasEntity;
