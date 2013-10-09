@@ -7,6 +7,7 @@ using Assets.GameLogic.Events;
 using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
 using Assets.GameLogic.Unit;
+using XmasEngineModel.Management.Actions;
 
 namespace Assets.GameLogic.Actions
 {
@@ -30,24 +31,23 @@ namespace Assets.GameLogic.Actions
             var preMove = new PreMoveEvent(unit, currentPos, newPos);
             this.Source.Raise(preMove);
             if (preMove.MoveStopped)
-            {
-                this.Complete();
                 return;
-            }
+            
             this.Source.Raise(new BeginMoveEvent(unit, currentPos, newPos,this.duration));
             if (duration != 0)
             {
-                XmasTimer t = this.Factory.CreateTimer(this, delegate
+                TimedAction t = this.Factory.CreateTimer(delegate
                     {
                         MoveUnit(currentPos, newPos);
-                        this.Complete();
+                        
                     });
-                t.StartSingle(duration);
+                t.SetSingle(duration);
+                this.RunAction(t);
             }
             else
             {
                 MoveUnit(currentPos, newPos);
-                this.Complete();
+                
             }
 
 
