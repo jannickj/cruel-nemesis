@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_NETWORK;ENABLE_MONO;ENABLE_PHYSICS;ENABLE_TERRAIN;ENABLE_CACHING;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_CLOTH;ENABLE_MOVIES;ENABLE_AUDIO;ENABLE_WWW;ENABLE_SHADOWS;ENABLE_DUCK_TYPING;UNITY_4_1_2;UNITY_4_1;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -44,6 +44,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameLogic\Actions\MoveAction.cs" />
+     <Compile Include="Assets\GameLogic\Events\BeginMoveEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\EndMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\GameStartEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PhaseChangedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayerGainedPriorityEvent.cs" />
@@ -52,6 +55,7 @@
      <Compile Include="Assets\GameLogic\Events\PlayerPassedPriorityEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayerPerformedActionEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayersTurnChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PreMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
      <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
      <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
@@ -62,6 +66,7 @@
      <Compile Include="Assets\GameLogic\TurnLogic\TurnManager.cs" />
      <Compile Include="Assets\GameLogic\Unit\GruntUnit.cs" />
      <Compile Include="Assets\GameLogic\Unit\UnitEntity.cs" />
+     <Compile Include="Assets\UnityLogic\Controllers\PlayerController.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
