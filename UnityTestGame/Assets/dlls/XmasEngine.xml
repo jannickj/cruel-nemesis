@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XmasEngine</name>
+    </assembly>
+    <members>
+        <member name="T:XmasEngine.XmasEngineManager">
+            <summary>
+            The engine manager, this is responsible for starting up the model and all its views and controllers
+            </summary>
+        </member>
+        <member name="M:XmasEngine.XmasEngineManager.#ctor(XmasEngine.XmasModelFactory)">
+            <summary>
+            Instantiates a Manager for the engine
+            </summary>
+            <param name="factory">The Model Factory that can create major components</param>
+        </member>
+        <member name="M:XmasEngine.XmasEngineManager.StartEngine(XmasEngineModel.XmasModel,System.Collections.Generic.ICollection{XmasEngineView.XmasView},System.Collections.Generic.ICollection{XmasEngineController.XmasController})">
+            <summary>
+            Starts the engine by providing the model and all its view and controllers with each their own thread.
+            All actions queued to the engine is executed before the threads are started.
+            </summary>
+            <param name="model">The model of the engine</param>
+            <param name="views">The views of the engine</param>
+            <param name="controllers">The controllers of the engine</param>
+        </member>
+        <member name="T:XmasEngine.XmasModelFactory">
+            <summary>
+            Factory responsible for constructing all major components of the Engine's model core
+            </summary>
+        </member>
+        <member name="M:XmasEngine.XmasModelFactory.ConstructModel(XmasEngineModel.XmasWorldBuilder)">
+            <summary>
+            Constructs a engine with all its components
+            </summary>
+            <param name="builder">The builder for constructing the world</param>
+            <returns>The model</returns>
+        </member>
+        <member name="M:XmasEngine.XmasModelFactory.ConstructFactory(XmasEngineModel.Management.ActionManager)">
+            <summary>
+            Constructs the factory used inside the engine
+            </summary>
+            <param name="actman">The action manager of the engine</param>
+            <returns></returns>
+        </member>
+        <member name="M:XmasEngine.XmasModelFactory.ConstructEventManager">
+            <summary>
+            Constructs the EventManager of the engine
+            </summary>
+            <returns>the eventmanager</returns>
+        </member>
+        <member name="M:XmasEngine.XmasModelFactory.ConstructActionManager(XmasEngineModel.Management.EventManager)">
+            <summary>
+            Constructs the ActionManager of the engine
+            </summary>
+            <param name="evtman">The EventManager of the engine</param>
+            <returns>The ActionManager</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XmasEngineExtensions</name>
+    </assembly>
+    <members>
+        <member name="M:XmasEngineExtensions.TileExtension.Actions.MoveUnitAction.#ctor(JSLibrary.Data.Vector)">
+            <summary>
+                Initializes a move action, which is used to move entities in a gameworld
+            </summary>
+            <param name="world"> The world the unit is moved in</param>
+            <param name="unit"> The unit that gets moved</param>
+            <param name="direction"> the direction vector of the move</param>
+            <param name="time"> the time in miliseconds that the move takes</param>
+        </member>
+    </members>
+</doc>

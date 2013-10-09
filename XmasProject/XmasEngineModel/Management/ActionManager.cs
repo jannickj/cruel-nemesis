@@ -54,7 +54,7 @@ namespace XmasEngineModel.Management
 
 		internal event UnaryValueHandler<XmasAction> ActionQueuing;
 		internal event UnaryValueHandler<XmasAction> ActionQueued;
-
+        internal event UnaryValueHandler<XmasAction> PreActionExecution;
 
         /// <summary>
         /// Executes all actions queued to the action manager
@@ -75,23 +75,8 @@ namespace XmasEngineModel.Management
 
 				foreach (XmasAction action in actions)
 				{
-					runningActions.Add(action);
-					action.Resolved += action_Resolved;
-					try
-					{
-						action.Fire();
-						actionsExecuted++;
-					}
-					catch (ForceStopEngineException e)
-					{
-						throw e;
-					}
-					catch (Exception e)
-					{
-						action.Fail();
-						this.evtman.Raise(new ActionFailedEvent(e));
-					}
-					
+                    ExecuteAction(action);
+                    actionsExecuted++;					
 				}
 				lock (this)
 				{
@@ -101,6 +86,28 @@ namespace XmasEngineModel.Management
 			} while (true);
 			return actionsExecuted;
 		}
+
+        internal void ExecuteAction(XmasAction action)
+        {
+            if (PreActionExecution != null)
+                PreActionExecution(this, new UnaryValueEvent<XmasAction>(action));
+            runningActions.Add(action);
+            action.Resolved += action_Resolved;
+            try
+            {
+                action.Fire();
+                
+            }
+            catch (ForceStopEngineException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                action.Fail();
+                this.evtman.Raise(new ActionFailedEvent(e));
+            }
+        }
 
 
         /// <summary>

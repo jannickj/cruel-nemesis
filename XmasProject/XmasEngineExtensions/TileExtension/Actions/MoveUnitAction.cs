@@ -4,6 +4,7 @@ using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 using XmasEngineExtensions.TileExtension.Modules;
+using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineExtensions.TileExtension.Actions
 {
@@ -53,7 +54,7 @@ namespace XmasEngineExtensions.TileExtension.Actions
 			}
 			else
 			{
-				XmasTimer gt = Factory.CreateTimer(this, () =>
+				TimedAction gt = Factory.CreateTimer(() =>
 					{
 						if (World.SetEntityPosition(Source, new TilePosition(newloc)))
 							Source.Raise(new UnitMovePostEvent(newloc));
@@ -64,7 +65,8 @@ namespace XmasEngineExtensions.TileExtension.Actions
 					});
 
 				
-					gt.StartSingle(time);
+					gt.SetSingle(time);
+                    this.RunAction(gt);
 			}
 		}
 	}

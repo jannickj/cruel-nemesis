@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VacuumCleanerWorldExample.Events;
 using XmasEngineModel.Management;
+using XmasEngineModel.Management.Actions;
 using XmasEngineModel.World;
 
 namespace VacuumCleanerWorldExample.Actions
@@ -17,7 +18,7 @@ namespace VacuumCleanerWorldExample.Actions
 			
 			//Create a timer so the move is delayed by a certain speed
 			//(Otherwise the agent will be able to move instantanious only limited by CPU power)
-			XmasTimer timer = this.Factory.CreateTimer(this, () =>
+			TimedAction timer = this.Factory.CreateTimer(() =>
 				{
 					//the old position of the vacuum cleaner
 					var pos = (VacuumPosition)this.Source.Position;
@@ -41,8 +42,8 @@ namespace VacuumCleanerWorldExample.Actions
 				});
 
 			//Start the timer, when the timer is done the action added above will be queued safely to the engine
-			timer.StartSingle(1000);
-
+			timer.SetSingle(1000);
+            this.RunAction(timer);
 			
 		}
 	}

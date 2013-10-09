@@ -4,6 +4,7 @@ using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Percepts;
+using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineModel.Management
 {
@@ -30,9 +31,9 @@ namespace XmasEngineModel.Management
         /// <param name="owner">The action that is owner of the timer</param>
         /// <param name="action">The action that the timer executes</param>
         /// <returns>The timer</returns>
-		public XmasTimer CreateTimer(XmasAction owner, Action action)
+		public TimedAction CreateTimer(Action action)
 		{
-			XmasTimer gt = new XmasTimer(actman, owner, action);
+			TimedAction gt = new TimedAction(action);
 			return gt;
 		}
 

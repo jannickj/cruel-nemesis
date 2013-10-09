@@ -31,7 +31,7 @@ namespace XmasEngineModel
 			world.EventManager = evtman;
 
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
-			ActionManager.ActionQueuing += actman_ActionQueuing;
+			ActionManager.PreActionExecution += actman_PreActionExecution;
 			ActionManager.ActionQueued += actman_ActionQueued;
 
 			foreach (var action in ActionManager.QueuedActions)
@@ -121,7 +121,7 @@ namespace XmasEngineModel
 			actionRecieved.Set();
 		}
 
-		private void actman_ActionQueuing(object sender, UnaryValueEvent<XmasAction> evt)
+		private void actman_PreActionExecution(object sender, UnaryValueEvent<XmasAction> evt)
 		{
 			evt.Value.EventManager = EventManager;
 			evt.Value.Factory = Factory;
