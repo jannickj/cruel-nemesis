@@ -10,12 +10,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.UnityLogic.Commands;
 using Assets.UnityLogic.Unit;
+using Assets.GameLogic;
+using XmasEngineModel;
 
 public class PlayerController : MonoBehaviour {
     private UnitEntity ue;
     public Camera PlayerCamera;
+    public string PlayerName;
     private HashSet<Command> runningCommands = new HashSet<Command>();
     private HashSet<Command> awaitingCommands = new HashSet<Command>();
+
+    private Player player;
+    private XmasModel engine;
+    private bool hasPriority;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -24,6 +32,12 @@ public class PlayerController : MonoBehaviour {
         EngineHandler.GetEngine().EventManager.Register(
             new Trigger<EntityAddedEvent>(e => e.AddedXmasEntity is UnitEntity, evt => ue = (UnitEntity)evt.AddedXmasEntity));
 	    EngineHandler.GetEngine().EventManager.Register(new Trigger<EndMoveEvent>(evt => Debug.Log("Unit has moved to "+evt.To)));
+        engine = EngineHandler.GetEngine();
+        player = new Player();
+        player.Name = PlayerName;
+
+        engine.ActionManager.Queue(new PlayerJoinAction(player));
+        engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => evt.Player == player, _ => hasPriority = true));
     }
 	
 	// Update is called once per frame
@@ -43,20 +57,25 @@ public class PlayerController : MonoBehaviour {
             awaitingCommands.Remove(cmd);
             runningCommands.Add(cmd);
         }
-       
-        if(this.runningCommands.Count == 0)
+
+        if (this.runningCommands.Count == 0 && hasPriority)
             if (Event.current.type == EventType.MouseDown && Input.GetButton("select_object"))
             {
-               
-                Debug.Log("CLICK");
+
                 GameObject[] objs = GetGameObjectsOnMouse();
                 GameObject firstunit = objs.FirstOrDefault(go => go.GetComponent<UnitControllerHandler>() != null);
                 if (firstunit == null)
                     return;
-                
-                this.PerformCommand(new MoveUnitCommand(firstunit,firstunit.GetComponent<UnitInformation>().Entity));
-            }
 
+                this.PerformCommand(new MoveUnitCommand(firstunit, firstunit.GetComponent<UnitInformation>().Entity));
+            }
+            else if (Event.current.type == EventType.keyDown && Input.GetButton("pass_priority")) 
+            {
+                this.PerformCommand(new PassPriorityCommand(player));
+            }
+        
+            
+        
         UpdateCommands();
     }
 
@@ -67,6 +86,7 @@ public class PlayerController : MonoBehaviour {
 
     public void PerformCommand(Command cmd)
     {
+        engine.AddActor(cmd);
         cmd.PlayerController = this;
         awaitingCommands.Add(cmd);
     }

@@ -2,13 +2,16 @@ using UnityEngine;
 using System.Collections;
 using XmasEngineModel;
 using Assets.GameLogic.TurnLogic;
+using Assets.GameLogic.Actions;
 
 public class GameLogicLoader : MonoBehaviour {
 
+    private bool gamestarted = false;
+    private XmasModel engine;
 	// Use this for initialization
 	void Start () 
     {
-        XmasModel engine = EngineHandler.GetEngine();
+        engine = EngineHandler.GetEngine();
 
         //Start turn manager
         TurnManager turnManager = new TurnManager();
@@ -21,4 +24,15 @@ public class GameLogicLoader : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnGui()
+    {
+        if (Event.current.type == EventType.keyDown && Input.GetButton("start_game"))
+        {
+            if (!gamestarted)
+            {
+                engine.ActionManager.Queue(new StartGameAction()); 
+            }
+        }
+    }
 }

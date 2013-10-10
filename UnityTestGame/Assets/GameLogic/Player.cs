@@ -13,6 +13,7 @@ namespace Assets.GameLogic
         public string Name
         {
             get { return name; }
+            set { name = value; }
         }
 	}
 }

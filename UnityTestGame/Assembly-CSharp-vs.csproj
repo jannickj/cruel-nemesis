@@ -45,6 +45,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\GameLogic\Actions\MoveAction.cs" />
+     <Compile Include="Assets\GameLogic\Actions\PlayerJoinAction.cs" />
+     <Compile Include="Assets\GameLogic\Actions\PlayerPassPriorityAction.cs" />
+     <Compile Include="Assets\GameLogic\Actions\StartGameAction.cs" />
      <Compile Include="Assets\GameLogic\Events\BeginMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\EndMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\GameStartEvent.cs" />
@@ -68,6 +71,7 @@
      <Compile Include="Assets\GameLogic\Unit\UnitEntity.cs" />
      <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
      <Compile Include="Assets\UnityLogic\Commands\MoveUnitCommand.cs" />
+     <Compile Include="Assets\UnityLogic\Commands\PassPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\Controllers\PlayerController.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
