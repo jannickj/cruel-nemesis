@@ -57,7 +57,7 @@ namespace XmasEngineModel.Management
         internal event UnaryValueHandler<XmasAction> PreActionExecution;
 
         /// <summary>
-        /// Executes all actions queued to the action manager
+        /// Executes all actions queued to the action manager (This action is not threadsafe)
         /// </summary>
         /// <returns>the number of actions succesfully executed</returns>
 		public int ExecuteActions()

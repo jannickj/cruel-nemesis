@@ -33,6 +33,11 @@ public class MapHandler : MonoBehaviour {
         Point pos = posinfo.Point;
        
         var  transform = (Transform)Instantiate(Terrain,new Vector3((float)pos.X,(float)pos.Y),Terrain.rotation);
+
+        transform.gameObject.AddComponent<TerrainInformation>();
+        var terinfo = transform.gameObject.GetComponent<TerrainInformation>();
+        terinfo.SetTerrain(terEnt);
+
         transform.renderer.sharedMaterial.SetTexture("_MainTex", TextureDictionary.GetTexture(terEnt.TextureType));
     }
 }

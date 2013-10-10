@@ -18,7 +18,12 @@ namespace Assets.GameLogic.Actions
 
         public MoveAction(Vector v, int duration)
         {
-            this.v = v;
+            //ensure x and y is a under that is either 1, 0 or -1
+            int x = v.X > 1 ? 1 : (v.X < -1 ? -1 : v.X);
+            int y = v.Y > 1 ? 1 : (v.Y < -1 ? -1 : v.Y);
+
+            this.v = new Vector(x,y);
+            
             this.duration = duration;
         }
 

@@ -66,11 +66,14 @@
      <Compile Include="Assets\GameLogic\TurnLogic\TurnManager.cs" />
      <Compile Include="Assets\GameLogic\Unit\GruntUnit.cs" />
      <Compile Include="Assets\GameLogic\Unit\UnitEntity.cs" />
+     <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
+     <Compile Include="Assets\UnityLogic\Commands\MoveUnitCommand.cs" />
      <Compile Include="Assets\UnityLogic\Controllers\PlayerController.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
      <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
+     <Compile Include="Assets\UnityLogic\TerrainInformation.cs" />
      <Compile Include="Assets\UnityLogic\TextureDictionary.cs" />
      <Compile Include="Assets\UnityLogic\Unit\Frame.cs" />
      <Compile Include="Assets\UnityLogic\Unit\StandardUnitAnimations.cs" />
@@ -82,6 +85,11 @@
      <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
+     <None Include="Assets\dlls\XmasEngineView.xml" />
+     <None Include="Assets\dlls\XmasEngineModel.xml" />
+     <None Include="Assets\dlls\XmasEngineController.xml" />
+     <None Include="Assets\dlls\JSLibrary.xml" />
+     <None Include="Assets\dlls\XmasEngine.xml" />
  <Reference Include="JSLibrary">
  <HintPath>Assets\dlls\JSLibrary.dll</HintPath>
  </Reference>
