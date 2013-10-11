@@ -621,6 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: 
   PlayerCamera: {fileID: 577934305}
   PlayerName: 
 --- !u!1 &552535306

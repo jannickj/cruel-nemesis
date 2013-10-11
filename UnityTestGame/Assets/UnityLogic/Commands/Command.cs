@@ -9,7 +9,7 @@ namespace Assets.UnityLogic.Commands
 	public abstract class Command : XmasActor
 	{
 
-        public PlayerController PlayerController { get; set; }
+        public GuiController PlayerController { get; set; }
         public abstract void Update();
 
         public bool Finished { get; protected set; }

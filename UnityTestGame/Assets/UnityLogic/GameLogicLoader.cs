@@ -3,6 +3,8 @@ using System.Collections;
 using XmasEngineModel;
 using Assets.GameLogic.TurnLogic;
 using Assets.GameLogic.Actions;
+using Assets.GameLogic;
+using Assets.UnityLogic;
 
 public class GameLogicLoader : MonoBehaviour {
 
@@ -17,8 +19,17 @@ public class GameLogicLoader : MonoBehaviour {
         TurnManager turnManager = new TurnManager();
         engine.AddActor(turnManager);
         turnManager.Initialize();
+
+        Player[] players = GlobalGameSettings.GetSettings().LocalPlayers;
+
+        foreach (Player p in players)
+        {
+            engine.ActionManager.Queue(new PlayerJoinAction(p));
+        }
 	    
 	}
+
+    
 	
 	// Update is called once per frame
 	void Update () {
