@@ -37,7 +37,7 @@ namespace Assets.Map
 					D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D
 				};
 
-            this.AddMapOfEntities(map, 17, 13);
+            this.AddMapOfEntities(map, HEIGHT*2+1, WIDTH*2+1);
             this.AddEntity(new GruntUnit(), new Point(1, 2));
 
             this.AddEntity(new GruntUnit(), new Point(0, 0));

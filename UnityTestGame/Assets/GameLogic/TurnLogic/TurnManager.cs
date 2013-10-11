@@ -37,7 +37,7 @@ namespace Assets.GameLogic.TurnLogic
         {
             if (evt.Player == playerWithPriority)
             {
-                MovePriorityPhaseTurn();
+                ChangePriorityPhaseTurn();
             }
             else
                 throw new IllegalPlayerPriorityException(IllegalPriorityActions.Passed_Priority, evt.Player);
@@ -53,17 +53,17 @@ namespace Assets.GameLogic.TurnLogic
 
         private void OnGameStart(GameStartEvent evt)
         {
-            MovePriorityPhaseTurn();
+            ChangePriorityPhaseTurn();
         }
 
-        private void MovePriorityPhaseTurn()
+        private void ChangePriorityPhaseTurn()
         {
-            if (MovePriority())
-                if (MovePhase())
-                    MoveTurn();
+            if (ChangePriority())
+                if (ChangePhase())
+                    ChangeTurn();
         }
 
-        private void MoveTurn()
+        private void ChangeTurn()
         {
             if (playersTurn == null)
             {
@@ -75,7 +75,7 @@ namespace Assets.GameLogic.TurnLogic
             this.EventManager.Raise(new PlayersTurnChangedEvent(playersTurn));
         }
 
-        private bool MovePhase()
+        private bool ChangePhase()
         {
             bool phasereset;
             Phases oldphase = currentPhase;
@@ -107,7 +107,7 @@ namespace Assets.GameLogic.TurnLogic
             this.EventManager.Raise(new PlayerGainedPriorityEvent(playerWithPriority));
         }
 
-        private bool MovePriority()
+        private bool ChangePriority()
         {
             if (priorityQueue.Count == 0)
             {

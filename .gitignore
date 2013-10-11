@@ -8,3 +8,6 @@ TestResults/
 *.userprefs
 metadata/
 Temp/
+debuggame_Data/
+*.pdb
+*.exe
