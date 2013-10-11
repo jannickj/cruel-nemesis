@@ -36,11 +36,11 @@ namespace Assets.UnityLogic
 
         void Start()
         {
-            //UnityEngine.Object.DontDestroyOnLoad(this);
-            //Player p = new Player();
-            //p.Name = "player 1";
-            //this.mainPlayer = p;
-            //this.AddPlayer(p);
+            UnityEngine.Object.DontDestroyOnLoad(this);
+            Player p = new Player();
+            p.Name = "player 1";
+            this.mainPlayer = p;
+            this.AddPlayer(p);
             
         }
 

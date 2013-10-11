@@ -20,6 +20,7 @@ public class GameLogicLoader : MonoBehaviour {
         engine.AddActor(turnManager);
         turnManager.Initialize();
 
+      
         Player[] players = GlobalGameSettings.GetSettings().LocalPlayers;
 
         foreach (Player p in players)

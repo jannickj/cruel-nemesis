@@ -19,7 +19,6 @@ namespace Assets.UnityLogic.Gui
     {
         private UnitEntity ue;
         public Camera PlayerCamera;
-        public string PlayerName;
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
 
@@ -37,11 +36,8 @@ namespace Assets.UnityLogic.Gui
                 new Trigger<EntityAddedEvent>(e => e.AddedXmasEntity is UnitEntity, evt => ue = (UnitEntity)evt.AddedXmasEntity));
             EngineHandler.GetEngine().EventManager.Register(new Trigger<EndMoveEvent>(evt => Debug.Log("Unit has moved to " + evt.To)));
             engine = EngineHandler.GetEngine();
-            player = new Player();
-            player.Name = PlayerName;
-
-            engine.ActionManager.Queue(new PlayerJoinAction(player));
-            //engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == player ));
+            
+            engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == player ));
         }
 
         // Update is called once per frame
@@ -65,7 +61,7 @@ namespace Assets.UnityLogic.Gui
             if (this.runningCommands.Count == 0 && hasPriority)
                 if (Event.current.type == EventType.MouseDown && Input.GetButton("select_object"))
                 {
-
+                    Debug.Log("Starting select");
                     GameObject[] objs = GetGameObjectsOnMouse();
                     GameObject firstunit = objs.FirstOrDefault(go => go.GetComponent<UnitControllerHandler>() != null);
                     if (firstunit == null)
