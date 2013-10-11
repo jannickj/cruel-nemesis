@@ -30,6 +30,7 @@ namespace Assets.UnityLogic.Gui
         // Use this for initialization
         void Start()
         {
+            hasPriority = true;
             if (PlayerCamera == null)
                 PlayerCamera = Camera.main;
             EngineHandler.GetEngine().EventManager.Register(
@@ -40,7 +41,7 @@ namespace Assets.UnityLogic.Gui
             player.Name = PlayerName;
 
             engine.ActionManager.Queue(new PlayerJoinAction(player));
-            engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == player ));
+            //engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == player ));
         }
 
         // Update is called once per frame
