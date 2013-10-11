@@ -13,7 +13,7 @@ namespace Assets.GameLogic.SpellSystem
             throw new NotImplementedException();
         }
 
-        public override void FireAbility()
+        protected override void FireAbility()
         {
             throw new NotImplementedException();
         }

@@ -13,10 +13,8 @@ using XmasEngineModel;
 namespace UnityTestGameTest.SpellSystem
 {
     [TestClass]
-    public class AbilityTest
+    public class AbilityTest : EngineTest
     {
-        private EventManager evtman = new EventManager();
-
         public AbilityTest()
         {
             
@@ -29,14 +27,15 @@ namespace UnityTestGameTest.SpellSystem
             bool resolvesEventTriggered = false;
 
             Ability abi = new TestAbility(() => hasfired = true);
-            abi.EventManager = evtman;
+            abi.EventManager = this.EventManager;
 
-            evtman.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
+            this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
 
             UnitEntity unit = new TestUnit();
             abi.SetTarget(0, new XmasActor[]{unit});
 
-            abi.FireAbility();
+            this.ActionManager.Queue(abi);
+            this.ActionManager.ExecuteActions();
 
             Assert.IsTrue(hasfired);
             Assert.IsTrue(resolvesEventTriggered);
@@ -50,21 +49,22 @@ namespace UnityTestGameTest.SpellSystem
         {
             bool hasfired = false;
             bool resolvesEventTriggered = false;
-            bool targetBecomesInvalid = true;
+            bool targetBecomesInvalid = false;
 
             Ability abi = new TestAbility(() => hasfired = true);
-            abi.EventManager = evtman;
+            abi.EventManager = this.EventManager;
 
-            evtman.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
-            evtman.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
+            this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
+            this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
 
             UnitEntity unit = new TestUnit();
-            unit.EventManager = evtman;
+            unit.EventManager = this.EventManager;
             abi.SetTarget(0, new XmasActor[]{unit});
 
             unit.Raise(new RemovedFromGameEvent());
 
-            abi.FireAbility();
+            this.ActionManager.Queue(abi);
+            this.ActionManager.ExecuteActions();
 
             Assert.IsFalse(hasfired);
             Assert.IsFalse(resolvesEventTriggered);
@@ -80,20 +80,20 @@ namespace UnityTestGameTest.SpellSystem
             bool targetBecomesInvalid = true;
 
             Ability abi = new TestAbility(() => hasfired = true);
-            abi.EventManager = evtman;
+            abi.EventManager = this.EventManager;
             
 
-            evtman.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
-            evtman.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
+            this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
+            this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
 
             UnitEntity unit = new TestUnit();
             abi.SetTarget(0, new XmasActor[]{unit});
 
             abi.SetTargetCondition(0, _ => false);
 
-            
 
-            abi.FireAbility();
+            this.ActionManager.Queue(abi);
+            this.ActionManager.ExecuteActions();
 
 
             

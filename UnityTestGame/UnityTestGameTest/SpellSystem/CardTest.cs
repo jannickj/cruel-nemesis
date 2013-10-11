@@ -21,7 +21,8 @@ namespace UnityTestGameTest.SpellSystem
 
             Spell spell = card.ConstructSpell();
 
-            spell.FireAbility();
+            this.ActionManager.Queue(spell);
+            this.ActionManager.ExecuteActions();
 
 
             Assert.IsTrue(spellResolved);
