@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;DEVELOPMENT_BUILD;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -75,6 +75,8 @@
      <Compile Include="Assets\UnityLogic\Controllers\PlayerController.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
+     <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
+     <Compile Include="Assets\UnityLogic\GuiLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
      <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
      <Compile Include="Assets\UnityLogic\TerrainInformation.cs" />
@@ -89,11 +91,11 @@
      <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
-     <None Include="Assets\dlls\XmasEngineView.xml" />
-     <None Include="Assets\dlls\XmasEngineModel.xml" />
-     <None Include="Assets\dlls\XmasEngineController.xml" />
      <None Include="Assets\dlls\JSLibrary.xml" />
+     <None Include="Assets\dlls\XmasEngineController.xml" />
+     <None Include="Assets\dlls\XmasEngineModel.xml" />
      <None Include="Assets\dlls\XmasEngine.xml" />
+     <None Include="Assets\dlls\XmasEngineView.xml" />
  <Reference Include="JSLibrary">
  <HintPath>Assets\dlls\JSLibrary.dll</HintPath>
  </Reference>
