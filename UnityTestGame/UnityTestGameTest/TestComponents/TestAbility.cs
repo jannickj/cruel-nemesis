@@ -12,5 +12,10 @@ namespace UnityTestGameTest.TestComponents
         {
 
         }
+
+        public override void FireAbility()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
