@@ -9,9 +9,6 @@ namespace UnityTestGameTest
     [TestClass]
     public class SpellTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+        
     }
 }
