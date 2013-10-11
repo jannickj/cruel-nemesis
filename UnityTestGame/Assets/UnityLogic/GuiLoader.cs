@@ -15,7 +15,7 @@ namespace Assets.UnityLogic
 
         void Start()
         {
-            Instantiate(PlayerLogo);
+            
         }
 	}
 }
