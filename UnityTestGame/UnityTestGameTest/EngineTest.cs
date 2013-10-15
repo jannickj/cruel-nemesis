@@ -17,7 +17,7 @@ namespace UnityTestGameTest
             this.EventManager = new EventManager();
             this.ActionManager = new ActionManager(this.EventManager);
             this.Factory = new XmasFactory(this.ActionManager);
-            this.World = new TestWorld();
+            this.World = new MockWorld();
             this.Engine = new XmasModel(this.World, this.ActionManager, this.EventManager, this.Factory);
         }
     }

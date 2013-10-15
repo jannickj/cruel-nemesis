@@ -17,41 +17,31 @@ namespace Assets.UnityLogic.Gui
 {
     public class GuiController : MonoBehaviour
     {
-        private UnitEntity ue;
         public Camera PlayerCamera;
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
 
-        private Player player;
+        private GuiInformation guiinfo;
         private XmasModel engine;
         private bool hasPriority;
 
         // Use this for initialization
         void Start()
         {
-            hasPriority = true;
+            this.guiinfo = guiinfo = this.gameObject.GetComponent<GuiInformation>();
+            hasPriority = false;
             if (PlayerCamera == null)
                 PlayerCamera = Camera.main;
-            EngineHandler.GetEngine().EventManager.Register(
-                new Trigger<EntityAddedEvent>(e => e.AddedXmasEntity is UnitEntity, evt => ue = (UnitEntity)evt.AddedXmasEntity));
-            EngineHandler.GetEngine().EventManager.Register(new Trigger<EndMoveEvent>(evt => Debug.Log("Unit has moved to " + evt.To)));
-            engine = EngineHandler.GetEngine();
             
-            engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == player ));
+            engine = EngineHandler.GetEngine();
+
+            
+            engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == guiinfo.Player ));
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                ue.QueueAction(new MoveAction(new Vector(1, 0), 0));
-            }
-        }
-
-        void OnGUI()
-        {
-
             foreach (Command cmd in awaitingCommands.ToArray())
             {
                 awaitingCommands.Remove(cmd);
@@ -59,9 +49,8 @@ namespace Assets.UnityLogic.Gui
             }
 
             if (this.runningCommands.Count == 0 && hasPriority)
-                if (Event.current.type == EventType.MouseDown && Input.GetButton("select_object"))
+                if (Input.GetButtonDown("select_object"))
                 {
-                    Debug.Log("Starting select");
                     GameObject[] objs = GetGameObjectsOnMouse();
                     GameObject firstunit = objs.FirstOrDefault(go => go.GetComponent<UnitControllerHandler>() != null);
                     if (firstunit == null)
@@ -69,9 +58,10 @@ namespace Assets.UnityLogic.Gui
 
                     this.PerformCommand(new MoveUnitCommand(firstunit, firstunit.GetComponent<UnitInformation>().Entity));
                 }
-                else if (Event.current.type == EventType.keyDown && Input.GetButton("pass_priority"))
+                else if (Input.GetButtonDown("pass_priority"))
                 {
-                    this.PerformCommand(new PassPriorityCommand(player));
+
+                    this.PerformCommand(new PassPriorityCommand(guiinfo.Player));
                 }
 
 
@@ -79,9 +69,10 @@ namespace Assets.UnityLogic.Gui
             UpdateCommands();
         }
 
-        void OnMouseDown()
+        void OnGUI()
         {
-            Debug.Log("TEST");
+
+            
         }
 
         public void PerformCommand(Command cmd)

@@ -10,6 +10,11 @@ namespace Assets.GameLogic.Events
 	{
         private Player playersTurn;
 
+        public Player PlayersTurn
+        {
+            get { return playersTurn; }
+        }
+
         public PlayersTurnChangedEvent(Player playersTurn)
         {
             // TODO: Complete member initialization

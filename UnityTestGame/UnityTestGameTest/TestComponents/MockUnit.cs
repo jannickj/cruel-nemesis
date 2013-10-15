@@ -6,7 +6,7 @@ using Assets.GameLogic.Unit;
 
 namespace UnityTestGameTest.TestComponents
 {
-    public class TestUnit : UnitEntity
+    public class MockUnit : UnitEntity
     {
     }
 }

@@ -105,7 +105,7 @@ namespace XmasEngineModel.Management
             catch (Exception e)
             {
                 action.Fail();
-                this.evtman.Raise(new ActionFailedEvent(e));
+                this.evtman.Raise(new ActionFailedEvent(action,e));
             }
         }
 

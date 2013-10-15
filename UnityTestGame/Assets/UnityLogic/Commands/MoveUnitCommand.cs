@@ -7,6 +7,10 @@ using Assets.GameLogic.Unit;
 using Assets.GameLogic.Actions;
 using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
+using Assets.GameLogic.Map;
+using Assets.Library.PathFinding;
+using XmasEngineModel.Management.Actions;
+using JSLibrary;
 
 namespace Assets.UnityLogic.Commands
 {
@@ -14,7 +18,7 @@ namespace Assets.UnityLogic.Commands
 	{
         private UnitEntity unitEntity;
         private GameObject unit;
-
+        //private List<
         
         public MoveUnitCommand(GameObject unit, UnitEntity unitEntity)
         {
@@ -26,7 +30,7 @@ namespace Assets.UnityLogic.Commands
 
         public override void Update()
         {
-            if (Event.current.type == EventType.MouseDown && Input.GetButtonDown("select_object"))
+            if (Input.GetButtonDown("select_object"))
             {
                 GameObject[] gobjs = this.PlayerController.GetGameObjectsOnMouse();
                 GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
@@ -36,11 +40,28 @@ namespace Assets.UnityLogic.Commands
                     TerrainInformation terinfo = firstter.GetComponent<TerrainInformation>();
                     TilePosition tilepos = (TilePosition)terinfo.Terrain.Position;
                     TilePosition unitpos = (TilePosition)unitEntity.Position;
-                    Vector v = new Vector(unitpos.Point,tilepos.Point);
-                    unitEntity.QueueAction(new MoveAction(v, 0));
+                    TilePathFinder path = new TilePathFinder((TileWorld)this.World);
+                    bool foundPath;
+                    Path<TileWorld,TilePosition> route;
+
+                    Parallel.TryExecute(() =>  path.FindFirst(unitpos, tilepos, out foundPath), 1000, out route);
+
+                    MoveAction[] moves = route.Road.Select(pos => new MoveAction(pos.Point, 1000)).ToArray();
+                    
+
+                    MultiAction multiaction = new MultiAction();
+
+                    foreach (MoveAction ma in moves)
+                        multiaction.AddAction(unitEntity,ma);
+
+                    this.ActionManager.Queue(multiaction);
                     this.unit.renderer.material.color = Color.white;
                     Finished = true;
                 }
+            }
+            else if (Input.GetButtonDown("pass_priority"))
+            {
+                
             }
         }
     }

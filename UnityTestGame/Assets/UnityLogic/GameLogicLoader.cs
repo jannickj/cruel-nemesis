@@ -37,12 +37,15 @@ public class GameLogicLoader : MonoBehaviour {
 	
 	}
 
-    void OnGui()
+    void OnGUI()
     {
         if (Event.current.type == EventType.keyDown && Input.GetButton("start_game"))
         {
+            
             if (!gamestarted)
             {
+                Debug.Log("Starting game");
+                gamestarted = true;
                 engine.ActionManager.Queue(new StartGameAction()); 
             }
         }

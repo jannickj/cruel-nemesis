@@ -26,12 +26,12 @@ namespace UnityTestGameTest.SpellSystem
             bool hasfired = false;
             bool resolvesEventTriggered = false;
 
-            Ability abi = new TestAbility(() => hasfired = true);
+            Ability abi = new MockAbility(() => hasfired = true);
             abi.EventManager = this.EventManager;
 
             this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
 
-            UnitEntity unit = new TestUnit();
+            UnitEntity unit = new MockUnit();
             abi.SetTarget(0, new XmasActor[]{unit});
 
             this.ActionManager.Queue(abi);
@@ -51,13 +51,13 @@ namespace UnityTestGameTest.SpellSystem
             bool resolvesEventTriggered = false;
             bool targetBecomesInvalid = false;
 
-            Ability abi = new TestAbility(() => hasfired = true);
+            Ability abi = new MockAbility(() => hasfired = true);
             abi.EventManager = this.EventManager;
 
             this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
             this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
 
-            UnitEntity unit = new TestUnit();
+            UnitEntity unit = new MockUnit();
             unit.EventManager = this.EventManager;
             abi.SetTarget(0, new XmasActor[]{unit});
 
@@ -79,14 +79,14 @@ namespace UnityTestGameTest.SpellSystem
             bool resolvesEventTriggered = false;
             bool targetBecomesInvalid = true;
 
-            Ability abi = new TestAbility(() => hasfired = true);
+            Ability abi = new MockAbility(() => hasfired = true);
             abi.EventManager = this.EventManager;
             
 
             this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
             this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
 
-            UnitEntity unit = new TestUnit();
+            UnitEntity unit = new MockUnit();
             abi.SetTarget(0, new XmasActor[]{unit});
 
             abi.SetTargetCondition(0, _ => false);

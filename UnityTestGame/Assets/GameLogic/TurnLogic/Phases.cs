@@ -7,11 +7,11 @@ namespace Assets.GameLogic.TurnLogic
 {
 	public enum Phases
 	{
-        Draw = 1,
-        Main = 2,
-        Declare = 3,
-        Combat = 4,
-        Main2 = 5,
-        End = 6
+        Draw = 0,
+        Main = 1,
+        Declare = 2,
+        Combat = 3,
+        Main2 = 4,
+        End = 5
 	}
 }

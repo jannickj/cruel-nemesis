@@ -15,6 +15,8 @@ namespace Assets.GameLogic.Actions
 	{
         private int duration;
         private Vector v;
+        private Point toward;
+        private bool usePoint = false;
 
         public MoveAction(Vector v, int duration)
         {
@@ -27,11 +29,24 @@ namespace Assets.GameLogic.Actions
             this.duration = duration;
         }
 
+        public MoveAction(Point towardPoint, int duration)
+        {
+            this.toward = towardPoint;
+            this.usePoint = true;
+            this.duration = duration;
+        }
+
         protected override void Execute()
         {
+
+
             var unit = (UnitEntity)this.Source;
             TilePosition p = (TilePosition)this.World.GetEntityPosition(this.Source);
             Point currentPos = p.Point;
+
+            if (usePoint)
+                v = new Vector(currentPos, toward);
+
             Point newPos = currentPos + v;
             var preMove = new PreMoveEvent(unit, currentPos, newPos);
             this.Source.Raise(preMove);

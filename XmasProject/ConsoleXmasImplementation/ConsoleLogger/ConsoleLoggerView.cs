@@ -58,7 +58,7 @@ namespace ConsoleXmasImplementation.ConsoleLogger
 
 		private void engine_ActionFailed(ActionFailedEvent evt)
 		{
-			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Error);
+			log.LogStringWithTimeStamp (evt.Exception.Message, DebugLevel.Error);
 		}
 
 		private void entity_TimerElapsedEvent(EisAgentTimingEvent evt)

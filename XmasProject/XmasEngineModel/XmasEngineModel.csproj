@@ -78,6 +78,7 @@
     <Compile Include="Management\Events\EngineCloseEvent.cs" />
     <Compile Include="Management\Events\EntityAddedEvent.cs" />
     <Compile Include="Management\Events\RetreivePerceptsEvent.cs" />
+    <Compile Include="Management\Events\TriggerFailedEvent.cs" />
     <Compile Include="Management\XmasAction.cs" />
     <Compile Include="Management\XmasEvent.cs" />
     <Compile Include="Management\Events\TimedAction.cs" />

@@ -6,7 +6,7 @@ using Assets.GameLogic.SpellSystem;
 
 namespace UnityTestGameTest.TestComponents
 {
-    public class TestCard : GameCard
+    public class MockCard : GameCard
     {
         internal Spell ConstructSpell()
         {

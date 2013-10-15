@@ -41,6 +41,10 @@ namespace Assets.UnityLogic
             p.Name = "player 1";
             this.mainPlayer = p;
             this.AddPlayer(p);
+
+            p = new Player();
+            p.Name = "player 2";
+            this.AddPlayer(p);
             
         }
 

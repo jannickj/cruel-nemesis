@@ -22,7 +22,7 @@ public class EngineHandler : MonoBehaviour {
         XmasFactory factory = new XmasFactory(actman);
         engine = new XmasModel(world, actman, evtman, factory);
 
-        evtman.Register(new Trigger<ActionFailedEvent>(evt => Debug.Log("Engine action failed: "+evt.ActionException.Message)));
+        
 
 	}
 	

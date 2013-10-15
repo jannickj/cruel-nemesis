@@ -6,7 +6,7 @@ using XmasEngineModel;
 
 namespace UnityTestGameTest.TestComponents
 {
-    public class TestWorld : XmasWorld
+    public class MockWorld : XmasWorld
     {
         public override ICollection<XmasEngineModel.EntityLib.XmasEntity> GetEntities(XmasEngineModel.World.XmasPosition pos)
         {

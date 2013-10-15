@@ -12,37 +12,54 @@ namespace Assets.UnityLogic
 {
 	public class GuiLoader : MonoBehaviour
 	{
-        public GUITexture PlayerLogo;
-        public GUITexture[] Phases;
-        public GUITexture HealthBar;
-        public GUITexture ManaCrystalFury;
+        public GUITexture PlayerLogo_Friendly;
+        public GUITexture HealthBar_Friendly;
 
+        public GUITexture PlayerLogo_Opponent;
+        public GUITexture HealthBar_Opponent;
+
+        public GUITexture[] Phases;        
+        public GUITexture[] ManaCrystalTypes;
+        private GlobalGameSettings settings;
 
 
         void Start()
         {
             XmasModel engine = EngineHandler.GetEngine();
-
+            settings = GlobalGameSettings.GetSettings();
             engine.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
+
+
         }
 
         private void OnPlayerJoin(PlayerJoinedEvent evt)
         {
-            
-            if (GlobalGameSettings.GetSettings().MainPlayer == evt.Player)
+
+            GameObject gobj = new GameObject();
+            gobj.AddComponent<GuiInformation>();
+            GuiInformation ginfo = gobj.GetComponent<GuiInformation>();
+
+            ginfo.Player = evt.Player;
+            if (settings.MainPlayer == evt.Player)
             {
-                GameObject gobj = new GameObject();
-                gobj.AddComponent<PlayerInformation>();
-                PlayerInformation pinfo = gobj.GetComponent<PlayerInformation>();
-
-                pinfo.Player = evt.Player;
-
-                gobj.AddComponent<GuiController>();
-                gobj.AddComponent<GuiViewHandler>();
-
-
-               
+                ginfo.Portrait = PlayerLogo_Friendly;
+                ginfo.HealthBar = HealthBar_Friendly;
+                ginfo.FocusColor = Color.green;
             }
+            else
+            {
+                ginfo.Portrait = PlayerLogo_Opponent;
+                ginfo.HealthBar = HealthBar_Opponent;
+                ginfo.FocusColor = Color.blue;
+            }
+
+            ginfo.SetPhasesGui(Phases);
+            ginfo.SetManaCrystalTypes(ManaCrystalTypes);
+
+            if(settings.LocalPlayers.Any(p => p == evt.Player))
+                gobj.AddComponent<GuiController>();
+
+            gobj.AddComponent<GuiViewHandler>();
         }
 
         

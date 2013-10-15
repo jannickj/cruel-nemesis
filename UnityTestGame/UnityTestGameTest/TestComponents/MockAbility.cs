@@ -8,11 +8,11 @@ using XmasEngineModel.Management;
 
 namespace UnityTestGameTest.TestComponents
 {
-    public class TestAbility : Ability
+    public class MockAbility : Ability
     {
         private Action OnFiring;
 
-        public TestAbility(Action OnFiring)
+        public MockAbility(Action OnFiring)
         {
             this.OnFiring = OnFiring;
             //this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));

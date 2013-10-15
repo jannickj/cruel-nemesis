@@ -38,7 +38,7 @@ namespace XmasEngineExtensions.LoggerExtension
 
 		private void engine_ActionFailed(ActionFailedEvent evt)
 		{
-			log.LogStringWithTimeStamp (evt.ActionException.Message, DebugLevel.Error);
+			log.LogStringWithTimeStamp (evt.Exception.Message, DebugLevel.Error);
 		}
 	}
 }

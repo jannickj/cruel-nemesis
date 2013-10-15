@@ -53,85 +53,116 @@ namespace Assets.GameLogic.TurnLogic
 
         private void OnGameStart(GameStartEvent evt)
         {
-            ChangePriorityPhaseTurn();
+            SetTurn(players[0]);
+            SetPhase(Phases.Draw);
+            ResetPriority();
+        }
+
+        private void SetTurn(Player p)
+        {
+            this.playersTurn = p;
+            this.EventManager.Raise(new PlayersTurnChangedEvent(p));
+        }
+
+        private void SetPhase(Phases phase)
+        {
+            Phases oldp = this.currentPhase;
+            this.currentPhase = phase;
+            this.EventManager.Raise(new PhaseChangedEvent(oldp, currentPhase));
+        }
+
+        private void SetPriority(Player p)
+        {
+            this.playerWithPriority = p;
+            this.EventManager.Raise(new PlayerGainedPriorityEvent(p));
         }
 
         private void ChangePriorityPhaseTurn()
         {
-            if (ChangePriority())
-                if (ChangePhase())
-                    ChangeTurn();
-        }
+            bool prioReset = false;
+            Player prioplayer = null;
+            bool phaseReset = false;
+            Phases newphase = Phases.Draw;
+            Player turnplayer = null;
 
-        private void ChangeTurn()
-        {
-            if (playersTurn == null)
-            {
-                playersTurn = players[0];
-            }
+            prioplayer = NextPriority(out prioReset);
+            if(prioReset)
+                newphase = GetNextPhase(out phaseReset);
+            if (phaseReset)
+                turnplayer = GetNextTurn();
+
+
+            if (phaseReset)
+                SetTurn(turnplayer);
+            if (prioReset)
+                SetPhase(newphase);
+            if (prioReset)
+                ResetPriority();
             else
-                playersTurn = findNextPlayerTurn();
+                SetPriority(prioplayer);
 
-            this.EventManager.Raise(new PlayersTurnChangedEvent(playersTurn));
         }
 
-        private bool ChangePhase()
+        private Player GetNextTurn()
         {
-            bool phasereset;
-            Phases oldphase = currentPhase;
+            
+            int i = players.FindIndex(p => p == playersTurn) + 1;
+            i = i >= players.Count ? 0 : i;
+            return players[i];
+            
+        }
+
+        
+
+        private Phases GetNextPhase( out bool phaseReset)
+        {
+            Phases next;
             if (currentPhase == Phases.End)
             {
-                currentPhase = Phases.Draw;
-                phasereset = true;
+                phaseReset = true;
+                next = Phases.Draw;
             }
             else
             {
-                currentPhase++;
-                phasereset = false;
-            }
-
-            this.EventManager.Raise(new PhaseChangedEvent(oldphase, currentPhase));
-            return phasereset;
+                phaseReset = false;
+                next = currentPhase + 1;
+               
+            }            
+            return next;
 
         }
 
         private void ResetPriority()
         {
-            playerWithPriority = playersTurn;
-
+            
             foreach (Player p in players)
             {
                 if (p != playersTurn)
                     this.priorityQueue.Enqueue(p);
             }
-            this.EventManager.Raise(new PlayerGainedPriorityEvent(playerWithPriority));
+
+            this.SetPriority(playersTurn);
+            
         }
 
-        private bool ChangePriority()
+        private Player NextPriority(out bool reset)
         {
             if (priorityQueue.Count == 0)
             {
-                ResetPriority();
-                return true;
+                reset = true;
+                return null;
             }
             else
             {
-                playerWithPriority = priorityQueue.Dequeue();
-                this.EventManager.Raise(new PlayerGainedPriorityEvent(playerWithPriority));
-                return false;
+                reset = false;
+                return priorityQueue.Dequeue();
             }
 
             
             
         }
 
-        private Player findNextPlayerTurn()
-        {
-            int i = players.FindIndex(p => p == playersTurn);
-            i = i >= players.Count ? 0 : i + 1;
-                        
-            return players[i];
-        }
+        
         
 	}
 }

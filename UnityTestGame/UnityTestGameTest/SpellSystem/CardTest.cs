@@ -15,7 +15,7 @@ namespace UnityTestGameTest.SpellSystem
         public void ConstructSpell_SimpleSpell_CorrectlyConstructed()
         {
             bool spellResolved = false;
-            TestCard card = new TestCard();
+            MockCard card = new MockCard();
             card.SetTargetCondition(0, _ => true);
             card.AddSpellAction(_ => spellResolved = true);
 

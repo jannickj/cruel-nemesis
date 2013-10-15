@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using JSLibrary.Data;
 using JSLibrary.Data.GenericEvents;
+using XmasEngineModel.Management.Events;
 
 namespace XmasEngineModel.Management
 {
@@ -17,8 +18,17 @@ namespace XmasEngineModel.Management
 			ICollection<Trigger> trigered = triggers.Get(evt.GetType());
 			foreach (Trigger t in trigered)
 			{
-				if (t.CheckCondition(evt))
-					t.Execute(evt);
+                try
+                {
+
+                    if (t.CheckCondition(evt))
+                        t.Execute(evt);
+                }
+                catch (Exception e)
+                {
+                    if (!(evt is TriggerFailedEvent))
+                        this.Raise(new TriggerFailedEvent(t, e));
+                }
 			}
 			var buffer = EventRaised;
 			if(buffer != null)

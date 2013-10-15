@@ -9,15 +9,23 @@ namespace Assets.GameLogic.Events
 {
 	public class PhaseChangedEvent : XmasEvent
 	{
-        private TurnLogic.Phases oldphase;
-        private TurnLogic.Phases newPhase;
-
-
+        private Phases oldphase;
+        private Phases newPhase;
 
         public PhaseChangedEvent(Phases oldphase, Phases newPhase)
         {
             this.oldphase = oldphase;
             this.newPhase = newPhase;
+        }
+
+        public Phases OldPhase
+        {
+            get { return oldphase; }
+        }
+
+        public Phases NewPhase
+        {
+            get { return newPhase; }
         }
 	}
 }

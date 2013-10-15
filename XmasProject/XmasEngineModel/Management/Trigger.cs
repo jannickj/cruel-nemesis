@@ -86,5 +86,10 @@ namespace XmasEngineModel.Management
 		{
 			action((TEvent) evt);
 		}
+
+        public override string ToString()
+        {
+            return "trigger<"+typeof(TEvent).Name+">";
+        }
 	}
 }
