@@ -78,7 +78,7 @@ namespace Assets.UnityLogic.Gui
         public void PerformCommand(Command cmd)
         {
             engine.AddActor(cmd);
-            cmd.PlayerController = this;
+            cmd.GuiController = this;
             awaitingCommands.Add(cmd);
         }
 

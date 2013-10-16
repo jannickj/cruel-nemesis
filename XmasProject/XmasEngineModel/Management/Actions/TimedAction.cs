@@ -36,6 +36,7 @@ namespace XmasEngineModel.Management.Actions
 			SimpleAction sa = new SimpleAction(_ => action());
 			sa.Failed += simpleAction_Failed;
             sa.PreExecution += sa_PreExecution;
+            this.MakeActionChild(sa);
 			this.ActionManager.Queue(sa);
 		}
 

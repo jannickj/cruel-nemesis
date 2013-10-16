@@ -81,7 +81,7 @@
     <Compile Include="Management\Events\TriggerFailedEvent.cs" />
     <Compile Include="Management\XmasAction.cs" />
     <Compile Include="Management\XmasEvent.cs" />
-    <Compile Include="Management\Events\TimedAction.cs" />
+    <Compile Include="Management\Actions\TimedAction.cs" />
     <Compile Include="Management\XmasFactory.cs" />
     <Compile Include="Management\Interfaces\GameManager.cs" />
     <Compile Include="Management\Interfaces\ITrigger.cs" />

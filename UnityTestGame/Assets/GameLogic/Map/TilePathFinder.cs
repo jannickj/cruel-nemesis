@@ -25,31 +25,49 @@ namespace Assets.GameLogic.Map
             return aroundNode.Where(pos => !this.Map.GetEntities(pos).Any(ent => ent is ImpassableWall)).ToArray();    
         }
 
-        protected override int getEdgeCost(TilePosition from, TilePosition to)
+        protected override float getEdgeCost(TilePosition from, TilePosition to)
         {
-            return 1;
+            return 1f;
         }
 
-        protected override int getHeuristic(TilePosition from, TilePosition to)
+        protected override float getHeuristic(TilePosition from, TilePosition to)
         {
             Point toP = to.Point;
             Point fromP = from.Point;
-            return (int)Math.Round(Math.Sqrt((toP.X - fromP.X) ^ 2 + (toP.Y - fromP.Y) ^ 2));
+            double val = calcDist(fromP, toP);
+            return (float)val;
         }
 
         private Point[] generateOrigoNeighbours()
         {
             return new Point[]
-            {
-                new Point(0,1),
-                new Point(0,-1),
-                new Point(1,0),
-                new Point(-1,0),
+            {                
+                
                 new Point(1,1),
                 new Point(-1,-1),
                 new Point(-1,1),
-                new Point(1,-1)
+                new Point(1,-1),
+                new Point(0,1),
+                new Point(0,-1),
+                new Point(1,0),
+                new Point(-1,0)
+                
             };
+        }
+
+        private double calcDist(Point p1, Point p2)
+        {
+            return Math.Round(Math.Sqrt(Math.Pow((p1.X - p2.X), 2) + Math.Pow((p1.Y - p2.Y), 2))); ;
+        }
+
+        protected override int getPosHash(TilePosition pos)
+        {
+            return pos.Point.GetHashCode();
+        }
+
+        protected override bool isPosEqual(TilePosition pos1, TilePosition pos2)
+        {
+            return pos1.Point == pos2.Point;
         }
     }
 }

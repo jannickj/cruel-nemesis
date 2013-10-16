@@ -36,8 +36,6 @@ namespace XmasEngineModel.Management
             if (PreExecution != null)
                 PreExecution(this, new EventArgs());
 			Execute();
-            if (PostExecution != null)
-                PostExecution(this, new EventArgs());
             if(IsAutoCompleting)
                 TestComplete();
 		}
@@ -90,21 +88,33 @@ namespace XmasEngineModel.Management
         protected void MakeActionChild(XmasAction child)
         {
             child.SetParent(this);
-            this.subactions.Add(child);
+            lock (this)
+            {
+                this.subactions.Add(child);
+            }
             child.Resolved += child_Resolved;
         }
 
         void child_Resolved(object sender, EventArgs e)
         {
-            this.subactions.Remove((XmasAction)sender);
+            lock (this)
+            {
+                this.subactions.Remove((XmasAction)sender);
+            }
             TestComplete();
         }
 
 
         private void TestComplete()
         {
-            if (subactions.Count == 0)
+            int count;
+            lock(this)
+                count = subactions.Count;
+            
+            if (count == 0)
             {
+                if (PostExecution != null)
+                    PostExecution(this, new EventArgs());
                 EventHandler buffer = Completed;
                 if (buffer != null)
                     buffer(this, new EventArgs());

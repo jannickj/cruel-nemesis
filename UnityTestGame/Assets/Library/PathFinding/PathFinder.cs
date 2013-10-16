@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Collections.Specialized;
 
 namespace Assets.Library.PathFinding
 {
@@ -21,17 +22,24 @@ namespace Assets.Library.PathFinding
         }
 
         protected abstract TPos[] getNeighbours(TPos node);
-        protected abstract int getEdgeCost(TPos from, TPos to);
-        protected abstract int getHeuristic(TPos from, TPos to);
+        protected abstract float getEdgeCost(TPos from, TPos to);
+        protected virtual float getHeuristic(TPos from, TPos to)
+        {
+            return 0;
+        }
+      
+        protected abstract int getPosHash(TPos pos);
+        protected abstract bool isPosEqual(TPos pos1, TPos pos2);
+
 
         public Path<TMap, TPos> FindFirst(TPos start, TPos goalPos,out bool foundPath)
         {
-            return FindFirst(start, pos => { Debug.Log(pos + " == " + goalPos+" is "+pos.Equals(goalPos)); return pos.Equals(goalPos); }, out foundPath);
+            return FindFirst(start, pos => isPosEqual(pos,goalPos),pos => getHeuristic(pos,goalPos), out foundPath);
         }
 
-        public Path<TMap,TPos> FindFirst(TPos start, Predicate<TPos> goalCondition ,out bool foundPath)
+        public Path<TMap,TPos> FindFirst(TPos start, Predicate<TPos> goalCondition, Func<TPos,float> getHeuristic,out bool foundPath)
         {
-            Path<TMap, TPos>[] path = astarSearch(start, goalCondition, true);
+            Path<TMap, TPos>[] path = astarSearch(start, goalCondition, getHeuristic, true);
             if (path.Length > 0)
             {
                 foundPath = true;
@@ -46,25 +54,25 @@ namespace Assets.Library.PathFinding
 
         public Path<TMap, TPos>[] FindAll(TPos start, TPos goalPos)
         {
-            return FindAll(start, pos => pos.Equals(goalPos));
+            return FindAll(start, pos => isPosEqual(pos, goalPos), pos => getHeuristic(pos, goalPos));
         }
 
-        public Path<TMap, TPos>[] FindAll(TPos start, Predicate<TPos> goalCondition)
+        public Path<TMap, TPos>[] FindAll(TPos start, Predicate<TPos> goalCondition, Func<TPos, float> getHeuristic)
         {
-            return astarSearch(start, goalCondition, false);
+            return astarSearch(start, goalCondition, getHeuristic, false);
         }
 
 
-        private Path<TMap, TPos>[] astarSearch(TPos start, Predicate<TPos> goalCondition ,bool stopOnFirst)
+        private Path<TMap, TPos>[] astarSearch(TPos start, Predicate<TPos> goalCondition, Func<TPos, float> getHeuristic, bool stopOnFirst)
         {
-            Dictionary<PathNode<TPos>, int> guessmap = new Dictionary<PathNode<TPos>, int>();
-            SortedDictionary<int, Dictionary<PathNode<TPos>, PathNode<TPos>>> open = new SortedDictionary<int, Dictionary<PathNode<TPos>, PathNode<TPos>>>();
+            Dictionary<PathNode<TPos>, float> guessmap = new Dictionary<PathNode<TPos>, float>();
+            SortedDictionary<float, OrderedDictionary> open = new SortedDictionary<float, OrderedDictionary>();
 
             Dictionary<PathNode<TPos>, PathNode<TPos>> closed = new Dictionary<PathNode<TPos>, PathNode<TPos>>();
             
             List<PathNode<TPos>> possibleGoals = new List<PathNode<TPos>>();
 
-            AddToSorted(open, guessmap,new PathNode<TPos>(null, 0, start),0);
+            AddToSorted(open, guessmap,makeNode(null, 0, start),0);
 
             while (open.Count > 0)
             {
@@ -93,65 +101,74 @@ namespace Assets.Library.PathFinding
 
                     RemoveFromSorted(open, guessmap, neighbour);
                     closed.Remove(neighbour);
-
-                    int guesscost = neighbour.Cost + getHeuristic(current.Location, neighbour.Location);
+                    
+                    float guesscost = neighbour.Cost + getHeuristic(neighbour.Location);
 
                     AddToSorted(open, guessmap, neighbour,guesscost);
                     
                 }
-
                 closed.Add(current,current);
+                CleanList(open);
             }
             
             return possibleGoals.Select(node => convertNodeToPath(node)).ToArray();
         }
 
-        private PathNode<TPos> generateNeighbour(PathNode<TPos> parent, TPos pos)
+        
+
+        private PathNode<TPos> makeNode(PathNode<TPos> parent, float cost, TPos pos)
         {
-            int cost = parent.Cost + getEdgeCost(parent.Location, pos);
-            
-            return new PathNode<TPos>(parent, cost, pos);
+            PathNode<TPos> node = new PathNode<TPos>(parent, cost, pos, getPosHash, isPosEqual);
+            return node;
         }
 
-        private bool tryFind(SortedDictionary<int, Dictionary<PathNode<TPos>, PathNode<TPos>>> sort, Dictionary<PathNode<TPos>, int> guessmap, PathNode<TPos> node, out PathNode<TPos> found)
+        private PathNode<TPos> generateNeighbour(PathNode<TPos> parent, TPos pos)
         {
-            int guess;
+            float cost = parent.Cost + getEdgeCost(parent.Location, pos);
+            
+            return makeNode(parent, cost, pos);
+        }
+
+        private bool tryFind(SortedDictionary<float, OrderedDictionary> sort, Dictionary<PathNode<TPos>, float> guessmap, PathNode<TPos> node, out PathNode<TPos> found)
+        {
+            float guess;
             found = null;
 
             if (!guessmap.TryGetValue(node, out guess))
                 return false;
 
             var nodes = sort[guess];
-            
-            if(nodes.TryGetValue(node, out found))
+
+            found = (PathNode<TPos>)nodes[node];
+            if (found != null)
                 return true;
 
             return false;
         }
 
-        private void AddToSorted(SortedDictionary<int, Dictionary<PathNode<TPos>, PathNode<TPos>>> sort, Dictionary<PathNode<TPos>, int> guessmap, PathNode<TPos> node, int guess)
+        private void AddToSorted(SortedDictionary<float, OrderedDictionary> sort, Dictionary<PathNode<TPos>, float> guessmap, PathNode<TPos> node, float guess)
         {
-            Dictionary<PathNode<TPos>, PathNode<TPos>> set;
+            OrderedDictionary set;
             if (sort.TryGetValue(guess, out set))
             {
                 set = sort[guess];
             }
             else
             {
-                set = new Dictionary<PathNode<TPos>, PathNode<TPos>>();
+                set = new OrderedDictionary();
                 sort.Add(guess, set);
             }
             set.Add(node, node);
             guessmap.Add(node, guess);
         }
 
-        private void RemoveFromSorted(SortedDictionary<int, Dictionary<PathNode<TPos>, PathNode<TPos>>> sort, Dictionary<PathNode<TPos>, int> guessmap, PathNode<TPos> node)
+        private void RemoveFromSorted(SortedDictionary<float, OrderedDictionary> sort, Dictionary<PathNode<TPos>, float> guessmap, PathNode<TPos> node)
         {
-            int guess;
+            float guess;
 
             if (!guessmap.TryGetValue(node, out guess))
                 return;
-            Dictionary<PathNode<TPos>, PathNode<TPos>> set;
+            OrderedDictionary set;
             if (sort.TryGetValue(guess, out set))
             {
                 set = sort[guess];
@@ -161,16 +178,25 @@ namespace Assets.Library.PathFinding
             guessmap.Remove(node);
         }
 
-        private PathNode<TPos> PopFromSorted(SortedDictionary<int, Dictionary<PathNode<TPos>, PathNode<TPos>>> sort, Dictionary<PathNode<TPos>, int> guessmap)
+        private void CleanList(SortedDictionary<float, OrderedDictionary> sort)
         {
+            if(sort.Count == 0)
+                return;
             var first = sort.First();
             while (first.Value.Count == 0)
             {
                 sort.Remove(first.Key);
+                if (sort.Count == 0)
+                    return;
                 first = sort.First();
             }
+        }
 
-            var firstNode = first.Value.First().Key;
+        private PathNode<TPos> PopFromSorted(SortedDictionary<float, OrderedDictionary> sort, Dictionary<PathNode<TPos>, float> guessmap)
+        {
+            var first = sort.First();
+
+            var firstNode = (PathNode<TPos>)first.Value[0];
             RemoveFromSorted(sort, guessmap, firstNode);
             return firstNode;
         }

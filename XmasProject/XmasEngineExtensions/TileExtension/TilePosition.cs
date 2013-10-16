@@ -27,13 +27,5 @@ namespace XmasEngineExtensions.TileExtension
             return new TileSpawnInformation(new TilePosition(point));
         }
 
-        public override bool Equals(object obj)
-        {
-            TilePosition tpos = obj as TilePosition;
-            if (tpos != null)
-                return point == tpos.point;
-            else
-                return false;
-        }
 	}
 }

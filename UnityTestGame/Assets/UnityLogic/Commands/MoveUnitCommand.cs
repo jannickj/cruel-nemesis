@@ -32,7 +32,7 @@ namespace Assets.UnityLogic.Commands
         {
             if (Input.GetButtonDown("select_object"))
             {
-                GameObject[] gobjs = this.PlayerController.GetGameObjectsOnMouse();
+                GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
                 GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
                 if (firstter != null)
                 {
@@ -42,11 +42,9 @@ namespace Assets.UnityLogic.Commands
                     TilePosition unitpos = (TilePosition)unitEntity.Position;
                     TilePathFinder path = new TilePathFinder((TileWorld)this.World);
                     bool foundPath;
-                    Path<TileWorld,TilePosition> route;
+                    Path<TileWorld,TilePosition> route = path.FindFirst(unitpos, tilepos, out foundPath);
 
-                    Parallel.TryExecute(() =>  path.FindFirst(unitpos, tilepos, out foundPath), 1000, out route);
-
-                    MoveAction[] moves = route.Road.Select(pos => new MoveAction(pos.Point, 1000)).ToArray();
+                    MoveAction[] moves = route.Road.Select(pos => new MoveAction(pos.Point, 100)).ToArray();
                     
 
                     MultiAction multiaction = new MultiAction();

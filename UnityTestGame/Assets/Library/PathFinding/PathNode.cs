@@ -9,16 +9,19 @@ namespace Assets.Library.PathFinding
 	public class PathNode<TPos>
 	{
         private PathNode<TPos> parent;
-        private int cost;
+        private float cost;
 
         private TPos loc;
+        private Func<TPos,int> posHashingFunc;
+        private Func<TPos, TPos, bool> posEqualFunc;
 
-
-        public PathNode(PathNode<TPos> parent, int cost, TPos pos)
+        public PathNode(PathNode<TPos> parent, float cost, TPos pos, Func<TPos,int> posHashingFunc, Func<TPos,TPos,bool> posEqualFunc)
         {
             this.parent = parent;
             this.cost = cost;
             this.loc = pos;
+            this.posEqualFunc = posEqualFunc;
+            this.posHashingFunc = posHashingFunc;
         }
 
         public TPos Location
@@ -31,14 +34,14 @@ namespace Assets.Library.PathFinding
             get { return parent; }
         }
 
-        public int Cost
+        public float Cost
         {
             get { return cost; }
         }
 
         public override int GetHashCode()
         {
-            return loc.GetHashCode();
+            return posHashingFunc(loc);
         }
 
         public override bool Equals(object obj)
@@ -47,7 +50,7 @@ namespace Assets.Library.PathFinding
             if (node != null)
             {
                 
-                return this.loc.Equals(node.loc);
+                return this.posEqualFunc(this.Location,node.Location);
             }
             else
                 return false;
@@ -61,7 +64,7 @@ namespace Assets.Library.PathFinding
             if (((object)p1) == null || ((object)p2) == null)
                 return false;
 
-            return p1.loc.Equals(p2.loc);
+            return p1.Equals(p2);
         }
 
         public static bool operator !=(PathNode<TPos> p1, PathNode<TPos> p2)

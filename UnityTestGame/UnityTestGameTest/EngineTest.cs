@@ -12,12 +12,18 @@ namespace UnityTestGameTest
     {
         public XmasModel Engine { get; private set; }
 
-        public EngineTest()
+        public EngineTest() : this(new MockWorld())
+        {
+            
+        }
+
+
+        public EngineTest(XmasWorld world)
         {
             this.EventManager = new EventManager();
             this.ActionManager = new ActionManager(this.EventManager);
             this.Factory = new XmasFactory(this.ActionManager);
-            this.World = new MockWorld();
+            this.World = world;
             this.Engine = new XmasModel(this.World, this.ActionManager, this.EventManager, this.Factory);
         }
     }
