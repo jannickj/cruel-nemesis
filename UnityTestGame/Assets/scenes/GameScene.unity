@@ -175,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e529134a9ea44c340888ed87f7b7131b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Engine: {fileID: 0}
+  Engine: {fileID: 326927666}
+  Settings: {fileID: 412707700}
   PlayerLogo_Friendly: {fileID: 166209100}
   HealthBar_Friendly: {fileID: 228194537}
   PlayerLogo_Opponent: {fileID: 552535308}
@@ -193,7 +194,6 @@ MonoBehaviour:
   - {fileID: 13100000, guid: 3e17655886dca5a438c87f4361b5acb5, type: 2}
   - {fileID: 13100000, guid: 3e17655886dca5a438c87f4361b5acb5, type: 2}
   - {fileID: 13100000, guid: 3e17655886dca5a438c87f4361b5acb5, type: 2}
-  Settings: {fileID: 0}
 --- !u!1 &166209098
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a538a670befb33408c046e0d48348c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Engine: {fileID: 0}
+  Engine: {fileID: 326927666}
 --- !u!1 &968751606
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnitTile: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
   GuiLoader: {fileID: 161923067}
-  Engine: {fileID: 0}
+  Engine: {fileID: 326927666}
 --- !u!1001 &1101793126
 Prefab:
   m_ObjectHideFlags: 0
@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Terrain: {fileID: 400000, guid: 7cc8d6f559a6a1748a86e8ad2b8b0d6d, type: 2}
-  Engine: {fileID: 0}
+  Engine: {fileID: 326927666}
 --- !u!1 &1555541609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,8 +1070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040065dcc2ff6a742bfb7669ae6b9bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Engine: {fileID: 0}
-  Settings: {fileID: 0}
+  Engine: {fileID: 326927666}
+  Settings: {fileID: 412707700}
 --- !u!1 &1997481656
 GameObject:
   m_ObjectHideFlags: 0
