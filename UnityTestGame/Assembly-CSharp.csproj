@@ -63,12 +63,15 @@
      <Compile Include="Assets\GameLogic\Events\PlayersTurnChangedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PreMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\RemovedFromGameEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitControllerChangedEvent.cs" />
      <Compile Include="Assets\GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
      <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
      <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
      <Compile Include="Assets\GameLogic\Map\Terrain\TerrainEntity.cs" />
      <Compile Include="Assets\GameLogic\Map\Terrain\TextureType.cs" />
      <Compile Include="Assets\GameLogic\Map\TilePathFinder.cs" />
+     <Compile Include="Assets\GameLogic\Modules\MoveModule.cs" />
+     <Compile Include="Assets\GameLogic\Modules\UnitInfoModule.cs" />
      <Compile Include="Assets\GameLogic\Player.cs" />
      <Compile Include="Assets\GameLogic\SpellSystem\Ability.cs" />
      <Compile Include="Assets\GameLogic\SpellSystem\GameCard.cs" />

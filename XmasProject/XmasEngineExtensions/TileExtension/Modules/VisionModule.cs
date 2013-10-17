@@ -14,7 +14,7 @@ using XmasEngineModel.Management.Actions;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public class VisionModule : EntityModule
+	public class VisionModule : UniversalModule<XmasEntity>
 	{
 		private Vision vision;
 
@@ -22,11 +22,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 		{
 		}
 
-		protected override void AttachToEntity (XmasEntity entityHost, EntityModule replacedModule)
-		{
-			base.AttachToEntity (entityHost, replacedModule);
-			//entityHost.Register (new Trigger<UnitMovePostEvent> (xmasEntity_UnitMovedPost));
-		}
+	
 
 		public override IEnumerable<Percept> Percepts {
 			get {
@@ -45,7 +41,7 @@ namespace XmasEngineExtensions.TileExtension.Modules
 
 		public void UpdateVision()
 		{
-			vision = this.WorldAs<TileWorld>().View(this.EntityHost);
+			vision = this.WorldAs<TileWorld>().View(this.Host);
 
 			//Vision newVision = this.WorldAs<TileWorld>().View(this.EntityHost);
 			//IEnumerable<Tile> oldTiles = vision.VisibleTiles.Values;

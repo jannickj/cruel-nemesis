@@ -2,7 +2,7 @@ using XmasEngineModel.EntityLib.Module;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public class VisionRangeModule : EntityModule
+	public class VisionRangeModule : UniversalModule
 	{
 		private int visionRange;
 		

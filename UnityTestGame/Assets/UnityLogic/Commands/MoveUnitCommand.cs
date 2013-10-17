@@ -57,10 +57,7 @@ namespace Assets.UnityLogic.Commands
                     Finished = true;
                 }
             }
-            else if (Input.GetButtonDown("pass_priority"))
-            {
-                
-            }
+            
         }
     }
 }

@@ -95,7 +95,7 @@
             <typeparam name="XmasType">The Xmas type that the foreign type is to be converted into</typeparam>
             <typeparam name="ForeignType">The foreign type that is to be converted into a Xmas type</typeparam>
         </member>
-        <member name="T:XmasEngineModel.EntityLib.Module.EntityModule">
+        <member name="T:XmasEngineModel.EntityLib.Module.UniversalModule">
             <summary>
             The core module type all modules should be extended from
             </summary>
@@ -171,49 +171,49 @@
             </summary>
             <exception cref="T:XmasEngineModel.Exceptions.PropertyIsNullException"></exception>
         </member>
-        <member name="M:XmasEngineModel.EntityLib.Module.EntityModule.AttachToEntity(XmasEngineModel.EntityLib.XmasEntity,XmasEngineModel.EntityLib.Module.EntityModule)">
+        <member name="M:XmasEngineModel.EntityLib.Module.UniversalModule.AttachTo(XmasEngineModel.EntityLib.XmasUniversal,XmasEngineModel.EntityLib.Module.UniversalModule)">
             <summary>
             Attaches the module to an entity
             </summary>
-            <param name="entityHost">The entity host the module is attached to</param>
+            <param name="entityHost">The host the module is attached to</param>
             <param name="replacedModule">The module that the new module replaces, is null if no module was replaced</param>
         </member>
-        <member name="M:XmasEngineModel.EntityLib.Module.EntityModule.DetachFromEntity">
+        <member name="M:XmasEngineModel.EntityLib.Module.UniversalModule.Detach">
             <summary>
-            Detaches the module from its host entity.
+            Detaches the module from its host
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.EntityHost">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.Host">
             <summary>
             Gets the entity hosting the module
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.ModuleType">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.ModuleType">
             <summary>
             Gets the module type, this method is meant to be overriden by other modules that wishes to disguise itself as another type
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.Percepts">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.Percepts">
             <summary>
             Gets all percepts of the module, this method should be overriden to provide the actual percepts
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.ActionManager">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.ActionManager">
             <summary>
             Gets the ActionManager of its entity host
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.EventManager">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.EventManager">
             <summary>
             Gets the EventManager of its entity host
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.Factory">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.Factory">
             <summary>
             Gets the Factory of its entity host
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Module.EntityModule.World">
+        <member name="P:XmasEngineModel.EntityLib.Module.UniversalModule.World">
             <summary>
             Gets the world of its entitiy host
             </summary>
@@ -253,6 +253,67 @@
                  An Entity meant to be added to a XmasWorld
             </summary>
         </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.Raise(XmasEngineModel.Management.XmasEvent)">
+            <summary>
+            Raises an event on the entity, this will call all triggers with the same event that are registered to the entity
+            </summary>
+            <param name="evt">Event to be raised</param>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.RegisterModule(XmasEngineModel.EntityLib.Module.UniversalModule)">
+            <summary>
+            Registers a module to an entity, if an entity already has the module attached it will override the old module and return it.
+            </summary>
+            <param name="module">The module to be added to the entity</param>
+            <returns>The old module</returns>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.DeregisterModule(XmasEngineModel.EntityLib.Module.UniversalModule)">
+            <summary>
+            Removes the module from the entity, if the module had an older version that module is restored.
+            </summary>
+            <param name="module">The module to be removed from the entity's modules</param>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.ConstructEventQueue">
+            <summary>
+            Creates a threadsafe event queue, this queue recieves all events the entity raises and stores them in a queue
+            </summary>
+            <returns>The ThreadSafe EventQueue</returns>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.Register(XmasEngineModel.Management.Trigger)">
+            <summary>
+            Registers a trigger to the entity, which the entity will call when the triggers events are raised.
+            This method is threadsafe.
+            </summary>
+            <param name="trigger">The trigger to be registered</param>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.Deregister(XmasEngineModel.Management.Trigger)">
+            <summary>
+            Deregisters a trigger from the entity, the trigger will no longer called when the triggers events are raised.
+            This method is threadsafe.
+            </summary>
+            <param name="trigger">The trigger to be deregistered</param>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.HasModule``1">
+            <summary>
+            Checks if the entity has the given module registered
+            </summary>
+            <typeparam name="TModule">The module that is checked</typeparam>
+            <returns>Whether or not the module is registered</returns>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.Module``1">
+            <summary>
+            Gets the module requested by type
+            </summary>
+            <typeparam name="TModule">Type of the requested module</typeparam>
+            <returns>the requsted module</returns>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.ModuleAs``2">
+            <summary>
+            Gets the module requested by type and returns it as another type
+            </summary>
+            <typeparam name="TModule">Type of the requsted module</typeparam>
+            <typeparam name="TAlias">The type the module is returned as</typeparam>
+            <returns>The the requested module in the form of an alias</returns>
+        </member>
         <member name="M:XmasEngineModel.EntityLib.XmasEntity.OnLoad">
             <summary>
             This method is called when the entity is first loaded into the engine, will only be called once.
@@ -268,72 +329,11 @@
             This method is called every time the entity leaves the world
             </summary>
         </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.HasModule``1">
-            <summary>
-            Checks if the entity has the given module registered
-            </summary>
-            <typeparam name="TModule">The module that is checked</typeparam>
-            <returns>Whether or not the module is registered</returns>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.Module``1">
-            <summary>
-            Gets the module requested by type
-            </summary>
-            <typeparam name="TModule">Type of the requested module</typeparam>
-            <returns>the requsted module</returns>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.ModuleAs``2">
-            <summary>
-            Gets the module requested by type and returns it as another type
-            </summary>
-            <typeparam name="TModule">Type of the requsted module</typeparam>
-            <typeparam name="TAlias">The type the module is returned as</typeparam>
-            <returns>The the requested module in the form of an alias</returns>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.RegisterModule(XmasEngineModel.EntityLib.Module.EntityModule)">
-            <summary>
-            Registers a module to an entity, if an entity already has the module attached it will override the old module and return it.
-            </summary>
-            <param name="module">The module to be added to the entity</param>
-            <returns>The old module</returns>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.DeregisterModule(XmasEngineModel.EntityLib.Module.EntityModule)">
-            <summary>
-            Removes the module from the entity, if the module had an older version that module is restored.
-            </summary>
-            <param name="module">The module to be removed from the entity's modules</param>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.Register(XmasEngineModel.Management.Trigger)">
-            <summary>
-            Registers a trigger to the entity, which the entity will call when the triggers events are raised.
-            This method is threadsafe.
-            </summary>
-            <param name="trigger">The trigger to be registered</param>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.Deregister(XmasEngineModel.Management.Trigger)">
-            <summary>
-            Deregisters a trigger from the entity, the trigger will no longer called when the triggers events are raised.
-            This method is threadsafe.
-            </summary>
-            <param name="trigger">The trigger to be deregistered</param>
-        </member>
         <member name="M:XmasEngineModel.EntityLib.XmasEntity.QueueAction(XmasEngineModel.Management.EntityXmasAction)">
             <summary>
             Queue an action meant to be performed by the entity onto the entity. This method is threadsafe.
             </summary>
             <param name="action">The action that is queued</param>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.Raise(XmasEngineModel.Management.XmasEvent)">
-            <summary>
-            Raises an event on the entity, this will call all triggers with the same event that are registered to the entity
-            </summary>
-            <param name="evt">Event to be raised</param>
-        </member>
-        <member name="M:XmasEngineModel.EntityLib.XmasEntity.ConstructEventQueue">
-            <summary>
-            Creates a threadsafe event queue, this queue recieves all events the entity raises and stores them in a queue
-            </summary>
-            <returns>The ThreadSafe EventQueue</returns>
         </member>
         <member name="P:XmasEngineModel.EntityLib.XmasEntity.Position">
             <summary>
@@ -751,6 +751,11 @@
             Initialization of the model of the engine
             </summary>
         </member>
+        <member name="M:XmasEngineModel.XmasModel.OnInitialize">
+            <summary>
+            Called when the engine is initializing
+            </summary>
+        </member>
         <member name="M:XmasEngineModel.XmasModel.Start">
             <summary>
             The main method of the model of the engine
@@ -768,6 +773,11 @@
             Makes an actor part of the engine, by providing it with all necessary tools
             </summary>
             <param name="actor">The actor to be made part of the engine</param>
+        </member>
+        <member name="P:XmasEngineModel.XmasModel.WorldBuilder">
+            <summary>
+            Gets the object responsible for contructing the world
+            </summary>
         </member>
         <member name="T:XmasEngineModel.PerceptCollection">
             <summary>
@@ -945,11 +955,11 @@
             Uses this builder to explain how a world implementation should be constructed
             </summary>
         </member>
-        <member name="M:XmasEngineModel.XmasWorldBuilder.AddEntity(XmasEngineModel.EntityLib.XmasEntity,XmasEngineModel.World.EntitySpawnInformation)">
+        <member name="M:XmasEngineModel.XmasWorldBuilder.AddEntity(System.Func{XmasEngineModel.EntityLib.XmasEntity},XmasEngineModel.World.EntitySpawnInformation)">
             <summary>
             Stores information on how an entity should be added when the world is being built
             </summary>
-            <param name="ent">The entity to be added</param>
+            <param name="ent">The entity constructor for the entity to be added</param>
             <param name="info">Information on how to add the entity</param>
         </member>
         <member name="M:XmasEngineModel.XmasWorldBuilder.ConstructWorld">
@@ -958,7 +968,7 @@
             </summary>
             <returns>The world the engine will use</returns>
         </member>
-        <member name="M:XmasEngineModel.XmasWorldBuilder.Build(XmasEngineModel.Management.ActionManager)">
+        <member name="M:XmasEngineModel.XmasWorldBuilder.Build">
             <summary>
             Builds a full world along with all entities added to it
             </summary>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Actions;
@@ -12,17 +13,17 @@ namespace XmasEngineModel
     /// </summary>
 	public abstract class XmasWorldBuilder
 	{
-		private List<XmasAction> buildactions = new List<XmasAction>();
+		private List<Func<XmasAction>> buildactions = new List<Func<XmasAction>>();
 
 		
         /// <summary>
         /// Stores information on how an entity should be added when the world is being built
         /// </summary>
-        /// <param name="ent">The entity to be added</param>
+        /// <param name="ent">The entity constructor for the entity to be added</param>
         /// <param name="info">Information on how to add the entity</param>
-		public void AddEntity(XmasEntity ent, EntitySpawnInformation info)
+		public void AddEntity(Func<XmasEntity> ent, EntitySpawnInformation info)
 		{
-			buildactions.Add(new AddEntityAction(ent, info));
+			buildactions.Add(() => new AddEntityAction(ent(), info));
 		}
 
         /// <summary>
@@ -36,14 +37,18 @@ namespace XmasEngineModel
         /// </summary>
         /// <param name="actman">The action manager of the engine</param>
         /// <returns>The fully built world</returns>
-		public XmasWorld Build(ActionManager actman)
+		public XmasWorld Build()
 		{
-			foreach (XmasAction buildaction in buildactions.ToArray())
-			{
-				actman.QueueAction(buildaction);
-			}
-
 			return ConstructWorld ();
 		}
+
+        internal void PopulateWorld(ActionManager actman)
+        {
+            foreach (Func<XmasAction> buildaction in buildactions.ToArray())
+            {
+                actman.QueueAction(buildaction());
+            }
+
+        }
 	}
 }

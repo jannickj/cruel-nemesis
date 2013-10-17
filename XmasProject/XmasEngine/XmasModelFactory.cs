@@ -21,9 +21,8 @@ namespace XmasEngine
 		{
 			EventManager evtman = ConstructEventManager();
 			ActionManager actman = ConstructActionManager(evtman); 
-			XmasWorld world = builder.Build(actman);
 			XmasFactory fact = ConstructFactory(actman);
-			XmasModel engine = new XmasModel(world, actman, evtman, fact);
+			XmasModel engine = new XmasModel(builder, actman, evtman, fact);
 
 			return engine;
 		}

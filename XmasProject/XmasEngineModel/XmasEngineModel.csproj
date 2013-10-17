@@ -53,6 +53,7 @@
     <Compile Include="EntityLib\Module\RuleBasedModule.cs" />
     <Compile Include="EntityLib\Agent.cs" />
     <Compile Include="EntityLib\XmasEntity.cs" />
+    <Compile Include="EntityLib\XmasUniversal.cs" />
     <Compile Include="Exceptions\AgentAlreadyExistsException.cs" />
     <Compile Include="Exceptions\AgentHasNoNameException.cs" />
     <Compile Include="Exceptions\EntityException.cs" />

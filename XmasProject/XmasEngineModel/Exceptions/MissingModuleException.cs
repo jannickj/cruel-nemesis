@@ -9,23 +9,23 @@ namespace XmasEngineModel.Exceptions
 	public class MissingModuleException : Exception
 	{
 		private Type moduleType;
-		private XmasEntity entity;
+		private XmasUniversal host;
 
 		public Type ModuleType
 		{
 			get { return moduleType; }
 		}
 
-		public XmasEntity Entity
+        public XmasUniversal Host
 		{
-			get { return entity; }
+			get { return host; }
 			
 		}
 
-		public MissingModuleException(XmasEntity entity, Type moduleType)
-			: base("Module Type " + moduleType.Name + " on entity type: " + entity.GetType().Name + " is missing")
+		public MissingModuleException(XmasUniversal host, Type moduleType)
+			: base("Module Type " + moduleType.Name + " on type: " + host.GetType().Name + " is missing")
 		{
-			this.entity = entity;
+			this.host = host;
 			this.moduleType = moduleType;
 		}
 	}

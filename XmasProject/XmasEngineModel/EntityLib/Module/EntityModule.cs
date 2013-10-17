@@ -5,22 +5,34 @@ using XmasEngineModel.Management;
 namespace XmasEngineModel.EntityLib.Module
 {
 
+    public abstract class UniversalModule<THost> : UniversalModule where THost : XmasUniversal
+    {
+        public new THost Host
+        {
+            get
+            {
+                return (THost)base.Host;
+            }
+        }
+    }
+
 	/// <summary>
 	/// The core module type all modules should be extended from
 	/// </summary>
-	public abstract class EntityModule : XmasActor
+	public abstract class UniversalModule : XmasActor
 	{
-		private XmasEntity entityHost;
-		private EntityModule replacedModule;
+		private XmasUniversal host;
+		private UniversalModule replacedModule;
 
 		/// <summary>
 		/// Gets the entity hosting the module
 		/// </summary>
-		public XmasEntity EntityHost
+        public XmasUniversal Host
 		{
-			get { return entityHost; }
-			internal set { entityHost = value; }
+			get { return host; }
+			internal set { host = value; }
 		}
+
 
 
 		/// <summary>
@@ -42,23 +54,23 @@ namespace XmasEngineModel.EntityLib.Module
 		/// <summary>
 		/// Attaches the module to an entity
 		/// </summary>
-		/// <param name="entityHost">The entity host the module is attached to</param>
+		/// <param name="entityHost">The host the module is attached to</param>
 		/// <param name="replacedModule">The module that the new module replaces, is null if no module was replaced</param>
-		internal protected virtual void AttachToEntity(XmasEntity entityHost, EntityModule replacedModule)
+		internal protected virtual void AttachTo(XmasUniversal Host, UniversalModule replacedModule)
 		{
-			this.entityHost = entityHost;
+			this.host = Host;
 
 			if (replacedModule != null && replacedModule.ModuleType == this.ModuleType)
 				this.replacedModule = replacedModule;
 		}
 
 		/// <summary>
-		/// Detaches the module from its host entity.
+		/// Detaches the module from its host
 		/// </summary>
-		internal protected virtual void DetachFromEntity()
+		internal protected virtual void Detach()
 		{
 			if (ReplacedModule != null && ReplacedModule.ModuleType == this.ModuleType)
-				entityHost.RegisterModule (ReplacedModule);
+				host.RegisterModule (ReplacedModule);
 
 		}
 
@@ -67,7 +79,7 @@ namespace XmasEngineModel.EntityLib.Module
 		/// </summary>
 		public override ActionManager ActionManager
 		{
-			get { return this.entityHost.ActionManager; }
+			get { return this.host.ActionManager; }
 		}
 
 		/// <summary>
@@ -75,7 +87,7 @@ namespace XmasEngineModel.EntityLib.Module
 		/// </summary>
 		public override EventManager EventManager
 		{
-			get { return this.entityHost.EventManager; }
+			get { return this.host.EventManager; }
 		}
 
 		/// <summary>
@@ -83,7 +95,7 @@ namespace XmasEngineModel.EntityLib.Module
 		/// </summary>
 		public override XmasFactory Factory
 		{
-			get { return this.entityHost.Factory; }
+			get { return this.host.Factory; }
 		}
 
 
@@ -92,10 +104,10 @@ namespace XmasEngineModel.EntityLib.Module
 		/// </summary>
 		public override XmasWorld World
 		{
-			get { return this.entityHost.World; }
+			get { return this.host.World; }
 		}
 
-		protected EntityModule ReplacedModule
+		protected UniversalModule ReplacedModule
 		{
 			get { return replacedModule; }
 		}

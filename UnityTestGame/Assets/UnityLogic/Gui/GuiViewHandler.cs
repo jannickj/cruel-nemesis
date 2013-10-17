@@ -13,18 +13,19 @@ namespace Assets.UnityLogic.Gui
 	public class GuiViewHandler : MonoBehaviour
 	{
         private GuiInformation guiinfo;
-        private XmasModel engine;
+        public EngineHandler Engine;
+        private XmasModel engmodel;
         private Player currentTurnOwner;
 
         void Start()
         {
             guiinfo = this.gameObject.GetComponent<GuiInformation>();
 
-            engine = EngineHandler.GetEngine();
+            engmodel = Engine.EngineModel;
 
-            engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerPriority));
-            engine.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
-            engine.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChanged));
+            engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerPriority));
+            engmodel.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
+            engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChanged));
         }
 
 

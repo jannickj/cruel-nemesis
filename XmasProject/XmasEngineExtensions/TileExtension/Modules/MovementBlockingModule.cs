@@ -7,7 +7,7 @@ using XmasEngineModel.EntityLib.Module;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public abstract class MovementBlockingModule : EntityModule
+	public abstract class MovementBlockingModule : UniversalModule
 	{
 
 		public abstract bool IsMovementBlocking(XmasEntity entity);

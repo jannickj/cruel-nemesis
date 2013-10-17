@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Assets.GameLogic.Unit;
 using UnityEngine;
+using Assets.UnityLogic.Gui;
 
 namespace Assets.UnityLogic.Unit
 {
@@ -32,5 +33,7 @@ namespace Assets.UnityLogic.Unit
         {
             this.entity = entity;
         }
-	}
+
+        public GuiInformation ControllerInfo { get; set; }
+    }
 }

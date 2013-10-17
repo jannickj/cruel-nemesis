@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using XmasEngineModel.Percepts;
 using ConsoleXmasImplementation.Model.Entities;
 using XmasEngineModel.World;
+using XmasEngineModel.EntityLib;
 
 namespace ConsoleXmasImplementation.Model.Modules
 {
-	public class PackageGrabbingModule : EntityModule
+	public class PackageGrabbingModule : UniversalModule<XmasEntity>
 	{
         private Package package = null;
 
@@ -42,7 +43,7 @@ namespace ConsoleXmasImplementation.Model.Modules
             if (this.package == null)
                 return null;
             Package dropped = this.package;
-            this.World.AddEntity(package,this.EntityHost.Position.GenerateSpawn());
+            this.World.AddEntity(package,this.Host.Position.GenerateSpawn());
             package = null;
 
             return dropped;

@@ -18,9 +18,8 @@ public class EngineHandler : MonoBehaviour {
         XmasWorldBuilder builder = retreiveBuilderFromMap();
         EventManager evtman = new EventManager();
         ActionManager actman = new ActionManager(evtman);
-        XmasWorld world = builder.Build(actman);
         XmasFactory factory = new XmasFactory(actman);
-        engine = new XmasModel(world, actman, evtman, factory);
+        engine = new XmasModel(builder, actman, evtman, factory);
 
         
 
@@ -32,11 +31,6 @@ public class EngineHandler : MonoBehaviour {
         engine.Update();
 	}
 
-    public static XmasModel GetEngine()
-    {
-        GameObject engineObj = GameObject.Find("XmasEngine");
-        return engineObj.GetComponent<EngineHandler>().engine;
-    }
 
     private XmasWorldBuilder retreiveBuilderFromMap()
     {
@@ -49,5 +43,15 @@ public class EngineHandler : MonoBehaviour {
         XmasWorldBuilder worldbuilder = (XmasWorldBuilder)Activator.CreateInstance(MapType);
 
         return worldbuilder;
+    }
+
+ 
+
+    public XmasModel EngineModel 
+    {
+        get
+        {
+            return this.engine;
+        }
     }
 }

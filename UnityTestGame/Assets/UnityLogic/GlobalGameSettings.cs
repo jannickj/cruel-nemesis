@@ -28,11 +28,6 @@ namespace Assets.UnityLogic
             this.localPlayers.Add(player);
         }
 
-        public static GlobalGameSettings GetSettings()
-        {
-            GameObject settingsObj = GameObject.Find("GlobalGameSettings");
-            return settingsObj.GetComponent<GlobalGameSettings>();
-        }
 
         void Start()
         {

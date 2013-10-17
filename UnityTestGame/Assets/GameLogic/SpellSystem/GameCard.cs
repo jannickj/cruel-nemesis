@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace Assets.GameLogic.SpellSystem
 {
-	public class GameCard : XmasActor
+	public class GameCard : XmasUniversal
 	{
 
         public void AddSpellAction(Action<Spell> spell)

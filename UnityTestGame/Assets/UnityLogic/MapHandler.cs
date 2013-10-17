@@ -13,10 +13,10 @@ using JSLibrary.Data;
 public class MapHandler : MonoBehaviour {
 
     public Transform Terrain;
-
+    public EngineHandler Engine;
 	// Use this for initialization
 	void Start () {
-        XmasModel eng = EngineHandler.GetEngine();
+        XmasModel eng = Engine.EngineModel;
         eng.EventManager.Register(new Trigger<EntityAddedEvent>(ent => ent.AddedXmasEntity is TerrainEntity,OnTerrainEntity));
         
 	}
@@ -32,7 +32,7 @@ public class MapHandler : MonoBehaviour {
         TilePosition posinfo = (TilePosition)evt.AddedPosition;
         Point pos = posinfo.Point;
        
-        var  transform = (Transform)Instantiate(Terrain,new Vector3((float)pos.X,(float)pos.Y),Terrain.rotation);
+        var  transform = (Transform)Instantiate(Terrain,new Vector3(-(float)pos.X,(float)pos.Y),Terrain.rotation);
 
         transform.gameObject.AddComponent<TerrainInformation>();
         var terinfo = transform.gameObject.GetComponent<TerrainInformation>();

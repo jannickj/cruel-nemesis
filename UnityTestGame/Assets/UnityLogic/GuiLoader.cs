@@ -7,11 +7,14 @@ using XmasEngineModel;
 using Assets.GameLogic.Events;
 using XmasEngineModel.Management;
 using Assets.UnityLogic.Gui;
+using Assets.GameLogic;
 
 namespace Assets.UnityLogic
 {
 	public class GuiLoader : MonoBehaviour
 	{
+        public EngineHandler Engine;
+        public GlobalGameSettings Settings;
         public GUITexture PlayerLogo_Friendly;
         public GUITexture HealthBar_Friendly;
 
@@ -20,15 +23,12 @@ namespace Assets.UnityLogic
 
         public GUITexture[] Phases;        
         public GUITexture[] ManaCrystalTypes;
-        private GlobalGameSettings settings;
-
+        private Dictionary<Player, GuiInformation> guiLookup = new Dictionary<Player, GuiInformation>();
 
         void Start()
         {
-            XmasModel engine = EngineHandler.GetEngine();
-            settings = GlobalGameSettings.GetSettings();
+            XmasModel engine = Engine.EngineModel;
             engine.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
-
 
         }
 
@@ -38,9 +38,9 @@ namespace Assets.UnityLogic
             GameObject gobj = new GameObject();
             gobj.AddComponent<GuiInformation>();
             GuiInformation ginfo = gobj.GetComponent<GuiInformation>();
-
+            this.guiLookup.Add(evt.Player, ginfo);
             ginfo.Player = evt.Player;
-            if (settings.MainPlayer == evt.Player)
+            if (Settings.MainPlayer == evt.Player)
             {
                 ginfo.Portrait = PlayerLogo_Friendly;
                 ginfo.HealthBar = HealthBar_Friendly;
@@ -56,12 +56,21 @@ namespace Assets.UnityLogic
             ginfo.SetPhasesGui(Phases);
             ginfo.SetManaCrystalTypes(ManaCrystalTypes);
 
-            if(settings.LocalPlayers.Any(p => p == evt.Player))
+            if (Settings.LocalPlayers.Any(p => p == evt.Player))
+            {
                 gobj.AddComponent<GuiController>();
+                gobj.GetComponent<GuiController>().Engine = this.Engine;
+            }
 
             gobj.AddComponent<GuiViewHandler>();
+            gobj.GetComponent<GuiViewHandler>().Engine = this.Engine;
         }
 
-        
-	}
+
+
+        public GuiInformation GetGuiInfo(Player player)
+        {
+            return this.guiLookup[player];
+        }
+    }
 }

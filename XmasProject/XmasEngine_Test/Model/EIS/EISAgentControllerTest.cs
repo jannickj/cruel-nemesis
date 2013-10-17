@@ -54,10 +54,10 @@ namespace XmasEngineExtensions_Test.EisExtension.AI
 			
 			
 			Agent agent = new Agent("testagent");
-			worldBuilder.AddEntity(agent, new TileSpawnInformation(new TilePosition(new Point(0, 0))));
+			worldBuilder.AddEntity(() => agent, new TileSpawnInformation(new TilePosition(new Point(0, 0))));
 
 			XmasFactory fact = new XmasFactory(manager);
-			TileWorld world = (TileWorld)worldBuilder.Build(manager);
+			TileWorld world = (TileWorld)worldBuilder.Build();
 			agent.ActionManager = manager;
 			agent.World = world;
 			agent.Factory = fact;

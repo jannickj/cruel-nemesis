@@ -10,7 +10,7 @@ namespace XmasEngineModel.EntityLib.Module
 	/// <summary>
 	/// A module for giving the entity a Position percept
 	/// </summary>
-	public class PositionModule : EntityModule
+	public class PositionModule : UniversalModule<XmasEntity>
 	{
 		public override Type ModuleType
 		{
@@ -25,7 +25,7 @@ namespace XmasEngineModel.EntityLib.Module
 			get
 			{
 
-				return new Percept[]{ new PositionPercept(this.EntityHost.Position)};
+				return new Percept[]{ new PositionPercept(this.Host.Position)};
 			}
 		}
 	}

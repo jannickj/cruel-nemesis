@@ -49,10 +49,10 @@ namespace ConsoleXmasImplementation
 			
 			this.AddMapOfEntities(map,21,21);
 
-			this.AddEntity(new Player(), new Point(-10, -8));
+			this.AddEntity(() =>new Player(), new Point(-10, -8));
             //this.AddEntity(new Ghost("testname"), new Point(10, 9));
 			//this.AddEntity(new Package(), new Point(10, 10));
-			this.AddEntity(new GrabberAgent("grabber"), new Point(10, 10));
+			this.AddEntity(() => new GrabberAgent("grabber"), new Point(10, 10));
 			//this.AddEntity(new GrabberAgent("grabber2"), new Point(-10, -10));
 			//this.AddEntity(new DropZone(), new Point(9, 10));
 		}
@@ -78,14 +78,14 @@ namespace ConsoleXmasImplementation
 					int realx = x - offx;
 					int realy =offy - y;
 					if(c!=null)
-						this.AddEntity(c(), new Point(realx,realy));
+						this.AddEntity(c, new Point(realx,realy));
 				}
 			}
 		}
 
 		public void AddWall(int x, int y)
 		{
-			this.AddEntity(new Wall(), new Point(x, y));
+			this.AddEntity(() => new Wall(), new Point(x, y));
 		}
 
 		public void AddWall(int sx, int sy, int ex, int ey)

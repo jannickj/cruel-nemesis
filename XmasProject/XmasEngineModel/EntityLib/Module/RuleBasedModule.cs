@@ -8,7 +8,7 @@ namespace XmasEngineModel.EntityLib.Module
 	/// An abstract module for adding heirachel rules to an entity
 	/// </summary>
 	/// <typeparam name="TEntity"></typeparam>
-	public abstract class RuleBasedModule<TEntity> : EntityModule where TEntity : XmasEntity
+	public abstract class RuleBasedModule<TEntity> : UniversalModule where TEntity : XmasEntity
 	{
 		private RuleHierarchy<Type,TEntity> ruleHierarchy = new RuleHierarchy<Type, TEntity>();
 

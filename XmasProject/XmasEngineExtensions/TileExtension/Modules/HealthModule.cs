@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public class HealthModule : EntityModule
+	public class HealthModule : UniversalModule
 	{
 		private int health;
 

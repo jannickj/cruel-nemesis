@@ -13,8 +13,8 @@ namespace VacuumCleanerWorldExample
 			//This explains to the engine how to generate one instantiation of the map
 			//if the user wishes to make multiple different map then it would be need to make new classes
 			//that extends the VacuumWorldBuilder
-			this.AddEntity(new VacuumCleanerAgent("vacuum_cleaner"),new VacuumSpawnInformation(0));
-			this.AddEntity(new DirtEntity(), new VacuumSpawnInformation(1));
+			this.AddEntity(() => new VacuumCleanerAgent("vacuum_cleaner"),new VacuumSpawnInformation(0));
+			this.AddEntity(() => new DirtEntity(), new VacuumSpawnInformation(1));
 		}
 	}
 }

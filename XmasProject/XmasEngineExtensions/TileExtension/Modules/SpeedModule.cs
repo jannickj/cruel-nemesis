@@ -6,7 +6,7 @@ using XmasEngineModel.Percepts;
 
 namespace XmasEngineExtensions.TileExtension.Modules
 {
-	public class SpeedModule : EntityModule
+	public class SpeedModule : UniversalModule
 	{
 		private double speed;
 

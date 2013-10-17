@@ -18,6 +18,7 @@ public class UnitViewHandler : MonoBehaviour {
         entity = info.Entity;
         graphics = info.Graphics;
 
+        this.gameObject.renderer.material.color = info.ControllerInfo.FocusColor;
         entity.Register(new Trigger<BeginMoveEvent>(OnUnitBeginMove));
 
         setFrame(currentFrame());

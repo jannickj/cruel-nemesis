@@ -20,33 +20,53 @@ namespace XmasEngineModel
 		private XmasFactory factory;
 		private bool stopEngine;
 		private XmasWorld world;
+        private XmasWorldBuilder wbuilder;
 
+        
 
-		public XmasModel(XmasWorld world, ActionManager actman, EventManager evtman, XmasFactory factory)
+		public XmasModel(XmasWorldBuilder builder, ActionManager actman, EventManager evtman, XmasFactory factory)
 		{
-			World = world;
+            world = builder.Build();
+            world.EventManager = evtman;
+            wbuilder = builder;
 			ActionManager = actman;
 			EventManager = evtman;
 			Factory = factory;
-			world.EventManager = evtman;
+			
 
 			EventManager.Register(new Trigger<EngineCloseEvent>(evtman_EngineClose));
 			ActionManager.PreActionExecution += actman_PreActionExecution;
 			ActionManager.ActionQueued += actman_ActionQueued;
 
-			foreach (var action in ActionManager.QueuedActions)
-			{
-				this.AddActor(action);
-			}
+			
 		}
 
+        
 
         /// <summary>
         /// Initialization of the model of the engine
         /// </summary>
 		public void Initialize()
 		{
+            wbuilder.PopulateWorld(actman);
+            OnInitialize();
 		}
+
+        /// <summary>
+        /// Called when the engine is initializing
+        /// </summary>
+        public virtual void OnInitialize()
+        {
+
+        }
+
+        /// <summary>
+        /// Gets the object responsible for contructing the world
+        /// </summary>
+        public XmasWorldBuilder WorldBuilder
+        {
+            get { return wbuilder; }
+        }
 
         /// <summary>
         /// The main method of the model of the engine

@@ -17,12 +17,13 @@ namespace Assets.UnityLogic.Gui
 {
     public class GuiController : MonoBehaviour
     {
+        public EngineHandler Engine;
         public Camera PlayerCamera;
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
 
         private GuiInformation guiinfo;
-        private XmasModel engine;
+        private XmasModel engmodel;
         private bool hasPriority;
 
         // Use this for initialization
@@ -32,11 +33,11 @@ namespace Assets.UnityLogic.Gui
             hasPriority = false;
             if (PlayerCamera == null)
                 PlayerCamera = Camera.main;
-            
-            engine = EngineHandler.GetEngine();
+
+            engmodel = Engine.EngineModel;
 
             
-            engine.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == guiinfo.Player ));
+            engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == guiinfo.Player ));
         }
 
         // Update is called once per frame
@@ -77,7 +78,7 @@ namespace Assets.UnityLogic.Gui
 
         public void PerformCommand(Command cmd)
         {
-            engine.AddActor(cmd);
+            engmodel.AddActor(cmd);
             cmd.GuiController = this;
             awaitingCommands.Add(cmd);
         }

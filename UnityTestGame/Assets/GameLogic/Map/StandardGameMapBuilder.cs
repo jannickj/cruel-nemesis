@@ -8,6 +8,8 @@ using JSLibrary.Data;
 using XmasEngineModel.EntityLib;
 using Assets.Map.Terrain;
 using Assets.GameLogic.Unit;
+using Assets.GameLogic;
+using UnityEngine;
 
 namespace Assets.Map
 {
@@ -15,6 +17,8 @@ namespace Assets.Map
 	{
         private const int HEIGHT = 8;
         private const int WIDTH = 6;
+        private Player[] players = new Player[2];
+
 
         public StandardGameMapBuilder() : base(new Size(HEIGHT,WIDTH))
         {
@@ -38,10 +42,36 @@ namespace Assets.Map
 				};
 
             this.AddMapOfEntities(map, HEIGHT*2+1, WIDTH*2+1);
-            this.AddEntity(new GruntUnit(), new Point(1, 2));
 
-            this.AddEntity(new GruntUnit(), new Point(0, 0));
+            Func<XmasEntity> O = null;
+            Func<XmasEntity> F = () => new GruntUnit(players[0]);
+            Func<XmasEntity> E = () => new GruntUnit(players[1]);
+
+            Func<XmasEntity>[] unitmap =
+				{
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O,  
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O,  
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O
+				};
+            this.AddMapOfEntities(unitmap, HEIGHT * 2 + 1, WIDTH * 2 + 1);
+           
         }
-        
+
+
+        internal void SetPlayers(Player player, Player player2)
+        {
+            this.players[0] = player;
+            this.players[1] = player2;
+        }
     }
 }

@@ -15,7 +15,7 @@ namespace XmasEngineExtensions.TileExtension
 			get { return size; }
 		}
 
-		public void AddEntity(XmasEntity entity, Point p)
+		public void AddEntity(Func<XmasEntity> entity, Point p)
 		{
 			this.AddEntity(entity, new TileSpawnInformation(new TilePosition(p)));
 		}
@@ -57,13 +57,13 @@ namespace XmasEngineExtensions.TileExtension
 		public void AddChunkExcept (Func<XmasEntity> constructEntity, Point start, Point stop, ICollection<Point> exceptions)
 		{
 			foreach (Point p in TilesInChunk(start, stop, exceptions))
-				AddEntity(constructEntity(), p);
+				AddEntity(constructEntity, p);
 		}
 
 		public void AddCollection (Func<XmasEntity> constructEntity, IEnumerable<Point> points)
 		{
 			foreach (Point p in points)
-				AddEntity (constructEntity (), p);
+				AddEntity (constructEntity, p);
 		}
 
 
@@ -80,7 +80,7 @@ namespace XmasEngineExtensions.TileExtension
 					int realx = x - offx;
 					int realy = offy - y;
 					if (c != null)
-						this.AddEntity(c(), new Point(realx, realy));
+						this.AddEntity(c, new Point(realx, realy));
 				}
 			}
 		}

@@ -5,35 +5,54 @@ using Assets.GameLogic.TurnLogic;
 using Assets.GameLogic.Actions;
 using Assets.GameLogic;
 using Assets.UnityLogic;
+using Assets.GameLogic.Events;
+using XmasEngineModel.Management;
+using XmasEngineExtensions.TileExtension;
+using JSLibrary.Data;
+using System.Linq;
+using Assets.GameLogic.Unit;
+using Assets.GameLogic.Modules;
+using Assets.Map;
+using System.Collections.Generic;
 
 public class GameLogicLoader : MonoBehaviour {
 
+    public EngineHandler Engine;
     private bool gamestarted = false;
-    private XmasModel engine;
+    private XmasModel engmodel;
+    public GlobalGameSettings Settings;
+    private List<Player> players = new List<Player>();
 	// Use this for initialization
 	void Start () 
     {
-        engine = EngineHandler.GetEngine();
+        engmodel = Engine.EngineModel;
 
         //Start turn manager
         TurnManager turnManager = new TurnManager();
-        engine.AddActor(turnManager);
+        engmodel.AddActor(turnManager);
         turnManager.Initialize();
 
-      
-        Player[] players = GlobalGameSettings.GetSettings().LocalPlayers;
+        engmodel.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
+        Player[] players = Settings.LocalPlayers;
 
         foreach (Player p in players)
         {
-            engine.ActionManager.Queue(new PlayerJoinAction(p));
+            engmodel.ActionManager.Queue(new PlayerJoinAction(p));
         }
+
+        
 	    
 	}
 
-    
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnPlayerJoin(PlayerJoinedEvent evt)
+    {
+        players.Add(evt.Player);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
 	
 	}
 
@@ -44,9 +63,18 @@ public class GameLogicLoader : MonoBehaviour {
             
             if (!gamestarted)
             {
+                if (players.Count != 2)
+                {
+                    Debug.Log("Cannot start game atleast 2 players must join");
+                }
+
+                StandardGameMapBuilder builder = (StandardGameMapBuilder)engmodel.WorldBuilder;
+                builder.SetPlayers(players[0], players[1]);
+
                 Debug.Log("Starting game");
                 gamestarted = true;
-                engine.ActionManager.Queue(new StartGameAction()); 
+                engmodel.Initialize();
+                engmodel.ActionManager.Queue(new StartGameAction()); 
             }
         }
     }

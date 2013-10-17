@@ -5,6 +5,7 @@ using System.Text;
 using Assets.GameLogic.SpellSystem;
 using Assets.Map.Terrain;
 using Assets.GameLogic.Unit;
+using Assets.GameLogic.Modules;
 
 namespace Assets.GameLogic.Cards
 {
@@ -20,7 +21,7 @@ namespace Assets.GameLogic.Cards
             TerrainEntity ter = spell.GetTargetAs<TerrainEntity>(0);
             var tpos = ter.Position;
 
-            GruntUnit gunit = new GruntUnit();
+            GruntUnit gunit = new GruntUnit(this.Module<UnitInfoModule>().Owner);
 
             this.World.AddEntity(gunit, tpos.GenerateSpawn());
 
