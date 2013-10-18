@@ -17,6 +17,7 @@ namespace Assets.GameLogic.Actions
         private Vector v;
         private Point toward;
         private bool usePoint = false;
+        private bool moveStopped = false;
 
         public MoveAction(Vector v, int duration)
         {
@@ -36,6 +37,14 @@ namespace Assets.GameLogic.Actions
             this.duration = duration;
         }
 
+        public bool MoveStopped 
+        {
+            get
+            {
+                return moveStopped;
+            }
+        }
+
         protected override void Execute()
         {
 
@@ -51,8 +60,10 @@ namespace Assets.GameLogic.Actions
             var preMove = new PreMoveEvent(unit, currentPos, newPos);
             this.Source.Raise(preMove);
             if (preMove.MoveStopped)
+            {
+                this.moveStopped = true;
                 return;
-            
+            }
             this.Source.Raise(new BeginMoveEvent(unit, currentPos, newPos,this.duration));
             if (duration != 0)
             {
@@ -78,5 +89,7 @@ namespace Assets.GameLogic.Actions
             this.World.SetEntityPosition(this.Source, new TilePosition(newPos));
             this.Source.Raise(new EndMoveEvent((UnitEntity)this.Source, currentPos, newPos));
         }
+
+        
     }
 }

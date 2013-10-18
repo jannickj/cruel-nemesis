@@ -6,6 +6,9 @@ using XmasEngineModel;
 using XmasEngineModel.Management;
 using Assets.GameLogic.Events;
 using Assets.GameLogic.Exceptions;
+using Assets.GameLogic.Actions;
+using XmasEngineModel.Management.Actions;
+using Assets.GameLogic.Unit;
 
 namespace Assets.GameLogic.TurnLogic
 {
@@ -16,6 +19,7 @@ namespace Assets.GameLogic.TurnLogic
         private Player playerWithPriority = null;
         private Phases currentPhase = Phases.End;
         private Queue<Player> priorityQueue = new Queue<Player>();
+        private Dictionary<UnitEntity, PlayerDeclareMoveAttackEvent> moveAttackDeclaration = new Dictionary<UnitEntity, PlayerDeclareMoveAttackEvent>();
 
         public void Initialize()
         {
@@ -24,6 +28,7 @@ namespace Assets.GameLogic.TurnLogic
             this.EventManager.Register(new Trigger<PlayerPassedPriorityEvent>(OnPlayerPassedPriority));
             this.EventManager.Register(new Trigger<GameStartEvent>(OnGameStart));
             this.EventManager.Register(new Trigger<PlayerPerformedActionEvent>(OnPlayerPerformedAction));
+            this.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(OnPlayerDeclareMoveAttack));
 
         }
 
@@ -31,6 +36,14 @@ namespace Assets.GameLogic.TurnLogic
         {
             if(!players.Contains(evt.Player))
                 players.Add(evt.Player);
+        }
+
+        private void OnPlayerDeclareMoveAttack(PlayerDeclareMoveAttackEvent evt)
+        {
+            if (currentPhase == Phases.Declare && evt.Player == playersTurn)
+            {
+                moveAttackDeclaration[evt.Entity] = evt;
+            }
         }
 
         private void OnPlayerPassedPriority(PlayerPassedPriorityEvent evt)
@@ -85,6 +98,8 @@ namespace Assets.GameLogic.TurnLogic
             Phases newphase = Phases.Draw;
             Player turnplayer = null;
 
+            
+
             prioplayer = NextPriority(out prioReset);
             if(prioReset)
                 newphase = GetNextPhase(out phaseReset);
@@ -93,13 +108,39 @@ namespace Assets.GameLogic.TurnLogic
 
 
             if (phaseReset)
+            {
+                this.moveAttackDeclaration.Clear();
                 SetTurn(turnplayer);
+            }
             if (prioReset)
                 SetPhase(newphase);
             if (prioReset)
                 ResetPriority();
             else
                 SetPriority(prioplayer);
+
+
+            if (currentPhase == Phases.Move)
+                PerformMoves();
+            if (currentPhase == Phases.Attack)
+                PerformAttacks();
+
+        }
+
+        private void PerformMoves()
+        {
+            MultiAction ma = new MultiAction();
+            foreach (PlayerDeclareMoveAttackEvent evt in this.moveAttackDeclaration.Values)
+            {
+                MovePathAction mpa = evt.MoveAction;
+                ma.AddAction(mpa);
+            }
+            ma.Resolved += (sender, maEvt) => this.SetPriority(this.playersTurn);
+            this.ActionManager.Queue(ma);
+        }
+
+        private void PerformAttacks()
+        {
 
         }
 
@@ -140,8 +181,12 @@ namespace Assets.GameLogic.TurnLogic
                 if (p != playersTurn)
                     this.priorityQueue.Enqueue(p);
             }
-
-            this.SetPriority(playersTurn);
+            if (this.currentPhase == Phases.Move || this.currentPhase == Phases.Attack)
+            {
+                this.SetPriority(null);
+            }
+            else
+                this.SetPriority(playersTurn);
             
         }
 

@@ -12,6 +12,7 @@ using Assets.UnityLogic.Commands;
 using Assets.UnityLogic.Unit;
 using Assets.GameLogic;
 using XmasEngineModel;
+using Assets.GameLogic.TurnLogic;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -25,7 +26,7 @@ namespace Assets.UnityLogic.Gui
         private GuiInformation guiinfo;
         private XmasModel engmodel;
         private bool hasPriority;
-
+        private bool allowedToDeclare = false;
         // Use this for initialization
         void Start()
         {
@@ -38,6 +39,7 @@ namespace Assets.UnityLogic.Gui
 
             
             engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == guiinfo.Player ));
+            engmodel.EventManager.Register(new Trigger<PlayerAllowedToDeclareMoveAttackEvent>(evt => allowedToDeclare = (evt.Player == guiinfo.Player && evt.Allowed)));
         }
 
         // Update is called once per frame
@@ -49,7 +51,7 @@ namespace Assets.UnityLogic.Gui
                 runningCommands.Add(cmd);
             }
 
-            if (this.runningCommands.Count == 0 && hasPriority)
+            if (this.runningCommands.Count == 0 && hasPriority && allowedToDeclare)
                 if (Input.GetButtonDown("select_object"))
                 {
                     GameObject[] objs = GetGameObjectsOnMouse();

@@ -55,6 +55,8 @@
      <Compile Include="Assets\GameLogic\Events\EndMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\GameStartEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PhaseChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerAllowedToDeclareMoveAttackEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\PlayerDeclareMoveAttackEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayerGainedPriorityEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayerJoinedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayerLeftEvent.cs" />
@@ -73,6 +75,7 @@
      <Compile Include="Assets\GameLogic\Modules\MoveModule.cs" />
      <Compile Include="Assets\GameLogic\Modules\UnitInfoModule.cs" />
      <Compile Include="Assets\GameLogic\Player.cs" />
+     <Compile Include="Assets\GameLogic\PlayerCommands\DeclareMoveAttackCommand.cs" />
      <Compile Include="Assets\GameLogic\SpellSystem\Ability.cs" />
      <Compile Include="Assets\GameLogic\SpellSystem\GameCard.cs" />
      <Compile Include="Assets\GameLogic\SpellSystem\ManaType.cs" />

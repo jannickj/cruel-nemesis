@@ -9,9 +9,11 @@ namespace Assets.GameLogic.TurnLogic
 	{
         Draw = 0,
         Main = 1,
-        Declare = 2,
-        Combat = 3,
-        Main2 = 4,
-        End = 5
+        BeginCombat = 2,
+        Declare = 3,
+        Move = 4,
+        Attack = 5,
+        Main2 = 6,
+        End = 7
 	}
 }
