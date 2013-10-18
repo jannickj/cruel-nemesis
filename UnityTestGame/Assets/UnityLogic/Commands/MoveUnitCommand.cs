@@ -46,9 +46,9 @@ namespace Assets.UnityLogic.Commands
                     bool foundPath;
                     Path<TileWorld,TilePosition> route = path.FindFirst(unitpos, tilepos, out foundPath);
 
-                    var declareAction = new DeclareMoveAttackCommand(route, null);
+                    var declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player,route);
 
-
+                    this.unitEntity.QueueAction(declareAction);
 
                     this.unit.renderer.material.color = this.GuiController.GuiInfo.FocusColor;
                     Finished = true;

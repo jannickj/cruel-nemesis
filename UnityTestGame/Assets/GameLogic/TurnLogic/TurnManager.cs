@@ -20,6 +20,7 @@ namespace Assets.GameLogic.TurnLogic
         private Phases currentPhase = Phases.End;
         private Queue<Player> priorityQueue = new Queue<Player>();
         private Dictionary<UnitEntity, PlayerDeclareMoveAttackEvent> moveAttackDeclaration = new Dictionary<UnitEntity, PlayerDeclareMoveAttackEvent>();
+        private int declareStep = 0;
 
         public void Initialize()
         {
@@ -98,7 +99,6 @@ namespace Assets.GameLogic.TurnLogic
             Phases newphase = Phases.Draw;
             Player turnplayer = null;
 
-            
 
             prioplayer = NextPriority(out prioReset);
             if(prioReset)
@@ -107,8 +107,10 @@ namespace Assets.GameLogic.TurnLogic
                 turnplayer = GetNextTurn();
 
 
+
             if (phaseReset)
             {
+                this.declareStep = 0;
                 this.moveAttackDeclaration.Clear();
                 SetTurn(turnplayer);
             }
@@ -119,7 +121,20 @@ namespace Assets.GameLogic.TurnLogic
             else
                 SetPriority(prioplayer);
 
-
+            if (currentPhase == Phases.Declare)
+            {
+                switch (this.declareStep)
+                {
+                    case 0:
+                        declareStep = 1;
+                        this.EventManager.Raise(new PlayerAllowedToDeclareMoveAttackEvent(this.playersTurn, true));
+                        break;
+                    case 1:
+                        declareStep = 2;
+                        this.EventManager.Raise(new PlayerAllowedToDeclareMoveAttackEvent(this.playersTurn, false));
+                        break;
+                }
+            }
             if (currentPhase == Phases.Move)
                 PerformMoves();
             if (currentPhase == Phases.Attack)
