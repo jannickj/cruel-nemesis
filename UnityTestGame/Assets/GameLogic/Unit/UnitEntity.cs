@@ -13,6 +13,7 @@ namespace Assets.GameLogic.Unit
         public UnitEntity(Player owner)
         {
             this.RegisterModule(new UnitInfoModule(owner));
+            this.RegisterModule(new MoveModule(5));
         }
 
         public virtual Type getUnitType()

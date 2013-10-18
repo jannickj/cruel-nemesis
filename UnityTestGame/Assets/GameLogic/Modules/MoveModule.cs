@@ -10,6 +10,7 @@ namespace Assets.GameLogic.Modules
 	public class MoveModule : UniversalModule<XmasEntity>
 	{
         private int moveLength;
+        private int moveDuration;
 
         public int MoveLength
         {
@@ -19,14 +20,28 @@ namespace Assets.GameLogic.Modules
             }
         }
 
-        public MoveModule(int movelength)
+        public int MoveDuration
+        {
+            get
+            {
+                return this.moveDuration;
+            }
+        }
+
+        public MoveModule(int movelength, int moveDuration = 200)
         {
             this.moveLength = movelength;
+            this.moveDuration = moveDuration;
         }
 
         public void ChangeMoveLength(int len)
         {
             this.moveLength = len;
+        }
+
+        public void ChangeMoveDuration(int dur)
+        {
+            this.moveLength = dur;
         }
         
 	}

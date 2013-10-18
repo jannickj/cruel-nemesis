@@ -11,6 +11,8 @@ using Assets.GameLogic.Map;
 using Assets.Library.PathFinding;
 using XmasEngineModel.Management.Actions;
 using JSLibrary;
+using Assets.GameLogic.Modules;
+using Assets.GameLogic.PlayerCommands;
 
 namespace Assets.UnityLogic.Commands
 {
@@ -44,16 +46,11 @@ namespace Assets.UnityLogic.Commands
                     bool foundPath;
                     Path<TileWorld,TilePosition> route = path.FindFirst(unitpos, tilepos, out foundPath);
 
-                    MoveAction[] moves = route.Road.Select(pos => new MoveAction(pos.Point, 100)).ToArray();
-                    
+                    var declareAction = new DeclareMoveAttackCommand(route, null);
 
-                    MultiAction multiaction = new MultiAction();
 
-                    foreach (MoveAction ma in moves)
-                        multiaction.AddAction(unitEntity,ma);
 
-                    this.ActionManager.Queue(multiaction);
-                    this.unit.renderer.material.color = Color.white;
+                    this.unit.renderer.material.color = this.GuiController.GuiInfo.FocusColor;
                     Finished = true;
                 }
             }

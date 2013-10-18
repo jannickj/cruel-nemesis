@@ -12,12 +12,17 @@ namespace Assets.GameLogic.PlayerCommands
 	public class DeclareMoveAttackCommand : EntityXmasAction
 	{
 
-
-
-        public DeclareMoveAttackCommand(Path<TileWorld,TilePosition> movePath, UnitEntity Attack)
+        public DeclareMoveAttackCommand(Path<TileWorld, TilePosition> movePath)
         {
-        
+
         }
+
+        public DeclareMoveAttackCommand(Path<TileWorld, TilePosition> movePath, UnitEntity Attack) : this(movePath)
+        {
+
+        }
+
+        
 
         protected override void Execute()
         {

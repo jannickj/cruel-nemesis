@@ -24,6 +24,7 @@ namespace Assets.UnityLogic.Gui
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
 
         private GuiInformation guiinfo;
+
         private XmasModel engmodel;
         private bool hasPriority;
         private bool allowedToDeclare = false;
@@ -72,10 +73,10 @@ namespace Assets.UnityLogic.Gui
             UpdateCommands();
         }
 
-        void OnGUI()
-        {
 
-            
+        public GuiInformation GuiInfo
+        {
+            get { return guiinfo; }
         }
 
         public void PerformCommand(Command cmd)
