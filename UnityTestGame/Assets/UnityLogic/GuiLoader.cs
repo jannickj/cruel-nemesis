@@ -13,6 +13,7 @@ namespace Assets.UnityLogic
 {
 	public class GuiLoader : MonoBehaviour
 	{
+        public MapHandler MapHandler;
         public EngineHandler Engine;
         public GlobalGameSettings Settings;
         public GUITexture PlayerLogo_Friendly;
@@ -63,7 +64,9 @@ namespace Assets.UnityLogic
             }
 
             gobj.AddComponent<GuiViewHandler>();
-            gobj.GetComponent<GuiViewHandler>().Engine = this.Engine;
+            var guiview = gobj.GetComponent<GuiViewHandler>();
+            guiview.Engine = this.Engine;
+            guiview.MapHandler = this.MapHandler;
         }
 
 

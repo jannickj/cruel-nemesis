@@ -13,9 +13,12 @@ namespace Assets.GameLogic.Actions
 {
 	public class MovePathAction : MultiAction
 	{
+        public Path<TileWorld, TilePosition> Path { get; private set; }
 
         public MovePathAction(XmasEntity ent, Path<TileWorld, TilePosition> path, int durPerMove)
         {
+            this.Path = path;
+
             foreach (TilePosition pos in path.Road)
             {
                 this.AddAction(ent, new MoveAction(pos.Point, durPerMove));

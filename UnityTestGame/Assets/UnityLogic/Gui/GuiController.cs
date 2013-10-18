@@ -52,8 +52,8 @@ namespace Assets.UnityLogic.Gui
                 runningCommands.Add(cmd);
             }
 
-            if (this.runningCommands.Count == 0 && hasPriority && allowedToDeclare)
-                if (Input.GetButtonDown("select_object"))
+            if (this.runningCommands.Count == 0 && hasPriority)
+                if (Input.GetButtonDown("select_object") && allowedToDeclare)
                 {
                     GameObject[] objs = GetGameObjectsOnMouse();
                     GameObject firstunit = objs.FirstOrDefault(go => go.GetComponent<UnitControllerHandler>() != null);
@@ -64,7 +64,6 @@ namespace Assets.UnityLogic.Gui
                 }
                 else if (Input.GetButtonDown("pass_priority"))
                 {
-
                     this.PerformCommand(new PassPriorityCommand(guiinfo.Player));
                 }
 

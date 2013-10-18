@@ -18,7 +18,7 @@ public class DebugMessenger : MonoBehaviour {
         engmodel.EventManager.Register(new Trigger<EndMoveEvent>(evt => Debug.Log("Unit has moved to " + evt.To)));
         engmodel.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => Debug.Log("Player turn changed to: "+evt.PlayersTurn.Name)));
         engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(evt => Debug.Log("Phase changed to: " + evt.NewPhase.ToString())));
-        engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => Debug.Log("Player gained priority: " + evt.Player.Name)));
+        engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => { if (evt.Player != null) Debug.Log("Player gained priority: " + evt.Player.Name); }));
         engmodel.EventManager.Register(new Trigger<PlayerJoinedEvent>(evt => Debug.Log("Player joined: " + evt.Player.Name)));
         engmodel.EventManager.Register(new Trigger<TriggerFailedEvent>(evt => Debug.Log(evt.FailedTrigger + " failed: " + evt.Exception.Message + " at " + evt.Exception.StackTrace)));
 	}

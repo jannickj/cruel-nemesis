@@ -8,12 +8,15 @@ using Assets.Map.Terrain;
 using Assets.UnityLogic;
 using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
+using System.Collections.Generic;
 
 
 public class MapHandler : MonoBehaviour {
 
     public Transform Terrain;
     public EngineHandler Engine;
+    private Dictionary<TerrainEntity, Transform> termap = new Dictionary<TerrainEntity, Transform>();
+
 	// Use this for initialization
 	void Start () {
         XmasModel eng = Engine.EngineModel;
@@ -26,6 +29,14 @@ public class MapHandler : MonoBehaviour {
 	
 	}
 
+    public Transform this[TerrainEntity ent]
+    {
+        get
+        {
+            return termap[ent];
+        }
+    }
+
     private void OnTerrainEntity(EntityAddedEvent evt)
     {
         TerrainEntity terEnt = (TerrainEntity)evt.AddedXmasEntity;
@@ -37,7 +48,7 @@ public class MapHandler : MonoBehaviour {
         transform.gameObject.AddComponent<TerrainInformation>();
         var terinfo = transform.gameObject.GetComponent<TerrainInformation>();
         terinfo.SetTerrain(terEnt);
-
+        this.termap[terEnt] = transform;
         transform.renderer.sharedMaterial.SetTexture("_MainTex", TextureDictionary.GetTexture(terEnt.TextureType));
     }
 }

@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e529134a9ea44c340888ed87f7b7131b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MapHandler: {fileID: 1513248591}
   Engine: {fileID: 326927666}
   Settings: {fileID: 412707700}
   PlayerLogo_Friendly: {fileID: 166209100}
@@ -184,7 +185,9 @@ MonoBehaviour:
   Phases:
   - {fileID: 468049801}
   - {fileID: 1997481658}
+  - {fileID: 1798134935}
   - {fileID: 1555541610}
+  - {fileID: 815806731}
   - {fileID: 1889768625}
   - {fileID: 386602793}
   - {fileID: 2051072578}
@@ -409,7 +412,7 @@ GUITexture:
   m_PixelInset:
     serializedVersion: 2
     x: 40
-    y: -380
+    y: -520
     width: 64
     height: 64
   m_LeftBorder: 0
@@ -560,6 +563,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1889768624}
+  - {fileID: 1798134936}
+  - {fileID: 815806730}
   - {fileID: 1555541611}
   - {fileID: 468049800}
   - {fileID: 2051072577}
@@ -742,6 +747,52 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &815806729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 815806730}
+  - 131: {fileID: 815806731}
+  m_Layer: 0
+  m_Name: phases_move
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815806730
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815806729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .00999999978, y: 1.27999997, z: -.300000012}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 514188148}
+--- !u!131 &815806731
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815806729}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: cc08a236ea915114a8bf5785b86f4b5a, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 40
+    y: -380
+    width: 64
+    height: 64
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!1 &845239627
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +1019,7 @@ GUITexture:
   m_PixelInset:
     serializedVersion: 2
     x: 40
-    y: -240
+    y: -310
     width: 64
     height: 64
   m_LeftBorder: 0
@@ -986,6 +1037,52 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 514188148}
+--- !u!1 &1798134934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1798134936}
+  - 131: {fileID: 1798134935}
+  m_Layer: 0
+  m_Name: phases_begin_combat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!131 &1798134935
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798134934}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 8e114123991dd1541b0e4217b00fe91c, type: 3}
+  m_Color: {r: .5, g: .5, b: .5, a: .5}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 40
+    y: -240
+    width: 64
+    height: 64
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
+--- !u!4 &1798134936
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798134934}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .00999999978, y: 1.27999997, z: -.300000012}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 514188148}
 --- !u!1 &1889768623
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +1093,7 @@ GameObject:
   - 4: {fileID: 1889768624}
   - 131: {fileID: 1889768625}
   m_Layer: 0
-  m_Name: phases_combat
+  m_Name: phases_attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1020,12 +1117,12 @@ GUITexture:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1889768623}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 1cb25c6670cb5764bbcd9d8b8b87a5c8, type: 3}
+  m_Texture: {fileID: 2800000, guid: 80c3fb087f2bdf24b9d01a911af650eb, type: 3}
   m_Color: {r: .5, g: .5, b: .5, a: .5}
   m_PixelInset:
     serializedVersion: 2
     x: 40
-    y: -310
+    y: -450
     width: 64
     height: 64
   m_LeftBorder: 0
@@ -1157,7 +1254,7 @@ GUITexture:
   m_PixelInset:
     serializedVersion: 2
     x: 40
-    y: -450
+    y: -590
     width: 64
     height: 64
   m_LeftBorder: 0
