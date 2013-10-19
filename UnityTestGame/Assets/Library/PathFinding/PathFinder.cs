@@ -32,23 +32,23 @@ namespace Assets.Library.PathFinding
         protected abstract bool isPosEqual(TPos pos1, TPos pos2);
 
 
-        public Path<TMap, TPos> FindFirst(TPos start, TPos goalPos,out bool foundPath)
+        public bool FindFirst(TPos start, TPos goalPos,out  Path<TMap, TPos> foundPath)
         {
             return FindFirst(start, pos => isPosEqual(pos,goalPos),pos => getHeuristic(pos,goalPos), out foundPath);
         }
 
-        public Path<TMap,TPos> FindFirst(TPos start, Predicate<TPos> goalCondition, Func<TPos,float> getHeuristic,out bool foundPath)
+        public bool FindFirst(TPos start, Predicate<TPos> goalCondition, Func<TPos, float> getHeuristic, out  Path<TMap, TPos> foundPath)
         {
             Path<TMap, TPos>[] path = astarSearch(start, goalCondition, getHeuristic, true);
             if (path.Length > 0)
             {
-                foundPath = true;
-                return path[0];
+                foundPath = path[0];
+                return true;
             }
             else
             {
-                foundPath = false;
-                return default(Path<TMap, TPos>);
+                foundPath = default(Path<TMap,TPos>);
+                return false;
             }           
         }
 

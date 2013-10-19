@@ -23,6 +23,8 @@ namespace Assets.UnityLogic.Gui
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
 
+        public GuiViewHandler GuiView { get; private set; }
+
         private GuiInformation guiinfo;
 
         private XmasModel engmodel;
@@ -31,7 +33,8 @@ namespace Assets.UnityLogic.Gui
         // Use this for initialization
         void Start()
         {
-            this.guiinfo = guiinfo = this.gameObject.GetComponent<GuiInformation>();
+            this.guiinfo = this.gameObject.GetComponent<GuiInformation>();
+            this.GuiView = this.gameObject.GetComponent<GuiViewHandler>();
             hasPriority = false;
             if (PlayerCamera == null)
                 PlayerCamera = Camera.main;
@@ -113,5 +116,6 @@ namespace Assets.UnityLogic.Gui
 
             return sortobjs.ToArray();
         }
+
     }
 }

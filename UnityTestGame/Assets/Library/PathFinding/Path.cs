@@ -11,17 +11,34 @@ namespace Assets.Library.PathFinding
         private TMap map;
 
 
+        public Path(TMap map)
+        {
+            this.path = new TPos[0];
+            this.map = map;
+        }
+
         public Path(TMap map, IEnumerable<TPos> path)
         {
             this.path = path.ToArray();
             this.map = map;
         }
 
-        public Queue<TPos> Road
+        public Path(Path<TMap, TPos> startpath, params Path<TMap, TPos>[] paths)
+        {
+            map = startpath.map;
+            path = startpath.path.Concat(paths.SelectMany(pa => pa.path)).ToArray();
+        }
+
+        public Path(IEnumerable<Path<TMap, TPos>> paths) : this(paths.First(),paths.Skip(1).ToArray())
+        {
+
+        }
+
+        public LinkedList<TPos> Road
         {
             get
             {
-                return new Queue<TPos>(path);
+                return new LinkedList<TPos>(path);
             }
         }
 

@@ -64,6 +64,16 @@ namespace XmasEngineModel.EntityLib
 			get { return World.GetEntityPosition(this); }
 		}
 
+
+        /// <summary>
+        /// Gets the position as a certain type
+        /// </summary>
+        /// <typeparam name="TXmasPosition">The type the position is converted to</typeparam>
+        /// <returns></returns>
+        public TXmasPosition PositionAs<TXmasPosition>() where TXmasPosition : XmasPosition
+        {
+            return (TXmasPosition)Position;
+        }
 		
 
 		

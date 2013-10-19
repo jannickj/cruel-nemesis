@@ -12,6 +12,7 @@ using XmasEngineExtensions.TileExtension;
 using Assets.Library.PathFinding;
 using Assets.Map.Terrain;
 using Assets.GameLogic.TurnLogic;
+using JSLibrary.Data;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -23,6 +24,7 @@ namespace Assets.UnityLogic.Gui
         private XmasModel engmodel;
         private Player currentTurnOwner;
         private Dictionary<XmasEntity, Path<TileWorld, TilePosition>> routes = new Dictionary<XmasEntity, Path<TileWorld, TilePosition>>();
+        private Dictionary<Point, int> drawnSquares = new Dictionary<Point, int>();
 
         void Start()
         {
@@ -70,23 +72,34 @@ namespace Assets.UnityLogic.Gui
         }
 
 
-        private void unDrawRoute(Path<TileWorld, TilePosition> path)
+        public void unDrawRoute(Path<TileWorld, TilePosition> path)
         {
             foreach (TilePosition pos in path.Road)
             {
+                drawnSquares[pos.Point]--;
+                int left = drawnSquares[pos.Point];
+                if (left != 0)
+                    continue;
                 var terrain = this.engmodel.World.GetEntities(pos).OfType<TerrainEntity>().First();
                 Transform terobj = this.MapHandler[terrain];
                 terobj.renderer.material.color = Color.white;
+                
             }
         }
 
-        private void drawRoute(Path<TileWorld, TilePosition> path)
+        public void drawRoute(Path<TileWorld, TilePosition> path)
         {
             foreach (TilePosition pos in path.Road)
             {
+
                 var terrain = this.engmodel.World.GetEntities(pos).OfType<TerrainEntity>().First();
                 Transform terobj = this.MapHandler[terrain];
                 terobj.renderer.material.color = Color.red;
+
+                int drawn;
+                if (!drawnSquares.TryGetValue(pos.Point, out drawn))
+                    drawn = 0;
+                drawnSquares[pos.Point] = drawn + 1;
             }
         }
 

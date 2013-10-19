@@ -13,6 +13,7 @@ using XmasEngineModel.Management.Actions;
 using JSLibrary;
 using Assets.GameLogic.Modules;
 using Assets.GameLogic.PlayerCommands;
+using Assets.UnityLogic.Gui;
 
 namespace Assets.UnityLogic.Commands
 {
@@ -20,7 +21,11 @@ namespace Assets.UnityLogic.Commands
 	{
         private UnitEntity unitEntity;
         private GameObject unit;
-        //private List<
+        private TilePosition lastpos;
+        private LinkedList<Path<TileWorld, TilePosition>> fullroute = new LinkedList<Path<TileWorld, TilePosition>>();
+        private Point mousePoint;
+        private Path<TileWorld, TilePosition> mousePath;
+        private bool refindMouse = false;
         
         public MoveUnitCommand(GameObject unit, UnitEntity unitEntity)
         {
@@ -28,33 +33,85 @@ namespace Assets.UnityLogic.Commands
             this.unit = unit;
             this.unitEntity = unitEntity;
             this.unit.renderer.material.color = Color.red;
+            this.lastpos = (TilePosition)unitEntity.Position;
         }
 
         public override void Update()
         {
+            GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
+            GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
+            if (firstter != null)
+            {
+                TerrainInformation terinfo = firstter.GetComponent<TerrainInformation>();
+                TilePosition tilepos = (TilePosition)terinfo.Terrain.Position;
+
+                if (tilepos != null && (mousePoint != tilepos.Point && lastpos.Point != tilepos.Point) || refindMouse)
+                {
+                    refindMouse = false;
+                    var oldMousePath = mousePath;
+                    TilePathFinder path = new TilePathFinder((TileWorld)this.World);
+                    mousePoint = tilepos.Point;
+                    GuiViewHandler view = this.GuiController.GuiView;
+                    Path<TileWorld, TilePosition> foundPath;
+                    if (path.FindFirst(lastpos, tilepos, out foundPath))
+                    {
+                        mousePath = new Path<TileWorld,TilePosition>(foundPath.Map,foundPath.Road.Skip(1));
+                    }
+
+                    if (oldMousePath.Map != null)
+                        view.unDrawRoute(oldMousePath);
+                    view.drawRoute(mousePath);
+                }
+            }
+
             if (Input.GetButtonDown("select_object"))
             {
-                GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
-                GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
-                if (firstter != null)
+                
+                if(mousePath.Map != null)
                 {
-                    Debug.Log(firstter);
-                    TerrainInformation terinfo = firstter.GetComponent<TerrainInformation>();
-                    TilePosition tilepos = (TilePosition)terinfo.Terrain.Position;
-                    TilePosition unitpos = (TilePosition)unitEntity.Position;
-                    TilePathFinder path = new TilePathFinder((TileWorld)this.World);
-                    bool foundPath;
-                    Path<TileWorld,TilePosition> route = path.FindFirst(unitpos, tilepos, out foundPath);
+                    
+                                        
+                    fullroute.AddLast(mousePath);
+                    this.lastpos = mousePath.Road.Last.Value;
+                    QueueDelcareAction();
 
-                    var declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player,route);
-
-                    this.unitEntity.QueueAction(declareAction);
-
-                    this.unit.renderer.material.color = this.GuiController.GuiInfo.FocusColor;
-                    Finished = true;
+                    
+                    //Finished = true;
                 }
+            }
+            else if (Input.GetButtonDown("deselect_object"))
+            {
+                
+                fullroute.RemoveLast();
+                if (fullroute.Count == 0)
+                    lastpos = this.unitEntity.PositionAs<TilePosition>();
+                else
+                    lastpos = this.fullroute.Last.Value.Road.Last.Value;
+                QueueDelcareAction();
+                this.refindMouse = true;
+            }
+            else if (Input.GetButtonDown("accept"))
+            {
+                this.unit.renderer.material.color = this.GuiController.GuiInfo.FocusColor;
+                if(mousePath.Map !=null)
+                    this.GuiController.GuiView.unDrawRoute(this.mousePath);
+                Finished = true;
             }
             
         }
+
+        private void QueueDelcareAction()
+        {
+            Path<TileWorld, TilePosition> fullpath;
+            if(fullroute.Count == 0)
+                fullpath = new Path<TileWorld,TilePosition>(this.WorldAs<TileWorld>());
+            else
+                fullpath = new Path<TileWorld, TilePosition>(fullroute);
+
+            var declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath);
+            this.unitEntity.QueueAction(declareAction);
+        }
+
+
     }
 }

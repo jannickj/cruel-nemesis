@@ -5,15 +5,17 @@ using System.Text;
 
 namespace Assets.GameLogic.TurnLogic
 {
-	public enum Phases
+	public enum Phases : int
 	{
         Draw = 0,
-        Main = 1,
-        BeginCombat = 2,
-        Declare = 3,
-        Move = 4,
-        Attack = 5,
-        Main2 = 6,
-        End = 7
+        Main,
+        BeginCombat,
+        Declare,
+        Move,
+        React,
+        Attack,
+        EndCombat,
+        Main2,
+        End,
 	}
 }

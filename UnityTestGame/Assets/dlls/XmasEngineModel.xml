@@ -329,6 +329,13 @@
             This method is called every time the entity leaves the world
             </summary>
         </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasEntity.PositionAs``1">
+            <summary>
+            Gets the position as a certain type
+            </summary>
+            <typeparam name="TXmasPosition">The type the position is converted to</typeparam>
+            <returns></returns>
+        </member>
         <member name="M:XmasEngineModel.EntityLib.XmasEntity.QueueAction(XmasEngineModel.Management.EntityXmasAction)">
             <summary>
             Queue an action meant to be performed by the entity onto the entity. This method is threadsafe.
