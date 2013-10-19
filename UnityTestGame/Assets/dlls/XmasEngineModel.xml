@@ -519,9 +519,31 @@
             </summary>
             <returns>The ThreadSafe EventQueue</returns>
         </member>
+        <member name="T:XmasEngineModel.Management.Events.ActionCompletedEvent`1">
+            <summary>
+            Event that is fired when an action has completed in the engine
+            </summary>
+            <typeparam name="TAction">Type of action that has completed</typeparam>
+        </member>
         <member name="T:XmasEngineModel.Management.XmasEvent">
             <summary>
             Extend this class to create new types of events for the engine
+            </summary>
+        </member>
+        <member name="P:XmasEngineModel.Management.Events.ActionCompletedEvent`1.Action">
+            <summary>
+            Gets the action that completed
+            </summary>
+        </member>
+        <member name="T:XmasEngineModel.Management.Events.ActionStartingdEvent`1">
+            <summary>
+            Event that is fired when an action has been started through the engine
+            </summary>
+            <typeparam name="TAction">Type of action that has been started</typeparam>
+        </member>
+        <member name="P:XmasEngineModel.Management.Events.ActionStartingdEvent`1.Action">
+            <summary>
+            Gets the action that was started
             </summary>
         </member>
         <member name="T:XmasEngineModel.Management.Actions.TimedAction">

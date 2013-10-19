@@ -11,6 +11,14 @@
             <param name="str">The string to be converted</param>
             <returns></returns>
         </member>
+        <member name="M:JSLibrary.Generics.InstantiateGenericClass(System.Type,System.Type[],System.Object[])">
+            <summary>
+            Instantiates a generic class, such as GenericClass&lt;A,B,C&gt;
+            </summary>
+            <param name="generic">type of the generic class</param>
+            <param name="subtypes">the subtypes such as the A, B and C</param>
+            <param name="constructorInput">Input given to the constructor of the class</param>
+        </member>
         <member name="T:JSLibrary.Network.PacketStream">
             <summary>
             A stream designed specially for sending and recieving data in forms of packages

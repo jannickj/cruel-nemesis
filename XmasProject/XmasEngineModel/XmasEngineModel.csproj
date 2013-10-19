@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\VirtualNotImplementedAttribute.cs" />
     <Compile Include="Conversion\XmasConversionTool.cs" />
     <Compile Include="Conversion\XmasConverter.cs" />
     <Compile Include="Conversion\XmasConverterToForeign.cs" />
@@ -75,7 +76,9 @@
     <Compile Include="Management\EntityXmasAction.cs" />
     <Compile Include="Management\EnvironmentAction.cs" />
     <Compile Include="Management\EventManager.cs" />
+    <Compile Include="Management\Events\ActionCompletedEvent.cs" />
     <Compile Include="Management\Events\ActionFailedEvent.cs" />
+    <Compile Include="Management\Events\ActionStartingEvent.cs" />
     <Compile Include="Management\Events\EngineCloseEvent.cs" />
     <Compile Include="Management\Events\EntityAddedEvent.cs" />
     <Compile Include="Management\Events\RetreivePerceptsEvent.cs" />

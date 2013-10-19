@@ -4,6 +4,7 @@ using System.Linq;
 using JSLibrary.Data.GenericEvents;
 using XmasEngineModel.Exceptions;
 using XmasEngineModel.Management.Events;
+using JSLibrary;
 
 namespace XmasEngineModel.Management
 {
@@ -48,7 +49,31 @@ namespace XmasEngineModel.Management
 			XmasAction ga = (XmasAction) sender;
 			runningActions.Remove(ga);
 			ga.Resolved -= action_Resolved;
+            if (ga.ActionFailed)
+            {
+                var failedevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionFailedEvent<>), new Type[] { ga.GetType() }, ga.Clone());
+                var entact = ga as EntityXmasAction;
+                if (entact != null)
+                    entact.Source.Raise(failedevent);
+                else
+                    this.evtman.Raise(failedevent);
+            }
+            
 		}
+
+        private void action_Completed(object sender, EventArgs e)
+        {
+            XmasAction ga = (XmasAction)sender;
+            ga.Completed -= action_Completed;
+
+            var completedevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionCompletedEvent<>), new Type[] { ga.GetType() }, ga.Clone());
+            var entact = ga as EntityXmasAction;
+            if (entact != null)
+                entact.Source.Raise(completedevent);
+            else
+                this.evtman.Raise(completedevent);
+
+        }
 
 		#endregion
 
@@ -93,6 +118,15 @@ namespace XmasEngineModel.Management
                 PreActionExecution(this, new UnaryValueEvent<XmasAction>(action));
             runningActions.Add(action);
             action.Resolved += action_Resolved;
+            action.Completed += action_Completed;
+
+            var startingevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionStartingdEvent<>), new Type[] { action.GetType() }, action.Clone());
+            var entact = action as EntityXmasAction;
+            if (entact != null)
+                entact.Source.Raise(startingevent);
+            else
+                this.evtman.Raise(startingevent);
+
             try
             {
                 action.Fire();
@@ -106,8 +140,11 @@ namespace XmasEngineModel.Management
             {
                 action.Fail();
                 this.evtman.Raise(new ActionFailedEvent(action,e));
+
             }
         }
+
+        
 
 
         /// <summary>

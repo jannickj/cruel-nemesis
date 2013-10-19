@@ -46,6 +46,14 @@ namespace JSLibrary.Data
 			get { return new Vector(Math.Abs(x), Math.Abs(y)); }
 		}
 
+        public float Distance
+        {
+            get
+            {
+                return (float)Math.Sqrt(Math.Pow(this.x, 2) + Math.Pow(this.y, 2));
+            }
+        }
+
 		public override string ToString ()
 		{
 			return string.Format ("<{0},{1}>", X, Y);

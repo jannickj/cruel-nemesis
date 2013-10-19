@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using XmasEngineModel.Attributes;
 using XmasEngineModel.EntityLib;
 
 namespace XmasEngineModel.Management
 {
 
 
-	public abstract class XmasAction : XmasActor
+	public abstract class XmasAction : XmasActor, ICloneable
 	{
         private XmasAction parentAction = null;
 		public event EventHandler Completed;
@@ -147,5 +148,11 @@ namespace XmasEngineModel.Management
         {
             this.parentAction = parent;
         }
-	}
+
+        [VirtualNotImplemented("The action is not thread safe if clonable is not implemented")]
+        public virtual object Clone()
+        {
+            return this;
+        }
+    }
 }

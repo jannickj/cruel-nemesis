@@ -44,6 +44,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GameLogic\Actions\AttackUnitAction.cs" />
+     <Compile Include="Assets\GameLogic\Actions\DealDamageToUnitAction.cs" />
      <Compile Include="Assets\GameLogic\Actions\MoveAction.cs" />
      <Compile Include="Assets\GameLogic\Actions\MovePathAction.cs" />
      <Compile Include="Assets\GameLogic\Actions\PlayerJoinAction.cs" />
@@ -66,13 +68,19 @@
      <Compile Include="Assets\GameLogic\Events\PlayersTurnChangedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PreMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\RemovedFromGameEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitBeginAttackEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitControllerChangedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitDealsDamageEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitIsAttackedEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitTakesDamageEvent.cs" />
      <Compile Include="Assets\GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
      <Compile Include="Assets\GameLogic\Map\MapTypes.cs" />
      <Compile Include="Assets\GameLogic\Map\StandardGameMapBuilder.cs" />
      <Compile Include="Assets\GameLogic\Map\Terrain\TerrainEntity.cs" />
      <Compile Include="Assets\GameLogic\Map\Terrain\TextureType.cs" />
      <Compile Include="Assets\GameLogic\Map\TilePathFinder.cs" />
+     <Compile Include="Assets\GameLogic\Modules\AttackModule.cs" />
+     <Compile Include="Assets\GameLogic\Modules\HealthModule.cs" />
      <Compile Include="Assets\GameLogic\Modules\MoveModule.cs" />
      <Compile Include="Assets\GameLogic\Modules\UnitInfoModule.cs" />
      <Compile Include="Assets\GameLogic\Player.cs" />

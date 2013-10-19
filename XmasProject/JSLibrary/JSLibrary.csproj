@@ -52,6 +52,7 @@
     <Compile Include="ExtendedConsole.cs" />
     <Compile Include="ExtendedString.cs" />
     <Compile Include="ExtendedType.cs" />
+    <Compile Include="Generics.cs" />
     <Compile Include="IiLang\Exceptions\MissingXmlAttributeException.cs" />
     <Compile Include="IiLang\SingleParameter.cs" />
     <Compile Include="Network\PacketStream.cs" />

@@ -5,6 +5,23 @@ using System.Text;
 
 namespace XmasEngineModel.Management.Events
 {
+
+    public class ActionFailedEvent<TAction> : ActionFailedEvent where TAction : XmasAction
+    {
+        public new TAction FailedAction
+        {
+            get
+            {
+                return (TAction)base.FailedAction;
+            }
+        }
+
+        public ActionFailedEvent(TAction failedAction, Exception e) : base(failedAction, e)
+        {
+
+        }
+    }
+
 	public class ActionFailedEvent : XmasEvent
 	{
 		private Exception e;
@@ -12,7 +29,7 @@ namespace XmasEngineModel.Management.Events
 
         
 
-		public ActionFailedEvent(XmasAction failedAction, Exception e)
+		internal ActionFailedEvent(XmasAction failedAction, Exception e)
 		{
 			this.e = e;
             this.failedAction = failedAction;
