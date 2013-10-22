@@ -5,6 +5,7 @@ using System.Text;
 using XmasEngineModel;
 using XmasEngineModel.Management;
 using UnityTestGameTest.TestComponents;
+using XmasEngineExtensions.TileExtension;
 
 namespace UnityTestGameTest
 {
@@ -20,11 +21,12 @@ namespace UnityTestGameTest
 
         public EngineTest(XmasWorld world)
         {
+            var wb = new TileWorldBuilder(new JSLibrary.Data.Size(1, 1));
             this.EventManager = new EventManager();
             this.ActionManager = new ActionManager(this.EventManager);
             this.Factory = new XmasFactory(this.ActionManager);
-            this.World = world;
-            this.Engine = new XmasModel(this.World, this.ActionManager, this.EventManager, this.Factory);
+            this.Engine = new XmasModel(wb, this.ActionManager, this.EventManager, this.Factory);
+            this.World = this.Engine.World;
         }
     }
 }

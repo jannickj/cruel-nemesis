@@ -8,9 +8,6 @@ namespace UnityTestGameTest.TestComponents
 {
     public class MockCard : GameCard
     {
-        internal Spell ConstructSpell()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

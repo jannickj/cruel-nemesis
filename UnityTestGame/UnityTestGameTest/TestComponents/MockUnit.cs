@@ -8,5 +8,9 @@ namespace UnityTestGameTest.TestComponents
 {
     public class MockUnit : UnitEntity
     {
+        public MockUnit() : base(null)
+        {
+
+        }
     }
 }
