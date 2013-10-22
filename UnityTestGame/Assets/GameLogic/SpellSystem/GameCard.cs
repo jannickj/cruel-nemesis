@@ -10,6 +10,10 @@ namespace Assets.GameLogic.SpellSystem
 	public class GameCard : XmasUniversal
 	{
 
+        public Spell ConstructSpell()
+        {
+            throw new NotImplementedException();
+        }
         public void AddSpellAction(Action<Spell> spell)
         {
 

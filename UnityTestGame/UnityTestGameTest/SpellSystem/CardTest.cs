@@ -27,5 +27,6 @@ namespace UnityTestGameTest.SpellSystem
 
             Assert.IsTrue(spellResolved);
         }
+
     }
 }

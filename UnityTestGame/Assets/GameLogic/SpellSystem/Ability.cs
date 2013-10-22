@@ -37,11 +37,25 @@ namespace Assets.GameLogic.SpellSystem
         }
 
         protected override void Execute()
-        {
-            if(targetsRemaining)
+        {  
+            if (targetsRemaining && conditionsTrue())
                 FireAbility();
             else
                 this.EventManager.Raise(new AbilityTargetInvalidEvent());
+        }
+
+        private bool conditionsTrue()
+        {
+            for (int i = 0; i < conditionList.Count; i++)
+            {
+                foreach (XmasObject target in targetList[i])
+                {
+                    if (!conditionList[i](target))
+                        return false;
+                }
+
+            }
+            return true;
         }
 
         private void removeTarget(XmasObject o, int index)
