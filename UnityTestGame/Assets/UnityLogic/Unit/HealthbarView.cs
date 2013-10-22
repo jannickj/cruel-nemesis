@@ -34,7 +34,7 @@ namespace Assets.UnityLogic.Unit
 
         public void SetHealthPct(float pct)
         {
-            this.renderer.sharedMaterial.SetTextureOffset("_MainTex", new Vector2((pct*0.5f)/100,0));
+            this.renderer.sharedMaterial.SetTextureOffset("_MainTex", new Vector2((pct*0.5f),0));
         }
 	}
 }
