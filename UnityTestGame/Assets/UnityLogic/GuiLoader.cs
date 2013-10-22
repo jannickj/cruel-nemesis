@@ -37,6 +37,7 @@ namespace Assets.UnityLogic
         {
 
             GameObject gobj = new GameObject();
+            gobj.name = "GUI for player " + evt.Player.Name;
             gobj.AddComponent<GuiInformation>();
             GuiInformation ginfo = gobj.GetComponent<GuiInformation>();
             this.guiLookup.Add(evt.Player, ginfo);

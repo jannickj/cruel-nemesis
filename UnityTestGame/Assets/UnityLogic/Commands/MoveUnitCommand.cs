@@ -41,6 +41,7 @@ namespace Assets.UnityLogic.Commands
         {
             GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
             GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
+            UnitEntity attackUnit = null;
             if (firstter != null)
             {
                 TerrainInformation terinfo = firstter.GetComponent<TerrainInformation>();
@@ -54,7 +55,20 @@ namespace Assets.UnityLogic.Commands
                     mousePoint = tilepos.Point;
                     GuiViewHandler view = this.GuiController.GuiView;
                     Path<TileWorld, TilePosition> foundPath;
-                    if (path.FindFirst(lastpos, tilepos, out foundPath))
+                    
+                    bool foundpath;
+                    var entities = this.World.GetEntities(tilepos).OfType<UnitEntity>();
+                    attackUnit = entities.FirstOrDefault(ent => ent.Module<UnitInfoModule>().Controller != this.GuiController.GuiInfo.Player);
+
+                    if (attackUnit == null)
+                        foundpath = path.FindFirst(lastpos, tilepos, out foundPath);
+                    else
+                    {
+                        Predicate<TilePosition> goalcond = pos => (float)attackUnit.Module<AttackModule>().AttackRange >= new Vector(pos.Point,mousePoint).Distance;
+                        foundpath = path.FindFirst(lastpos, goalcond, pos => new Vector(pos.Point, mousePoint).Distance, out foundPath);
+                    }
+
+                    if (foundpath)
                     {
                         mousePath = new Path<TileWorld,TilePosition>(foundPath.Map,foundPath.Road.Skip(1));
                     }
@@ -75,10 +89,7 @@ namespace Assets.UnityLogic.Commands
                     fullroute.AddLast(mousePath);
                     this.lastpos = mousePath.Road.Last.Value;
 
-                    var entities = gobjs.Where(go => go.gameObject.GetComponent<UnitInformation>() != null).Select(go => go.GetComponent<UnitInformation>().Entity);
-
-                    var attackUnit = entities.FirstOrDefault(ent => ent.Module<UnitInfoModule>().Controller != this.GuiController.GuiInfo.Player);
-
+                    
                     QueueDelcareAction(attackUnit);
 
                     
