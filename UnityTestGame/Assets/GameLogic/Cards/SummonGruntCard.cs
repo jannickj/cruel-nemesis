@@ -18,7 +18,7 @@ namespace Assets.GameLogic.Cards
 
         private void OnCast(Spell spell)
         {
-            TerrainEntity ter = spell.GetTargetAs<TerrainEntity>(0);
+            TerrainEntity ter = spell.GetTargetAs<TerrainEntity>(0).First();
             var tpos = ter.Position;
 
             GruntUnit gunit = new GruntUnit(this.Module<UnitInfoModule>().Owner);

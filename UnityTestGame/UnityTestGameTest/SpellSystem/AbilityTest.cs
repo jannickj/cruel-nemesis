@@ -9,6 +9,7 @@ using Assets.GameLogic.Unit;
 using XmasEngineModel.Management;
 using Assets.GameLogic.Events;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace UnityTestGameTest.SpellSystem
 {
@@ -32,7 +33,7 @@ namespace UnityTestGameTest.SpellSystem
             this.EventManager.Register(new Trigger<AbilityResolvesEvent>(_ => resolvesEventTriggered = true));
 
             UnitEntity unit = new MockUnit();
-            abi.SetTarget(0, new XmasActor[]{unit});
+            abi.SetTarget(0, new XmasUniversal[] { unit });
 
             this.ActionManager.Queue(abi);
             this.ActionManager.ExecuteActions();
@@ -59,7 +60,7 @@ namespace UnityTestGameTest.SpellSystem
 
             UnitEntity unit = new MockUnit();
             unit.EventManager = this.EventManager;
-            abi.SetTarget(0, new XmasActor[]{unit});
+            abi.SetTarget(0, new XmasUniversal[] { unit });
 
             unit.Raise(new RemovedFromGameEvent());
 
@@ -87,7 +88,7 @@ namespace UnityTestGameTest.SpellSystem
             this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));
 
             UnitEntity unit = new MockUnit();
-            abi.SetTarget(0, new XmasActor[]{unit});
+            abi.SetTarget(0, new XmasUniversal[] { unit });
 
             abi.SetTargetCondition(0, _ => false);
 

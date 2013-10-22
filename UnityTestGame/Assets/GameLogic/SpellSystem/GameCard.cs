@@ -9,6 +9,7 @@ namespace Assets.GameLogic.SpellSystem
 {
 	public class GameCard : XmasUniversal
 	{
+        private Dictionary<int, Predicate<object>> conditionList = new Dictionary<int, Predicate<object>>();
 
         public Spell ConstructSpell()
         {
@@ -19,9 +20,9 @@ namespace Assets.GameLogic.SpellSystem
 
         }
 
-        public void SetTargetCondition(int index, Predicate<XmasActor> cond)
+        public void SetTargetCondition(int index, Predicate<object> pred)
         {
-
+            conditionList[index] = pred;
         }
 	}
 }
