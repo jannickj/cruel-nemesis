@@ -13,14 +13,14 @@ namespace Assets.GameLogic.SpellSystem
 {
 	public abstract class Ability : EnvironmentAction
 	{
-        private Dictionary<int, XmasObject[]> targetList = new Dictionary<int,XmasObject[]>();
-        private Dictionary<int, Predicate<XmasObject>> conditionList = new Dictionary<int,Predicate<XmasObject>>();
+        private Dictionary<int, object[]> targetList = new Dictionary<int, object[]>();
+        private Dictionary<int, Predicate<object>> conditionList = new Dictionary<int, Predicate<object>>();
         private bool targetsRemaining = true;
 
-        public void SetTarget(int index, XmasObject[] xObj)
+        public void SetTarget(int index, object[] xObj)
         {
             targetList[index] = xObj;
-
+            
             XmasEntity[] ent = xObj.OfType<XmasEntity>().ToArray();
             
             foreach (XmasEntity o in ent)
@@ -31,7 +31,7 @@ namespace Assets.GameLogic.SpellSystem
 
         protected abstract void FireAbility();
 
-        public void SetTargetCondition(int index, Predicate<XmasObject> pred)
+        public void SetTargetCondition(int index, Predicate<object> pred)
         {
             conditionList[index] = pred;
         }
@@ -48,7 +48,7 @@ namespace Assets.GameLogic.SpellSystem
         {
             for (int i = 0; i < conditionList.Count; i++)
             {
-                foreach (XmasObject target in targetList[i])
+                foreach (object target in targetList[i])
                 {
                     if (!conditionList[i](target))
                         return false;
@@ -58,11 +58,22 @@ namespace Assets.GameLogic.SpellSystem
             return true;
         }
 
-        private void removeTarget(XmasObject o, int index)
+        private void removeTarget(object o, int index)
         {
             targetList[index] = targetList[index].Where(xO => xO != o).ToArray();
             if (targetList[index].Length == 0)
                 targetsRemaining = false;
+        }
+
+        /// <summary>
+        /// Get the targets of a given index
+        /// </summary>
+        /// <typeparam name="TUniversal">Target type as</typeparam>
+        /// <param name="i">The index of the targets</param>
+        /// <returns></returns>
+        public TObject[] GetTargetAs<TObject>(int i)
+        {
+            return targetList[i].OfType<TObject>().ToArray();
         }
     }
 }

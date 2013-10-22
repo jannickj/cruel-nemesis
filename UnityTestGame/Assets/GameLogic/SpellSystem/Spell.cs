@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace Assets.GameLogic.SpellSystem
 {
 	public class Spell : Ability
 	{
-        public TActor GetTargetAs<TActor>(int p) where TActor : XmasActor
-        {
-            throw new NotImplementedException();
-        }
+        
 
         protected override void FireAbility()
         {
