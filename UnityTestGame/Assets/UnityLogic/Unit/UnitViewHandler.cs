@@ -4,22 +4,28 @@ using Assets.GameLogic.Unit;
 using Assets.UnityLogic.Unit;
 using XmasEngineModel.Management;
 using Assets.GameLogic.Events;
+using Assets.GameLogic.Events.UnitEvents;
+using Assets.GameLogic.Modules;
 
 public class UnitViewHandler : MonoBehaviour {
+
+    public Transform HealthBar;
 
     private UnitEntity entity;
     private UnitGraphics graphics;
     private StandardUnitAnimations curAni = StandardUnitAnimations.Idle;
-
+    private GameObject healthbar;
 	// Use this for initialization
 	void Start () 
     {
         UnitInformation info = this.gameObject.GetComponent<UnitInformation>();
         entity = info.Entity;
         graphics = info.Graphics;
-
+        
         this.gameObject.renderer.material.color = info.ControllerInfo.FocusColor;
         entity.Register(new Trigger<BeginMoveEvent>(OnUnitBeginMove));
+        entity.Register(new Trigger<UnitTakesDamageEvent>(OnTakeDamage));
+
 
         setFrame(currentFrame());
 	}
@@ -30,11 +36,17 @@ public class UnitViewHandler : MonoBehaviour {
         UpdateFrame();
 	}
 
+    private void OnTakeDamage(UnitTakesDamageEvent evt)
+    {
+        this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
+    }
+
     private void OnUnitBeginMove(BeginMoveEvent evt)
     {
         Vector3 v;
         UnitHandler.ConvertUnitPos(evt.To, out v);
         this.gameObject.transform.localPosition = v;
+        this.HealthBar.GetComponent<HealthbarView>().SetPosition(evt.To);
     }
 
     private Frame currentFrame()
@@ -57,4 +69,6 @@ public class UnitViewHandler : MonoBehaviour {
         setFrame(ani.CurrentFrame());
 
     }
+
+    
 }

@@ -16,6 +16,7 @@ namespace XmasEngineModel.Management
         public event EventHandler PreExecution;
         public event EventHandler PostExecution;
 		private bool actionfailed = false;
+        private Exception actionfailedException = null;
         private HashSet<XmasAction> subactions = new HashSet<XmasAction>();
 
         /// <summary>
@@ -26,6 +27,13 @@ namespace XmasEngineModel.Management
 			get { return actionfailed; }
 		}
 
+        /// <summary>
+        /// gets the exception the action threw when it failed, if no exception caused it to fail this will return null
+        /// </summary>
+        public Exception ActionFailedException
+        {
+            get { return this.actionfailedException; }
+        }
 
         public XmasAction Parent
         {
@@ -127,9 +135,10 @@ namespace XmasEngineModel.Management
         /// <summary>
         /// Calling this indicates to the engine that the action has failed.
         /// </summary>
-		public void Fail()
+		public void Fail(Exception e = null)
 		{
 			this.actionfailed = true;
+            this.actionfailedException = e;
 			EventHandler buffer = Failed;
 			if (buffer != null)
 				buffer(this, new EventArgs());

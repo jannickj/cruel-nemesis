@@ -14,6 +14,7 @@ namespace Assets.GameLogic.Unit
         {
             this.RegisterModule(new UnitInfoModule(owner));
             this.RegisterModule(new MoveModule(5));
+            this.RegisterModule(new HealthModule(10));
         }
 
         public virtual Type getUnitType()

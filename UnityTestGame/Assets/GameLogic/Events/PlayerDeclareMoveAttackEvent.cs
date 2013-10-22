@@ -13,6 +13,10 @@ namespace Assets.GameLogic.Events
         private Player player;
         private MovePathAction ma;
         private UnitEntity ent;
+        private AttackUnitAction aa;
+        private UnitEntity attackEnt;
+        
+        public AttackUnitAction AttackAction { get; private set; }
 
         public Player Player
         {
@@ -21,12 +25,17 @@ namespace Assets.GameLogic.Events
         }
 
 
-        public PlayerDeclareMoveAttackEvent(Player player, UnitEntity ent, MovePathAction ma = null)
+        public PlayerDeclareMoveAttackEvent(Player player, UnitEntity ent, UnitEntity attackEnt, MovePathAction ma = null, AttackUnitAction aa = null)
         {
             this.player = player;
             this.ma = ma;
             this.ent = ent;
+            this.aa = aa;
+            this.attackEnt = attackEnt;
+            this.AttackAction = aa;
         }
+
+        
 
         public MovePathAction MoveAction 
         {
@@ -43,5 +52,15 @@ namespace Assets.GameLogic.Events
                 return ent;
             }
         }
+
+        public UnitEntity AttackUnit 
+        {
+            get
+            {
+                return this.attackEnt;
+            }
+            
+        }
+
     }
 }

@@ -424,7 +424,7 @@
             <param name="entity">entity the action is put on</param>
             <param name="action">action to be executed</param>
         </member>
-        <member name="M:XmasEngineModel.Management.XmasAction.Fail">
+        <member name="M:XmasEngineModel.Management.XmasAction.Fail(System.Exception)">
             <summary>
             Calling this indicates to the engine that the action has failed.
             </summary>
@@ -432,6 +432,11 @@
         <member name="P:XmasEngineModel.Management.XmasAction.ActionFailed">
             <summary>
             gets whether or not the action failed
+            </summary>
+        </member>
+        <member name="P:XmasEngineModel.Management.XmasAction.ActionFailedException">
+            <summary>
+            gets the exception the action threw when it failed, if no exception caused it to fail this will return null
             </summary>
         </member>
         <member name="T:XmasEngineModel.Management.EntityXmasAction`1">

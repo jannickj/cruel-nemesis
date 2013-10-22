@@ -14,6 +14,7 @@ using JSLibrary;
 using Assets.GameLogic.Modules;
 using Assets.GameLogic.PlayerCommands;
 using Assets.UnityLogic.Gui;
+using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Commands
 {
@@ -73,7 +74,12 @@ namespace Assets.UnityLogic.Commands
                                         
                     fullroute.AddLast(mousePath);
                     this.lastpos = mousePath.Road.Last.Value;
-                    QueueDelcareAction();
+
+                    var entities = gobjs.Where(go => go.gameObject.GetComponent<UnitInformation>() != null).Select(go => go.GetComponent<UnitInformation>().Entity);
+
+                    var attackUnit = entities.FirstOrDefault(ent => ent.Module<UnitInfoModule>().Controller != this.GuiController.GuiInfo.Player);
+
+                    QueueDelcareAction(attackUnit);
 
                     
                     //Finished = true;
@@ -100,7 +106,7 @@ namespace Assets.UnityLogic.Commands
             
         }
 
-        private void QueueDelcareAction()
+        private void QueueDelcareAction(UnitEntity attackUnit = null)
         {
             Path<TileWorld, TilePosition> fullpath;
             if(fullroute.Count == 0)
@@ -108,7 +114,11 @@ namespace Assets.UnityLogic.Commands
             else
                 fullpath = new Path<TileWorld, TilePosition>(fullroute);
 
-            var declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath);
+            DeclareMoveAttackCommand declareAction;
+            if (attackUnit == null)
+                declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath);
+            else
+                declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath, attackUnit);
             this.unitEntity.QueueAction(declareAction);
         }
 

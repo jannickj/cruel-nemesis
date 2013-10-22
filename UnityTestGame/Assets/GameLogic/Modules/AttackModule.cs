@@ -13,5 +13,10 @@ namespace Assets.GameLogic.Modules
         public int Damage { get; set; }
 
         public int AttackTime { get; set; }
+
+        public int CalculateDamage()
+        {
+            return Damage;
+        }
     }
 }

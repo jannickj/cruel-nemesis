@@ -71,6 +71,7 @@
      <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitBeginAttackEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitControllerChangedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitDealsDamageEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitDeclaredAsAttacked.cs" />
      <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitIsAttackedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitTakesDamageEvent.cs" />
      <Compile Include="Assets\GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
@@ -113,6 +114,7 @@
      <Compile Include="Assets\UnityLogic\TerrainInformation.cs" />
      <Compile Include="Assets\UnityLogic\TextureDictionary.cs" />
      <Compile Include="Assets\UnityLogic\Unit\Frame.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\HealthbarView.cs" />
      <Compile Include="Assets\UnityLogic\Unit\StandardUnitAnimations.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitControllerHandler.cs" />

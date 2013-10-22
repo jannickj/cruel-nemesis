@@ -51,7 +51,7 @@ namespace XmasEngineModel.Management
 			ga.Resolved -= action_Resolved;
             if (ga.ActionFailed)
             {
-                var failedevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionFailedEvent<>), new Type[] { ga.GetType() }, ga.Clone());
+                var failedevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionFailedEvent<>), new Type[] { ga.GetType() }, ga.Clone(),ga.ActionFailedException);
                 var entact = ga as EntityXmasAction;
                 if (entact != null)
                     entact.Source.Raise(failedevent);
@@ -138,7 +138,7 @@ namespace XmasEngineModel.Management
             }
             catch (Exception e)
             {
-                action.Fail();
+                action.Fail(e);
                 this.evtman.Raise(new ActionFailedEvent(action,e));
 
             }

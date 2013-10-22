@@ -9,9 +9,32 @@ namespace Assets.GameLogic.Modules
 {
 	public class HealthModule : UniversalModule<XmasEntity>
 	{
-        public int Health { get; set; }
-        public int VirtualHealth { get; set; }
+
+        public HealthModule(int maxhealth)
+        {
+            this.Health = maxhealth;
+            this.MaxHealth = maxhealth;
+        }
+
+        public int Health 
+        { 
+            get; 
+            set; 
+        }
+
+        public int MaxHealth
+        {
+            get;
+            set;
+        }
 
 
-	}
+        public float HealthPct 
+        {
+            get
+            {
+                return ((float)Health) / ((float)MaxHealth);
+            }
+        }
+    }
 }

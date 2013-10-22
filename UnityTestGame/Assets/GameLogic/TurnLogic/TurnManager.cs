@@ -9,6 +9,7 @@ using Assets.GameLogic.Exceptions;
 using Assets.GameLogic.Actions;
 using XmasEngineModel.Management.Actions;
 using Assets.GameLogic.Unit;
+using Assets.GameLogic.Events.UnitEvents;
 
 namespace Assets.GameLogic.TurnLogic
 {
@@ -43,7 +44,21 @@ namespace Assets.GameLogic.TurnLogic
         {
             if (currentPhase == Phases.Declare && evt.Player == playersTurn)
             {
+                PlayerDeclareMoveAttackEvent oldevt;
+                if (moveAttackDeclaration.TryGetValue(evt.Entity, out oldevt) && oldevt.AttackUnit != null)
+                {
+                    evt.AttackUnit.Raise(new UnitDeclaredAsAttacked(evt.AttackUnit, evt.Entity, false));
+                }
+                                
                 moveAttackDeclaration[evt.Entity] = evt;
+
+                if (evt.AttackUnit != null)
+                {
+                    var attackee = evt.Entity;
+                    var attacked = evt.AttackUnit;
+                    evt.AttackUnit.Raise(new UnitDeclaredAsAttacked(attacked, attackee, true));
+                }
+
             }
         }
 
@@ -156,7 +171,15 @@ namespace Assets.GameLogic.TurnLogic
 
         private void PerformAttacks()
         {
-
+            MultiAction ma = new MultiAction();
+            foreach (PlayerDeclareMoveAttackEvent evt in this.moveAttackDeclaration.Values)
+            {
+                AttackUnitAction aua = evt.AttackAction;
+                if(evt.AttackUnit != null)
+                    ma.AddAction(evt.Entity,aua);
+            }
+            ma.Resolved += (sender, maEvt) => this.SetPriority(this.playersTurn);
+            this.ActionManager.Queue(ma);
         }
 
         private Player GetNextTurn()

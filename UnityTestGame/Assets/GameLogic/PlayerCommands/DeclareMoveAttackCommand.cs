@@ -15,7 +15,7 @@ namespace Assets.GameLogic.PlayerCommands
 	public class DeclareMoveAttackCommand : EntityXmasAction
 	{
 
-        private UnitEntity attackUnit;
+        private UnitEntity attackUnit = null;
         private Path<TileWorld, TilePosition> path;
         private Player player;
 
@@ -35,7 +35,8 @@ namespace Assets.GameLogic.PlayerCommands
         protected override void Execute()
         {
             MovePathAction ma = new MovePathAction(this.Source, path, this.Source.Module<MoveModule>().MoveDuration);
-            PlayerDeclareMoveAttackEvent evt = new PlayerDeclareMoveAttackEvent(player,(UnitEntity)this.Source,ma);
+            AttackUnitAction aa = new AttackUnitAction(this.attackUnit);
+            PlayerDeclareMoveAttackEvent evt = new PlayerDeclareMoveAttackEvent(player,(UnitEntity)this.Source,this.attackUnit,ma,aa);
             this.EventManager.Raise(evt);
         }
     }

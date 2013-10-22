@@ -19,6 +19,7 @@ public class UnitHandler : MonoBehaviour {
     public Transform UnitTile;
     public GuiLoader GuiLoader;
     public EngineHandler Engine;
+    public Transform UnitHealthbar;
 
 	// Use this for initialization
 	void Start () {
@@ -57,5 +58,9 @@ public class UnitHandler : MonoBehaviour {
         info.SetGraphics(graphic);
         transform.gameObject.AddComponent<UnitViewHandler>();
         transform.gameObject.AddComponent<UnitControllerHandler>();
+
+        var viewhandler = transform.gameObject.GetComponent<UnitViewHandler>();
+        viewhandler.HealthBar = (Transform)Instantiate(this.UnitHealthbar);
+        viewhandler.HealthBar.GetComponent<HealthbarView>().SetPosition(pos);
     }
 }
