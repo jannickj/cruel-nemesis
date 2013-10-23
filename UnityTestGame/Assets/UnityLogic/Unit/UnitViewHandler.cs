@@ -25,15 +25,15 @@ public class UnitViewHandler : MonoBehaviour {
         this.gameObject.renderer.material.color = info.ControllerInfo.FocusColor;
         entity.Register(new Trigger<BeginMoveEvent>(OnUnitBeginMove));
         entity.Register(new Trigger<UnitTakesDamageEvent>(OnTakeDamage));
-        
 
+        this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
         setFrame(currentFrame());
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
+        
         UpdateFrame();
 	}
 

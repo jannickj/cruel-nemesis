@@ -6,6 +6,7 @@ using Assets.GameLogic.Events;
 using XmasEngineModel.Management.Events;
 using Assets.GameLogic.Actions;
 using Assets.GameLogic.PlayerCommands;
+using Assets.GameLogic.Modules;
 
 public class DebugMessenger : MonoBehaviour {
 
@@ -23,7 +24,8 @@ public class DebugMessenger : MonoBehaviour {
         engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => { if (evt.Player != null) Debug.Log("Player gained priority: " + evt.Player.Name); }));
         engmodel.EventManager.Register(new Trigger<PlayerJoinedEvent>(evt => Debug.Log("Player joined: " + evt.Player.Name )));
         engmodel.EventManager.Register(new Trigger<TriggerFailedEvent>(evt => Debug.Log(evt.FailedTrigger + " failed: " + evt.Exception.Message + " at " + evt.Exception.StackTrace)));
-	}
+	    engmodel.EventManager.Register(new Trigger<ActionCompletedEvent<AttackUnitAction>>(evt => Debug.Log("Attack dealt "+evt.Action.DamageOnResolve+" to "+evt.Action.Target)));
+    }
 	
 	// Update is called once per frame
 	void Update () 

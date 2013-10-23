@@ -8,12 +8,14 @@ using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
 using Assets.GameLogic.Modules;
 using Assets.GameLogic.Events.UnitEvents;
+using UnityEngine;
 
 namespace Assets.GameLogic.Actions
 {
     public class AttackUnitAction : EntityXmasAction
 	{
         public UnitEntity Target { get; private set; }
+        public int DamageOnResolve { get; private set; }
 
         public AttackUnitAction(UnitEntity target)
         {
@@ -35,6 +37,7 @@ namespace Assets.GameLogic.Actions
                 return;
 
             int dmg = attmod.Damage;
+            this.DamageOnResolve = dmg;
             int attackTime = attmod.AttackTime;
 
             this.Source.Raise(new UnitBeginAttackEvent(Source, Target, dmg, attackTime));
@@ -53,5 +56,7 @@ namespace Assets.GameLogic.Actions
             else
                 attackfun();
         }
+
+        
     }
 }

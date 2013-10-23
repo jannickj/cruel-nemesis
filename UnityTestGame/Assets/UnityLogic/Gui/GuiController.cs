@@ -13,6 +13,7 @@ using Assets.UnityLogic.Unit;
 using Assets.GameLogic;
 using XmasEngineModel;
 using Assets.GameLogic.TurnLogic;
+using Assets.GameLogic.Modules;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -60,10 +61,15 @@ namespace Assets.UnityLogic.Gui
                 {
                     GameObject[] objs = GetGameObjectsOnMouse();
                     GameObject firstunit = objs.FirstOrDefault(go => go.GetComponent<UnitControllerHandler>() != null);
+
                     if (firstunit == null)
                         return;
+                    var ent = firstunit.GetComponent<UnitInformation>().Entity;
 
-                    this.PerformCommand(new MoveUnitCommand(firstunit, firstunit.GetComponent<UnitInformation>().Entity));
+                    if (ent.Module<UnitInfoModule>().Controller != this.guiinfo.Player)
+                        return;
+
+                    this.PerformCommand(new DeclareMoveAttackUnitCommand(firstunit, ent));
                 }
                 else if (Input.GetButtonDown("pass_priority"))
                 {

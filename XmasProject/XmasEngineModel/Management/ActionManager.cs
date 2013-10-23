@@ -120,7 +120,7 @@ namespace XmasEngineModel.Management
             action.Resolved += action_Resolved;
             action.Completed += action_Completed;
 
-            var startingevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionStartingdEvent<>), new Type[] { action.GetType() }, action.Clone());
+            var startingevent = (XmasEvent)Generics.InstantiateGenericClass(typeof(ActionStartingEvent<>), new Type[] { action.GetType() }, action.Clone());
             var entact = action as EntityXmasAction;
             if (entact != null)
                 entact.Source.Raise(startingevent);

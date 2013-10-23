@@ -49,7 +49,7 @@
     <Compile Include="Conversion\XmasConverter.cs" />
     <Compile Include="Conversion\XmasConverterToForeign.cs" />
     <Compile Include="Conversion\XmasConverterToXmas.cs" />
-    <Compile Include="EntityLib\Module\EntityModule.cs" />
+    <Compile Include="EntityLib\Module\UniversalModule.cs" />
     <Compile Include="EntityLib\Module\PositionModule.cs" />
     <Compile Include="EntityLib\Module\RuleBasedModule.cs" />
     <Compile Include="EntityLib\Agent.cs" />

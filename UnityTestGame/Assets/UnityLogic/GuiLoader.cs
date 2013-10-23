@@ -22,7 +22,10 @@ namespace Assets.UnityLogic
         public GUITexture PlayerLogo_Opponent;
         public GUITexture HealthBar_Opponent;
 
-        public GUITexture[] Phases;        
+        public GUITexture[] Phases;
+        public GUITexture[] StopPhases_Main;
+        public GUITexture[] StopPhases_Other;
+
         public GUITexture[] ManaCrystalTypes;
         private Dictionary<Player, GuiInformation> guiLookup = new Dictionary<Player, GuiInformation>();
 

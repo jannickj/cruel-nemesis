@@ -923,6 +923,7 @@ MonoBehaviour:
   UnitTile: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
   GuiLoader: {fileID: 161923067}
   Engine: {fileID: 326927666}
+  UnitHealthbar: {fileID: 400000, guid: 19be0c746e6eb5f4e81a9c069b45c6ab, type: 2}
 --- !u!1001 &1101793126
 Prefab:
   m_ObjectHideFlags: 0

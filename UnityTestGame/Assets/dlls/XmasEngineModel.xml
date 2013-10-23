@@ -540,13 +540,13 @@
             Gets the action that completed
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Management.Events.ActionStartingdEvent`1">
+        <member name="T:XmasEngineModel.Management.Events.ActionStartingEvent`1">
             <summary>
             Event that is fired when an action has been started through the engine
             </summary>
             <typeparam name="TAction">Type of action that has been started</typeparam>
         </member>
-        <member name="P:XmasEngineModel.Management.Events.ActionStartingdEvent`1.Action">
+        <member name="P:XmasEngineModel.Management.Events.ActionStartingEvent`1.Action">
             <summary>
             Gets the action that was started
             </summary>

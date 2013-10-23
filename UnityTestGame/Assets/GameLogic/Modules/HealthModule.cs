@@ -33,7 +33,7 @@ namespace Assets.GameLogic.Modules
         {
             get
             {
-                return ((float)Health) / ((float)MaxHealth);
+                return ((float)Health)*100f / ((float)MaxHealth);
             }
         }
     }

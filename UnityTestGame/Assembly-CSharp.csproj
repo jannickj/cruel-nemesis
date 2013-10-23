@@ -99,7 +99,7 @@
      <Compile Include="Assets\Library\PathFinding\PathFinder.cs" />
      <Compile Include="Assets\Library\PathFinding\PathNode.cs" />
      <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
-     <Compile Include="Assets\UnityLogic\Commands\MoveUnitCommand.cs" />
+     <Compile Include="Assets\UnityLogic\Commands\DeclareMoveAttackUnitCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\PassPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />

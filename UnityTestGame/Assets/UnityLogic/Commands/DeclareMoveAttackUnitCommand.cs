@@ -18,17 +18,18 @@ using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Commands
 {
-	public class MoveUnitCommand : Command
+	public class DeclareMoveAttackUnitCommand : Command
 	{
         private UnitEntity unitEntity;
         private GameObject unit;
         private TilePosition lastpos;
+        private UnitEntity lastFoundEnemy;
         private LinkedList<Path<TileWorld, TilePosition>> fullroute = new LinkedList<Path<TileWorld, TilePosition>>();
         private Point mousePoint;
         private Path<TileWorld, TilePosition> mousePath;
         private bool refindMouse = false;
         
-        public MoveUnitCommand(GameObject unit, UnitEntity unitEntity)
+        public DeclareMoveAttackUnitCommand(GameObject unit, UnitEntity unitEntity)
         {
             
             this.unit = unit;
@@ -61,11 +62,15 @@ namespace Assets.UnityLogic.Commands
                     attackUnit = entities.FirstOrDefault(ent => ent.Module<UnitInfoModule>().Controller != this.GuiController.GuiInfo.Player);
 
                     if (attackUnit == null)
+                    {
                         foundpath = path.FindFirst(lastpos, tilepos, out foundPath);
+
+                    }
                     else
                     {
-                        Predicate<TilePosition> goalcond = pos => (float)attackUnit.Module<AttackModule>().AttackRange >= new Vector(pos.Point,mousePoint).Distance;
+                        Predicate<TilePosition> goalcond = pos => (float)attackUnit.Module<AttackModule>().AttackRange >= new Vector(pos.Point, mousePoint).Distance;
                         foundpath = path.FindFirst(lastpos, goalcond, pos => new Vector(pos.Point, mousePoint).Distance, out foundPath);
+                        this.lastFoundEnemy = attackUnit;
                     }
 
                     if (foundpath)
@@ -89,8 +94,7 @@ namespace Assets.UnityLogic.Commands
                     fullroute.AddLast(mousePath);
                     this.lastpos = mousePath.Road.Last.Value;
 
-                    
-                    QueueDelcareAction(attackUnit);
+                    QueueDelcareAction(this.lastFoundEnemy);
 
                     
                     //Finished = true;

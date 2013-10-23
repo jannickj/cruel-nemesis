@@ -165,7 +165,7 @@ namespace Assets.GameLogic.TurnLogic
                 MovePathAction mpa = evt.MoveAction;
                 ma.AddAction(mpa);
             }
-            ma.Resolved += (sender, maEvt) => this.SetPriority(this.playersTurn);
+            ma.Resolved += (sender, maEvt) => SkipToPhase(Phases.React);
             this.ActionManager.Queue(ma);
         }
 
@@ -174,12 +174,20 @@ namespace Assets.GameLogic.TurnLogic
             MultiAction ma = new MultiAction();
             foreach (PlayerDeclareMoveAttackEvent evt in this.moveAttackDeclaration.Values)
             {
+                
                 AttackUnitAction aua = evt.AttackAction;
                 if(evt.AttackUnit != null)
                     ma.AddAction(evt.Entity,aua);
             }
-            ma.Resolved += (sender, maEvt) => this.SetPriority(this.playersTurn);
+            ma.Resolved += (sender, maEvt) => SkipToPhase(Phases.EndCombat);
             this.ActionManager.Queue(ma);
+        }
+
+        private void SkipToPhase(Phases phase)
+        {
+            this.SetPriority(this.playersTurn);
+            this.SetPhase(phase);
+               
         }
 
         private Player GetNextTurn()

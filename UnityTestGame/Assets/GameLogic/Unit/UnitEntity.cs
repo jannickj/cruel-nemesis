@@ -17,6 +17,9 @@ namespace Assets.GameLogic.Unit
             this.RegisterModule(new HealthModule(10));
             this.RegisterModule(new AttackModule());
             this.Module<AttackModule>().AttackRange = 1;
+            this.Module<AttackModule>().Damage = 5;
+            this.Module<AttackModule>().AttackTime = 500;
+           
             
         }
 

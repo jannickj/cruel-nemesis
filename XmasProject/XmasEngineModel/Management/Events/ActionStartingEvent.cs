@@ -9,7 +9,7 @@ namespace XmasEngineModel.Management.Events
     /// Event that is fired when an action has been started through the engine
     /// </summary>
     /// <typeparam name="TAction">Type of action that has been started</typeparam>
-    public class ActionStartingdEvent<TAction> : XmasEvent where TAction : XmasAction
+    public class ActionStartingEvent<TAction> : XmasEvent where TAction : XmasAction
     {
 
         /// <summary>
@@ -17,7 +17,7 @@ namespace XmasEngineModel.Management.Events
         /// </summary>
         public TAction Action { get; private set; }
 
-        internal ActionStartingdEvent(TAction action)
+        internal ActionStartingEvent(TAction action)
         {
             this.Action = action;
         }

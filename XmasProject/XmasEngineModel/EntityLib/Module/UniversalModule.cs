@@ -111,5 +111,13 @@ namespace XmasEngineModel.EntityLib.Module
 		{
 			get { return replacedModule; }
 		}
+
+		/// <summary>
+		/// Gets the priority of the module, used to determine its place in the module link (higher value = higher priority)
+		/// </summary>
+		//public virtual int Priority
+		//{
+		//	get { return 0; }
+		//}
 	}
 }

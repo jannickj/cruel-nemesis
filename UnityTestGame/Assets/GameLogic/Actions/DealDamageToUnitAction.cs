@@ -22,13 +22,13 @@ namespace Assets.GameLogic.Actions
 
         protected override void Execute()
         {
-            HealthModule hmod = this.Source.Module<HealthModule>();
+            HealthModule hmod = this.Target.Module<HealthModule>();
             var hp = hmod.Health;
             hp -= Damage;
             hmod.Health = hp < 0 ? 0 : hp;
             this.Source.Raise(new UnitDealsDamageEvent(Source, Target, Damage));
             var dmgtaker = Target;
-            var dmgdealer = Source;
+            var dmgdealer = (UnitEntity)Source;
             this.Target.Raise(new UnitTakesDamageEvent(dmgtaker, dmgdealer, Damage));
         }
     }
