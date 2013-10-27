@@ -1,0 +1,3 @@
+[submodule "XmasEngine"]
+	path = XmasEngine
+	url = https://github.com/jannickj/XmasEngine.git
