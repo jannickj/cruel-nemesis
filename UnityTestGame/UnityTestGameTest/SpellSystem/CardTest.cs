@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnityTestGameTest.TestComponents;
 using Assets.GameLogic.SpellSystem;
+using Assets.GameLogic.Unit;
 
 namespace UnityTestGameTest.SpellSystem
 {
@@ -28,5 +29,29 @@ namespace UnityTestGameTest.SpellSystem
             Assert.IsTrue(spellResolved);
         }
 
+        [TestMethod]
+        public void TestTarget_ValidTarget_TargetAccepted()
+        {
+            int firstTarget = 0;
+            MockCard card = new MockCard();
+            MockUnit someUnit = new MockUnit();
+
+            card.SetTargetCondition(firstTarget,unit => unit is UnitEntity);
+            bool result = card.TestTarget(firstTarget, someUnit);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestTarget_NoTargetCondition_TargetAccepted()
+        {
+            int firstTarget = 0;
+            MockCard card = new MockCard();
+            MockUnit someUnit = new MockUnit();
+
+            bool result = card.TestTarget(firstTarget, someUnit);
+
+            Assert.IsTrue(result);
+        }
     }
 }

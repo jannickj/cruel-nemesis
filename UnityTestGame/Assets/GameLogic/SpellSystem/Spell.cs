@@ -9,11 +9,19 @@ namespace Assets.GameLogic.SpellSystem
 {
 	public class Spell : Ability
 	{
-        
+        private List<Action<Spell>> effects = new List<Action<Spell>>();
 
+        public Spell(List<Action<Spell>> effects)
+        {
+            this.effects = effects;
+        }
+        
         protected override void FireAbility()
         {
-            throw new NotImplementedException();
+            foreach (Action<Spell> s in effects)
+            {
+                s(this);
+            }
         }
     }
 }

@@ -8,6 +8,6 @@ namespace UnityTestGameTest.TestComponents
 {
     public class MockCard : GameCard
     {
-        
+
     }
 }
