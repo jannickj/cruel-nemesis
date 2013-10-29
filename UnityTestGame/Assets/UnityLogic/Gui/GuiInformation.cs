@@ -49,5 +49,10 @@ namespace Assets.UnityLogic.Gui
         {
             this.manacrystals = ManaCrystalTypes;
         }
+
+        internal void TogglePhase(Phases phase)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
