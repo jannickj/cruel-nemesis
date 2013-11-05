@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XmasEngineModel;
+using XmasEngineModel.EntityLib;
 
 namespace Assets.GameLogic
 {
-	public class Player : XmasActor
+	public class Player : XmasUniversal
 	{
         private string name;
 

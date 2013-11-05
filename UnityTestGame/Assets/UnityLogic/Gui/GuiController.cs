@@ -23,17 +23,17 @@ namespace Assets.UnityLogic.Gui
         public Camera PlayerCamera;
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
-
         public GuiViewHandler GuiView { get; private set; }
 
         private GuiInformation guiinfo;
-
+        private PhaseSkipController skipController;
         private XmasModel engmodel;
         private bool hasPriority;
         private bool allowedToDeclare = false;
         // Use this for initialization
         void Start()
         {
+            skipController = new PhaseSkipController(this.GuiInfo,guiinfo.Player);
             this.guiinfo = this.gameObject.GetComponent<GuiInformation>();
             this.GuiView = this.gameObject.GetComponent<GuiViewHandler>();
             hasPriority = false;

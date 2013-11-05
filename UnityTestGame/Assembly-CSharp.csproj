@@ -102,6 +102,7 @@
     <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
     <Compile Include="Assets\UnityLogic\Commands\DeclareMoveAttackUnitCommand.cs" />
     <Compile Include="Assets\UnityLogic\Commands\PassPriorityCommand.cs" />
+    <Compile Include="Assets\UnityLogic\Commands\SetStopPriorityCommand.cs" />
     <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
     <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
     <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Assets\UnityLogic\Gui\GuiInformation.cs" />
     <Compile Include="Assets\UnityLogic\Gui\GuiViewHandler.cs" />
     <Compile Include="Assets\UnityLogic\GuiLoader.cs" />
+    <Compile Include="Assets\UnityLogic\Gui\PhaseSkipController.cs" />
     <Compile Include="Assets\UnityLogic\MapHandler.cs" />
     <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
     <Compile Include="Assets\UnityLogic\TerrainInformation.cs" />

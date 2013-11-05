@@ -13,6 +13,8 @@ namespace Assets.UnityLogic.Gui
 	{
         private GUITexture[] phases;
         private GUITexture[] manacrystals;
+        private GUITexture[] MainPlayerSkipPhaseButtons;
+        private GUITexture[] OtherPlayerSkipPhaseButtons;
 
         public Color FocusColor { get; set; }
 
@@ -50,9 +52,13 @@ namespace Assets.UnityLogic.Gui
             this.manacrystals = ManaCrystalTypes;
         }
 
-        internal void TogglePhase(Phases phase)
+        public GUITexture GetSkipPhaseButton(Player p, Phases phase)
         {
-            throw new NotImplementedException();
+            if (Player == p)
+                return this.MainPlayerSkipPhaseButtons[(int)phase];
+            else
+                return this.OtherPlayerSkipPhaseButtons[(int)phase];
         }
+
     }
 }

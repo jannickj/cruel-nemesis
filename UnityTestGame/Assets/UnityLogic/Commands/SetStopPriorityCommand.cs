@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Assets.GameLogic.TurnLogic;
+using Assets.UnityLogic.Gui;
+using Assets.GameLogic;
 
 namespace Assets.UnityLogic.Commands
 {
@@ -10,14 +12,14 @@ namespace Assets.UnityLogic.Commands
 	{
         private Phases phase;
 
-        public ToggleStopPriorityCommand(Phases phase)
+        public ToggleStopPriorityCommand(PhaseSkipController skipController, Player stopOnPlayer, Phases phase)
         {
             this.phase = phase;
         }
 
         public override void Update()
         {
-            this.GuiController.GuiInfo.TogglePhase(phase);
+            //this.GuiController.SetSkipPhase(phase);
             this.Finished = true;
         }
     }
