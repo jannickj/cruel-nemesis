@@ -67,9 +67,11 @@
     <Compile Include="SpellSystem\AbilityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpellSystem\CardTest.cs" />
+    <Compile Include="SpellSystem\GameLibraryTest.cs" />
     <Compile Include="SpellSystem\SpellTest.cs" />
     <Compile Include="TestComponents\MockAbility.cs" />
     <Compile Include="TestComponents\MockCard.cs" />
+    <Compile Include="TestComponents\MockCardWithData.cs" />
     <Compile Include="TestComponents\MockPathFinder.cs" />
     <Compile Include="TestComponents\MockUnit.cs" />
     <Compile Include="TestComponents\MockWorld.cs" />

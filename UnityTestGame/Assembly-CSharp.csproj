@@ -69,6 +69,7 @@
     <Compile Include="Assets\GameLogic\Events\PlayersTurnChangedEvent.cs" />
     <Compile Include="Assets\GameLogic\Events\PreMoveEvent.cs" />
     <Compile Include="Assets\GameLogic\Events\RemovedFromGameEvent.cs" />
+    <Compile Include="Assets\GameLogic\Events\CardDrawnEvent.cs" />
     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitBeginAttackEvent.cs" />
     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitControllerChangedEvent.cs" />
     <Compile Include="Assets\GameLogic\Events\UnitEvents\UnitDealsDamageEvent.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\GameLogic\PlayerCommands\DeclareMoveAttackCommand.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\Ability.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\GameCard.cs" />
+    <Compile Include="Assets\GameLogic\SpellSystem\GameLibrary.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\ManaType.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\Spell.cs" />
     <Compile Include="Assets\GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
