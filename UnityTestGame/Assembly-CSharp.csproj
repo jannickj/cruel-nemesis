@@ -89,6 +89,7 @@
     <Compile Include="Assets\GameLogic\PlayerCommands\DeclareMoveAttackCommand.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\Ability.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\GameCard.cs" />
+    <Compile Include="Assets\GameLogic\SpellSystem\GameLibrary.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\ManaType.cs" />
     <Compile Include="Assets\GameLogic\SpellSystem\Spell.cs" />
     <Compile Include="Assets\GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
