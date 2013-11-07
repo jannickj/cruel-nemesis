@@ -13,9 +13,8 @@ namespace Assets.UnityLogic.Gui
 	{
         private GUITexture[] phases;
         private GUITexture[] manacrystals;
-        private GUITexture[] MainPlayerSkipPhaseButtons;
-        private GUITexture[] OtherPlayerSkipPhaseButtons;
-
+        private Dictionary<Player, GUITexture[]> skipPhaseButtons = new Dictionary<Player, GUITexture[]>();
+        
         public Color FocusColor { get; set; }
 
         public Player Player { get; set; }
@@ -54,10 +53,13 @@ namespace Assets.UnityLogic.Gui
 
         public GUITexture GetSkipPhaseButton(Player p, Phases phase)
         {
-            if (Player == p)
-                return this.MainPlayerSkipPhaseButtons[(int)phase];
-            else
-                return this.OtherPlayerSkipPhaseButtons[(int)phase];
+            return this.skipPhaseButtons[p][(int)phase];
+        }
+
+
+        public void SetSkipPhaseButton(Player p, GUITexture[] buttons)
+        {
+            this.skipPhaseButtons[p] = buttons.ToArray();
         }
 
     }

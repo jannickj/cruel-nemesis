@@ -26,8 +26,9 @@ namespace Assets.UnityLogic.Gui
         private Dictionary<XmasEntity, Path<TileWorld, TilePosition>> routes = new Dictionary<XmasEntity, Path<TileWorld, TilePosition>>();
         private Dictionary<Point, int> drawnSquares = new Dictionary<Point, int>();
 
-        void Start()
+        public void Initialize()
         {
+            
             guiinfo = this.gameObject.GetComponent<GuiInformation>();
 
             engmodel = Engine.EngineModel;

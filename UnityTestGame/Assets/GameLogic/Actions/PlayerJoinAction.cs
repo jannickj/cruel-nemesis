@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using XmasEngineModel.Management;
 using Assets.GameLogic.Events;
+using XmasEngineModel.Management.Actions;
 
 namespace Assets.GameLogic.Actions
 {
@@ -18,6 +19,7 @@ namespace Assets.GameLogic.Actions
 
         protected override void Execute()
         {
+            this.RunAction(new AddXmasObjectAction(player));
             this.EventManager.Raise(new PlayerJoinedEvent(player));
         }
     }

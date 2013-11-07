@@ -44,15 +44,31 @@ namespace Assets.UnityLogic.Gui
             setSkipOnView(onPsTurn, skipPhase, toggle);
         }
 
+        public void TogglePhaseSkip(Player onPsTurn, Phases skipPhase)
+        {
+            ICollection<Phases> phases;
+            if (autoSkip.TryGetValues(onPsTurn, out phases))
+            {
+                if (phases.Contains(skipPhase))
+                {
+                    SetPhaseSkip(onPsTurn, skipPhase, false);
+                }
+                else
+                    SetPhaseSkip(onPsTurn, skipPhase, true);
+            }
+            else
+                SetPhaseSkip(onPsTurn, skipPhase, true);
+        }
+
         private void setSkipOnView(Player player, Phases phase, bool toggle)
         {
 
             GUITexture button = this.guiinfo.GetSkipPhaseButton(player, phase);
             Color color = guiinfo.FocusColor;
             if (toggle)
-                button.renderer.material.color = color;
+                button.color = color;
             else
-                button.renderer.material.color = Color.white;
+                button.color = Color.white;
         }
 
         private void OnPlayerGainPriority(PlayerGainedPriorityEvent evt)
@@ -64,8 +80,8 @@ namespace Assets.UnityLogic.Gui
                 if (samePriority == 0)
                 {
                     ICollection<Phases> phases;
-                    //this.autoSkip.TryGetValues(
-                    if (this.autoSkip[this.currentPlayersTurn].Contains(this.curPhase))
+
+                    if(this.autoSkip.TryGetValues(evt.Player,out phases) && phases.Contains(this.curPhase))
                     {
                         owner.ActionManager.Queue(new PlayerPassPriorityAction(owner));
                     }
@@ -78,7 +94,18 @@ namespace Assets.UnityLogic.Gui
 
         private void redrawSkips()
         {
+            foreach (var player in this.autoSkip.Keys)
+            {
+                var skipPhases = new HashSet<Phases>(this.autoSkip.Get(player));
+                var allphases = ((Phases[])Enum.GetValues(typeof(Phases))).Where(p => p != Phases.Attack || p != Phases.Move);
 
+                var phaseSettings = allphases.Select(ph => new KeyValuePair<Phases, bool>(ph, skipPhases.Contains(ph)));
+                foreach (var pSetting in phaseSettings)
+                {
+                    this.setSkipOnView(player, pSetting.Key, pSetting.Value);
+                }
+                
+            }
         }
 	}
 }

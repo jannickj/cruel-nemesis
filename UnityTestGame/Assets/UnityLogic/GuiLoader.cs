@@ -27,57 +27,82 @@ namespace Assets.UnityLogic
         public GUITexture[] StopPhases_Other;
 
         public GUITexture[] ManaCrystalTypes;
-        private Dictionary<Player, GuiInformation> guiLookup = new Dictionary<Player, GuiInformation>();
+        private Dictionary<Player, KeyValuePair<GameObject, GuiInformation>> guiLookup = new Dictionary<Player, KeyValuePair<GameObject, GuiInformation>>();
+        private List<Player> joinedPlayers = new List<Player>();
 
         void Start()
         {
             XmasModel engine = Engine.EngineModel;
             engine.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
+            engine.EventManager.Register(new Trigger<GameStartEvent>(OnGameStart));
+        }
 
+        private void OnGameStart(GameStartEvent evt)
+        {
+            foreach (Player player in joinedPlayers)
+            {
+                var pgui = this.guiLookup[player];
+                var ginfo = pgui.Value;
+                var gobj = pgui.Key;
+
+                if (Settings.MainPlayer == player)
+                {
+                    ginfo.Portrait = PlayerLogo_Friendly;
+                    ginfo.HealthBar = HealthBar_Friendly;
+                    ginfo.FocusColor = Color.green;
+                    ginfo.SetSkipPhaseButton(player, StopPhases_Main);
+                    ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Other);
+                }
+                else
+                {
+                    ginfo.Portrait = PlayerLogo_Opponent;
+                    ginfo.HealthBar = HealthBar_Opponent;
+                    ginfo.FocusColor = Color.blue;
+                    ginfo.SetSkipPhaseButton(player, StopPhases_Other);
+                    ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Main);
+                }
+
+                ginfo.SetPhasesGui(Phases);
+                ginfo.SetManaCrystalTypes(ManaCrystalTypes);
+                
+
+                if (Settings.LocalPlayers.Any(p => p == player))
+                {
+                    gobj.AddComponent<GuiController>();
+                    var controller = gobj.GetComponent<GuiController>();
+                    controller.Engine = this.Engine;
+                    controller.JoinedPlayers = this.joinedPlayers;
+                    controller.SkipController = new PhaseSkipController(ginfo, player);
+                    controller.Initialize();
+                }
+
+                gobj.AddComponent<GuiViewHandler>();
+                var guiview = gobj.GetComponent<GuiViewHandler>();
+                guiview.Engine = this.Engine;
+                guiview.MapHandler = this.MapHandler;
+
+                guiview.Initialize();
+            }
         }
 
         private void OnPlayerJoin(PlayerJoinedEvent evt)
         {
-
+            Player player = evt.Player;
             GameObject gobj = new GameObject();
-            gobj.name = "GUI for player " + evt.Player.Name;
+            gobj.name = "GUI for player " + player.Name;
             gobj.AddComponent<GuiInformation>();
             GuiInformation ginfo = gobj.GetComponent<GuiInformation>();
-            this.guiLookup.Add(evt.Player, ginfo);
-            ginfo.Player = evt.Player;
-            if (Settings.MainPlayer == evt.Player)
-            {
-                ginfo.Portrait = PlayerLogo_Friendly;
-                ginfo.HealthBar = HealthBar_Friendly;
-                ginfo.FocusColor = Color.green;
-            }
-            else
-            {
-                ginfo.Portrait = PlayerLogo_Opponent;
-                ginfo.HealthBar = HealthBar_Opponent;
-                ginfo.FocusColor = Color.blue;
-            }
+            this.guiLookup.Add(player, new KeyValuePair<GameObject,GuiInformation>(gobj,ginfo));
+            ginfo.Player = player;
 
-            ginfo.SetPhasesGui(Phases);
-            ginfo.SetManaCrystalTypes(ManaCrystalTypes);
-
-            if (Settings.LocalPlayers.Any(p => p == evt.Player))
-            {
-                gobj.AddComponent<GuiController>();
-                gobj.GetComponent<GuiController>().Engine = this.Engine;
-            }
-
-            gobj.AddComponent<GuiViewHandler>();
-            var guiview = gobj.GetComponent<GuiViewHandler>();
-            guiview.Engine = this.Engine;
-            guiview.MapHandler = this.MapHandler;
+            this.joinedPlayers.Add(player);
         }
 
 
 
         public GuiInformation GetGuiInfo(Player player)
         {
-            return this.guiLookup[player];
+            return this.guiLookup[player].Value;
         }
     }
 }

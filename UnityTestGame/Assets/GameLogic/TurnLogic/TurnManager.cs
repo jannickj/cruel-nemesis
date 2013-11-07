@@ -10,6 +10,7 @@ using Assets.GameLogic.Actions;
 using XmasEngineModel.Management.Actions;
 using Assets.GameLogic.Unit;
 using Assets.GameLogic.Events.UnitEvents;
+using UnityEngine;
 
 namespace Assets.GameLogic.TurnLogic
 {
@@ -82,9 +83,13 @@ namespace Assets.GameLogic.TurnLogic
 
         private void OnGameStart(GameStartEvent evt)
         {
-            SetTurn(players[0]);
-            SetPhase(Phases.Draw);
-            ResetPriority();
+            this.ActionManager.Queue(new SimpleAction(_ =>
+                {
+                 
+                    SetTurn(players[0]);
+                    SetPhase(Phases.Draw);
+                    ResetPriority();
+                }));
         }
 
         private void SetTurn(Player p)

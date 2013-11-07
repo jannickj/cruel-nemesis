@@ -14,6 +14,8 @@ using Assets.GameLogic;
 using XmasEngineModel;
 using Assets.GameLogic.TurnLogic;
 using Assets.GameLogic.Modules;
+using System;
+using Assets.UnityLogic.Gui.Controls;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -26,16 +28,18 @@ namespace Assets.UnityLogic.Gui
         public GuiViewHandler GuiView { get; private set; }
 
         private GuiInformation guiinfo;
-        private PhaseSkipController skipController;
+        public PhaseSkipController SkipController { get; set; }
+        public List<Player> JoinedPlayers { get; set; }
         private XmasModel engmodel;
         private bool hasPriority;
         private bool allowedToDeclare = false;
         // Use this for initialization
-        void Start()
+        public void Initialize()
         {
-            skipController = new PhaseSkipController(this.GuiInfo,guiinfo.Player);
+            
             this.guiinfo = this.gameObject.GetComponent<GuiInformation>();
             this.GuiView = this.gameObject.GetComponent<GuiViewHandler>();
+            
             hasPriority = false;
             if (PlayerCamera == null)
                 PlayerCamera = Camera.main;
@@ -45,6 +49,24 @@ namespace Assets.UnityLogic.Gui
             
             engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => hasPriority = evt.Player == guiinfo.Player ));
             engmodel.EventManager.Register(new Trigger<PlayerAllowedToDeclareMoveAttackEvent>(evt => allowedToDeclare = (evt.Player == guiinfo.Player && evt.Allowed)));
+
+            
+
+            foreach (var player in this.JoinedPlayers)
+            {
+                foreach(Phases phase in (Phases[])Enum.GetValues(typeof(Phases)))
+                {
+                    var texture = guiinfo.GetSkipPhaseButton(player, phase);
+                    if (texture == null)
+                        continue;
+
+                    var buttonHandler = texture.GetComponent<GUIButtonHandler>();
+                    var selectedPlayer = player;
+                    var selectedPhase = phase;
+                    buttonHandler.MouseDownEvent += (sender,evt) => this.PerformCommand(new ToggleStopPriorityCommand(SkipController,selectedPlayer,selectedPhase));
+                }
+            }
+            
         }
 
         // Update is called once per frame
@@ -57,28 +79,40 @@ namespace Assets.UnityLogic.Gui
             }
 
             if (this.runningCommands.Count == 0 && hasPriority)
-                if (Input.GetButtonDown("select_object") && allowedToDeclare)
-                {
-                    GameObject[] objs = GetGameObjectsOnMouse();
-                    GameObject firstunit = objs.FirstOrDefault(go => go.GetComponent<UnitControllerHandler>() != null);
-
-                    if (firstunit == null)
-                        return;
-                    var ent = firstunit.GetComponent<UnitInformation>().Entity;
-
-                    if (ent.Module<UnitInfoModule>().Controller != this.guiinfo.Player)
-                        return;
-
-                    this.PerformCommand(new DeclareMoveAttackUnitCommand(firstunit, ent));
-                }
-                else if (Input.GetButtonDown("pass_priority"))
-                {
-                    this.PerformCommand(new PassPriorityCommand(guiinfo.Player));
-                }
-
-
+                UpdateControls();
 
             UpdateCommands();
+        }
+
+        private void UpdateControls()
+        {
+            if (Input.GetButtonDown("select_object"))
+            {
+                GameObject[] objs = GetGameObjectsOnMouse();
+
+                foreach (GameObject selectedObject in objs)
+                {
+                    if (allowedToDeclare)
+                    {
+                        var unitinfo = selectedObject.GetComponent<UnitInformation>();
+
+                        if (unitinfo == null)
+                            continue;
+
+                        var ent = unitinfo.Entity;
+
+                        if (ent.Module<UnitInfoModule>().Controller != this.guiinfo.Player)
+                            return;
+
+                        this.PerformCommand(new DeclareMoveAttackUnitCommand(selectedObject, ent));
+                        return;
+                    }
+                }
+            }
+            else if (Input.GetButtonDown("pass_priority"))
+            {
+                this.PerformCommand(new PassPriorityCommand(guiinfo.Player));
+            }
         }
 
 
@@ -123,5 +157,7 @@ namespace Assets.UnityLogic.Gui
             return sortobjs.ToArray();
         }
 
+
+        
     }
 }
