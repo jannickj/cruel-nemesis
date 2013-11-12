@@ -32,12 +32,12 @@ namespace Assets.UnityLogic
         void Start()
         {
             UnityEngine.Object.DontDestroyOnLoad(this);
-            Player p = new Player();
+            Player p = new Player(null,null);
             p.Name = "player 1";
             this.mainPlayer = p;
             this.AddPlayer(p);
 
-            p = new Player();
+            p = new Player(null,null);
             p.Name = "player 2";
             this.AddPlayer(p);
             

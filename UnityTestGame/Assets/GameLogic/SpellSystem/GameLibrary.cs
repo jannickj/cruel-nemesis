@@ -8,27 +8,15 @@ using Assets.GameLogic.Events.UnitEvents;
 
 namespace Assets.GameLogic.SpellSystem
 {
-	public class GameLibrary : XmasUniversal
+	public class GameLibrary : CardCollection
 	{
-        private SelectableLinkedList<GameCard> library = new SelectableLinkedList<GameCard>();
-        private Player owner;
+        public Player Owner {get;set;}
 
-        public GameLibrary(Player p)
-        {
-            this.owner = p;
-        }
-
-        public void Add(IEnumerable<GameCard> cards)
-        {
-            foreach (GameCard gc in cards)
-            {
-                library.AddLast(gc);
-            }
-        }
+        public GameLibrary() {}
 
         public GameCard Draw()
         {
-            this.EventManager.Raise(new CardDrawnEvent(owner));
+            this.EventManager.Raise(new CardDrawnEvent(Owner));
             return TakeCards(1)[0];
         }
 
@@ -36,23 +24,10 @@ namespace Assets.GameLogic.SpellSystem
         {
             List<GameCard> cards = new List<GameCard>();
             int c = count;
-            while (library.Count > 0 && c > 0)
+            while (this.cards.Count > 0 && c > 0)
             {
                 c--;
                 cards.Add(Draw());
-            }
-            return cards;
-        }
-
-        public List<GameCard> TakeCards(int count)
-        {
-            List<GameCard> cards = new List<GameCard>();
-            int c = count;
-            while (library.Count > 0 && c > 0)
-            {
-                c--;
-                cards.Add(library.First());
-                library.RemoveFirst();
             }
             return cards;
         }
@@ -65,27 +40,27 @@ namespace Assets.GameLogic.SpellSystem
 
         public void Shuffle(Func<int, int> rngNext)
         {
-            int n = library.Count;
-            List<GameCard> list = new List<GameCard>(library);
-            library = new SelectableLinkedList<GameCard>();
+            int n = this.cards.Count;
+            List<GameCard> list = new List<GameCard>(this.cards);
+            this.cards = new SelectableLinkedList<GameCard>();
             while (n > 0)
             {
                 n--;
                 int k = rngNext(n + 1);
-                library.AddFirst(list[k]);
+                this.cards.AddFirst(list[k]);
                 list.RemoveAt(k);
             } 
         }
 
         public void AddBottom(GameCard gc)
         {
-            library.AddLast(gc);
+            this.cards.AddLast(gc);
         }
 
         public void AddAt(GameCard gc, int p)
         {
-            int pos = p % library.Count;
-            library.AddBefore(library.ElementAt(p - 1), gc);
+            int pos = p % this.cards.Count;
+            this.cards.AddBefore(this.cards.ElementAt(p - 1), gc);
         }
     }
 }

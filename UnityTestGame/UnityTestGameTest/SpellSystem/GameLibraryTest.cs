@@ -15,7 +15,9 @@ namespace UnityTestGameTest.SpellSystem
     {
         private GameLibrary ConstructLibrary()
         {
-            GameLibrary lib = new GameLibrary(new Player());
+            GameLibrary lib = new GameLibrary();
+            Hand h = new Hand();
+            Player p = new Player(lib, h);
             Engine.AddActor(lib);
             return lib;
         }
@@ -54,7 +56,7 @@ namespace UnityTestGameTest.SpellSystem
             SelectableLinkedList<GameCard> cards = new SelectableLinkedList<GameCard>();
             for (int i = 0; i < 10; i++)
                 cards.AddLast(new MockCardWithData(i + 1));
-            GameLibrary lib = new GameLibrary(null); 
+            GameLibrary lib = new GameLibrary(); 
             lib.Add(cards);
             lib.Shuffle(_ => 0);
             List<GameCard> newLib = lib.TakeCards(10);
@@ -70,7 +72,7 @@ namespace UnityTestGameTest.SpellSystem
             SelectableLinkedList<GameCard> cards = new SelectableLinkedList<GameCard>();
             for (int i = 0; i < 29; i++)
                 cards.AddFirst(new MockCard());
-            GameLibrary lib = new GameLibrary(null);
+            GameLibrary lib = new GameLibrary();
             lib.Add(cards);
             lib.AddBottom(new MockCardWithData(42));
             lib.TakeCards(29);
@@ -83,7 +85,7 @@ namespace UnityTestGameTest.SpellSystem
             SelectableLinkedList<GameCard> cards = new SelectableLinkedList<GameCard>();
             for (int i = 0; i < 29; i++)
                 cards.AddFirst(new MockCard());
-            GameLibrary lib = new GameLibrary(null);
+            GameLibrary lib = new GameLibrary();
             lib.Add(cards);
             lib.AddAt(new MockCardWithData(42), 10);
             lib.TakeCards(9);
