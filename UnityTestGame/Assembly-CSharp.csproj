@@ -110,6 +110,7 @@
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\GUIButtonHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\SelectObjectHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Gui\GUITextureAutoScaler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiController.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiInformation.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiViewHandler.cs" />

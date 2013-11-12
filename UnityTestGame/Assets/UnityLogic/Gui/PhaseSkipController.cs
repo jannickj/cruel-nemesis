@@ -17,17 +17,18 @@ namespace Assets.UnityLogic.Gui
         private GuiInformation guiinfo;
         private Player owner;
         private DictionaryList<Player, Phases> autoSkip = new DictionaryList<Player, Phases>();
-
+        private Player[] players;
         private Player lastGainPrio;
         private int samePriority;
         private Player currentPlayersTurn;
         private Phases curPhase;
 
-        public PhaseSkipController(GuiInformation guiinfo, Player owner)
+        public PhaseSkipController(GuiInformation guiinfo, Player owner, IEnumerable<Player> players)
         {
             // TODO: Complete member initialization
             this.guiinfo = guiinfo;
             this.owner = owner;
+            this.players = players.ToArray();
             owner.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => currentPlayersTurn = evt.PlayersTurn));
             owner.EventManager.Register(new Trigger<PhaseChangedEvent>(evt => { lastGainPrio = null; samePriority = 0; curPhase = evt.NewPhase; }));
             owner.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(this.OnPlayerGainPriority));
@@ -69,12 +70,14 @@ namespace Assets.UnityLogic.Gui
                 button.color = color;
             else
                 button.color = Color.white;
+            
         }
 
         private void OnPlayerGainPriority(PlayerGainedPriorityEvent evt)
         {
             if (lastGainPrio == evt.Player)
                 samePriority++;
+            lastGainPrio = evt.Player;
             if (evt.Player == owner)
             {
                 if (samePriority == 0)
@@ -94,10 +97,10 @@ namespace Assets.UnityLogic.Gui
 
         private void redrawSkips()
         {
-            foreach (var player in this.autoSkip.Keys)
+            foreach (var player in this.players)
             {
                 var skipPhases = new HashSet<Phases>(this.autoSkip.Get(player));
-                var allphases = ((Phases[])Enum.GetValues(typeof(Phases))).Where(p => p != Phases.Attack || p != Phases.Move);
+                var allphases = ((Phases[])Enum.GetValues(typeof(Phases))).Where(p => p != Phases.Attack && p != Phases.Move);
 
                 var phaseSettings = allphases.Select(ph => new KeyValuePair<Phases, bool>(ph, skipPhases.Contains(ph)));
                 foreach (var pSetting in phaseSettings)

@@ -19,6 +19,12 @@ using Assets.UnityLogic.Gui.Controls;
 
 namespace Assets.UnityLogic.Gui
 {
+    public enum ControllerType
+    {
+        Full,
+        Shared
+    }
+
     public class GuiController : MonoBehaviour
     {
         public EngineHandler Engine;
@@ -26,6 +32,7 @@ namespace Assets.UnityLogic.Gui
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
         public GuiViewHandler GuiView { get; private set; }
+        public ControllerType ControllerType { get; set; }
 
         private GuiInformation guiinfo;
         public PhaseSkipController SkipController { get; set; }
@@ -63,7 +70,11 @@ namespace Assets.UnityLogic.Gui
                     var buttonHandler = texture.GetComponent<GUIButtonHandler>();
                     var selectedPlayer = player;
                     var selectedPhase = phase;
-                    buttonHandler.MouseDownEvent += (sender,evt) => this.PerformCommand(new ToggleStopPriorityCommand(SkipController,selectedPlayer,selectedPhase));
+                    buttonHandler.MouseDownEvent += (sender, evt) =>
+                    {
+                        if(this.hasPriority && this.ControllerType == ControllerType.Shared || this.ControllerType == ControllerType.Full)
+                            this.PerformCommand(new ToggleStopPriorityCommand(SkipController, selectedPlayer, selectedPhase));
+                    };
                 }
             }
             

@@ -108,8 +108,9 @@ namespace Assets.UnityLogic.Gui
         {
             if (currentTurnOwner != guiinfo.Player)
                 return;
-            guiinfo[evt.OldPhase].color = Color.white;
-            guiinfo[evt.NewPhase].color = guiinfo.FocusColor;
+            
+            guiinfo.SetPhaseColor(evt.NewPhase, guiinfo.FocusColor);
+            guiinfo.ResetPhaseColor(evt.OldPhase);
         }
 
         public void OnTurnChanged(PlayersTurnChangedEvent evt)

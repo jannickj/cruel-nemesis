@@ -72,8 +72,12 @@ namespace Assets.UnityLogic
                     var controller = gobj.GetComponent<GuiController>();
                     controller.Engine = this.Engine;
                     controller.JoinedPlayers = this.joinedPlayers;
-                    controller.SkipController = new PhaseSkipController(ginfo, player);
+                    controller.SkipController = new PhaseSkipController(ginfo, player,joinedPlayers);
                     controller.Initialize();
+                    if (Settings.LocalPlayers.Count() > 1)
+                        controller.ControllerType = ControllerType.Shared;
+                    else
+                        controller.ControllerType = ControllerType.Full;
                 }
 
                 gobj.AddComponent<GuiViewHandler>();

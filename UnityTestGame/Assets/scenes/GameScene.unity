@@ -427,6 +427,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 166209099}
   - 131: {fileID: 166209100}
+  - 114: {fileID: 166209101}
   m_Layer: 0
   m_Name: player_portrait
   m_TagString: Untagged
@@ -465,6 +466,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &166209101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 166209098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &228194535
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +486,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 228194536}
   - 131: {fileID: 228194537}
+  - 114: {fileID: 228194538}
   m_Layer: 0
   m_Name: life_bar
   m_TagString: Untagged
@@ -511,6 +524,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &228194538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 228194535}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &250107064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1160,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 552535307}
   - 131: {fileID: 552535308}
+  - 114: {fileID: 552535309}
   m_Layer: 0
   m_Name: portrait_enemy
   m_TagString: Untagged
@@ -1174,6 +1199,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &552535309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 552535306}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &556842753
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,6 +1219,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 556842755}
   - 131: {fileID: 556842754}
+  - 114: {fileID: 556842756}
   m_Layer: 0
   m_Name: life_bar
   m_TagString: Untagged
@@ -1220,6 +1257,17 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 552535307}
+--- !u!114 &556842756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 556842753}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &562211816
 GameObject:
   m_ObjectHideFlags: 0

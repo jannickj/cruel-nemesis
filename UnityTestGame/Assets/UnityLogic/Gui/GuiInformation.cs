@@ -12,6 +12,7 @@ namespace Assets.UnityLogic.Gui
 	public class GuiInformation : MonoBehaviour
 	{
         private GUITexture[] phases;
+        private Color[] defaultPhaseColors;
         private GUITexture[] manacrystals;
         private Dictionary<Player, GUITexture[]> skipPhaseButtons = new Dictionary<Player, GUITexture[]>();
         
@@ -23,7 +24,7 @@ namespace Assets.UnityLogic.Gui
 
         public GUITexture HealthBar { get; set; }
 
-        public GUITexture this[Phases phase]
+        private GUITexture this[Phases phase]
         {
             get
             {
@@ -39,11 +40,20 @@ namespace Assets.UnityLogic.Gui
             }
         }
 
+        public void SetPhaseColor(Phases phase, Color color)
+        {
+            this[phase].color = color;
+        }
 
+        public void ResetPhaseColor(Phases phase)
+        {
+            this[phase].color = defaultPhaseColors[(int)phase];
+        }
 
         public void SetPhasesGui(GUITexture[] Phases)
         {
             this.phases = Phases;
+            this.defaultPhaseColors = phases.Select(ph => ph.color).ToArray();
         }
 
         public void SetManaCrystalTypes(GUITexture[] ManaCrystalTypes)
