@@ -57,6 +57,7 @@
      <Compile Include="Assets\GameLogic\Events\BeginMoveEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\CardDrawnEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\EndMoveEvent.cs" />
+     <Compile Include="Assets\GameLogic\Events\GamePreStartEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\GameStartEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PhaseChangedEvent.cs" />
      <Compile Include="Assets\GameLogic\Events\PlayerAllowedToDeclareMoveAttackEvent.cs" />

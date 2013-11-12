@@ -6,7 +6,8 @@ using XmasEngineModel.Management;
 
 namespace Assets.GameLogic.Events
 {
-	public class GameStartEvent : XmasEvent
+	public class GamePreStartEvent : XmasEvent
 	{
+
 	}
 }

@@ -83,13 +83,9 @@ namespace Assets.GameLogic.TurnLogic
 
         private void OnGameStart(GameStartEvent evt)
         {
-            this.ActionManager.Queue(new SimpleAction(_ =>
-                {
-                 
-                    SetTurn(players[0]);
-                    SetPhase(Phases.Draw);
-                    ResetPriority();
-                }));
+            SetTurn(players[0]);
+            SetPhase(Phases.Draw);
+            ResetPriority();
         }
 
         private void SetTurn(Player p)
@@ -170,7 +166,7 @@ namespace Assets.GameLogic.TurnLogic
                 MovePathAction mpa = evt.MoveAction;
                 ma.AddAction(mpa);
             }
-            ma.Resolved += (sender, maEvt) => SkipToPhase(Phases.React);
+            ma.Resolved += (sender, maEvt) => SkipToPhase(Phases.React,this.playersTurn);
             this.ActionManager.Queue(ma);
         }
 
@@ -184,14 +180,14 @@ namespace Assets.GameLogic.TurnLogic
                 if(evt.AttackUnit != null)
                     ma.AddAction(evt.Entity,aua);
             }
-            ma.Resolved += (sender, maEvt) => SkipToPhase(Phases.EndCombat);
+            ma.Resolved += (sender, maEvt) => SkipToPhase(Phases.EndCombat,this.playersTurn);
             this.ActionManager.Queue(ma);
         }
 
-        private void SkipToPhase(Phases phase)
+        private void SkipToPhase(Phases phase, Player playersTurn)
         {
-            this.SetPriority(this.playersTurn);
             this.SetPhase(phase);
+            this.SetPriority(playersTurn);
                
         }
 

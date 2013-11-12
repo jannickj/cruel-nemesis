@@ -90,8 +90,9 @@ namespace Assets.UnityLogic.Gui
                     }
                     else
                         redrawSkips();
-
                 }
+                else
+                    redrawSkips();
             }
         }
 

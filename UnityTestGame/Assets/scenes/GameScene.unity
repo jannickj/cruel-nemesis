@@ -233,6 +233,7 @@ GameObject:
   - 4: {fileID: 109938341}
   - 131: {fileID: 109938342}
   - 114: {fileID: 109938343}
+  - 114: {fileID: 109938344}
   m_Layer: 0
   m_Name: m_stop_button_end
   m_TagString: Untagged
@@ -280,6 +281,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &109938344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 109938340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &161923065
@@ -442,7 +454,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 166209098}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .00999999978, y: .779999971, z: 0}
+  m_LocalPosition: {x: .00499999989, y: .850000024, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children:
   - {fileID: 228194536}
@@ -530,7 +542,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 228194535}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
@@ -545,6 +557,7 @@ GameObject:
   - 4: {fileID: 250107065}
   - 131: {fileID: 250107066}
   - 114: {fileID: 250107067}
+  - 114: {fileID: 250107068}
   m_Layer: 0
   m_Name: o_stop_button_main
   m_TagString: Untagged
@@ -592,6 +605,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &250107068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 250107064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &262234861
@@ -656,6 +680,7 @@ GameObject:
   - 4: {fileID: 322094208}
   - 131: {fileID: 322094209}
   - 114: {fileID: 322094210}
+  - 114: {fileID: 322094211}
   m_Layer: 0
   m_Name: m_stop_button_react
   m_TagString: Untagged
@@ -703,6 +728,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &322094211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322094207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &326927664
@@ -797,6 +833,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 386602792}
   - 131: {fileID: 386602793}
+  - 114: {fileID: 386602794}
   m_Layer: 0
   m_Name: phases_main2
   m_TagString: Untagged
@@ -834,6 +871,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &386602794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386602791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &401321988
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,6 +892,7 @@ GameObject:
   - 4: {fileID: 401321989}
   - 131: {fileID: 401321990}
   - 114: {fileID: 401321991}
+  - 114: {fileID: 401321992}
   m_Layer: 0
   m_Name: m_stop_button_endcombat
   m_TagString: Untagged
@@ -891,6 +940,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &401321992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 401321988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &408222727
@@ -1078,6 +1138,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 468049800}
   - 131: {fileID: 468049801}
+  - 114: {fileID: 468049802}
   m_Layer: 0
   m_Name: phases_draw
   m_TagString: Untagged
@@ -1115,6 +1176,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &468049802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468049799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514188147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,7 +1247,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552535306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .99000001, y: .779999971, z: 0}
+  m_LocalPosition: {x: .995000005, y: .850000024, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 1}
   m_Children:
   - {fileID: 556842755}
@@ -1205,7 +1277,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552535306}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
@@ -1263,7 +1335,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 556842753}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
@@ -1278,6 +1350,7 @@ GameObject:
   - 4: {fileID: 562211817}
   - 131: {fileID: 562211818}
   - 114: {fileID: 562211819}
+  - 114: {fileID: 562211820}
   m_Layer: 0
   m_Name: o_stop_button_draw
   m_TagString: Untagged
@@ -1325,6 +1398,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &562211820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 562211816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &576554714
@@ -1627,6 +1711,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 653046951}
   - 131: {fileID: 653046952}
+  - 114: {fileID: 653046953}
   m_Layer: 0
   m_Name: phases_battle
   m_TagString: Untagged
@@ -1664,6 +1749,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &653046953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653046950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &653209206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1770,7 @@ GameObject:
   - 4: {fileID: 653209207}
   - 131: {fileID: 653209208}
   - 114: {fileID: 653209209}
+  - 114: {fileID: 653209210}
   m_Layer: 0
   m_Name: m_stop_button_draw
   m_TagString: Untagged
@@ -1723,6 +1820,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &653209210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653209206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &670758782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1767,6 +1875,7 @@ GameObject:
   - 4: {fileID: 681804356}
   - 131: {fileID: 681804357}
   - 114: {fileID: 681804358}
+  - 114: {fileID: 681804359}
   m_Layer: 0
   m_Name: o_stop_button_declare
   m_TagString: Untagged
@@ -1816,6 +1925,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &681804359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 681804355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &751706540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,6 +1946,7 @@ GameObject:
   - 4: {fileID: 751706541}
   - 131: {fileID: 751706542}
   - 114: {fileID: 751706543}
+  - 114: {fileID: 751706544}
   m_Layer: 0
   m_Name: m_stop_button_declare
   m_TagString: Untagged
@@ -1875,6 +1996,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &751706544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 751706540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815806729
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,6 +2016,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 815806730}
   - 131: {fileID: 815806731}
+  - 114: {fileID: 815806732}
   m_Layer: 0
   m_Name: phases_move
   m_TagString: Untagged
@@ -1921,6 +2054,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &815806732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815806729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &845239627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2286,7 @@ GameObject:
   - 4: {fileID: 1219017722}
   - 131: {fileID: 1219017723}
   - 114: {fileID: 1219017724}
+  - 114: {fileID: 1219017725}
   m_Layer: 0
   m_Name: m_stop_button_begin_combat
   m_TagString: Untagged
@@ -2191,6 +2336,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1219017725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219017721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1224000042
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,6 +2357,7 @@ GameObject:
   - 4: {fileID: 1224000043}
   - 131: {fileID: 1224000044}
   - 114: {fileID: 1224000045}
+  - 114: {fileID: 1224000046}
   m_Layer: 0
   m_Name: m_stop_button_main2
   m_TagString: Untagged
@@ -2248,6 +2405,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1224000046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1224000042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1323288758
@@ -2312,6 +2480,7 @@ GameObject:
   - 4: {fileID: 1327237943}
   - 131: {fileID: 1327237944}
   - 114: {fileID: 1327237945}
+  - 114: {fileID: 1327237946}
   m_Layer: 0
   m_Name: o_stop_button_begin_combat
   m_TagString: Untagged
@@ -2359,6 +2528,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1327237946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327237942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1331702506
@@ -2422,6 +2602,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1350728993}
   - 131: {fileID: 1350728994}
+  - 114: {fileID: 1350728995}
   m_Layer: 0
   m_Name: phases_endcombat
   m_TagString: Untagged
@@ -2459,6 +2640,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &1350728995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1350728992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1411955442
 Prefab:
   m_ObjectHideFlags: 0
@@ -2612,6 +2804,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1555541611}
   - 131: {fileID: 1555541610}
+  - 114: {fileID: 1555541612}
   m_Layer: 0
   m_Name: phases_declare
   m_TagString: Untagged
@@ -2649,6 +2842,17 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 514188148}
+--- !u!114 &1555541612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555541609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1582029964
 GameObject:
   m_ObjectHideFlags: 0
@@ -2659,6 +2863,7 @@ GameObject:
   - 4: {fileID: 1582029965}
   - 131: {fileID: 1582029966}
   - 114: {fileID: 1582029967}
+  - 114: {fileID: 1582029968}
   m_Layer: 0
   m_Name: o_stop_button_react
   m_TagString: Untagged
@@ -2706,6 +2911,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1582029968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1582029964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1677873849
@@ -2770,6 +2986,7 @@ GameObject:
   - 4: {fileID: 1783560733}
   - 131: {fileID: 1783560734}
   - 114: {fileID: 1783560735}
+  - 114: {fileID: 1783560736}
   m_Layer: 0
   m_Name: o_stop_button_end
   m_TagString: Untagged
@@ -2819,6 +3036,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1783560736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1783560732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1798134934
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,6 +3056,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1798134936}
   - 131: {fileID: 1798134935}
+  - 114: {fileID: 1798134937}
   m_Layer: 0
   m_Name: phases_begin_combat
   m_TagString: Untagged
@@ -2865,6 +3094,17 @@ Transform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 514188148}
+--- !u!114 &1798134937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798134934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1888969238
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,6 +3115,7 @@ GameObject:
   - 4: {fileID: 1888969239}
   - 131: {fileID: 1888969240}
   - 114: {fileID: 1888969241}
+  - 114: {fileID: 1888969242}
   m_Layer: 0
   m_Name: o_stop_button_endcombat
   m_TagString: Untagged
@@ -2924,6 +3165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1888969242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1888969238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889768623
 GameObject:
   m_ObjectHideFlags: 0
@@ -2933,6 +3185,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1889768624}
   - 131: {fileID: 1889768625}
+  - 114: {fileID: 1889768626}
   m_Layer: 0
   m_Name: phases_react
   m_TagString: Untagged
@@ -2970,6 +3223,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &1889768626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889768623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1968437253
 Prefab:
   m_ObjectHideFlags: 0
@@ -3071,6 +3335,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1997481657}
   - 131: {fileID: 1997481658}
+  - 114: {fileID: 1997481659}
   m_Layer: 0
   m_Name: phases_main
   m_TagString: Untagged
@@ -3108,6 +3373,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &1997481659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997481656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2044777793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,6 +3394,7 @@ GameObject:
   - 4: {fileID: 2044777794}
   - 131: {fileID: 2044777795}
   - 114: {fileID: 2044777796}
+  - 114: {fileID: 2044777797}
   m_Layer: 0
   m_Name: m_stop_button_main
   m_TagString: Untagged
@@ -3167,6 +3444,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2044777797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2044777793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2051072576
 GameObject:
   m_ObjectHideFlags: 0
@@ -3176,6 +3464,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2051072577}
   - 131: {fileID: 2051072578}
+  - 114: {fileID: 2051072579}
   m_Layer: 0
   m_Name: phases_end
   m_TagString: Untagged
@@ -3213,6 +3502,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &2051072579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051072576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2145068737
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,6 +3523,7 @@ GameObject:
   - 4: {fileID: 2145068739}
   - 131: {fileID: 2145068738}
   - 114: {fileID: 2145068740}
+  - 114: {fileID: 2145068741}
   m_Layer: 0
   m_Name: o_stop_button_main2
   m_TagString: Untagged
@@ -3270,5 +3571,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2145068741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2145068737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -12,6 +12,7 @@ namespace Assets.GameLogic.Actions
 
         protected override void Execute()
         {
+            this.EventManager.Raise(new GamePreStartEvent());
             this.EventManager.Raise(new GameStartEvent());
         }
     }

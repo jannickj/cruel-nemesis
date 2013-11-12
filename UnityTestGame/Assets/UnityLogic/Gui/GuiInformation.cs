@@ -42,6 +42,7 @@ namespace Assets.UnityLogic.Gui
 
         public void SetPhaseColor(Phases phase, Color color)
         {
+            //Debug.Log("GUI VIEW PHASE CHANGED: " + phase+" to color "+color);
             this[phase].color = color;
         }
 

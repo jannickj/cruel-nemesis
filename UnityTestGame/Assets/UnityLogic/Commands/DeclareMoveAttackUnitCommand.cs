@@ -28,6 +28,7 @@ namespace Assets.UnityLogic.Commands
         private Point mousePoint;
         private Path<TileWorld, TilePosition> mousePath;
         private bool refindMouse = false;
+        bool enemySelected = false;
         
         public DeclareMoveAttackUnitCommand(GameObject unit, UnitEntity unitEntity)
         {
@@ -43,7 +44,7 @@ namespace Assets.UnityLogic.Commands
             GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
             GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
             UnitEntity attackUnit = null;
-            if (firstter != null)
+            if (firstter != null && !enemySelected)
             {
                 TerrainInformation terinfo = firstter.GetComponent<TerrainInformation>();
                 TilePosition tilepos = (TilePosition)terinfo.Terrain.Position;
@@ -64,7 +65,7 @@ namespace Assets.UnityLogic.Commands
                     if (attackUnit == null)
                     {
                         foundpath = path.FindFirst(lastpos, tilepos, out foundPath);
-
+                        this.lastFoundEnemy = null;
                     }
                     else
                     {
@@ -77,14 +78,14 @@ namespace Assets.UnityLogic.Commands
                     {
                         mousePath = new Path<TileWorld,TilePosition>(foundPath.Map,foundPath.Road.Skip(1));
                     }
-
+                    
+                    view.drawRoute(mousePath,this.GuiController.GuiInfo.FocusColor);
                     if (oldMousePath.Map != null)
                         view.unDrawRoute(oldMousePath);
-                    view.drawRoute(mousePath);
                 }
             }
 
-            if (Input.GetButtonDown("select_object"))
+            if (Input.GetButtonDown("select_object") && !enemySelected)
             {
                 
                 if(mousePath.Map != null)
@@ -95,14 +96,15 @@ namespace Assets.UnityLogic.Commands
                     this.lastpos = mousePath.Road.Last.Value;
 
                     QueueDelcareAction(this.lastFoundEnemy);
-
+                    Debug.Log("Enemy " + this.lastFoundEnemy);
+                    this.enemySelected = this.lastFoundEnemy != null;
                     
                     //Finished = true;
                 }
             }
             else if (Input.GetButtonDown("deselect_object"))
             {
-                
+                enemySelected = false;
                 fullroute.RemoveLast();
                 if (fullroute.Count == 0)
                     lastpos = this.unitEntity.PositionAs<TilePosition>();
@@ -111,7 +113,7 @@ namespace Assets.UnityLogic.Commands
                 QueueDelcareAction();
                 this.refindMouse = true;
             }
-            else if (Input.GetButtonDown("accept"))
+            else if (Input.GetButtonDown("accept") || enemySelected)
             {
                 this.unit.renderer.material.color = this.GuiController.GuiInfo.FocusColor;
                 if(mousePath.Map !=null)
@@ -133,7 +135,10 @@ namespace Assets.UnityLogic.Commands
             if (attackUnit == null)
                 declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath);
             else
+            {
                 declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath, attackUnit);
+                
+            }
             this.unitEntity.QueueAction(declareAction);
         }
 

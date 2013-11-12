@@ -34,10 +34,10 @@ namespace Assets.UnityLogic
         {
             XmasModel engine = Engine.EngineModel;
             engine.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
-            engine.EventManager.Register(new Trigger<GameStartEvent>(OnGameStart));
+            engine.EventManager.Register(new Trigger<GamePreStartEvent>(OnGameStart));
         }
 
-        private void OnGameStart(GameStartEvent evt)
+        private void OnGameStart(GamePreStartEvent evt)
         {
             foreach (Player player in joinedPlayers)
             {
@@ -58,13 +58,19 @@ namespace Assets.UnityLogic
                     ginfo.Portrait = PlayerLogo_Opponent;
                     ginfo.HealthBar = HealthBar_Opponent;
                     ginfo.FocusColor = Color.blue;
-                    ginfo.SetSkipPhaseButton(player, StopPhases_Other);
-                    ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Main);
+                    ginfo.SetSkipPhaseButton(player, StopPhases_Main);
+                    ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Other);
                 }
 
                 ginfo.SetPhasesGui(Phases);
                 ginfo.SetManaCrystalTypes(ManaCrystalTypes);
-                
+
+                gobj.AddComponent<GuiViewHandler>();
+                var guiview = gobj.GetComponent<GuiViewHandler>();
+                guiview.Engine = this.Engine;
+                guiview.MapHandler = this.MapHandler;
+
+                guiview.Initialize();
 
                 if (Settings.LocalPlayers.Any(p => p == player))
                 {
@@ -80,12 +86,7 @@ namespace Assets.UnityLogic
                         controller.ControllerType = ControllerType.Full;
                 }
 
-                gobj.AddComponent<GuiViewHandler>();
-                var guiview = gobj.GetComponent<GuiViewHandler>();
-                guiview.Engine = this.Engine;
-                guiview.MapHandler = this.MapHandler;
-
-                guiview.Initialize();
+                
             }
         }
 

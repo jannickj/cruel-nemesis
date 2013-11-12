@@ -24,7 +24,8 @@ namespace Assets.UnityLogic.Gui
         private XmasModel engmodel;
         private Player currentTurnOwner;
         private Dictionary<XmasEntity, Path<TileWorld, TilePosition>> routes = new Dictionary<XmasEntity, Path<TileWorld, TilePosition>>();
-        private Dictionary<Point, int> drawnSquares = new Dictionary<Point, int>();
+        private Dictionary<Point, Stack<Color>> drawnSquares = new Dictionary<Point, Stack<Color>>();
+        private Color defaultColor = Color.white;
 
         public void Initialize()
         {
@@ -69,48 +70,66 @@ namespace Assets.UnityLogic.Gui
             }
 
             this.routes.Add(evt.Entity, evt.MoveAction.Path);
-            this.drawRoute(evt.MoveAction.Path);
+            this.drawRoute(evt.MoveAction.Path,Color.red);
         }
 
 
         public void unDrawRoute(Path<TileWorld, TilePosition> path)
         {
+            
             foreach (TilePosition pos in path.Road)
             {
-                drawnSquares[pos.Point]--;
-                int left = drawnSquares[pos.Point];
-                if (left != 0)
+                Stack<Color> drawn;
+                Color color;
+
+                if (!drawnSquares.TryGetValue(pos.Point, out drawn) || drawn.Count == 0)
+                {
                     continue;
+                }
+                else
+                {
+                    drawn.Pop();
+
+                    if (drawn.Count == 0)
+                        color = defaultColor;
+                    else
+                        color = drawnSquares[pos.Point].Peek();
+                }
                 var terrain = this.engmodel.World.GetEntities(pos).OfType<TerrainEntity>().First();
                 Transform terobj = this.MapHandler[terrain];
-                terobj.renderer.material.color = Color.white;
+                terobj.renderer.material.color = color;
                 
             }
         }
 
-        public void drawRoute(Path<TileWorld, TilePosition> path)
+        public void drawRoute(Path<TileWorld, TilePosition> path, Color roadColor)
         {
             foreach (TilePosition pos in path.Road)
             {
 
+                Stack<Color> drawn;
+                if (!drawnSquares.TryGetValue(pos.Point, out drawn))
+                {
+                    drawn = new Stack<Color>();
+                    drawnSquares[pos.Point] = drawn;
+                }
+
+                drawn.Push(roadColor);
+
                 var terrain = this.engmodel.World.GetEntities(pos).OfType<TerrainEntity>().First();
                 Transform terobj = this.MapHandler[terrain];
-                terobj.renderer.material.color = Color.red;
-
-                int drawn;
-                if (!drawnSquares.TryGetValue(pos.Point, out drawn))
-                    drawn = 0;
-                drawnSquares[pos.Point] = drawn + 1;
+                terobj.renderer.material.color = roadColor;
             }
         }
 
         public void OnPhaseChanged(PhaseChangedEvent evt)
         {
+            
             if (currentTurnOwner != guiinfo.Player)
                 return;
-            
-            guiinfo.SetPhaseColor(evt.NewPhase, guiinfo.FocusColor);
             guiinfo.ResetPhaseColor(evt.OldPhase);
+            guiinfo.SetPhaseColor(evt.NewPhase, guiinfo.FocusColor);
+            
         }
 
         public void OnTurnChanged(PlayersTurnChangedEvent evt)
