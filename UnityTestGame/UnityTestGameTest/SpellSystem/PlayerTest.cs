@@ -7,6 +7,8 @@ using Assets.GameLogic;
 using Assets.GameLogic.SpellSystem;
 using JSLibrary;
 using UnityTestGameTest.TestComponents;
+using XmasEngineModel.Management;
+using Assets.GameLogic.Events;
 
 namespace UnityTestGameTest.SpellSystem
 {
@@ -16,15 +18,20 @@ namespace UnityTestGameTest.SpellSystem
         [TestMethod]
         public void DrawACard_EmptyHandNonemptyLibrary_CardsInHand()
         {
+            bool cardDrawnEventTriggered = false;
+
             GameLibrary lib = new GameLibrary();
             SelectableLinkedList<GameCard> cards = new SelectableLinkedList<GameCard>();
             cards.AddFirst(new MockCardWithData(42));
             lib.Add(cards);
             Hand h = new Hand();
             Player p = new Player(lib, h);
-            Engine.AddActor(lib);
+            p.EventManager = this.EventManager;
+            this.EventManager.Register(new Trigger<CardDrawnEvent>(_ => cardDrawnEventTriggered = true));
+            Engine.AddActor(p);
             p.Draw(1);
             GameCard c = p.Hand.TakeCards(1)[0];
+            Assert.IsTrue(cardDrawnEventTriggered);
             Assert.IsTrue(lib.IsEmpty());
             Assert.IsTrue(((MockCardWithData)c).data == 42);
         }
@@ -32,6 +39,7 @@ namespace UnityTestGameTest.SpellSystem
         [TestMethod]
         public void Discard_CardInHand_CardOnBottomOfLibrary()
         {
+            bool cardDiscardedEventTriggered = false;
             GameLibrary lib = new GameLibrary();
             SelectableLinkedList<GameCard> cards = new SelectableLinkedList<GameCard>();
             for (int i = 0; i < 29; i++)
@@ -42,9 +50,12 @@ namespace UnityTestGameTest.SpellSystem
             cards.AddFirst(new MockCardWithData(42));
             h.Add(cards);
             Player p = new Player(lib, h);
+            p.EventManager = this.EventManager;
+            this.EventManager.Register(new Trigger<CardDiscardedEvent>(_ => cardDiscardedEventTriggered = true));
             Engine.AddActor(lib);
             p.Discard(0);
             GameCard c = p.Library.TakeCardAt(29);
+            Assert.IsTrue(cardDiscardedEventTriggered);
             Assert.IsTrue(((MockCardWithData)c).data == 42);
         }
     }

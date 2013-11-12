@@ -5,6 +5,7 @@ using System.Text;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 using Assets.GameLogic.SpellSystem;
+using Assets.GameLogic.Events;
 
 namespace Assets.GameLogic
 {
@@ -24,11 +25,13 @@ namespace Assets.GameLogic
 
         public void Draw(int number)
         {
+            this.EventManager.Raise(new CardDrawnEvent(this));
             Hand.Add(Library.Draw(number));
         }
 
         public void Discard(int index)
         {
+            this.EventManager.Raise(new CardDiscardedEvent(this));
             Library.AddBottom(Hand.TakeCardAt(index));
         }
 

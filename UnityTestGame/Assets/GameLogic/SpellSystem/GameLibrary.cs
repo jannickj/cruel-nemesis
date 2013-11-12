@@ -16,7 +16,6 @@ namespace Assets.GameLogic.SpellSystem
 
         public GameCard Draw()
         {
-            this.EventManager.Raise(new CardDrawnEvent(Owner));
             return TakeCards(1)[0];
         }
 

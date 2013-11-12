@@ -6,10 +6,10 @@ using XmasEngineModel.Management;
 
 namespace Assets.GameLogic.Events
 {
-    public class CardDrawnEvent : XmasEvent
+	public class CardDiscardedEvent : XmasEvent
 	{
         private Player player;
-        public CardDrawnEvent(Player player)
+        public CardDiscardedEvent(Player player)
         {
             this.player = player;
         }
