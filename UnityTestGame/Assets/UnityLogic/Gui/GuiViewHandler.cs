@@ -5,13 +5,13 @@ using System.Text;
 using UnityEngine;
 using XmasEngineModel;
 using XmasEngineModel.Management;
-using Assets.GameLogic.Events;
-using Assets.GameLogic;
+using Cruel.GameLogic.Events;
+using Cruel.GameLogic;
 using XmasEngineModel.EntityLib;
 using XmasEngineExtensions.TileExtension;
-using Assets.Library.PathFinding;
-using Assets.Map.Terrain;
-using Assets.GameLogic.TurnLogic;
+using Cruel.Library.PathFinding;
+using Cruel.Map.Terrain;
+using Cruel.GameLogic.TurnLogic;
 using JSLibrary.Data;
 
 namespace Assets.UnityLogic.Gui

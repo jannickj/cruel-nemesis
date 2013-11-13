@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.GameLogic;
+using Cruel.GameLogic;
 using UnityEngine;
-using Assets.GameLogic.TurnLogic;
-using Assets.GameLogic.SpellSystem;
+using Cruel.GameLogic.TurnLogic;
+using Cruel.GameLogic.SpellSystem;
 
 namespace Assets.UnityLogic.Gui
 {

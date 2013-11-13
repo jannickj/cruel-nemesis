@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1FE60322-8F95-49A4-B036-71A42B04E9BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cruel</RootNamespace>
+    <AssemblyName>Cruel</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameLogic\Actions\AttackUnitAction.cs" />
+    <Compile Include="GameLogic\Actions\DealDamageToUnitAction.cs" />
+    <Compile Include="GameLogic\Actions\MoveAction.cs" />
+    <Compile Include="GameLogic\Actions\MovePathAction.cs" />
+    <Compile Include="GameLogic\Actions\PlayerJoinAction.cs" />
+    <Compile Include="GameLogic\Actions\PlayerPassPriorityAction.cs" />
+    <Compile Include="GameLogic\Actions\StartGameAction.cs" />
+    <Compile Include="GameLogic\Cards\SummonGruntCard.cs" />
+    <Compile Include="GameLogic\Events\AbilityResolvesEvent.cs" />
+    <Compile Include="GameLogic\Events\AbilityTargetInvalidEvent.cs" />
+    <Compile Include="GameLogic\Events\BeginMoveEvent.cs" />
+    <Compile Include="GameLogic\Events\CardDiscardedEvent.cs" />
+    <Compile Include="GameLogic\Events\CardDrawnEvent.cs" />
+    <Compile Include="GameLogic\Events\EndMoveEvent.cs" />
+    <Compile Include="GameLogic\Events\GamePreStartEvent.cs" />
+    <Compile Include="GameLogic\Events\GameStartEvent.cs" />
+    <Compile Include="GameLogic\Events\PhaseChangedEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerAllowedToDeclareMoveAttackEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerDeclareMoveAttackEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerGainedPriorityEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerJoinedEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerLeftEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerPassedPriorityEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerPerformedActionEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayersTurnChangedEvent.cs" />
+    <Compile Include="GameLogic\Events\PreMoveEvent.cs" />
+    <Compile Include="GameLogic\Events\RemovedFromGameEvent.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitBeginAttackEvent.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitControllerChangedEvent.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitDealsDamageEvent.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitDeclaredAsAttacked.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitIsAttackedEvent.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitTakesDamageEvent.cs" />
+    <Compile Include="GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
+    <Compile Include="GameLogic\Map\MapTypes.cs" />
+    <Compile Include="GameLogic\Map\StandardGameMapBuilder.cs" />
+    <Compile Include="GameLogic\Map\Terrain\TerrainEntity.cs" />
+    <Compile Include="GameLogic\Map\Terrain\TextureType.cs" />
+    <Compile Include="GameLogic\Map\TilePathFinder.cs" />
+    <Compile Include="GameLogic\Modules\AttackModule.cs" />
+    <Compile Include="GameLogic\Modules\HealthModule.cs" />
+    <Compile Include="GameLogic\Modules\MoveModule.cs" />
+    <Compile Include="GameLogic\Modules\UnitInfoModule.cs" />
+    <Compile Include="GameLogic\Player.cs" />
+    <Compile Include="GameLogic\PlayerCommands\DeclareMoveAttackCommand.cs" />
+    <Compile Include="GameLogic\SpellSystem\Ability.cs" />
+    <Compile Include="GameLogic\SpellSystem\CardCollection.cs" />
+    <Compile Include="GameLogic\SpellSystem\GameCard.cs" />
+    <Compile Include="GameLogic\SpellSystem\GameLibrary.cs" />
+    <Compile Include="GameLogic\SpellSystem\Hand.cs" />
+    <Compile Include="GameLogic\SpellSystem\ManaType.cs" />
+    <Compile Include="GameLogic\SpellSystem\Spell.cs" />
+    <Compile Include="GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
+    <Compile Include="GameLogic\TurnLogic\Phases.cs" />
+    <Compile Include="GameLogic\TurnLogic\TurnManager.cs" />
+    <Compile Include="GameLogic\Unit\GruntUnit.cs" />
+    <Compile Include="GameLogic\Unit\UnitEntity.cs" />
+    <Compile Include="Library\PathFinding\Path.cs" />
+    <Compile Include="Library\PathFinding\PathFinder.cs" />
+    <Compile Include="Library\PathFinding\PathNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XmasEngine\JSLibrary\JSLibrary\JSLibrary\JSLibrary.csproj">
+      <Project>{02121C4A-B1FB-46B8-BDE8-C5C6CA28C036}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineExtensions\XmasEngineExtensions.csproj">
+      <Project>{F0965EBC-FEAF-4445-A43B-998D0A8D249D}</Project>
+      <Name>XmasEngineExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineModel\XmasEngineModel.csproj">
+      <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>
+      <Name>XmasEngineModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(SolutionDir)..\UnityTestGame\Assets\dlls"
+xcopy /y "$(TargetDir)*.xml" "$(SolutionDir)..\UnityTestGame\Assets\dlls"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using XmasEngineModel;
 using System;
-using Assets.Map;
+using Cruel.Map;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 

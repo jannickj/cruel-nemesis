@@ -1,18 +1,18 @@
 using UnityEngine;
 using System.Collections;
 using XmasEngineModel;
-using Assets.GameLogic.TurnLogic;
-using Assets.GameLogic.Actions;
-using Assets.GameLogic;
+using Cruel.GameLogic.TurnLogic;
+using Cruel.GameLogic.Actions;
+using Cruel.GameLogic;
 using Assets.UnityLogic;
-using Assets.GameLogic.Events;
+using Cruel.GameLogic.Events;
 using XmasEngineModel.Management;
 using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
 using System.Linq;
-using Assets.GameLogic.Unit;
-using Assets.GameLogic.Modules;
-using Assets.Map;
+using Cruel.GameLogic.Unit;
+using Cruel.GameLogic.Modules;
+using Cruel.Map;
 using System.Collections.Generic;
 
 public class GameLogicLoader : MonoBehaviour {

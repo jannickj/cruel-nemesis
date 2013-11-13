@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.Map.Terrain;
+using Cruel.Map.Terrain;
 using UnityEngine;
 using System.IO;
-using Assets.GameLogic.Unit;
+using Cruel.GameLogic.Unit;
 
 namespace Assets.UnityLogic
 {

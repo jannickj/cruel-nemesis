@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using XmasEngineModel;
-using Assets.GameLogic.Events;
+using Cruel.GameLogic.Events;
 using XmasEngineModel.Management;
 using Assets.UnityLogic.Gui;
-using Assets.GameLogic;
+using Cruel.GameLogic;
 
 namespace Assets.UnityLogic
 {

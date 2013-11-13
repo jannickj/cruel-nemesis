@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.GameLogic;
-using Assets.GameLogic.TurnLogic;
+using Cruel.GameLogic;
+using Cruel.GameLogic.TurnLogic;
 using JSLibrary.Data;
 using UnityEngine;
 using XmasEngineModel.Management;
-using Assets.GameLogic.Events;
-using Assets.GameLogic.Actions;
+using Cruel.GameLogic.Events;
+using Cruel.GameLogic.Actions;
 
 namespace Assets.UnityLogic.Gui
 {

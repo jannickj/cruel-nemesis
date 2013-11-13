@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using Assets.GameLogic.Unit;
+using Cruel.GameLogic.Unit;
 using Assets.UnityLogic.Unit;
 using XmasEngineModel.Management;
-using Assets.GameLogic.Events;
-using Assets.GameLogic.Events.UnitEvents;
-using Assets.GameLogic.Modules;
+using Cruel.GameLogic.Events;
+using Cruel.GameLogic.Events.UnitEvents;
+using Cruel.GameLogic.Modules;
 
 public class UnitViewHandler : MonoBehaviour {
 

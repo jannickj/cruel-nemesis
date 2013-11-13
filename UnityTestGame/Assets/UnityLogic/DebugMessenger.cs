@@ -2,11 +2,11 @@
 using System.Collections;
 using XmasEngineModel;
 using XmasEngineModel.Management;
-using Assets.GameLogic.Events;
+using Cruel.GameLogic.Events;
 using XmasEngineModel.Management.Events;
-using Assets.GameLogic.Actions;
-using Assets.GameLogic.PlayerCommands;
-using Assets.GameLogic.Modules;
+using Cruel.GameLogic.Actions;
+using Cruel.GameLogic.PlayerCommands;
+using Cruel.GameLogic.Modules;
 
 public class DebugMessenger : MonoBehaviour {
 

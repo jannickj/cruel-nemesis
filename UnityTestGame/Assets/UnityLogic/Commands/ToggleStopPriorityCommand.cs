@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.GameLogic.TurnLogic;
+using Cruel.GameLogic.TurnLogic;
 using Assets.UnityLogic.Gui;
-using Assets.GameLogic;
+using Cruel.GameLogic;
 using UnityEngine;
 
 namespace Assets.UnityLogic.Commands

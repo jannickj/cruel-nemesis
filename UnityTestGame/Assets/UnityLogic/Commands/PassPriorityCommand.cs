@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.GameLogic;
-using Assets.GameLogic.Events;
-using Assets.GameLogic.Actions;
+using Cruel.GameLogic;
+using Cruel.GameLogic.Events;
+using Cruel.GameLogic.Actions;
 
 namespace Assets.UnityLogic.Commands
 {

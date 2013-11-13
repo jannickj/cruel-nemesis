@@ -2,18 +2,18 @@
 using System.Collections;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
-using Assets.GameLogic.Unit;
-using Assets.GameLogic.Actions;
+using Cruel.GameLogic.Unit;
+using Cruel.GameLogic.Actions;
 using JSLibrary.Data;
-using Assets.GameLogic.Events;
+using Cruel.GameLogic.Events;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.UnityLogic.Commands;
 using Assets.UnityLogic.Unit;
-using Assets.GameLogic;
+using Cruel.GameLogic;
 using XmasEngineModel;
-using Assets.GameLogic.TurnLogic;
-using Assets.GameLogic.Modules;
+using Cruel.GameLogic.TurnLogic;
+using Cruel.GameLogic.Modules;
 using System;
 using Assets.UnityLogic.Gui.Controls;
 
