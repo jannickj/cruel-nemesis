@@ -72,8 +72,10 @@ namespace Assets.UnityLogic.Gui
                     var selectedPhase = phase;
                     buttonHandler.MouseDownEvent += (sender, evt) =>
                     {
-                        if(this.hasPriority && this.ControllerType == ControllerType.Shared || this.ControllerType == ControllerType.Full)
+                        if (this.hasPriority && this.ControllerType == ControllerType.Shared || this.ControllerType == ControllerType.Full)
+                        {
                             this.PerformCommand(new ToggleStopPriorityCommand(SkipController, selectedPlayer, selectedPhase));
+                        }
                     };
                 }
             }

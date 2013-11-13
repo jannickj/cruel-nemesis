@@ -50,17 +50,16 @@ namespace Assets.UnityLogic
                     ginfo.Portrait = PlayerLogo_Friendly;
                     ginfo.HealthBar = HealthBar_Friendly;
                     ginfo.FocusColor = Color.green;
-                    ginfo.SetSkipPhaseButton(player, StopPhases_Main);
-                    ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Other);
                 }
                 else
                 {
                     ginfo.Portrait = PlayerLogo_Opponent;
                     ginfo.HealthBar = HealthBar_Opponent;
                     ginfo.FocusColor = Color.blue;
-                    ginfo.SetSkipPhaseButton(player, StopPhases_Main);
-                    ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Other);
                 }
+
+                ginfo.SetSkipPhaseButton(player, StopPhases_Main);
+                ginfo.SetSkipPhaseButton(joinedPlayers.First(p => p != player), StopPhases_Other);
 
                 ginfo.SetPhasesGui(Phases);
                 ginfo.SetManaCrystalTypes(ManaCrystalTypes);

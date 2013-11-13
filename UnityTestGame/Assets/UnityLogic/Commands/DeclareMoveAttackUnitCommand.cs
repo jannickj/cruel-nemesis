@@ -41,6 +41,8 @@ namespace Assets.UnityLogic.Commands
 
         public override void Update()
         {
+       
+
             GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
             GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
             UnitEntity attackUnit = null;
@@ -94,10 +96,12 @@ namespace Assets.UnityLogic.Commands
                                         
                     fullroute.AddLast(mousePath);
                     this.lastpos = mousePath.Road.Last.Value;
+                    this.GuiController.GuiView.unDrawRoute(mousePath);
+                    mousePath = default(Path<TileWorld, TilePosition>);
 
                     QueueDelcareAction(this.lastFoundEnemy);
-                    Debug.Log("Enemy " + this.lastFoundEnemy);
                     this.enemySelected = this.lastFoundEnemy != null;
+                    
                     
                     //Finished = true;
                 }
@@ -126,8 +130,8 @@ namespace Assets.UnityLogic.Commands
         private void QueueDelcareAction(UnitEntity attackUnit = null)
         {
             Path<TileWorld, TilePosition> fullpath;
-            if(fullroute.Count == 0)
-                fullpath = new Path<TileWorld,TilePosition>(this.WorldAs<TileWorld>());
+            if (fullroute.Count == 0)
+                fullpath = new Path<TileWorld, TilePosition>(this.WorldAs<TileWorld>());
             else
                 fullpath = new Path<TileWorld, TilePosition>(fullroute);
 
@@ -137,11 +141,10 @@ namespace Assets.UnityLogic.Commands
             else
             {
                 declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath, attackUnit);
-                
+
             }
             this.unitEntity.QueueAction(declareAction);
+
         }
-
-
     }
 }

@@ -29,7 +29,7 @@ namespace Assets.UnityLogic.Gui
             this.guiinfo = guiinfo;
             this.owner = owner;
             this.players = players.ToArray();
-            owner.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => currentPlayersTurn = evt.PlayersTurn));
+            owner.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => currentPlayersTurn = evt.PlayersTurn ));
             owner.EventManager.Register(new Trigger<PhaseChangedEvent>(evt => { lastGainPrio = null; samePriority = 0; curPhase = evt.NewPhase; }));
             owner.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(this.OnPlayerGainPriority));
             
@@ -84,7 +84,7 @@ namespace Assets.UnityLogic.Gui
                 {
                     ICollection<Phases> phases;
 
-                    if(this.autoSkip.TryGetValues(evt.Player,out phases) && phases.Contains(this.curPhase))
+                    if(this.autoSkip.TryGetValues(this.currentPlayersTurn,out phases) && phases.Contains(this.curPhase))
                     {
                         owner.ActionManager.Queue(new PlayerPassPriorityAction(owner));
                     }

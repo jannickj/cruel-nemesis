@@ -37,7 +37,7 @@ namespace Assets.UnityLogic.Gui
             engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerPriority));
             engmodel.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChanged));
-            engmodel.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(OnPlayerDeclare));
+            engmodel.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(evt => evt.Player == this.guiinfo.Player,OnPlayerDeclare));
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChangedEvt));
         }
 
@@ -81,10 +81,11 @@ namespace Assets.UnityLogic.Gui
             {
                 Stack<Color> drawn;
                 Color color;
+                
 
                 if (!drawnSquares.TryGetValue(pos.Point, out drawn) || drawn.Count == 0)
                 {
-                    continue;
+                    color = defaultColor;
                 }
                 else
                 {
@@ -95,6 +96,7 @@ namespace Assets.UnityLogic.Gui
                     else
                         color = drawnSquares[pos.Point].Peek();
                 }
+
                 var terrain = this.engmodel.World.GetEntities(pos).OfType<TerrainEntity>().First();
                 Transform terobj = this.MapHandler[terrain];
                 terobj.renderer.material.color = color;
@@ -115,6 +117,7 @@ namespace Assets.UnityLogic.Gui
                 }
 
                 drawn.Push(roadColor);
+                
 
                 var terrain = this.engmodel.World.GetEntities(pos).OfType<TerrainEntity>().First();
                 Transform terobj = this.MapHandler[terrain];

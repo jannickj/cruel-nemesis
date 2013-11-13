@@ -19,7 +19,8 @@ namespace Cruel.GameLogic
         public Player(GameLibrary lib, Hand hand)
         {
             Library = lib;
-            Library.Owner = this;
+            if(lib!=null)
+                Library.Owner = this;
             Hand = hand;
         }
 

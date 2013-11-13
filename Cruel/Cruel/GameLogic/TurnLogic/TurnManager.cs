@@ -47,7 +47,7 @@ namespace Cruel.GameLogic.TurnLogic
                 PlayerDeclareMoveAttackEvent oldevt;
                 if (moveAttackDeclaration.TryGetValue(evt.Entity, out oldevt) && oldevt.AttackUnit != null)
                 {
-                    evt.AttackUnit.Raise(new UnitDeclaredAsAttacked(evt.AttackUnit, evt.Entity, false));
+                    oldevt.AttackUnit.Raise(new UnitDeclaredAsAttacked(evt.AttackUnit, evt.Entity, false));
                 }
                                 
                 moveAttackDeclaration[evt.Entity] = evt;
