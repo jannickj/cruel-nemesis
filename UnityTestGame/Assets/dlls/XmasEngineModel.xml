@@ -98,7 +98,8 @@
         </member>
         <member name="M:XmasEngineModel.Management.XmasAction.Complete">
             <summary>
-            Calling this indicates to the engine that the action has completed, this method should only be called once and only when the action is truly completed
+            Calling this indicates to the engine that the action has completed, this method should only be called once and only when the action is truly completed.
+            UPDATE: THIS METHOD NO LONGER DOES ANYTHING
             </summary>
         </member>
         <member name="M:XmasEngineModel.Management.XmasAction.RunAction(XmasEngineModel.Management.EnvironmentAction)">
@@ -319,7 +320,7 @@
             <summary>
             Requests the conversion of an XmasObject into an object, only if the ConversionTool the converter is added to is this possible.
             </summary>
-            <exception cref="!:UnconvertableException">Is thrown if conversion was not possible</exception>
+            <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
             <param name="gobj">The XmasObject to be converted</param>
             <returns>The object the XmasObject was converted into</returns>
         </member>
@@ -327,7 +328,7 @@
             <summary>
             Requests the conversion of an object into an XmasObject, only if the ConversionTool the converter is added to is this possible.
             </summary>
-            <exception cref="!:UnconvertableException">Is thrown if conversion was not possible</exception>
+            <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
             <param name="fobj">The object to be converted</param>
             <returns>The XmasObject the object was converted into</returns>
         </member>
@@ -380,7 +381,7 @@
             <summary>
             Attaches the module to an entity
             </summary>
-            <param name="entityHost">The host the module is attached to</param>
+            <param name="Host">The host the module is attached to</param>
             <param name="replacedModule">The module that the new module replaces, is null if no module was replaced</param>
         </member>
         <member name="M:XmasEngineModel.EntityLib.Module.UniversalModule.Detach">
@@ -752,9 +753,8 @@
         </member>
         <member name="M:XmasEngineModel.XmasWorldBuilder.Build">
             <summary>
-            Builds a full world along with all entities added to it
+            Builds a full world along
             </summary>
-            <param name="actman">The action manager of the engine</param>
             <returns>The fully built world</returns>
         </member>
         <member name="T:XmasEngineModel.Management.Events.ActionStartingEvent`1">
@@ -819,7 +819,6 @@
             <summary>
             Creates a specially designed timer that queues its action to the engine when the timer has expired, thus this timer is threadsafe
             </summary>
-            <param name="owner">The action that is owner of the timer</param>
             <param name="action">The action that the timer executes</param>
             <returns>The timer</returns>
         </member>
