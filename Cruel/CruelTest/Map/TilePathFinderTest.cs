@@ -14,7 +14,7 @@ namespace UnityTestGameTest.Map
     public class TilePathFinderTest : EngineTest
     {
         public TilePathFinderTest()
-            : base(new TileWorld(new Size(2, 2)))
+            : base(new TileWorldBuilder(new Size(2, 2)))
         {
 
         }
