@@ -6,7 +6,7 @@ using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Events;
 using XmasEngineModel.Management;
 
-namespace UnityTestGameTest.TestComponents
+namespace CruelTest.TestComponents
 {
     public class MockAbility : Ability
     {

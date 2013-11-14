@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using XmasEngineModel;
 
-namespace UnityTestGameTest.TestComponents
+namespace CruelTest.TestComponents
 {
     public class MockWorld : XmasWorld
     {

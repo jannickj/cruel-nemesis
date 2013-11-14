@@ -5,13 +5,13 @@ using System.Text;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 
-namespace Cruel.GameLogic.Actions
+namespace Cruel.GameLogic.PlayerCommands
 {
-	public class PlayerPassPriorityAction : EnvironmentAction
+	public class PlayerPassPriorityCommand : EnvironmentAction
 	{
         private Player player;
 
-        public PlayerPassPriorityAction(Player player)
+        public PlayerPassPriorityCommand(Player player)
         {
             this.player = player;
         }

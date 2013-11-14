@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using XmasEngineModel;
 using XmasEngineModel.Management;
-using UnityTestGameTest.TestComponents;
+using CruelTest.TestComponents;
 using XmasEngineExtensions.TileExtension;
 
-namespace UnityTestGameTest
+namespace CruelTest
 {
     public class EngineTest : XmasActor
     {

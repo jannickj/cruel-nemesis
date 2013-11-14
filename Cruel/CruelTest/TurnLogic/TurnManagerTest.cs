@@ -8,7 +8,7 @@ using Cruel.GameLogic.Events;
 using Cruel.GameLogic;
 using XmasEngineModel.Management;
 
-namespace UnityTestGameTest.TurnLogic
+namespace CruelTest.TurnLogic
 {
     [TestClass]
     public class TurnManagerTest : EngineTest
@@ -19,7 +19,6 @@ namespace UnityTestGameTest.TurnLogic
         {
             turnman = new TurnManager();
             Engine.AddActor(turnman);
-            turnman.Initialize();
         }
 
         [TestMethod]

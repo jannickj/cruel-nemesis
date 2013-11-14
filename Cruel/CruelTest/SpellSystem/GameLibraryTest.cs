@@ -5,10 +5,10 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cruel.GameLogic.SpellSystem;
 using JSLibrary;
-using UnityTestGameTest.TestComponents;
+using CruelTest.TestComponents;
 using Cruel.GameLogic;
 
-namespace UnityTestGameTest.SpellSystem
+namespace CruelTest.SpellSystem
 {
     [TestClass]
     public class GameLibraryTest : EngineTest

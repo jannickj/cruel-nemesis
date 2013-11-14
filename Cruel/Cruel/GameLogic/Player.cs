@@ -15,6 +15,7 @@ namespace Cruel.GameLogic
         public GameLibrary Library { get; private set; }
         public Hand Hand { get; private set; }
 
+        public Player() : this(null, null) { }
 
         public Player(GameLibrary lib, Hand hand)
         {

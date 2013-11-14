@@ -6,11 +6,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Cruel.GameLogic;
 using Cruel.GameLogic.SpellSystem;
 using JSLibrary;
-using UnityTestGameTest.TestComponents;
+using CruelTest.TestComponents;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 
-namespace UnityTestGameTest.SpellSystem
+namespace CruelTest.SpellSystem
 {
     [TestClass]
     public class PlayerTest : EngineTest

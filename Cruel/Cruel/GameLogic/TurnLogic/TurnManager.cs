@@ -10,10 +10,11 @@ using Cruel.GameLogic.Actions;
 using XmasEngineModel.Management.Actions;
 using Cruel.GameLogic.Unit;
 using Cruel.GameLogic.Events.UnitEvents;
+using XmasEngineModel.EntityLib;
 
 namespace Cruel.GameLogic.TurnLogic
 {
-	public class TurnManager : XmasActor
+	public class TurnManager : XmasUniversal
 	{
         private List<Player> players = new List<Player>();
         private Player playersTurn = null;
@@ -23,15 +24,16 @@ namespace Cruel.GameLogic.TurnLogic
         private Dictionary<UnitEntity, PlayerDeclareMoveAttackEvent> moveAttackDeclaration = new Dictionary<UnitEntity, PlayerDeclareMoveAttackEvent>();
         private int declareStep = 0;
 
-        public void Initialize()
-        {
 
+        public Phases CurrentPhase { get { return this.currentPhase; } }
+
+        protected override void  OnAddedToEngine()
+        {
             this.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoined));
             this.EventManager.Register(new Trigger<PlayerPassedPriorityEvent>(OnPlayerPassedPriority));
             this.EventManager.Register(new Trigger<GameStartEvent>(OnGameStart));
             this.EventManager.Register(new Trigger<PlayerPerformedActionEvent>(OnPlayerPerformedAction));
             this.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(OnPlayerDeclareMoveAttack));
-
         }
 
         private void OnPlayerJoined(PlayerJoinedEvent evt)
@@ -253,7 +255,6 @@ namespace Cruel.GameLogic.TurnLogic
             
         }
 
-        
-        
-	}
+
+    }
 }

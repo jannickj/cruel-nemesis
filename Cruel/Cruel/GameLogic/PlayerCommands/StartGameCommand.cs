@@ -5,9 +5,9 @@ using System.Text;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 
-namespace Cruel.GameLogic.Actions
+namespace Cruel.GameLogic.PlayerCommands
 {
-	public class StartGameAction : EnvironmentAction
+	public class StartGameCommand : EnvironmentAction
 	{
 
         protected override void Execute()

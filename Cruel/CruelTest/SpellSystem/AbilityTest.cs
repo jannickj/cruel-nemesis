@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnityTestGameTest.TestComponents;
+using CruelTest.TestComponents;
 using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Unit;
 using XmasEngineModel.Management;
@@ -11,7 +11,7 @@ using Cruel.GameLogic.Events;
 using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 
-namespace UnityTestGameTest.SpellSystem
+namespace CruelTest.SpellSystem
 {
     [TestClass]
     public class AbilityTest : EngineTest

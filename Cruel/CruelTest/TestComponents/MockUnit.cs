@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Cruel.GameLogic.Unit;
 
-namespace UnityTestGameTest.TestComponents
+namespace CruelTest.TestComponents
 {
     public class MockUnit : UnitEntity
     {

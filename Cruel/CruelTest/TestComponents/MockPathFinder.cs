@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using JSLibrary.Data;
 using Cruel.Library.PathFinding;
 
-namespace UnityTestGameTest.TestComponents
+namespace CruelTest.TestComponents
 {
     public class MockPathFinder : PathFinder<int[,], Point>
     {

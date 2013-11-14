@@ -8,7 +8,7 @@ using JSLibrary.Data;
 using Cruel.GameLogic.Map;
 using Cruel.Library.PathFinding;
 
-namespace UnityTestGameTest.Map
+namespace CruelTest.Map
 {
     [TestClass]
     public class TilePathFinderTest : EngineTest

@@ -184,6 +184,11 @@
             </summary>
             <param name="evt">Event to be raised</param>
         </member>
+        <member name="M:XmasEngineModel.EntityLib.XmasUniversal.OnAddedToEngine">
+            <summary>
+            Is called when the object is added to an engine
+            </summary>
+        </member>
         <member name="M:XmasEngineModel.EntityLib.XmasUniversal.RegisterModule(XmasEngineModel.EntityLib.Module.UniversalModule)">
             <summary>
             Registers a module to an entity, if an entity already has the module attached it will override the old module and return it.

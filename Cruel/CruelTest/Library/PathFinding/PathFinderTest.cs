@@ -3,11 +3,11 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnityTestGameTest.TestComponents;
+using CruelTest.TestComponents;
 using JSLibrary.Data;
 using Cruel.Library.PathFinding;
 
-namespace UnityTestGameTest.Library.PathFinding
+namespace CruelTest.Library.PathFinding
 {
     [TestClass]
     public class PathFinderTest

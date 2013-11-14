@@ -45,8 +45,8 @@
     <Compile Include="GameLogic\Actions\MoveAction.cs" />
     <Compile Include="GameLogic\Actions\MovePathAction.cs" />
     <Compile Include="GameLogic\Actions\PlayerJoinAction.cs" />
-    <Compile Include="GameLogic\Actions\PlayerPassPriorityAction.cs" />
-    <Compile Include="GameLogic\Actions\StartGameAction.cs" />
+    <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
+    <Compile Include="GameLogic\PlayerCommands\StartGameCommand.cs" />
     <Compile Include="GameLogic\Cards\SummonGruntCard.cs" />
     <Compile Include="GameLogic\Events\AbilityResolvesEvent.cs" />
     <Compile Include="GameLogic\Events\AbilityTargetInvalidEvent.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="GameLogic\Modules\MoveModule.cs" />
     <Compile Include="GameLogic\Modules\UnitInfoModule.cs" />
     <Compile Include="GameLogic\Player.cs" />
+    <Compile Include="GameLogic\PlayerCommands\CastCardCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\DeclareMoveAttackCommand.cs" />
     <Compile Include="GameLogic\SpellSystem\Ability.cs" />
     <Compile Include="GameLogic\SpellSystem\CardCollection.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="GameLogic\SpellSystem\Hand.cs" />
     <Compile Include="GameLogic\SpellSystem\ManaType.cs" />
     <Compile Include="GameLogic\SpellSystem\Spell.cs" />
+    <Compile Include="GameLogic\SpellSystem\SpellQueue.cs" />
     <Compile Include="GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
     <Compile Include="GameLogic\TurnLogic\Phases.cs" />
     <Compile Include="GameLogic\TurnLogic\TurnManager.cs" />
