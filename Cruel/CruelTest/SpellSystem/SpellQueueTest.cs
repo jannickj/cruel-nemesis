@@ -74,7 +74,6 @@ namespace CruelTest.SpellSystem
         public void QueueSpell_FirstPlayersTurnOtherPlayerCastSpell_FirstPlayerGetsPriorityFirst()
         {
             Player[] players = generatePlayersAndStartGame(2);
-            Phases currentPhase = this.TurnManager.CurrentPhase;
             MockCard card = new MockCard();
             
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));

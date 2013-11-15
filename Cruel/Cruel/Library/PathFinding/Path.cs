@@ -48,5 +48,10 @@ namespace Cruel.Library.PathFinding
             get { return map; }
         }
 
+        public override string ToString()
+        {
+            var s = String.Concat(this.path.Select(pos => pos.ToString()+", ").ToArray());
+            return "[" + s.Substring(0, s.Length-2) +"]";
+        }
 	}
 }
