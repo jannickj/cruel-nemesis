@@ -9,6 +9,7 @@ using UnityEngine;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic.Actions;
+using Cruel.GameLogic.PlayerCommands;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -86,7 +87,7 @@ namespace Assets.UnityLogic.Gui
 
                     if(this.autoSkip.TryGetValues(this.currentPlayersTurn,out phases) && phases.Contains(this.curPhase))
                     {
-                        owner.ActionManager.Queue(new PlayerPassPriorityAction(owner));
+                        owner.ActionManager.Queue(new PlayerPassPriorityCommand(owner));
                     }
                     else
                         redrawSkips();

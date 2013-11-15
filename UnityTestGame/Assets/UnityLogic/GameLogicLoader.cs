@@ -14,6 +14,7 @@ using Cruel.GameLogic.Unit;
 using Cruel.GameLogic.Modules;
 using Cruel.Map;
 using System.Collections.Generic;
+using Cruel.GameLogic.PlayerCommands;
 
 public class GameLogicLoader : MonoBehaviour {
 
@@ -30,7 +31,7 @@ public class GameLogicLoader : MonoBehaviour {
         //Start turn manager
         TurnManager turnManager = new TurnManager();
         engmodel.AddActor(turnManager);
-        turnManager.Initialize();
+        
 
         engmodel.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
         Player[] players = Settings.LocalPlayers;
@@ -74,7 +75,7 @@ public class GameLogicLoader : MonoBehaviour {
                 Debug.Log("Starting game");
                 gamestarted = true;
                 engmodel.Initialize();
-                engmodel.ActionManager.Queue(new StartGameAction()); 
+                engmodel.ActionManager.Queue(new StartGameCommand()); 
             }
         }
     }

@@ -46,7 +46,7 @@ namespace Assets.UnityLogic.Commands
             GameObject[] gobjs = this.GuiController.GetGameObjectsOnMouse();
             GameObject firstter = gobjs.FirstOrDefault(go => go.gameObject.GetComponent<TerrainInformation>() != null);
             UnitEntity attackUnit = null;
-            if (firstter != null && !enemySelected)
+            if (firstter != null)
             {
                 TerrainInformation terinfo = firstter.GetComponent<TerrainInformation>();
                 TilePosition tilepos = (TilePosition)terinfo.Terrain.Position;
@@ -57,26 +57,37 @@ namespace Assets.UnityLogic.Commands
                     var oldMousePath = mousePath;
                     TilePathFinder path = new TilePathFinder((TileWorld)this.World);
                     mousePoint = tilepos.Point;
+
                     GuiViewHandler view = this.GuiController.GuiView;
                     Path<TileWorld, TilePosition> foundPath;
                     
-                    bool foundpath;
+                    bool hasPath;
                     var entities = this.World.GetEntities(tilepos).OfType<UnitEntity>();
                     attackUnit = entities.FirstOrDefault(ent => ent.Module<UnitInfoModule>().Controller != this.GuiController.GuiInfo.Player);
-
+                    
                     if (attackUnit == null)
                     {
-                        foundpath = path.FindFirst(lastpos, tilepos, out foundPath);
+                        hasPath = path.FindFirst(lastpos, tilepos, out foundPath);
                         this.lastFoundEnemy = null;
                     }
                     else
                     {
-                        Predicate<TilePosition> goalcond = pos => (float)attackUnit.Module<AttackModule>().AttackRange >= new Vector(pos.Point, mousePoint).Distance;
-                        foundpath = path.FindFirst(lastpos, goalcond, pos => new Vector(pos.Point, mousePoint).Distance, out foundPath);
+                        
+                        Predicate<TilePosition> goalcond = pos => 
+                        {
+                            var pointP = pos.Point;
+                            int difx = Math.Abs(pointP.X - mousePoint.X);
+                            int dify = Math.Abs(pointP.Y - mousePoint.Y);
+                            int attackrange = attackUnit.Module<AttackModule>().AttackRange;
+                            return attackrange >= difx && attackrange >= dify;
+                            
+                        };
+                        hasPath = path.FindFirst(lastpos, goalcond, pos => new Vector(pos.Point, mousePoint).Distance, out foundPath);
                         this.lastFoundEnemy = attackUnit;
+                        
                     }
-
-                    if (foundpath)
+                    
+                    if (hasPath)
                     {
                         mousePath = new Path<TileWorld,TilePosition>(foundPath.Map,foundPath.Road.Skip(1));
                     }

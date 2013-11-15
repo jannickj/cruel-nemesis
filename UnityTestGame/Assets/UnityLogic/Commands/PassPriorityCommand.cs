@@ -5,6 +5,7 @@ using System.Text;
 using Cruel.GameLogic;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic.Actions;
+using Cruel.GameLogic.PlayerCommands;
 
 namespace Assets.UnityLogic.Commands
 {
@@ -18,7 +19,7 @@ namespace Assets.UnityLogic.Commands
         }
         public override void Update()
         {
-            this.ActionManager.Queue(new PlayerPassPriorityAction(player));
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(player));
             this.Finished = true;
         }
     }
