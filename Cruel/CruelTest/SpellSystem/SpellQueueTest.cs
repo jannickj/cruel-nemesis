@@ -69,7 +69,7 @@ namespace CruelTest.SpellSystem
         }
 
         [TestMethod]
-        public void QueueSpell_SecondPlayerCastSpellAndPassPriority_FirstPlayerGainsPriorityAndNoSpellsAreResolved()
+        public void QueueSpell_LastPlayerCastSpell_FirstPlayerGainsPriorityAndNoSpellsAreResolved()
         {
             bool spellResolved = false;
             Player[] players = generatePlayersAndStartGame(2);
@@ -83,6 +83,18 @@ namespace CruelTest.SpellSystem
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[1]));
             this.Engine.Update();
 
+
+        }
+
+        [TestMethod]
+        public void QueueSpell_FirstPlayersTurnOtherPlayerCastSpell_FirstPlayerGetsPriorityFirst()
+        {
+
+        }
+
+        [TestMethod]
+        public void SpellResolving_SpellTriggersAnAbilityAndGetPutOnQueue_StackIsEmptyBeforePriorityIsGiven()
+        {
 
         }
 
