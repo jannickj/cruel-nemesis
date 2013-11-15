@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.SpellSystem;
+using Cruel.GameLogic.Events;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
@@ -14,14 +15,13 @@ namespace Cruel.GameLogic.PlayerCommands
 
         public CastCardCommand(Player castingPlayer, GameCard card)
         {
-            // TODO: Complete member initialization
             this.castingPlayer = castingPlayer;
             this.card = card;
         }
 
         protected override void Execute()
         {
-            throw new NotImplementedException();
+            this.EventManager.Raise(new EnqueueAbilityEvent(card.ConstructSpell()));
         }
     }
 }

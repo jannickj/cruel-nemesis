@@ -36,9 +36,12 @@ namespace Cruel.GameLogic.SpellSystem
         }
 
         protected override void Execute()
-        {  
+        {
             if (targetsRemaining && conditionsTrue())
+            {
                 FireAbility();
+                this.EventManager.Raise(new AbilityResolvesEvent());
+            }
             else
                 this.EventManager.Raise(new AbilityTargetInvalidEvent());
         }
