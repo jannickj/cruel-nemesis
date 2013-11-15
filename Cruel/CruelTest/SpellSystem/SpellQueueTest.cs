@@ -10,6 +10,8 @@ using Cruel.GameLogic.PlayerCommands;
 using Cruel.GameLogic;
 using Cruel.GameLogic.TurnLogic;
 using Cruel.GameLogic.Actions;
+using XmasEngineModel.Management;
+using Cruel.GameLogic.Events;
 
 namespace CruelTest.SpellSystem
 {
@@ -69,19 +71,23 @@ namespace CruelTest.SpellSystem
         }
 
         [TestMethod]
-        public void QueueSpell_LastPlayerCastSpell_FirstPlayerGainsPriorityAndNoSpellsAreResolved()
+        public void QueueSpell_FirstPlayersTurnOtherPlayerCastSpell_FirstPlayerGetsPriorityFirst()
         {
-            bool spellResolved = false;
             Player[] players = generatePlayersAndStartGame(2);
             Phases currentPhase = this.TurnManager.CurrentPhase;
             MockCard card = new MockCard();
-            card.AddSpellAction(_ => spellResolved = true);
-
-            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
             
-            this.ActionManager.Queue(new CastCardCommand(players[1], card));
-            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[1]));
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
             this.Engine.Update();
+            bool firstPlayerGainPrioOnCast = false;
+            bool secondPlayerGainPrioOnCast = false;
+            this.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => firstPlayerGainPrioOnCast = players[0] == evt.Player));
+            this.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => secondPlayerGainPrioOnCast = players[1] == evt.Player));
+            this.ActionManager.Queue(new CastCardCommand(players[1], card));
+            this.Engine.Update();
+
+            Assert.IsTrue(firstPlayerGainPrioOnCast);
+            Assert.IsFalse(secondPlayerGainPrioOnCast);
 
 
         }
