@@ -26,6 +26,8 @@ namespace Cruel.GameLogic.TurnLogic
 
 
         public Phases CurrentPhase { get { return this.currentPhase; } }
+        public Player PlayersTurn { get { return this.playersTurn; } }
+        public Player PlayerWithPriority { get { return this.playerWithPriority; } }
 
         protected override void  OnAddedToEngine()
         {

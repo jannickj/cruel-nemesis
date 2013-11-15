@@ -87,12 +87,6 @@ namespace CruelTest.SpellSystem
         }
 
         [TestMethod]
-        public void QueueSpell_FirstPlayersTurnOtherPlayerCastSpell_FirstPlayerGetsPriorityFirst()
-        {
-
-        }
-
-        [TestMethod]
         public void SpellResolving_SpellTriggersAnAbilityAndGetPutOnQueue_StackIsEmptyBeforePriorityIsGiven()
         {
 
