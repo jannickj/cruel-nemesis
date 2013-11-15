@@ -13,7 +13,7 @@ namespace Cruel.GameLogic.SpellSystem
         private Stack<Ability> stack = new Stack<Ability>();
         public IEnumerable<Ability> Unresolved { get {return stack;} }
 
-        public AbilityManager()
+        protected override void OnAddedToEngine()
         {
             this.EventManager.Register(new Trigger<EnqueueAbilityEvent>(evt => stack.Push(evt.Ability)));
         }
