@@ -53,7 +53,7 @@
     <Compile Include="SpellSystem\CardTest.cs" />
     <Compile Include="SpellSystem\GameLibraryTest.cs" />
     <Compile Include="SpellSystem\PlayerTest.cs" />
-    <Compile Include="SpellSystem\SpellQueueTest.cs" />
+    <Compile Include="SpellSystem\AbilityManagerTest.cs" />
     <Compile Include="SpellSystem\SpellTest.cs" />
     <Compile Include="TestComponents\MockAbility.cs" />
     <Compile Include="TestComponents\MockCard.cs" />

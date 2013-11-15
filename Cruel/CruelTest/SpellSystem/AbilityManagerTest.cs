@@ -16,15 +16,15 @@ using Cruel.GameLogic.Events;
 namespace CruelTest.SpellSystem
 {
     [TestClass]
-    public class SpellQueueTest : EngineTest
+    public class AbilityManagerTest : EngineTest
     {
-        private SpellQueue SpellQueue { get; set; }
+        private AbilityManager AbilityManager { get; set; }
         private TurnManager TurnManager { get; set; }
 
-        public SpellQueueTest()
+        public AbilityManagerTest()
         {
-            SpellQueue = new SpellQueue();
-            this.Engine.AddActor(SpellQueue);
+            AbilityManager = new AbilityManager();
+            this.Engine.AddActor(AbilityManager);
             TurnManager = new TurnManager();
             this.Engine.AddActor(TurnManager);
         }
@@ -38,7 +38,7 @@ namespace CruelTest.SpellSystem
             this.ActionManager.Queue(new CastCardCommand(castingPlayer, card));
             this.Engine.Update();
 
-            IEnumerable<Ability> unresolved = SpellQueue.Unresolved;
+            IEnumerable<Ability> unresolved = AbilityManager.Unresolved;
             int expectedCount = 1;
             int actualCount = unresolved.Count();
             Assert.AreEqual(expectedCount, actualCount);
@@ -95,7 +95,19 @@ namespace CruelTest.SpellSystem
         [TestMethod]
         public void SpellResolving_SpellTriggersAnAbilityAndGetPutOnQueue_StackIsEmptyBeforePriorityIsGiven()
         {
-
+            bool correctPlayerHasPriority = false;
+            Player[] players = generatePlayersAndStartGame(2);
+            Phases currentPhase = this.TurnManager.CurrentPhase;
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
+            this.Engine.Update();
+            MockAbility triggeredAbility = new MockAbility(() => { });
+            triggeredAbility.Resolved += (_, _2) => correctPlayerHasPriority = (TurnManager.PlayerWithPriority == players[1]);
+            MockCard card = new MockCard();
+            card.AddSpellAction(_ => this.ActionManager.Queue(new FireAbilityAction(triggeredAbility)));
+            this.ActionManager.Queue(new CastCardCommand(players[1], card));
+            this.Engine.Update();
+            this.Engine.Update();
+            Assert.IsTrue(correctPlayerHasPriority);
         }
 
         private Player[] generatePlayersAndStartGame(int count)

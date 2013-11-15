@@ -42,9 +42,11 @@
   <ItemGroup>
     <Compile Include="GameLogic\Actions\AttackUnitAction.cs" />
     <Compile Include="GameLogic\Actions\DealDamageToUnitAction.cs" />
+    <Compile Include="GameLogic\Actions\FireAbilityAction.cs" />
     <Compile Include="GameLogic\Actions\MoveAction.cs" />
     <Compile Include="GameLogic\Actions\MovePathAction.cs" />
     <Compile Include="GameLogic\Actions\PlayerJoinAction.cs" />
+    <Compile Include="GameLogic\Events\EnqueueAbilityEvent.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\StartGameCommand.cs" />
     <Compile Include="GameLogic\Cards\SummonGruntCard.cs" />
@@ -93,7 +95,7 @@
     <Compile Include="GameLogic\SpellSystem\Hand.cs" />
     <Compile Include="GameLogic\SpellSystem\ManaType.cs" />
     <Compile Include="GameLogic\SpellSystem\Spell.cs" />
-    <Compile Include="GameLogic\SpellSystem\SpellQueue.cs" />
+    <Compile Include="GameLogic\SpellSystem\AbilityManager.cs" />
     <Compile Include="GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
     <Compile Include="GameLogic\TurnLogic\Phases.cs" />
     <Compile Include="GameLogic\TurnLogic\TurnManager.cs" />
