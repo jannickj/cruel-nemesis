@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="GameLogic\Actions\AttackUnitAction.cs" />
     <Compile Include="GameLogic\Actions\DealDamageToUnitAction.cs" />
+    <Compile Include="GameLogic\Actions\DrawCardAction.cs" />
     <Compile Include="GameLogic\Actions\FireAbilityAction.cs" />
     <Compile Include="GameLogic\Actions\MoveAction.cs" />
     <Compile Include="GameLogic\Actions\MovePathAction.cs" />

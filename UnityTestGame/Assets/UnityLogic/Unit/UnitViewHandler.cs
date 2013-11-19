@@ -58,9 +58,9 @@ public class UnitViewHandler : MonoBehaviour {
     private void setFrame(Frame f)
     {
         
-        this.renderer.sharedMaterial.SetTexture("_MainTex", f.Texture);
-        this.renderer.sharedMaterial.SetTextureOffset("_MainTex", f.OffSet);
-        this.renderer.sharedMaterial.SetTextureScale("_MainTex", f.Size);
+        this.renderer.material.SetTexture("_MainTex", f.Texture);
+        this.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
+        this.renderer.material.SetTextureScale("_MainTex", f.Size);
     }
 
     public void UpdateFrame()

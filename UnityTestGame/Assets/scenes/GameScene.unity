@@ -218,11 +218,11 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
   m_PrefabInternal: {fileID: 1101793126}
   m_GameObject: {fileID: 101157467}
-  m_LocalRotation: {x: -5.85446358e-08, y: -.933205009, z: -.359344423, w: 1.52038396e-07}
-  m_LocalPosition: {x: -9.51327877e-07, y: -9.01386738, z: 8.18381214}
+  m_LocalRotation: {x: 6.35514766e-07, y: -4.20711439e-15, z: -5.55311285e-15, w: -1}
+  m_LocalPosition: {x: -0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 577934306}
 --- !u!1 &109938340
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +335,7 @@ MonoBehaviour:
   MapHandler: {fileID: 1513248591}
   Engine: {fileID: 326927666}
   Settings: {fileID: 412707700}
+  CardTemplate: {fileID: 400000, guid: a2dc6cb3e708a4646be2e01e28f0a825, type: 2}
   PlayerLogo_Friendly: {fileID: 166209100}
   HealthBar_Friendly: {fileID: 228194537}
   PlayerLogo_Opponent: {fileID: 552535308}
@@ -1544,7 +1545,8 @@ Transform:
   m_LocalRotation: {x: 5.85445399e-08, y: .933205307, z: .359343857, w: -1.52038439e-07}
   m_LocalPosition: {x: -9.51327934e-07, y: -9.01386738, z: 8.18381214}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 101157469}
   m_Father: {fileID: 0}
 --- !u!1001 &579032212
 Prefab:
@@ -2151,35 +2153,35 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 577934306}
     m_Modifications:
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.51327877e-07
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -9.01386738
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 8.18381214
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -5.85446358e-08
+      value: 6.35514766e-07
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -.933205009
+      value: -4.20711439e-15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.359344423
+      value: -5.55311285e-15
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1.52038396e-07
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3732b5046f151384bbbecccbe55c1ba8, type: 2}
@@ -3324,6 +3326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040065dcc2ff6a742bfb7669ae6b9bd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CardsToStartWith: 5
   Engine: {fileID: 326927666}
   Settings: {fileID: 412707700}
 --- !u!1 &1997481656

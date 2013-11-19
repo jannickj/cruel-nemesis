@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using XmasEngineModel.Management;
+using Cruel.GameLogic.SpellSystem;
 
 namespace Cruel.GameLogic.Events
 {
     public class CardDrawnEvent : XmasEvent
 	{
-        private Player player;
-        public CardDrawnEvent(Player player)
+        public Player Player { get; private set; }
+        public GameCard DrawnCard { get; private set; }
+        public CardDrawnEvent(Player player, GameCard drawnCard)
         {
-            this.player = player;
+            this.Player = player;
+            this.DrawnCard = drawnCard;
         }
 	}
 }

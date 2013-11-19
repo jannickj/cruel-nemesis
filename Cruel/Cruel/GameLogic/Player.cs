@@ -27,8 +27,13 @@ namespace Cruel.GameLogic
 
         public void Draw(int number)
         {
-            this.EventManager.Raise(new CardDrawnEvent(this));
-            Hand.Add(Library.Draw(number));
+            var cards = Library.Draw(number);
+            foreach (GameCard card in cards)
+            {
+                this.EventManager.Raise(new CardDrawnEvent(this, card));
+                Hand.Add(new GameCard[]{card});
+            }
+            
         }
 
         public void Discard(int index)

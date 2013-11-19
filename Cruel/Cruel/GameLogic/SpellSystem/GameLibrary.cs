@@ -5,6 +5,7 @@ using System.Text;
 using JSLibrary;
 using XmasEngineModel.EntityLib;
 using Cruel.GameLogic.Events.UnitEvents;
+using Cruel.GameLogic.Events;
 
 namespace Cruel.GameLogic.SpellSystem
 {
@@ -16,7 +17,9 @@ namespace Cruel.GameLogic.SpellSystem
 
         public GameCard Draw()
         {
-            return TakeCards(1)[0];
+            var card = TakeCards(1)[0];
+            
+            return card;
         }
 
         public List<GameCard> Draw(int count)

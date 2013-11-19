@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Cruel.GameLogic;
 using UnityEngine;
+using Cruel.GameLogic.SpellSystem;
+using Assets.UnityLogic.Game.Cards;
 
 namespace Assets.UnityLogic
 {
@@ -32,12 +34,19 @@ namespace Assets.UnityLogic
         void Start()
         {
             UnityEngine.Object.DontDestroyOnLoad(this);
-            Player p = new Player(null,null);
+
+            var cardspawner = Enumerable.Repeat<Func<GameCard>>(() => new BloodwyrmSpawnCard(), 30).Select(genCard => genCard());
+
+            var p1lib = new GameLibrary();
+            
+            p1lib.Add(cardspawner);
+            Player p = new Player(p1lib,new Hand());
             p.Name = "player 1";
             this.mainPlayer = p;
             this.AddPlayer(p);
-
-            p = new Player(null,null);
+            var p2lib = new GameLibrary();
+            p2lib.Add(cardspawner);
+            p = new Player(p2lib,new Hand());
             p.Name = "player 2";
             this.AddPlayer(p);
             

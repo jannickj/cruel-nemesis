@@ -13,6 +13,7 @@ using Cruel.Library.PathFinding;
 using Cruel.Map.Terrain;
 using Cruel.GameLogic.TurnLogic;
 using JSLibrary.Data;
+using Assets.UnityLogic.Game.Modules;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -39,12 +40,24 @@ namespace Assets.UnityLogic.Gui
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChanged));
             engmodel.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(evt => evt.Player == this.guiinfo.Player,OnPlayerDeclare));
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChangedEvt));
+            engmodel.EventManager.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == this.guiinfo.Player, OnPlayerDrawCard));
         }
 
 
         void Update()
         {
 
+        }
+
+        private void OnPlayerDrawCard(CardDrawnEvent evt)
+        {
+            var cardobj = (Transform)GameObject.Instantiate(this.guiinfo.CardTemplate);
+
+            var cardhandler = cardobj.gameObject.AddComponent<CardViewHandler>();
+            var card = evt.DrawnCard;
+            Texture tex = TextureDictionary.GetTexture("cards_"+card.Module<GraphicsModule>().TextureId);
+            cardhandler.Texture = tex;
+            cardhandler.Card = card;
         }
 
         public void OnPhaseChangedEvt(PhaseChangedEvent evt)

@@ -18,6 +18,7 @@ using Cruel.GameLogic.PlayerCommands;
 
 public class GameLogicLoader : MonoBehaviour {
 
+    public int CardsToStartWith = 5;
     public EngineHandler Engine;
     private bool gamestarted = false;
     private XmasModel engmodel;
@@ -75,7 +76,9 @@ public class GameLogicLoader : MonoBehaviour {
                 Debug.Log("Starting game");
                 gamestarted = true;
                 engmodel.Initialize();
-                engmodel.ActionManager.Queue(new StartGameCommand()); 
+                engmodel.ActionManager.Queue(new StartGameCommand());
+                engmodel.ActionManager.Queue(new DrawCardAction(players[0], CardsToStartWith));
+                engmodel.ActionManager.Queue(new DrawCardAction(players[1], CardsToStartWith));
             }
         }
     }
