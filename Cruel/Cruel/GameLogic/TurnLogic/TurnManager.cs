@@ -36,6 +36,12 @@ namespace Cruel.GameLogic.TurnLogic
             this.EventManager.Register(new Trigger<GameStartEvent>(OnGameStart));
             this.EventManager.Register(new Trigger<PlayerPerformedActionEvent>(OnPlayerPerformedAction));
             this.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(OnPlayerDeclareMoveAttack));
+            this.EventManager.Register(new Trigger<ResetPrioritiesEvent>(OnResetPriorities));
+        }
+
+        private void OnResetPriorities(ResetPrioritiesEvent evt)
+        {
+            this.ResetPriority();
         }
 
         private void OnPlayerJoined(PlayerJoinedEvent evt)
@@ -234,7 +240,8 @@ namespace Cruel.GameLogic.TurnLogic
 
         private void ResetPriority()
         {
-            
+            this.priorityQueue.Clear();
+
             foreach (Player p in players)
             {
                 if (p != playersTurn)
