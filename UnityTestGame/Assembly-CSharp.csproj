@@ -50,6 +50,8 @@
      <Compile Include="Assets\UnityLogic\Commands\ToggleStopPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\GUIButtonHandler.cs" />
