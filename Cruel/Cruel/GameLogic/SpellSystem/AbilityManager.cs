@@ -16,6 +16,13 @@ namespace Cruel.GameLogic.SpellSystem
         protected override void OnAddedToEngine()
         {
             this.EventManager.Register(new Trigger<EnqueueAbilityEvent>(evt => stack.Push(evt.Ability)));
+            this.EventManager.Register(new Trigger<PhaseChangingEvent>(OnPhaseChange));
+        }
+
+        private void OnPhaseChange(PhaseChangingEvent evt)
+        {
+            if (stack.Count != 0)
+                evt.SetPreventPhase();
         }
     }
 }
