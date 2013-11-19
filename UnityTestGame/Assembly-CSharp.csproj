@@ -75,6 +75,8 @@
      <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
+     <None Include="Assets\dlls\XmasEngineModel.xml" />
+     <None Include="Assets\dlls\JSLibrary.xml" />
      <None Include="Assets\dlls\XmasEngineView.xml" />
  <Reference Include="Cruel">
  <HintPath>Assets\dlls\Cruel.dll</HintPath>

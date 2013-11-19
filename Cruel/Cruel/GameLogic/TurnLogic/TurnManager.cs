@@ -208,6 +208,15 @@ namespace Cruel.GameLogic.TurnLogic
         private Phases GetNextPhase( out bool phaseReset)
         {
             Phases next;
+            var evt = new PhaseChangingEvent();
+            this.EventManager.Raise(evt);
+
+            if (evt.PreventedPhaseChange)
+            {
+                phaseReset = false;
+                return currentPhase;
+            }
+
             if (currentPhase == Phases.End)
             {
                 phaseReset = true;

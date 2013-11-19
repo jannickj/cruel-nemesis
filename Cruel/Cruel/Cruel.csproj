@@ -47,6 +47,7 @@
     <Compile Include="GameLogic\Actions\MovePathAction.cs" />
     <Compile Include="GameLogic\Actions\PlayerJoinAction.cs" />
     <Compile Include="GameLogic\Events\EnqueueAbilityEvent.cs" />
+    <Compile Include="GameLogic\Events\PhaseChangingEvent.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\StartGameCommand.cs" />
     <Compile Include="GameLogic\Cards\SummonGruntCard.cs" />

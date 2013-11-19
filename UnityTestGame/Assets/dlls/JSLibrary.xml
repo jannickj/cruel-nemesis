@@ -4,6 +4,36 @@
         <name>JSLibrary</name>
     </assembly>
     <members>
+        <member name="M:JSLibrary.ExtendedString.ToStream(System.String)">
+            <summary>
+            Converts a string to a stream
+            </summary>
+            <param name="str">The string to be converted</param>
+            <returns></returns>
+        </member>
+        <member name="M:JSLibrary.Generics.InstantiateGenericClass(System.Type,System.Type[],System.Object[])">
+            <summary>
+            Instantiates a generic class, such as GenericClass&lt;A,B,C&gt;
+            </summary>
+            <param name="generic">type of the generic class</param>
+            <param name="subtypes">the subtypes such as the A, B and C</param>
+            <param name="constructorInput">Input given to the constructor of the class</param>
+        </member>
+        <member name="T:JSLibrary.Network.PacketStream">
+            <summary>
+            A stream designed specially for sending and recieving data in forms of packages
+            </summary>
+        </member>
+        <member name="M:JSLibrary.Network.PacketStream.ReadNextPackage">
+            <summary>
+            Causes the stream to read the next package on the stream
+            </summary>
+        </member>
+        <member name="M:JSLibrary.Network.PacketStream.Flush">
+            <summary>
+            causes the stream to send out the data stored as a package
+            </summary>
+        </member>
         <member name="T:JSLibrary.Parallel">
             <summary>
             Class that provides minor parallel functionallity
@@ -37,36 +67,6 @@
             <param name="action">The action being executed</param>
             <param name="intervalMiliSec">The time between the condition checks</param>
             <param name="ThreadAbortCondition">The condition for aborting the thread, if satisfied the thread is stopped</param>
-        </member>
-        <member name="M:JSLibrary.ExtendedString.ToStream(System.String)">
-            <summary>
-            Converts a string to a stream
-            </summary>
-            <param name="str">The string to be converted</param>
-            <returns></returns>
-        </member>
-        <member name="M:JSLibrary.Generics.InstantiateGenericClass(System.Type,System.Type[],System.Object[])">
-            <summary>
-            Instantiates a generic class, such as GenericClass&lt;A,B,C&gt;
-            </summary>
-            <param name="generic">type of the generic class</param>
-            <param name="subtypes">the subtypes such as the A, B and C</param>
-            <param name="constructorInput">Input given to the constructor of the class</param>
-        </member>
-        <member name="T:JSLibrary.Network.PacketStream">
-            <summary>
-            A stream designed specially for sending and recieving data in forms of packages
-            </summary>
-        </member>
-        <member name="M:JSLibrary.Network.PacketStream.ReadNextPackage">
-            <summary>
-            Causes the stream to read the next package on the stream
-            </summary>
-        </member>
-        <member name="M:JSLibrary.Network.PacketStream.Flush">
-            <summary>
-            causes the stream to send out the data stored as a package
-            </summary>
         </member>
     </members>
 </doc>
