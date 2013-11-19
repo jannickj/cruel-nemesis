@@ -97,6 +97,9 @@
     <Compile Include="GameLogic\SpellSystem\GameCard.cs" />
     <Compile Include="GameLogic\SpellSystem\GameLibrary.cs" />
     <Compile Include="GameLogic\SpellSystem\Hand.cs" />
+    <Compile Include="GameLogic\SpellSystem\Mana.cs" />
+    <Compile Include="GameLogic\SpellSystem\ManaCrystal.cs" />
+    <Compile Include="GameLogic\SpellSystem\ManaStorage.cs" />
     <Compile Include="GameLogic\SpellSystem\ManaType.cs" />
     <Compile Include="GameLogic\SpellSystem\Spell.cs" />
     <Compile Include="GameLogic\SpellSystem\AbilityManager.cs" />

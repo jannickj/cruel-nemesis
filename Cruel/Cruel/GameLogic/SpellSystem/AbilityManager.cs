@@ -5,6 +5,7 @@ using System.Text;
 using XmasEngineModel.EntityLib;
 using Cruel.GameLogic.Events;
 using XmasEngineModel.Management;
+using Cruel.GameLogic.Actions;
 
 namespace Cruel.GameLogic.SpellSystem
 {
@@ -16,6 +17,19 @@ namespace Cruel.GameLogic.SpellSystem
         protected override void OnAddedToEngine()
         {
             this.EventManager.Register(new Trigger<EnqueueAbilityEvent>(evt => stack.Push(evt.Ability)));
+            this.EventManager.Register(new Trigger<PhaseChangingEvent>(OnPhaseChange));
         }
+
+        private void OnPhaseChange(PhaseChangingEvent evt)
+        {
+            if (StackNotEmpty())
+            {
+                evt.SetPreventPhase();
+                while (StackNotEmpty())
+                    this.ActionManager.Queue(new FireAbilityAction(stack.Pop()));
+            }
+        }
+
+        private bool StackNotEmpty() { return stack.Count != 0; }
     }
 }

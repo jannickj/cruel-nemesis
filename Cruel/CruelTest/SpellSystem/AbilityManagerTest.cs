@@ -71,6 +71,32 @@ namespace CruelTest.SpellSystem
         }
 
         [TestMethod]
+        public void ResolveStack_StackIsEmptiedAndBothPlayersPass_PhaseIsChanged()
+        {
+            bool mustResolve = false;
+            bool mustResolveAswell = false;
+            Player[] players = generatePlayersAndStartGame(2);
+            Phases currentPhase = this.TurnManager.CurrentPhase;
+
+            MockCard card1 = new MockCard();
+            card1.AddSpellAction(_ => mustResolveAswell = true);
+            MockCard card2 = new MockCard();
+            card2.AddSpellAction(_ => mustResolve = true);
+
+            this.ActionManager.Queue(new CastCardCommand(players[0], card1));
+            this.ActionManager.Queue(new CastCardCommand(players[0], card2));
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[1]));
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
+            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[1]));
+            this.Engine.Update();
+
+            Phases actualPhase = this.TurnManager.CurrentPhase;
+
+            Assert.AreNotEqual(currentPhase, actualPhase);
+        }
+
+        [TestMethod]
         public void QueueSpell_FirstPlayersTurnOtherPlayerCastSpell_FirstPlayerGetsPriorityFirst()
         {
             Player[] players = generatePlayersAndStartGame(2);
@@ -90,24 +116,6 @@ namespace CruelTest.SpellSystem
             Assert.IsFalse(secondPlayerGainPrioOnCast);
 
 
-        }
-
-        [TestMethod]
-        public void SpellResolving_SpellTriggersAnAbilityAndGetPutOnQueue_StackIsEmptyBeforePriorityIsGiven()
-        {
-            bool correctPlayerHasPriority = false;
-            Player[] players = generatePlayersAndStartGame(2);
-            Phases currentPhase = this.TurnManager.CurrentPhase;
-            this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
-            this.Engine.Update();
-            MockAbility triggeredAbility = new MockAbility(() => { });
-            triggeredAbility.Resolved += (_, _2) => correctPlayerHasPriority = (TurnManager.PlayerWithPriority == players[1]);
-            MockCard card = new MockCard();
-            card.AddSpellAction(_ => this.ActionManager.Queue(new FireAbilityAction(triggeredAbility)));
-            this.ActionManager.Queue(new CastCardCommand(players[1], card));
-            this.Engine.Update();
-            this.Engine.Update();
-            Assert.IsTrue(correctPlayerHasPriority);
         }
 
         private Player[] generatePlayersAndStartGame(int count)

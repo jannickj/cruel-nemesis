@@ -5,6 +5,7 @@ using System.Text;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Events;
+using Cruel.GameLogic.Actions;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
@@ -22,6 +23,7 @@ namespace Cruel.GameLogic.PlayerCommands
         protected override void Execute()
         {
             this.EventManager.Raise(new EnqueueAbilityEvent(card.ConstructSpell()));
+            this.RunAction(new ResetPrioritiesAction());
         }
     }
 }
