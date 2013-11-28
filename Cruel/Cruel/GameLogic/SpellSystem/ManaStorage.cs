@@ -13,7 +13,7 @@ namespace CruelTest.SpellSystem
 {
     public class ManaStorage : XmasUniversal
     {
-        private DictionaryList<Mana, ManaCrystal> manaCrystals = new DictionaryList<Mana, ManaCrystal>();
+        private Dictionary<Mana, List<ManaCrystal>> manaCrystals = new Dictionary<Mana, List<ManaCrystal>>();
         private Player owner;
 
         public Player Owner
@@ -24,17 +24,27 @@ namespace CruelTest.SpellSystem
 
         protected override void OnAddedToEngine()
         {
-            //this.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => );
+            this.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
         }
 
         public void AddCrystal(Cruel.GameLogic.SpellSystem.Mana mana)
         {
-            throw new NotImplementedException();
+            if (!manaCrystals.ContainsKey(mana))
+                manaCrystals.Add(mana, new List<ManaCrystal>());
+            manaCrystals[mana].Add(new ManaCrystal(mana));                
         }
 
         public bool IsCharged(Mana mana, int p)
         {
-            throw new NotImplementedException();
+            return manaCrystals[mana][p].IsCharged;
+        }
+
+        private void OnTurnChanged(PlayersTurnChangedEvent evt)
+        {
+            if (evt.PlayersTurn == owner)
+                foreach (List<ManaCrystal> l in manaCrystals.Values)
+                    foreach (ManaCrystal m in l)
+                        m.Charge();
         }
     }
 }
