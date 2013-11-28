@@ -74,6 +74,11 @@ namespace Assets.UnityLogic
 
                 guiview.Initialize();
 
+                gobj.AddComponent<GuiHandViewHandler>();
+                var handview = gobj.GetComponent<GuiHandViewHandler>();
+                handview.Initialize(Camera.main, 0.5f, 0.5f, 0.25f, 0.25f, Engine.EngineModel.EventManager, player, CardTemplate);
+
+
                 if (Settings.LocalPlayers.Any(p => p == player))
                 {
                     gobj.AddComponent<GuiController>();

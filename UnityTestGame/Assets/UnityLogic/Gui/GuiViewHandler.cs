@@ -51,13 +51,13 @@ namespace Assets.UnityLogic.Gui
 
         private void OnPlayerDrawCard(CardDrawnEvent evt)
         {
-            var cardobj = (Transform)GameObject.Instantiate(this.guiinfo.CardTemplate);
+            //var cardobj = (Transform)GameObject.Instantiate(this.guiinfo.CardTemplate);
 
-            var cardhandler = cardobj.gameObject.AddComponent<CardViewHandler>();
-            var card = evt.DrawnCard;
-            Texture tex = TextureDictionary.GetTexture("cards_"+card.Module<GraphicsModule>().TextureId);
-            cardhandler.Texture = tex;
-            cardhandler.Card = card;
+            //var cardhandler = cardobj.gameObject.AddComponent<CardViewHandler>();
+            //var card = evt.DrawnCard;
+            //Texture tex = TextureDictionary.GetTexture("cards_"+card.Module<GraphicsModule>().TextureId);
+            //cardhandler.Texture = tex;
+            //cardhandler.Card = card;
         }
 
         public void OnPhaseChangedEvt(PhaseChangedEvent evt)

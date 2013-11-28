@@ -7,25 +7,10 @@ using JSLibrary.Data;
 
 namespace Assets.UnityLogic.Unit
 {
-    public class HealthbarView : MonoBehaviour
+    public class HealthbarView : SpriteView
 	{
 
 
-        void Update()
-        {
-            Camera m_Camera = Camera.main;
-            //var rot = transform.rotation;
-            
-            //transform.LookAt(m_Camera.transform);
-            //var newrot = transform.rotation;
-            //var fixedrot = new Quaternion(newrot.x, rot.y, rot.z, rot.w);
-            //transform.rotation = fixedrot;
-            //transform.Rotate(90, 0, 0);
-
-            transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.back,
-            m_Camera.transform.rotation * Vector3.up);
-            transform.Rotate(90, 0, 0);
-        }
 
         public void SetPosition(Point p)
         {
