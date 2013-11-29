@@ -112,7 +112,11 @@ namespace Cruel.GameLogic.TurnLogic
 
         private void SetPriority(Player p)
         {
+            if(this.playerWithPriority != null)
+                this.playerWithPriority.HasPriority = false;
             this.playerWithPriority = p;
+            if(p!=null)
+                p.HasPriority = true;
             this.EventManager.Raise(new PlayerGainedPriorityEvent(p));
         }
 

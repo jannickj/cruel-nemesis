@@ -16,8 +16,8 @@ namespace Assets.UnityLogic
         public MapHandler MapHandler;
         public EngineHandler Engine;
         public GlobalGameSettings Settings;
+        public UnityFactory Factory;
 
-        public Transform CardTemplate;
         public GUITexture PlayerLogo_Friendly;
         public GUITexture HealthBar_Friendly;
 
@@ -46,7 +46,6 @@ namespace Assets.UnityLogic
                 var pgui = this.guiLookup[player];
                 var ginfo = pgui.Value;
                 var gobj = pgui.Key;
-                ginfo.CardTemplate = this.CardTemplate;
 
                 if (Settings.MainPlayer == player)
                 {
@@ -76,7 +75,8 @@ namespace Assets.UnityLogic
 
                 gobj.AddComponent<GuiHandViewHandler>();
                 var handview = gobj.GetComponent<GuiHandViewHandler>();
-                handview.Initialize(Camera.main, 0.5f, 0.5f, 0.25f, 0.25f, Engine.EngineModel.EventManager, player, CardTemplate);
+                handview.Factory = Factory;
+                handview.Initialize(Camera.main, 0.5f, 0.5f, 0.25f, 0.25f, Engine.EngineModel.EventManager, player);
 
 
                 if (Settings.LocalPlayers.Any(p => p == player))

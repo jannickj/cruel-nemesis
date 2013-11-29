@@ -13,17 +13,45 @@ namespace Cruel.GameLogic.PlayerCommands
     {
         private Player castingPlayer;
         private GameCard card;
+        private IEnumerable<IEnumerable<object>> targets;
+
 
         public CastCardCommand(Player castingPlayer, GameCard card)
+            : this(castingPlayer, card, new IEnumerable<object>[0])
+        {
+
+        }
+
+        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<IEnumerable<object>> targets)
         {
             this.castingPlayer = castingPlayer;
             this.card = card;
+            this.targets = targets;
         }
 
         protected override void Execute()
         {
-            this.EventManager.Raise(new EnqueueAbilityEvent(card.ConstructSpell()));
+            var spell = card.ConstructSpell();
+            int index = 0;
+            foreach (IEnumerable<object> tars in targets)
+            {
+                spell.SetTarget(index, tars.ToArray());
+                index++;
+            }
+            this.EventManager.Raise(new EnqueueAbilityEvent(spell));
             this.RunAction(new ResetPrioritiesAction());
+        }
+
+
+        public GameCard CastedCard
+        {
+            get { return card; }
+        }
+
+
+        public IEnumerable<object>[] Targets
+        {
+            get { return targets.ToArray(); }
         }
     }
 }

@@ -11,6 +11,12 @@ namespace Cruel.GameLogic.SpellSystem
 	{
         private Dictionary<int, Predicate<object>> conditionList = new Dictionary<int, Predicate<object>>();
         private List<Action<Spell>> spells = new List<Action<Spell>>();
+        public int[] TargetCounts { get; protected set; }
+
+        public GameCard()
+        {
+            TargetCounts = new int[0];
+        }
 
         public bool TestTarget(int targetIndex, object target)
         {
@@ -22,6 +28,10 @@ namespace Cruel.GameLogic.SpellSystem
         public Spell ConstructSpell()
         {
             Spell s = new Spell(spells);
+            foreach (var cond in conditionList)
+            {
+                s.SetTargetCondition(cond.Key, cond.Value);
+            }
             return s;
         }
         public void AddSpellAction(Action<Spell> spell)

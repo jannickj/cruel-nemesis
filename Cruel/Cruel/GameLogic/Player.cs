@@ -52,5 +52,7 @@ namespace Cruel.GameLogic
         {
             return "player("+name+")";
         }
-	}
+
+        public bool HasPriority { get; internal set; }
+    }
 }

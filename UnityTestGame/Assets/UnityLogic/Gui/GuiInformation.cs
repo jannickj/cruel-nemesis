@@ -11,7 +11,6 @@ namespace Assets.UnityLogic.Gui
 {
 	public class GuiInformation : MonoBehaviour
 	{
-        public Transform CardTemplate;
         private GUITexture[] phases;
         private Color[] defaultPhaseColors;
         private GUITexture[] manacrystals;

@@ -110,7 +110,7 @@ namespace Assets.UnityLogic.Gui
 
                     if (cardinfo != null)
                     {
-                        this.PerformCommand(new CastCardCommand(cardinfo.Card));
+                        this.PerformCommand(new DeclareCastCardCommand(cardinfo.Card));
                         return;
                     }
 
@@ -159,6 +159,8 @@ namespace Assets.UnityLogic.Gui
             }
         }
 
+        
+
         public GameObject[] GetGameObjectsOnMouse()
         {
             HashSet<GameObject> objs = new HashSet<GameObject>();
@@ -183,11 +185,14 @@ namespace Assets.UnityLogic.Gui
         {
             var terinfo = gobj.GetComponent<TerrainInformation>();
             var unitinfo = gobj.GetComponent<UnitInformation>();
+            var cardinfo = gobj.GetComponent<CardInformation>();
 
             if (terinfo != null)
                 return terinfo.Terrain;
             if (unitinfo != null)
                 return unitinfo.Entity;
+            if (cardinfo != null)
+                return cardinfo.Card;
             return null;
         }
         

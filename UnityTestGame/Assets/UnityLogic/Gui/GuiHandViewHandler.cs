@@ -8,40 +8,73 @@ using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic;
 using Cruel.GameLogic.SpellSystem;
+using XmasEngineModel.Management.Events;
+using Cruel.GameLogic.PlayerCommands;
 
 namespace Assets.UnityLogic.Gui
 {
 	public class GuiHandViewHandler : MonoBehaviour
 	{
+        public UnityFactory Factory { get; set; }
         private Camera playerCam;
-        private Transform CardTemplate;
         private float x, y, width, height;
         private EventManager evtman;
         private Player player;
         private Dictionary<GameCard, Transform> currentHand = new Dictionary<GameCard, Transform>();
         private LinkedList<Transform> cardOrder = new LinkedList<Transform>();
+        
 
-        public void Initialize(Camera playerCam, float x, float y, float width, float height, EventManager evtman, Player player, Transform CardTemplate)
+        public void Initialize(Camera playerCam, float x, float y, float width, float height, EventManager evtman, Player player)
         {
+            this.player = player;
             this.playerCam = playerCam;
             this.x = x;
             this.y = y;
             this.width = width;
             this.height = height;
             this.evtman = evtman;
-            this.CardTemplate = CardTemplate;
             this.evtman.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == player, OnCardDrawn));
+            this.evtman.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerGainPriority));
+            this.evtman.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCastCard));
+        }
+
+        private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)
+        {
+            GameCard card = evt.Action.CastedCard;
+            
+            removeCard(card);
+            
+        }
+
+        private void removeCard(GameCard card)
+        {
+            if (!currentHand.ContainsKey(card))
+                return;
+
+            var cardobj = this.currentHand[card];
+            this.currentHand.Remove(card);
+            cardOrder.Remove(cardobj);
+
+            this.PositionHand();
+            cardobj.gameObject.SetActive(false);
+        }
+
+        private void OnPlayerGainPriority(PlayerGainedPriorityEvent evt)
+        {
+            
+            foreach(Transform card in cardOrder)
+                card.gameObject.SetActive(this.player.HasPriority);
         }
 
         private void OnCardDrawn(CardDrawnEvent evt)
         {
-            Transform cardobj = (Transform)GameObject.Instantiate(CardTemplate);
-            var cardinfo = cardobj.gameObject.AddComponent<CardInformation>();
-            cardinfo.Card = evt.DrawnCard;
+            Transform cardobj = Factory.CreateCard(evt.DrawnCard);
+           
             cardOrder.AddLast(cardobj);            
             cardobj.parent = playerCam.transform;
+            
             PositionHand();
-
+            cardobj.gameObject.SetActive(this.player.HasPriority);
         }
 
         private void PositionHand()
@@ -66,5 +99,7 @@ namespace Assets.UnityLogic.Gui
         {
 
         }
-	}
+
+        
+    }
 }

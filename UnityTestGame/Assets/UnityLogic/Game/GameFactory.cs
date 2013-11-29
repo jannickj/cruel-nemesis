@@ -11,6 +11,10 @@ namespace Assets.UnityLogic.Game
 	public class GameFactory : XmasFactory
 	{
 
+        public GameFactory(ActionManager actionmanager) : base(actionmanager)
+        {
+        }
+
         public TCard CreateCard<TCard>() where TCard : GameCard
         {
             return null;

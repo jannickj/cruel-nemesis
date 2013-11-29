@@ -6,15 +6,18 @@ using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic.Events.UnitEvents;
 using Cruel.GameLogic.Modules;
+using Assets.UnityLogic;
 
 public class UnitViewHandler : MonoBehaviour {
 
     public Transform HealthBar;
+    public UnityFactory Factory;
 
     private UnitEntity entity;
     private UnitGraphics graphics;
     private StandardUnitAnimations curAni = StandardUnitAnimations.Idle;
     private GameObject healthbar;
+
 	// Use this for initialization
 	void Start () 
     {
@@ -44,8 +47,7 @@ public class UnitViewHandler : MonoBehaviour {
 
     private void OnUnitBeginMove(BeginMoveEvent evt)
     {
-        Vector3 v;
-        UnitHandler.ConvertUnitPos(evt.To, out v);
+        Vector3 v = Factory.ConvertUnitPos(evt.To);
         this.gameObject.transform.localPosition = v;
         this.HealthBar.GetComponent<HealthbarView>().SetPosition(evt.To);
     }
