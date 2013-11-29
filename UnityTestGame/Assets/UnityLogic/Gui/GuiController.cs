@@ -105,11 +105,19 @@ namespace Assets.UnityLogic.Gui
 
                 foreach (GameObject selectedObject in objs)
                 {
-                    if (allowedToDeclare)
-                    {
-                        var unitinfo = selectedObject.GetComponent<UnitInformation>();
+                    var unitinfo = selectedObject.GetComponent<UnitInformation>();
+                    var cardinfo = selectedObject.GetComponent<CardInformation>();
 
-                        if (unitinfo == null)
+                    if (cardinfo != null)
+                    {
+                        this.PerformCommand(new CastCardCommand(cardinfo.Card));
+                        return;
+                    }
+
+                    if (unitinfo != null)
+                    {
+
+                        if (!allowedToDeclare)
                             continue;
 
                         var ent = unitinfo.Entity;
@@ -171,6 +179,17 @@ namespace Assets.UnityLogic.Gui
         }
 
 
+        public object GetModelObjectsFromGameObjects(GameObject gobj)
+        {
+            var terinfo = gobj.GetComponent<TerrainInformation>();
+            var unitinfo = gobj.GetComponent<UnitInformation>();
+
+            if (terinfo != null)
+                return terinfo.Terrain;
+            if (unitinfo != null)
+                return unitinfo.Entity;
+            return null;
+        }
         
     }
 }

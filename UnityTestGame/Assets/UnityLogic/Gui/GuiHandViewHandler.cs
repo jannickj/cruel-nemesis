@@ -36,6 +36,8 @@ namespace Assets.UnityLogic.Gui
         private void OnCardDrawn(CardDrawnEvent evt)
         {
             Transform cardobj = (Transform)GameObject.Instantiate(CardTemplate);
+            var cardinfo = cardobj.gameObject.AddComponent<CardInformation>();
+            cardinfo.Card = evt.DrawnCard;
             cardOrder.AddLast(cardobj);            
             cardobj.parent = playerCam.transform;
             PositionHand();
