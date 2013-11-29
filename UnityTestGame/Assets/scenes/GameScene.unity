@@ -294,6 +294,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &138595596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 138595597}
+  - 114: {fileID: 138595598}
+  m_Layer: 0
+  m_Name: Factory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &138595597
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 138595596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.31578112, y: 39.9084625, z: -53.9116859}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 466332832}
+--- !u!114 &138595598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 138595596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743b7037a4389d3419e25f86be672b03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Engine: {fileID: 326927666}
+  CardTemplate: {fileID: 400000, guid: a2dc6cb3e708a4646be2e01e28f0a825, type: 2}
+  TerrainTemplate: {fileID: 400000, guid: 7cc8d6f559a6a1748a86e8ad2b8b0d6d, type: 2}
+  UnitTemplate: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
+  HealthBarTemplate: {fileID: 400000, guid: 19be0c746e6eb5f4e81a9c069b45c6ab, type: 2}
 --- !u!1 &161923065
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,7 +378,7 @@ MonoBehaviour:
   MapHandler: {fileID: 1513248591}
   Engine: {fileID: 326927666}
   Settings: {fileID: 412707700}
-  CardTemplate: {fileID: 400000, guid: a2dc6cb3e708a4646be2e01e28f0a825, type: 2}
+  Factory: {fileID: 138595598}
   PlayerLogo_Friendly: {fileID: 166209100}
   HealthBar_Friendly: {fileID: 228194537}
   PlayerLogo_Opponent: {fileID: 552535308}
@@ -1123,6 +1166,7 @@ Transform:
   m_Children:
   - {fileID: 845239628}
   - {fileID: 1970147848}
+  - {fileID: 138595597}
   - {fileID: 412707699}
   - {fileID: 161923066}
   - {fileID: 968751607}
@@ -2144,10 +2188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1feaea45c417db40ab1cb8a0c76d001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitTile: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
   GuiLoader: {fileID: 161923067}
   Engine: {fileID: 326927666}
-  UnitHealthbar: {fileID: 400000, guid: 19be0c746e6eb5f4e81a9c069b45c6ab, type: 2}
+  Factory: {fileID: 138595598}
 --- !u!1001 &1101793126
 Prefab:
   m_ObjectHideFlags: 0
@@ -2743,8 +2786,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0179b1a8889ff0e4699ec127011d6184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Terrain: {fileID: 400000, guid: 7cc8d6f559a6a1748a86e8ad2b8b0d6d, type: 2}
   Engine: {fileID: 326927666}
+  Factory: {fileID: 138595598}
 --- !u!1001 &1553833305
 Prefab:
   m_ObjectHideFlags: 0
