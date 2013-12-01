@@ -25,6 +25,7 @@ namespace CruelTest.SpellSystem
         protected override void OnAddedToEngine()
         {
             this.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
+            //Add trigger to expend crystals when a spell is cast
         }
 
         public void AddCrystal(Cruel.GameLogic.SpellSystem.Mana mana)
@@ -42,9 +43,14 @@ namespace CruelTest.SpellSystem
         private void OnTurnChanged(PlayersTurnChangedEvent evt)
         {
             if (evt.PlayersTurn == owner)
-                foreach (List<ManaCrystal> l in manaCrystals.Values)
-                    foreach (ManaCrystal m in l)
-                        m.Charge();
+                chargeAll();
+        }
+
+        public void chargeAll()
+        {
+            foreach (List<ManaCrystal> l in manaCrystals.Values)
+                foreach (ManaCrystal m in l)
+                    m.Charge();
         }
     }
 }

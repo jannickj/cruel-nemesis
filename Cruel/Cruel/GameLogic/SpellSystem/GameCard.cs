@@ -11,6 +11,14 @@ namespace Cruel.GameLogic.SpellSystem
 	{
         private Dictionary<int, Predicate<object>> conditionList = new Dictionary<int, Predicate<object>>();
         private List<Action<Spell>> spells = new List<Action<Spell>>();
+        private List<Mana> manaCost = new List<Mana>();
+
+        public List<Mana> ManaCost
+        {
+            get { return manaCost; }
+            set { manaCost = value; }
+        }
+
         public int[] TargetCounts { get; protected set; }
 
         public GameCard()

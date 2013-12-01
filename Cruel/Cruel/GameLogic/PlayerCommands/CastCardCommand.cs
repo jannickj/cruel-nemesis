@@ -6,6 +6,7 @@ using XmasEngineModel.Management;
 using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic.Actions;
+using Cruel.GameLogic.Exceptions;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
@@ -14,32 +15,41 @@ namespace Cruel.GameLogic.PlayerCommands
         private Player castingPlayer;
         private GameCard card;
         private IEnumerable<IEnumerable<object>> targets;
+        private List<Mana> selectedMana;
 
 
-        public CastCardCommand(Player castingPlayer, GameCard card)
-            : this(castingPlayer, card, new IEnumerable<object>[0])
+        public CastCardCommand(Player castingPlayer, GameCard card, List<Mana> selectedMana)
+            : this(castingPlayer, card, new IEnumerable<object>[0], selectedMana)
         {
 
         }
 
-        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<IEnumerable<object>> targets)
+        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<IEnumerable<object>> targets, List<Mana> selectedMana)
         {
             this.castingPlayer = castingPlayer;
             this.card = card;
             this.targets = targets;
+            this.selectedMana = selectedMana;
         }
 
         protected override void Execute()
         {
-            var spell = card.ConstructSpell();
-            int index = 0;
-            foreach (IEnumerable<object> tars in targets)
+            if (IllegalManaUsed())
             {
-                spell.SetTarget(index, tars.ToArray());
-                index++;
+                throw new ManaMismatchException();
             }
-            this.EventManager.Raise(new EnqueueAbilityEvent(spell));
-            this.RunAction(new ResetPrioritiesAction());
+            else
+            {
+                var spell = card.ConstructSpell();
+                int index = 0;
+                foreach (IEnumerable<object> targetList in targets)
+                {
+                    spell.SetTarget(index, targetList.ToArray());
+                    index++;
+                }
+                this.EventManager.Raise(new EnqueueAbilityEvent(spell));
+                this.RunAction(new ResetPrioritiesAction());
+            }
         }
 
 
@@ -52,6 +62,11 @@ namespace Cruel.GameLogic.PlayerCommands
         public IEnumerable<object>[] Targets
         {
             get { return targets.ToArray(); }
+        }
+
+        public bool IllegalManaUsed()
+        {
+            return selectedMana.Except(card.ManaCost).Count() != 0;
         }
     }
 }
