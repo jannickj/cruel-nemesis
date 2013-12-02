@@ -18,9 +18,11 @@ namespace CruelTest.SpellSystem
             bool spellResolved = false;
             MockCard card = new MockCard();
             card.SetTargetCondition(0, _ => true);
+            
             card.AddSpellAction(_ => spellResolved = true);
 
             Spell spell = card.ConstructSpell();
+            spell.SetTarget(0, new object[]{null});
 
             this.ActionManager.Queue(spell);
             this.ActionManager.ExecuteActions();
