@@ -17,6 +17,15 @@ namespace Cruel.GameLogic.PlayerCommands
         private IEnumerable<IEnumerable<object>> targets;
         private List<Mana> selectedMana;
 
+        public List<Mana> SelectedMana
+        {
+            get { return selectedMana; }
+        }
+
+        public Player CastingPlayer
+        {
+            get { return castingPlayer; }
+        }
 
         public CastCardCommand(Player castingPlayer, GameCard card, List<Mana> selectedMana)
             : this(castingPlayer, card, new IEnumerable<object>[0], selectedMana)

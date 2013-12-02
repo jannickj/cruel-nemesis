@@ -8,6 +8,8 @@ using XmasEngineModel.EntityLib;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic;
+using Cruel.GameLogic.PlayerCommands;
+using XmasEngineModel.Management.Events;
 
 namespace CruelTest.SpellSystem
 {
@@ -25,7 +27,7 @@ namespace CruelTest.SpellSystem
         protected override void OnAddedToEngine()
         {
             this.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
-            //Add trigger to expend crystals when a spell is cast
+            this.EventManager.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCardCast));
         }
 
         public void AddCrystal(Cruel.GameLogic.SpellSystem.Mana mana)
@@ -46,11 +48,31 @@ namespace CruelTest.SpellSystem
                 chargeAll();
         }
 
+        private void OnCardCast(ActionCompletedEvent<CastCardCommand> evt)
+        {
+            if (evt.Action.CastingPlayer == owner)
+            {
+                foreach (Mana m in evt.Action.SelectedMana)
+                {
+
+                }
+            }                
+        }
+
         public void chargeAll()
         {
             foreach (List<ManaCrystal> l in manaCrystals.Values)
                 foreach (ManaCrystal m in l)
                     m.Charge();
+        }
+
+        private void ExpendOne(Mana m)
+        {
+            int index = manaCrystals[m].Count() - 1;
+            while (index >= 0)
+            {
+                //stuff
+            }
         }
     }
 }

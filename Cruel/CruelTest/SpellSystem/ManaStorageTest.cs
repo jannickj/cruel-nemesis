@@ -30,8 +30,10 @@ namespace CruelTest.SpellSystem
             TurnManager turnManager = new TurnManager();
             this.Engine.AddActor(turnManager);
             Player[] players = generatePlayersAndStartGame(2);
-            Phases currentPhase = turnManager.CurrentPhase;
+
             ManaStorage m = new ManaStorage();
+            this.Engine.AddActor(m);
+            m.Owner = players[1];
             m.AddCrystal(Mana.Divine);
             m.AddCrystal(Mana.Divine);
             m.AddCrystal(Mana.Arcane);
@@ -100,10 +102,11 @@ namespace CruelTest.SpellSystem
 
         private void changeTurn(Player[] players)
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < (int)Phases.End; i++)
             {
                 EventManager.Raise(new PlayerPassedPriorityEvent(players[0]));
                 EventManager.Raise(new PlayerPassedPriorityEvent(players[1]));
+                Engine.Update();
             }
         }
     }
