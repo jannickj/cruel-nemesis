@@ -9,6 +9,7 @@ using Cruel.GameLogic.TurnLogic;
 using Cruel.GameLogic.Actions;
 using Cruel.GameLogic.PlayerCommands;
 using CruelTest.TestComponents;
+using Cruel.GameLogic.Events;
 
 namespace CruelTest.SpellSystem
 {
@@ -99,8 +100,11 @@ namespace CruelTest.SpellSystem
 
         private void changeTurn(Player[] players)
         {
-            //TODO: Change turn
-            Engine.Update();
+            for (int i = 0; i < 20; i++)
+            {
+                EventManager.Raise(new PlayerPassedPriorityEvent(players[0]));
+                EventManager.Raise(new PlayerPassedPriorityEvent(players[1]));
+            }
         }
     }
 }
