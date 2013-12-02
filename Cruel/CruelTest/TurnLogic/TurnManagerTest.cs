@@ -44,6 +44,27 @@ namespace CruelTest.TurnLogic
 
         }
 
+        [TestMethod]
+        public void ChangeTurn_PlayersPassPrioritiesUntilTurnChanges_TurnChangesFromPlayer1ToPlayer2()
+        {
+            
+            Player p1 = ConstructNAddPlayer();
+            Player p2 = ConstructNAddPlayer();
+            EventManager.Raise(new GameStartEvent());
+            Player playerTurnBeginning = turnman.PlayersTurn;
+            int pcount = (int)Phases.End;
+            for (int i = 0; i < pcount; i++)
+            {
+                EventManager.Raise(new PlayerPassedPriorityEvent(p1));
+                EventManager.Raise(new PlayerPassedPriorityEvent(p2));
+                Engine.Update();
+            }
+            Player playerTurnAfter = turnman.PlayersTurn;
+
+            Assert.AreEqual(p1, playerTurnBeginning);
+            Assert.AreEqual(p2, playerTurnAfter);
+
+        }
 
         [TestMethod]
         public void PassPriority_Player1PassPriority_Player2GainsPriority()
