@@ -6,6 +6,8 @@ using XmasEngineModel;
 using XmasEngineModel.EntityLib;
 using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Events;
+using CruelTest.SpellSystem;
+using XmasEngineModel.Management.Actions;
 
 namespace Cruel.GameLogic
 {
@@ -14,15 +16,18 @@ namespace Cruel.GameLogic
         private string name;
         public GameLibrary Library { get; private set; }
         public Hand Hand { get; private set; }
+        public ManaStorage ManaStorage { get; private set; }
 
-        public Player() : this(null, null) { }
+        public Player() : this(null, null, null) { }
 
-        public Player(GameLibrary lib, Hand hand)
+        public Player(GameLibrary lib, Hand hand, ManaStorage manaStorage)
         {
             Library = lib;
             if(lib!=null)
                 Library.Owner = this;
             Hand = hand;
+            ManaStorage = manaStorage;
+            ManaStorage.Owner = this;
         }
 
         public void Draw(int number)
@@ -54,5 +59,11 @@ namespace Cruel.GameLogic
         }
 
         public bool HasPriority { get; internal set; }
+
+        protected override void OnAddedToEngine()
+        {
+            if(ManaStorage != null)
+                this.ActionManager.Queue(new AddXmasObjectAction(this.ManaStorage));
+        }
     }
 }

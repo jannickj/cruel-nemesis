@@ -46,18 +46,21 @@ namespace Assets.UnityLogic
                 var pgui = this.guiLookup[player];
                 var ginfo = pgui.Value;
                 var gobj = pgui.Key;
+                bool reverseManaBar;
 
                 if (Settings.MainPlayer == player)
                 {
                     ginfo.Portrait = PlayerLogo_Friendly;
                     ginfo.HealthBar = HealthBar_Friendly;
                     ginfo.FocusColor = Color.green;
+                    reverseManaBar = false;
                 }
                 else
                 {
                     ginfo.Portrait = PlayerLogo_Opponent;
                     ginfo.HealthBar = HealthBar_Opponent;
                     ginfo.FocusColor = Color.blue;
+                    reverseManaBar = true;
                 }
 
                 ginfo.SetSkipPhaseButton(player, StopPhases_Main);
@@ -78,6 +81,9 @@ namespace Assets.UnityLogic
                 handview.Factory = Factory;
                 handview.Initialize(Camera.main, 0.5f, 0.5f, 0.25f, 0.25f, Engine.EngineModel.EventManager, player);
 
+                gobj.AddComponent<GUIManaViewHandler>();
+                var manaview = gobj.GetComponent<GUIManaViewHandler>();
+                manaview.Initialize(Factory, ginfo, Engine.EngineModel, reverseManaBar);
 
                 if (Settings.LocalPlayers.Any(p => p == player))
                 {

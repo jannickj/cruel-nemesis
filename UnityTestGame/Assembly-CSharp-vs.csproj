@@ -61,6 +61,7 @@
      <Compile Include="Assets\UnityLogic\Gui\CardViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\GUIButtonHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\SelectObjectHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Gui\GUIManaViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GUITextureAutoScaler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiController.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiHandViewHandler.cs" />

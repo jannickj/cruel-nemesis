@@ -25,7 +25,7 @@ namespace CruelTest.SpellSystem
             cards.AddFirst(new MockCardWithData(42));
             lib.Add(cards);
             Hand h = new Hand();
-            Player p = new Player(lib, h);
+            Player p = new Player(lib, h,null);
             p.EventManager = this.EventManager;
             this.EventManager.Register(new Trigger<CardDrawnEvent>(_ => cardDrawnEventTriggered = true));
             Engine.AddActor(p);
@@ -49,7 +49,7 @@ namespace CruelTest.SpellSystem
             cards = new SelectableLinkedList<GameCard>();
             cards.AddFirst(new MockCardWithData(42));
             h.Add(cards);
-            Player p = new Player(lib, h);
+            Player p = new Player(lib, h, null);
             p.EventManager = this.EventManager;
             this.EventManager.Register(new Trigger<CardDiscardedEvent>(_ => cardDiscardedEventTriggered = true));
             Engine.AddActor(lib);

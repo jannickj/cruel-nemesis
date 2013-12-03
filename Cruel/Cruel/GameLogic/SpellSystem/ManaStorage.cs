@@ -10,6 +10,7 @@ using Cruel.GameLogic.Events;
 using Cruel.GameLogic;
 using Cruel.GameLogic.PlayerCommands;
 using XmasEngineModel.Management.Events;
+using Cruel.GameLogic.Exceptions;
 
 namespace CruelTest.SpellSystem
 {
@@ -34,12 +35,20 @@ namespace CruelTest.SpellSystem
         {
             if (!manaCrystals.ContainsKey(mana))
                 manaCrystals.Add(mana, new List<ManaCrystal>());
-            manaCrystals[mana].Add(new ManaCrystal(mana));                
+            manaCrystals[mana].Add(new ManaCrystal(mana));
+            this.EventManager.Raise(new ManaCrystalAddedEvent(owner, mana, this));  
         }
 
         public bool IsCharged(Mana mana, int p)
         {
             return manaCrystals[mana][p].IsCharged;
+        }
+
+        public int Size(Mana mana)
+        {
+            if (manaCrystals.ContainsKey(mana))
+                return manaCrystals[mana].Count();
+            return 0;
         }
 
         private void OnTurnChanged(PlayersTurnChangedEvent evt)
@@ -54,7 +63,7 @@ namespace CruelTest.SpellSystem
             {
                 foreach (Mana m in evt.Action.SelectedMana)
                 {
-
+                    SpendOne(m);
                 }
             }                
         }
@@ -64,15 +73,20 @@ namespace CruelTest.SpellSystem
             foreach (List<ManaCrystal> l in manaCrystals.Values)
                 foreach (ManaCrystal m in l)
                     m.Charge();
+            this.EventManager.Raise(new ManaRechargedEvent(owner));
         }
 
-        private void ExpendOne(Mana m)
+        private void SpendOne(Mana m)
         {
             int index = manaCrystals[m].Count() - 1;
-            while (index >= 0)
+            while (!(manaCrystals[m][index].IsCharged))
             {
-                //stuff
+                index--;
+                if (index < 0)
+                    throw new ManaUnavailableException(owner, m);
             }
+            manaCrystals[m][index].Spend();
+            this.EventManager.Raise(new ManaCrystalSpentEvent(owner, m));
         }
     }
 }

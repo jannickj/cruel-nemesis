@@ -6,6 +6,7 @@ using Cruel.GameLogic;
 using UnityEngine;
 using Cruel.GameLogic.SpellSystem;
 using Assets.UnityLogic.Game.Cards;
+using CruelTest.SpellSystem;
 
 namespace Assets.UnityLogic
 {
@@ -38,15 +39,17 @@ namespace Assets.UnityLogic
             var cardspawner = Enumerable.Repeat<Func<GameCard>>(() => new BloodwyrmSpawnCard(), 30).Select(genCard => genCard());
 
             var p1lib = new GameLibrary();
-            Player p = new Player(p1lib, new Hand());
             var cards1 = cardspawner.ToArray();
             p1lib.Add(cards1);
             
+            p1lib.Add(cardspawner);
+            Player p = new Player(p1lib,new Hand(), new ManaStorage());
             p.Name = "player 1";
             this.mainPlayer = p;
             this.AddPlayer(p);
             var p2lib = new GameLibrary();
-            p = new Player(p2lib, new Hand());
+
+            p = new Player(p2lib,new Hand(), new ManaStorage());
             var cards2 = cardspawner.ToArray();
             p2lib.Add(cards2);
             
