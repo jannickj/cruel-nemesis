@@ -12,3 +12,5 @@ debuggame_Data/
 *.pdb
 *.exe
 UnityTestGame/Library/
+*.dll
+*.xml

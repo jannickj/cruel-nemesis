@@ -34,18 +34,14 @@ namespace Cruel.GameLogic.PlayerCommands
 
         protected override void Execute()
         {
-            if (IllegalManaUsed())
+            
             var spell = card.ConstructSpell();
             this.CastedSpell = spell;
             int index = 0;
-            foreach (IEnumerable<object> tars in targets)
-            {
+            if (IllegalManaUsed())
                 throw new ManaMismatchException();
-            }
             else
             {
-                var spell = card.ConstructSpell();
-                int index = 0;
                 foreach (IEnumerable<object> targetList in targets)
                 {
                     spell.SetTarget(index, targetList.ToArray());

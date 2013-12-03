@@ -16,6 +16,14 @@ namespace Cruel.GameLogic.SpellSystem
         private Dictionary<int, Predicate<object>> conditionList = new Dictionary<int, Predicate<object>>();
         private bool targetsRemaining = true;
 
+        public object[][] Targets
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public void SetTarget(int index, object[] xObj)
         {
             targetList[index] = xObj;
