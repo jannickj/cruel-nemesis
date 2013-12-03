@@ -1167,6 +1167,7 @@ Transform:
   - {fileID: 845239628}
   - {fileID: 1970147848}
   - {fileID: 138595597}
+  - {fileID: 1228799515}
   - {fileID: 412707699}
   - {fileID: 161923066}
   - {fileID: 968751607}
@@ -2463,6 +2464,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1228799514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1228799515}
+  - 114: {fileID: 1228799516}
+  m_Layer: 0
+  m_Name: SpellLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1228799515
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1228799514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.46439934, y: 17.7939072, z: -27.439003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 466332832}
+--- !u!114 &1228799516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1228799514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a124fae0e7731cf49955033d0a93e56a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EngineHandler: {fileID: 326927666}
+  Factory: {fileID: 138595598}
 --- !u!1001 &1323288758
 Prefab:
   m_ObjectHideFlags: 0

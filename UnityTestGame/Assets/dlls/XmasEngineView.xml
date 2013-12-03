@@ -20,21 +20,6 @@
             The world of the model
             </summary>
         </member>
-        <member name="M:XmasEngineView.ViewFactory.AddTypeLink``2">
-            <summary>
-            Links a specific EntityView Type to a specific XmasEntity Type.
-            </summary>
-            <typeparam name="TModel">The entity type</typeparam>
-            <typeparam name="TView">The view type</typeparam>
-        </member>
-        <member name="M:XmasEngineView.ViewFactory.ConstructEntityView(XmasEngineModel.EntityLib.XmasEntity,XmasEngineModel.World.XmasPosition)">
-            <summary>
-            Constructs a new entity view meant to visualize an actual entity
-            </summary>
-            <param name="model">the entity the view is visualizing</param>
-            <param name="position">The position of the entity</param>
-            <returns>The view of the entity</returns>
-        </member>
         <member name="T:XmasEngineView.XmasView">
             <summary>
             A basic view for the engine
@@ -88,6 +73,21 @@
             <summary>
             Gets the position of where the view last know the model to be
             </summary>
+        </member>
+        <member name="M:XmasEngineView.ViewFactory.AddTypeLink``2">
+            <summary>
+            Links a specific EntityView Type to a specific XmasEntity Type.
+            </summary>
+            <typeparam name="TModel">The entity type</typeparam>
+            <typeparam name="TView">The view type</typeparam>
+        </member>
+        <member name="M:XmasEngineView.ViewFactory.ConstructEntityView(XmasEngineModel.EntityLib.XmasEntity,XmasEngineModel.World.XmasPosition)">
+            <summary>
+            Constructs a new entity view meant to visualize an actual entity
+            </summary>
+            <param name="model">the entity the view is visualizing</param>
+            <param name="position">The position of the entity</param>
+            <returns>The view of the entity</returns>
         </member>
     </members>
 </doc>

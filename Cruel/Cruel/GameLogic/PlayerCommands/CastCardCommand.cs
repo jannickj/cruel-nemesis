@@ -14,7 +14,7 @@ namespace Cruel.GameLogic.PlayerCommands
         private Player castingPlayer;
         private GameCard card;
         private IEnumerable<IEnumerable<object>> targets;
-
+        public Spell CastedSpell { get; private set; }
 
         public CastCardCommand(Player castingPlayer, GameCard card)
             : this(castingPlayer, card, new IEnumerable<object>[0])
@@ -32,6 +32,7 @@ namespace Cruel.GameLogic.PlayerCommands
         protected override void Execute()
         {
             var spell = card.ConstructSpell();
+            this.CastedSpell = spell;
             int index = 0;
             foreach (IEnumerable<object> tars in targets)
             {

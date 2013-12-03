@@ -76,5 +76,27 @@ namespace Assets.UnityLogic
             this.gameobjLookUp.Add(unitEnt,unitobj.gameObject);
             return unitobj;
         }
+
+        public void TransformCardToSpell(GameObject cardObj, Spell spell)
+        {
+            CardInformation cinfo = cardObj.GetComponent<CardInformation>();
+            this.gameobjLookUp.Remove(cinfo.Card);
+
+            var components = cardObj.GetComponents<MonoBehaviour>();
+            foreach (var component in components)
+            {
+                component.enabled = false;
+            }
+
+            this.gameobjLookUp.Add(spell, cardObj);
+            var spellinfo = cardObj.AddComponent<SpellInformation>();
+            spellinfo.Spell = spell;
+            cardObj.AddComponent<GuiSpellViewHandler>();
+        }
+
+        public Vector3 ConvertPos(Point point)
+        {
+            return new Vector3(-(float)point.X, (float)point.Y, 0.0f);
+        }
     }
 }

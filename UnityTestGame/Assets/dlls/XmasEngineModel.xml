@@ -9,9 +9,15 @@
             Extend this class to create new types of events for the engine
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Management.EnvironmentAction">
+        <member name="T:XmasEngineModel.Management.EntityXmasAction`1">
             <summary>
-            Action type meant to make changes that affect the entire environment, this actiontype is queued on the ActionManager
+            An abstract action meant to be queued on a specific type of entity
+            </summary>
+            <typeparam name="TEntity">The type of entity the action is meant to be queued onto</typeparam>
+        </member>
+        <member name="T:XmasEngineModel.Management.EntityXmasAction">
+            <summary>
+            An abstract action meant to be queued on entities
             </summary>
         </member>
         <member name="T:XmasEngineModel.XmasActor">
@@ -124,237 +130,14 @@
             gets the exception the action threw when it failed, if no exception caused it to fail this will return null
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Conversion.XmasConverterToForeign`2">
+        <member name="P:XmasEngineModel.Management.EntityXmasAction.Source">
             <summary>
-            Converter designed only for converting from a Xmas type to a foreign type
-            </summary>
-            <typeparam name="XmasType">The Xmas type that is to be converted into a foreign type</typeparam>
-            <typeparam name="ForeignType">The foreign type that the Xmas type is to be converted into</typeparam>
-        </member>
-        <member name="T:XmasEngineModel.Conversion.XmasConverter`2">
-            <summary>
-            An abstract converter meant to be implemented into actual converters
-            </summary>
-            <typeparam name="XmasType">The XmasObject tyoe that the converter will convert foreign objects to and from</typeparam>
-            <typeparam name="ForeignType">The foreign object type that the converter will convert XmasObjects to and from</typeparam>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.BeginConversionToXmas(`1)">
-            <summary>
-            This method is called when the converter is asked by the converter tool to convert a foreign object into a XmasObject 
-            </summary>
-            <param name="fobj">The foreign object to be converted</param>
-            <returns>The Xmas object that the foreign object was converted into</returns>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.BeginConversionToForeign(`0)">
-            <summary>
-            This method is called when the converter is asked by the converter tool to convert a Xmas object into a foreign object  
-            </summary>
-            <param name="gobj">The Xmas object to be converted</param>
-            <returns>The foreign object that the Xmas object was converted into</returns>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.ConvertToForeign(XmasEngineModel.XmasObject)">
-            <summary>
-            Requests the conversion of an XmasObject into an object, only if the ConversionTool the converter is added to is this possible.
-            </summary>
-            <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
-            <param name="gobj">The XmasObject to be converted</param>
-            <returns>The object the XmasObject was converted into</returns>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.ConvertToXmas(`1)">
-            <summary>
-            Requests the conversion of an object into an XmasObject, only if the ConversionTool the converter is added to is this possible.
-            </summary>
-            <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
-            <param name="fobj">The object to be converted</param>
-            <returns>The XmasObject the object was converted into</returns>
-        </member>
-        <member name="T:XmasEngineModel.Management.ThreadSafeEventManager">
-            <summary>
-            A Manager for managing ThreadSafeEventQueues, the manager can execute events stored on eventqueues added to it.
+            Gets the entity the action is executed by
             </summary>
         </member>
-        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.AddEventQueue(XmasEngineModel.Management.ThreadSafeEventQueue)">
+        <member name="P:XmasEngineModel.Management.EntityXmasAction`1.Source">
             <summary>
-            Adds an EventQueue to the manager, all events picked up by that queue can be fired through the manager
-            </summary>
-            <param name="queue"></param>
-        </member>
-        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNext">
-            <summary>
-            Executes the next event stored on one of the eventqueues
-            </summary>
-            <returns>Whether or not the execution was successful</returns>
-        </member>
-        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNextWhenReady">
-            <summary>
-            Freezes the thread until a new Event has been queued to one of the eventqueues, that it will proceed to execute
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNextWhenReady(System.TimeSpan)">
-            <summary>
-            Freezes the thread with a timeout until a new Event has been queued to one of the eventqueues, that it will proceed to execute
-            </summary>
-            <param name="ts">The timeout that says how long the thread will maximum freeze</param>
-        </member>
-        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNextWhenReady(System.TimeSpan,System.Int64@)">
-            <summary>
-            Freezes the thread with a timeout until a new Event has been queued to one of the eventqueues, that it will proceed to execute
-            </summary>
-            <param name="ts">The timeout that says how long the thread will maximum freeze</param>
-            <param name="slept">The time in ticks, there are 10,000 ticks in a millisecond.</param>
-        </member>
-        <member name="T:XmasEngineModel.Management.XmasFactory">
-            <summary>
-            Object factory for the engine's actors to use, should be extended to allow actors to generate new kinds of objects.
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.Management.XmasFactory.#ctor(XmasEngineModel.Management.ActionManager)">
-            <summary>
-            Instantiates a XmasFactory
-            </summary>
-            <param name="actman">The action manager used by the engine</param>
-        </member>
-        <member name="M:XmasEngineModel.Management.XmasFactory.CreateTimer(System.Action)">
-            <summary>
-            Creates a specially designed timer that queues its action to the engine when the timer has expired, thus this timer is threadsafe
-            </summary>
-            <param name="action">The action that the timer executes</param>
-            <returns>The timer</returns>
-        </member>
-        <member name="M:XmasEngineModel.Management.XmasFactory.CreateThread(System.Action)">
-            <summary>
-            Creates a thread with an action that is executed when the thread is started
-            </summary>
-            <param name="action">The act</param>
-            <returns></returns>
-        </member>
-        <member name="T:XmasEngineModel.Rule.RuleHierarchy`2">
-            <summary>
-            The RuleHierarchy is a list of sets of rules, each set of rules is at a certain priority
-            </summary>
-            <typeparam name="TPriority">The type the priority is stored as</typeparam>
-            <typeparam name="TObject">The type of object the rules are deciding over</typeparam>
-        </member>
-        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.AddLayer(`0,XmasEngineModel.Rule.TransformationRule{`1})">
-            <summary>
-            Adds a new priority layer this priority take precedence over all prior layers of priority
-            </summary>
-            <param name="priority">The priority object linking this layer to that priority object</param>
-            <param name="ruleSet">The rule set for the new layer</param>
-        </member>
-        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.GetRule(`0)">
-            <summary>
-            Gets the rule set linked to a certain priorirt object
-            </summary>
-            <param name="p">The priority object</param>
-            <returns>The rule set</returns>
-        </member>
-        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.TryGetRule(`0,XmasEngineModel.Rule.TransformationRule{`1}@)">
-            <summary>
-            Attempts to find a rule set through a priority object
-            </summary>
-            <param name="p">The priority object</param>
-            <param name="rule">The ruleset that is found</param>
-            <returns>Whether or not the attempt was succesful</returns>
-        </member>
-        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.Conclude(`1)">
-            <summary>
-            This causes the RuleHierarchy to go through all its layer from highest priority to lowest, and see if a layer can come to a conclusion.
-            Once a layer has reached a conclusion then no other priority layers are asked. 
-            If no layers can come to a conclusion then a DontCareConclusion is given.
-            </summary>
-            <param name="t">The object to conclude over</param>
-            <returns>The conclusion</returns>
-        </member>
-        <member name="T:XmasEngineModel.PerceptCollection">
-            <summary>
-            A collection of percepts
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.PerceptCollection.#ctor(System.Collections.Generic.ICollection{XmasEngineModel.Percept})">
-            <summary>
-            Instantiates a collection of percepts
-            </summary>
-            <param name="percepts">A collection of percepts in form of an ICollection</param>
-        </member>
-        <member name="P:XmasEngineModel.PerceptCollection.Percepts">
-            <summary>
-            returns the percept in an ICollection
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.XmasModel">
-            <summary>
-            The core of the engine, this is responsible for starting all other components used within the model
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.XmasModel.Initialize">
-            <summary>
-            Initialization of the model of the engine
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.XmasModel.OnInitialize">
-            <summary>
-            Called when the engine is initializing
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.XmasModel.Start">
-            <summary>
-            The main method of the model of the engine
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.XmasModel.EngineCrashed(System.Exception@)">
-            <summary>
-            Checks if the engine has momentarily creashed
-            </summary>
-            <param name="exception">The exception that caused the crash</param>
-            <returns>Whether or not the engine crashed</returns>
-        </member>
-        <member name="M:XmasEngineModel.XmasModel.AddActor(XmasEngineModel.XmasActor)">
-            <summary>
-            Makes an actor part of the engine, by providing it with all necessary tools
-            </summary>
-            <param name="actor">The actor to be made part of the engine</param>
-        </member>
-        <member name="P:XmasEngineModel.XmasModel.WorldBuilder">
-            <summary>
-            Gets the object responsible for contructing the world
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.World.EntitySpawnInformation">
-            <summary>
-            This class is meant to be for implementations of other worlds.
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.World.EntitySpawnInformation.#ctor(XmasEngineModel.World.XmasPosition)">
-            <summary>
-            Constructor for making an EntitySpawnInformation
-            </summary>
-            <param name="pos">The position of the spawn</param>
-        </member>
-        <member name="P:XmasEngineModel.World.EntitySpawnInformation.Position">
-            <summary>
-            Gets where the entity is meant to spawn on
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.Percept">
-            <summary>
-            A percept meant to be percieved by agents
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.Rule.Conclusion.#ctor">
-            <summary>
-            Instanstiates a conclusion object with no tag
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.Rule.Conclusion.#ctor(System.Object)">
-            <summary>
-            Instanstiates a conclusion object with a tag
-            </summary>
-            <param name="tag">The object tagged to the conclusion</param>
-        </member>
-        <member name="P:XmasEngineModel.Rule.Conclusion.Tag">
-            <summary>
-            Gets or Sets the object tagged to the conclusion
+            Gets the entity the action is executed by
             </summary>
         </member>
         <member name="T:XmasEngineModel.Management.ActionManager">
@@ -388,32 +171,6 @@
         <member name="P:XmasEngineModel.Management.ActionManager.QueuedActions">
             <summary>
             Gets all actions queued to the action manager
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.Management.EntityXmasAction">
-            <summary>
-            An abstract action meant to be queued on entities
-            </summary>
-        </member>
-        <member name="P:XmasEngineModel.Management.EntityXmasAction.Source">
-            <summary>
-            Gets the entity the action is executed by
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.Management.EntityXmasAction`1">
-            <summary>
-            An abstract action meant to be queued on a specific type of entity
-            </summary>
-            <typeparam name="TEntity">The type of entity the action is meant to be queued onto</typeparam>
-        </member>
-        <member name="P:XmasEngineModel.Management.EntityXmasAction`1.Source">
-            <summary>
-            Gets the entity the action is executed by
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.EntityLib.Agent">
-            <summary>
-                 An agent meant to be added to a XmasWorld and controlled by an AI
             </summary>
         </member>
         <member name="T:XmasEngineModel.EntityLib.XmasEntity">
@@ -520,151 +277,105 @@
             Gets the position of the entity, this is done through the world the entity is located in.
             </summary>
         </member>
-        <member name="M:XmasEngineModel.EntityLib.Agent.#ctor(System.String)">
+        <member name="T:XmasEngineModel.World.EntitySpawnInformation">
             <summary>
-                 Initializes a new instance of the Agent
-            </summary>
-             <param name="name"> The name of the agent, notice: this name should be unique</param>
-        </member>
-        <member name="P:XmasEngineModel.EntityLib.Agent.Name">
-            <summary>
-                 Gets the name unique to the agent, only the agent's inheritors is able to set its name.
+            This class is meant to be for implementations of other worlds.
             </summary>
         </member>
-        <member name="P:XmasEngineModel.EntityLib.Agent.Percepts">
+        <member name="M:XmasEngineModel.World.EntitySpawnInformation.#ctor(XmasEngineModel.World.XmasPosition)">
             <summary>
-                 Gets the percepts of the agent by getting the percepts of each of its modules.
+            Constructor for making an EntitySpawnInformation
+            </summary>
+            <param name="pos">The position of the spawn</param>
+        </member>
+        <member name="P:XmasEngineModel.World.EntitySpawnInformation.Position">
+            <summary>
+            Gets where the entity is meant to spawn on
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Management.MultiTrigger">
+        <member name="T:XmasEngineModel.Conversion.XmasConverterToForeign`2">
             <summary>
-            A trigger meant to contain multiple events, conditions and actions at a time
+            Converter designed only for converting from a Xmas type to a foreign type
             </summary>
+            <typeparam name="XmasType">The Xmas type that is to be converted into a foreign type</typeparam>
+            <typeparam name="ForeignType">The foreign type that the Xmas type is to be converted into</typeparam>
         </member>
-        <member name="T:XmasEngineModel.Management.Trigger">
+        <member name="T:XmasEngineModel.Conversion.XmasConverter`2">
             <summary>
-            Trigger is the most basic form of a trigger
+            An abstract converter meant to be implemented into actual converters
             </summary>
+            <typeparam name="XmasType">The XmasObject tyoe that the converter will convert foreign objects to and from</typeparam>
+            <typeparam name="ForeignType">The foreign object type that the converter will convert XmasObjects to and from</typeparam>
         </member>
-        <member name="M:XmasEngineModel.Management.Trigger.CheckCondition(XmasEngineModel.Management.XmasEvent)">
+        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.BeginConversionToXmas(`1)">
             <summary>
-            Checks the condition on the trigger
+            This method is called when the converter is asked by the converter tool to convert a foreign object into a XmasObject 
             </summary>
-            <param name="evt">The event that triggered the trigger</param>
-            <returns>Whether or not the condition is satisfied</returns>
+            <param name="fobj">The foreign object to be converted</param>
+            <returns>The Xmas object that the foreign object was converted into</returns>
         </member>
-        <member name="M:XmasEngineModel.Management.Trigger.Execute(XmasEngineModel.Management.XmasEvent)">
+        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.BeginConversionToForeign(`0)">
             <summary>
-            Executes the action of the trigger
+            This method is called when the converter is asked by the converter tool to convert a Xmas object into a foreign object  
             </summary>
-            <param name="evt">The event that triggered the trigger</param>
+            <param name="gobj">The Xmas object to be converted</param>
+            <returns>The foreign object that the Xmas object was converted into</returns>
         </member>
-        <member name="P:XmasEngineModel.Management.Trigger.Events">
+        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.ConvertToForeign(XmasEngineModel.XmasObject)">
             <summary>
-            Gets all events on the trigger
+            Requests the conversion of an XmasObject into an object, only if the ConversionTool the converter is added to is this possible.
             </summary>
-        </member>
-        <member name="M:XmasEngineModel.Management.MultiTrigger.RegisterEvent``1">
-            <summary>
-            Registers a type of event that the trigger is triggered by
-            </summary>
-            <typeparam name="T">The event type that triggers the trigger</typeparam>
-        </member>
-        <member name="M:XmasEngineModel.Management.MultiTrigger.DeregisterEvent``1">
-            <summary>
-            Deregisters an event from the trigger, so that the trigger is no longer triggered by that event
-            </summary>
-            <typeparam name="T">The event type that is deregistered</typeparam>
-        </member>
-        <member name="P:XmasEngineModel.Management.MultiTrigger.Events">
-            <summary>
-            Gets a collection of event type that the trigger is triggered by
-            </summary>
-        </member>
-        <member name="P:XmasEngineModel.Management.MultiTrigger.Conditions">
-            <summary>
-            Gets all the predicates that must be satisfied for the trigger to fire
-            </summary>
-        </member>
-        <member name="P:XmasEngineModel.Management.MultiTrigger.Actions">
-            <summary>
-            Gets all actions meant to be fired by the trigger
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.Conversion.XmasConversionTool">
-            <summary>
-            Basic conversion tool from objects to XmasObjects and vice versa
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.Conversion.XmasConversionTool`1">
-            <summary>
-            Conversion tool for objects of a certain type to XmasObject and vice versa
-            </summary>
-            <typeparam name="ForeignType"></typeparam>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.#ctor">
-            <summary>
-            Instantiates a XmasConversionTool, used to convert objects
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.AddConverter``2(XmasEngineModel.Conversion.XmasConverter{``0,``1})">
-            <summary>
-            Adds a converter meant to be used by the converter for converting objects
-            </summary>
-            <typeparam name="XmasType">The Xmas type the converter will convert the foreign object to and from</typeparam>
-            <typeparam name="ForeignTyped">The Foreign type the converter will convert the Xmas object to and from</typeparam>
-            <param name="converter">The converter that is added to the tool</param>
-        </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.ConvertToForeign(XmasEngineModel.XmasObject)">
-            <summary>
-            Converts the XmasObject into the an object with the tool's Foreign type
-            </summary>
-            <param name="gobj">XmasObject to be converted</param>
             <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
-            <returns>The object that the XmasObject is converted into</returns>
+            <param name="gobj">The XmasObject to be converted</param>
+            <returns>The object the XmasObject was converted into</returns>
         </member>
-        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.ConvertToXmas(`0)">
+        <member name="M:XmasEngineModel.Conversion.XmasConverter`2.ConvertToXmas(`1)">
             <summary>
-            Converts the Foreign object into an XmasObject
+            Requests the conversion of an object into an XmasObject, only if the ConversionTool the converter is added to is this possible.
             </summary>
-            <param name="foreign">The foreign object to be converted</param>
             <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
-            <returns>The XmasObject the foreign object is converted into</returns>
+            <param name="fobj">The object to be converted</param>
+            <returns>The XmasObject the object was converted into</returns>
         </member>
-        <member name="T:XmasEngineModel.XmasWorldBuilder">
+        <member name="T:XmasEngineModel.Management.ThreadSafeEventManager">
             <summary>
-            Uses this builder to explain how a world implementation should be constructed
+            A Manager for managing ThreadSafeEventQueues, the manager can execute events stored on eventqueues added to it.
             </summary>
         </member>
-        <member name="M:XmasEngineModel.XmasWorldBuilder.AddEntity(System.Func{XmasEngineModel.EntityLib.XmasEntity},XmasEngineModel.World.EntitySpawnInformation)">
+        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.AddEventQueue(XmasEngineModel.Management.ThreadSafeEventQueue)">
             <summary>
-            Stores information on how an entity should be added when the world is being built
+            Adds an EventQueue to the manager, all events picked up by that queue can be fired through the manager
             </summary>
-            <param name="ent">The entity constructor for the entity to be added</param>
-            <param name="info">Information on how to add the entity</param>
+            <param name="queue"></param>
         </member>
-        <member name="M:XmasEngineModel.XmasWorldBuilder.ConstructWorld">
+        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNext">
             <summary>
-            Override this for explaining to the engine on how to construct the world
+            Executes the next event stored on one of the eventqueues
             </summary>
-            <returns>The world the engine will use</returns>
+            <returns>Whether or not the execution was successful</returns>
         </member>
-        <member name="M:XmasEngineModel.XmasWorldBuilder.Build">
+        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNextWhenReady">
             <summary>
-            Builds a full world along
-            </summary>
-            <returns>The fully built world</returns>
-        </member>
-        <member name="T:XmasEngineModel.World.XmasPosition">
-            <summary>
-            This class is meant to be extended by implementations of other positions of other worlds
+            Freezes the thread until a new Event has been queued to one of the eventqueues, that it will proceed to execute
             </summary>
         </member>
-        <member name="M:XmasEngineModel.World.XmasPosition.GenerateSpawn">
+        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNextWhenReady(System.TimeSpan)">
             <summary>
-            Generates a spawn from a position
+            Freezes the thread with a timeout until a new Event has been queued to one of the eventqueues, that it will proceed to execute
             </summary>
-            <returns>the spawn information</returns>
+            <param name="ts">The timeout that says how long the thread will maximum freeze</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.ThreadSafeEventManager.ExecuteNextWhenReady(System.TimeSpan,System.Int64@)">
+            <summary>
+            Freezes the thread with a timeout until a new Event has been queued to one of the eventqueues, that it will proceed to execute
+            </summary>
+            <param name="ts">The timeout that says how long the thread will maximum freeze</param>
+            <param name="slept">The time in ticks, there are 10,000 ticks in a millisecond.</param>
+        </member>
+        <member name="T:XmasEngineModel.EntityLib.Module.PositionModule">
+            <summary>
+            A module for giving the entity a Position percept
+            </summary>
         </member>
         <member name="T:XmasEngineModel.EntityLib.Module.UniversalModule">
             <summary>
@@ -718,41 +429,199 @@
             Gets the world of its entitiy host
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Management.Events.ActionCompletedEvent`1">
+        <member name="M:XmasEngineModel.Rule.Conclusion.#ctor">
             <summary>
-            Event that is fired when an action has completed in the engine
-            </summary>
-            <typeparam name="TAction">Type of action that has completed</typeparam>
-        </member>
-        <member name="P:XmasEngineModel.Management.Events.ActionCompletedEvent`1.Action">
-            <summary>
-            Gets the action that completed
+            Instanstiates a conclusion object with no tag
             </summary>
         </member>
-        <member name="T:XmasEngineModel.EntityLib.Module.RuleBasedModule`1">
+        <member name="M:XmasEngineModel.Rule.Conclusion.#ctor(System.Object)">
             <summary>
-            An abstract module for adding heirachel rules to an entity
+            Instanstiates a conclusion object with a tag
             </summary>
-            <typeparam name="TEntity"></typeparam>
+            <param name="tag">The object tagged to the conclusion</param>
         </member>
-        <member name="M:XmasEngineModel.EntityLib.Module.RuleBasedModule`1.AddRule(System.Type,System.Predicate{`0},XmasEngineModel.Rule.Conclusion)">
+        <member name="P:XmasEngineModel.Rule.Conclusion.Tag">
             <summary>
-            Adds a rule to a certain layer in the rule hierachy, with the rule is added a conclusion that is reached if the rule is ever true
+            Gets or Sets the object tagged to the conclusion
             </summary>
-            <param name="toLayer">The layer in the rule hierachy that the rule is added to</param>
-            <param name="rule">The rule that is added to the certain layer</param>
-            <param name="conclusion">The conclusion that is reached if its rule is ever true</param>
         </member>
-        <member name="M:XmasEngineModel.EntityLib.Module.RuleBasedModule`1.PushRuleLayer(System.Type)">
+        <member name="T:XmasEngineModel.Management.EnvironmentAction">
             <summary>
-            Adds a new layer to the Rule hierachy, the new layer supercedes all prioer layers
+            Action type meant to make changes that affect the entire environment, this actiontype is queued on the ActionManager
             </summary>
-            <param name="layer">The layer inform of a type</param>
         </member>
-        <member name="T:XmasEngineModel.EntityLib.Module.PositionModule">
+        <member name="T:XmasEngineModel.Percept">
             <summary>
-            A module for giving the entity a Position percept
+            A percept meant to be percieved by agents
             </summary>
+        </member>
+        <member name="T:XmasEngineModel.Management.ThreadSafeEventQueue">
+            <summary>
+            A ThreadSafe EventQueue meant to store events raises on entities and the EventManager 
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.Management.ThreadSafeEventQueue.Register(XmasEngineModel.Management.Trigger)">
+            <summary>
+            Registers a trigger to the Threadsafe Eventqueue
+            </summary>
+            <param name="trigger">The trigger registered</param>
+        </member>
+        <member name="T:XmasEngineModel.Rule.DontCareConclusion">
+            <summary>
+            A conclusion for something not mattering
+            </summary>
+        </member>
+        <member name="T:XmasEngineModel.World.XmasPosition">
+            <summary>
+            This class is meant to be extended by implementations of other positions of other worlds
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.World.XmasPosition.GenerateSpawn">
+            <summary>
+            Generates a spawn from a position
+            </summary>
+            <returns>the spawn information</returns>
+        </member>
+        <member name="T:XmasEngineModel.EntityLib.Agent">
+            <summary>
+                 An agent meant to be added to a XmasWorld and controlled by an AI
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.EntityLib.Agent.#ctor(System.String)">
+            <summary>
+                 Initializes a new instance of the Agent
+            </summary>
+             <param name="name"> The name of the agent, notice: this name should be unique</param>
+        </member>
+        <member name="P:XmasEngineModel.EntityLib.Agent.Name">
+            <summary>
+                 Gets the name unique to the agent, only the agent's inheritors is able to set its name.
+            </summary>
+        </member>
+        <member name="P:XmasEngineModel.EntityLib.Agent.Percepts">
+            <summary>
+                 Gets the percepts of the agent by getting the percepts of each of its modules.
+            </summary>
+        </member>
+        <member name="T:XmasEngineModel.Rule.TransformationRule`1">
+            <summary>
+            A set of rules that can come to one or many conclusions
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:XmasEngineModel.Rule.TransformationRule`1.AddPremise(System.Predicate{`0},XmasEngineModel.Rule.Conclusion)">
+            <summary>
+            Links a rule to a conclusion
+            </summary>
+            <param name="p">The rule in form of a predicate</param>
+            <param name="c">The conclusion that is reached if the predicate is true</param>
+        </member>
+        <member name="M:XmasEngineModel.Rule.TransformationRule`1.Conclude(`0)">
+            <summary>
+            Forces the ruleset to come up with a single conclusion. If multiple conclusions are reached a MultiConclusionException is thrown.
+            </summary>
+            <exception cref="T:XmasEngineModel.Rule.Exceptions.MultiConclusionException"></exception>
+            <param name="t">The object that it concludes over</param>
+            <returns>the reached conclusion</returns>
+        </member>
+        <member name="M:XmasEngineModel.Rule.TransformationRule`1.MultiConcluding(`0)">
+            <summary>
+            Makes the ruleset come up with all conclusions it can on a certain object.
+            </summary>
+            <param name="t">The object it is meant to conclude on</param>
+            <returns>The conclusions reached</returns>
+        </member>
+        <member name="T:XmasEngineModel.Management.Actions.TimedAction">
+            <summary>
+            A timer that queues its action to the engine when it expires
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.TimedAction.#ctor(System.Action)">
+            <summary>
+            Instantiates a Timed Action
+            </summary>
+            <param name="action">The action that is queued onto the engine when the timer expires</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.TimedAction.SetSingle(System.Double)">
+            <summary>
+            Starts the timer to run until the timer has expired
+            </summary>
+            <param name="milisec">The time in milli seconds that the timer runs for</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.TimedAction.SetPeriodic(System.Double)">
+            <summary>
+            Starts the timer to run periodically, will queue an action to the engine for each time
+            </summary>
+            <param name="milisec">The time in milli seconds one periodic loop takes</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.TimedAction.Stop">
+            <summary>
+            Stops the timer completely(does not gaurrantee the action is not queued just at the last possible moment)
+            </summary>
+        </member>
+        <member name="T:XmasEngineModel.Management.EventManager">
+            <summary>
+            The EventManager is meant for raising events on the engine
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.Management.EventManager.Raise(XmasEngineModel.Management.XmasEvent)">
+            <summary>
+            Raises an event, this triggers all triggers with the same event
+            </summary>
+            <param name="evt">The event raised</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.EventManager.AddEntity(XmasEngineModel.EntityLib.XmasEntity)">
+            <summary>
+            Adds an entity to be part of the EventManager, so all events raised on that entity is also raised on the eventmanager
+            </summary>
+            <param name="xmasEntity">The entity added to the eventmanager</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.EventManager.RemoveEntity(XmasEngineModel.EntityLib.XmasEntity)">
+            <summary>
+            Removes the entity from the EventManager
+            </summary>
+            <param name="xmasEntity">The entity to be removed</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.EventManager.Register(XmasEngineModel.Management.Trigger)">
+            <summary>
+            Registers a trigger to the EventManager, once registered the trigger will be triggered each time an event is raised on the EventManager that shares an event with the trigger
+            </summary>
+            <param name="trigger">The trigger that is registered</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.EventManager.Deregister(XmasEngineModel.Management.Trigger)">
+            <summary>
+            Deregisters a trigger from the Eventmanager so it will no longer be triggered
+            </summary>
+            <param name="trigger">The trigger that is deregistered from the eventmanager</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.EventManager.ConstructEventQueue">
+            <summary>
+            Creates a threadsafe event queue, this queue recieves all events the EventManager raises and stores them in a queue
+            </summary>
+            <returns>The ThreadSafe EventQueue</returns>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.MultiAction.#ctor">
+            <summary>
+            Instantiates a MultiAction meant for running a sequence of actions
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.MultiAction.AddAction(XmasEngineModel.EntityLib.XmasEntity,XmasEngineModel.Management.EntityXmasAction)">
+            <summary>
+            Add an Entity action to the sequence
+            </summary>
+            <param name="ent">Entity the action is executed on</param>
+            <param name="action">Action to be executed in the sequence</param>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.MultiAction.StopMultiAction">
+            <summary>
+            Stops the multi action from continuing its sequence of actions
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.Management.Actions.MultiAction.AddAction(XmasEngineModel.Management.EnvironmentAction)">
+            <summary>
+            Adds an environment action to the sequence
+            </summary>
+            <param name="action">Action to be added to the sequence</param>
         </member>
         <member name="T:XmasEngineModel.XmasWorld">
             <summary>
@@ -822,49 +691,76 @@
             Gets or sets the EventManager of the engine
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Management.ThreadSafeEventQueue">
+        <member name="T:XmasEngineModel.Conversion.XmasConverterToXmas`2">
             <summary>
-            A ThreadSafe EventQueue meant to store events raises on entities and the EventManager 
+            Converter designed only for converting from a foreign type to a Xmas type
+            </summary>
+            <typeparam name="XmasType">The Xmas type that the foreign type is to be converted into</typeparam>
+            <typeparam name="ForeignType">The foreign type that is to be converted into a Xmas type</typeparam>
+        </member>
+        <member name="T:XmasEngineModel.Conversion.XmasConversionTool">
+            <summary>
+            Basic conversion tool from objects to XmasObjects and vice versa
             </summary>
         </member>
-        <member name="M:XmasEngineModel.Management.ThreadSafeEventQueue.Register(XmasEngineModel.Management.Trigger)">
+        <member name="T:XmasEngineModel.Conversion.XmasConversionTool`1">
             <summary>
-            Registers a trigger to the Threadsafe Eventqueue
+            Conversion tool for objects of a certain type to XmasObject and vice versa
             </summary>
-            <param name="trigger">The trigger registered</param>
+            <typeparam name="ForeignType"></typeparam>
         </member>
-        <member name="T:XmasEngineModel.Rule.DontCareConclusion">
+        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.#ctor">
             <summary>
-            A conclusion for something not mattering
-            </summary>
-        </member>
-        <member name="T:XmasEngineModel.Management.Actions.TimedAction">
-            <summary>
-            A timer that queues its action to the engine when it expires
+            Instantiates a XmasConversionTool, used to convert objects
             </summary>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.TimedAction.#ctor(System.Action)">
+        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.AddConverter``2(XmasEngineModel.Conversion.XmasConverter{``0,``1})">
             <summary>
-            Instantiates a Timed Action
+            Adds a converter meant to be used by the converter for converting objects
             </summary>
-            <param name="action">The action that is queued onto the engine when the timer expires</param>
+            <typeparam name="XmasType">The Xmas type the converter will convert the foreign object to and from</typeparam>
+            <typeparam name="ForeignTyped">The Foreign type the converter will convert the Xmas object to and from</typeparam>
+            <param name="converter">The converter that is added to the tool</param>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.TimedAction.SetSingle(System.Double)">
+        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.ConvertToForeign(XmasEngineModel.XmasObject)">
             <summary>
-            Starts the timer to run until the timer has expired
+            Converts the XmasObject into the an object with the tool's Foreign type
             </summary>
-            <param name="milisec">The time in milli seconds that the timer runs for</param>
+            <param name="gobj">XmasObject to be converted</param>
+            <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
+            <returns>The object that the XmasObject is converted into</returns>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.TimedAction.SetPeriodic(System.Double)">
+        <member name="M:XmasEngineModel.Conversion.XmasConversionTool`1.ConvertToXmas(`0)">
             <summary>
-            Starts the timer to run periodically, will queue an action to the engine for each time
+            Converts the Foreign object into an XmasObject
             </summary>
-            <param name="milisec">The time in milli seconds one periodic loop takes</param>
+            <param name="foreign">The foreign object to be converted</param>
+            <exception cref="T:XmasEngineModel.Exceptions.UnconvertableException">Is thrown if conversion was not possible</exception>
+            <returns>The XmasObject the foreign object is converted into</returns>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.TimedAction.Stop">
+        <member name="T:XmasEngineModel.XmasWorldBuilder">
             <summary>
-            Stops the timer completely(does not gaurrantee the action is not queued just at the last possible moment)
+            Uses this builder to explain how a world implementation should be constructed
             </summary>
+        </member>
+        <member name="M:XmasEngineModel.XmasWorldBuilder.AddEntity(System.Func{XmasEngineModel.EntityLib.XmasEntity},XmasEngineModel.World.EntitySpawnInformation)">
+            <summary>
+            Stores information on how an entity should be added when the world is being built
+            </summary>
+            <param name="ent">The entity constructor for the entity to be added</param>
+            <param name="info">Information on how to add the entity</param>
+        </member>
+        <member name="M:XmasEngineModel.XmasWorldBuilder.ConstructWorld">
+            <summary>
+            Override this for explaining to the engine on how to construct the world
+            </summary>
+            <returns>The world the engine will use</returns>
+        </member>
+        <member name="M:XmasEngineModel.XmasWorldBuilder.Build">
+            <summary>
+            Builds a full world along
+            </summary>
+            <returns>The fully built world</returns>
         </member>
         <member name="T:XmasEngineModel.Management.Events.ActionStartingEvent`1">
             <summary>
@@ -877,97 +773,89 @@
             Gets the action that was started
             </summary>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.MultiAction.#ctor">
+        <member name="T:XmasEngineModel.PerceptCollection">
             <summary>
-            Instantiates a MultiAction meant for running a sequence of actions
+            A collection of percepts
             </summary>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.MultiAction.AddAction(XmasEngineModel.EntityLib.XmasEntity,XmasEngineModel.Management.EntityXmasAction)">
+        <member name="M:XmasEngineModel.PerceptCollection.#ctor(System.Collections.Generic.ICollection{XmasEngineModel.Percept})">
             <summary>
-            Add an Entity action to the sequence
+            Instantiates a collection of percepts
             </summary>
-            <param name="ent">Entity the action is executed on</param>
-            <param name="action">Action to be executed in the sequence</param>
+            <param name="percepts">A collection of percepts in form of an ICollection</param>
         </member>
-        <member name="M:XmasEngineModel.Management.Actions.MultiAction.StopMultiAction">
+        <member name="P:XmasEngineModel.PerceptCollection.Percepts">
             <summary>
-            Stops the multi action from continuing its sequence of actions
-            </summary>
-        </member>
-        <member name="M:XmasEngineModel.Management.Actions.MultiAction.AddAction(XmasEngineModel.Management.EnvironmentAction)">
-            <summary>
-            Adds an environment action to the sequence
-            </summary>
-            <param name="action">Action to be added to the sequence</param>
-        </member>
-        <member name="T:XmasEngineModel.Management.EventManager">
-            <summary>
-            The EventManager is meant for raising events on the engine
+            returns the percept in an ICollection
             </summary>
         </member>
-        <member name="M:XmasEngineModel.Management.EventManager.Raise(XmasEngineModel.Management.XmasEvent)">
+        <member name="T:XmasEngineModel.EntityLib.Module.RuleBasedModule`1">
             <summary>
-            Raises an event, this triggers all triggers with the same event
+            An abstract module for adding heirachel rules to an entity
             </summary>
-            <param name="evt">The event raised</param>
+            <typeparam name="TEntity"></typeparam>
         </member>
-        <member name="M:XmasEngineModel.Management.EventManager.AddEntity(XmasEngineModel.EntityLib.XmasEntity)">
+        <member name="M:XmasEngineModel.EntityLib.Module.RuleBasedModule`1.AddRule(System.Type,System.Predicate{`0},XmasEngineModel.Rule.Conclusion)">
             <summary>
-            Adds an entity to be part of the EventManager, so all events raised on that entity is also raised on the eventmanager
+            Adds a rule to a certain layer in the rule hierachy, with the rule is added a conclusion that is reached if the rule is ever true
             </summary>
-            <param name="xmasEntity">The entity added to the eventmanager</param>
+            <param name="toLayer">The layer in the rule hierachy that the rule is added to</param>
+            <param name="rule">The rule that is added to the certain layer</param>
+            <param name="conclusion">The conclusion that is reached if its rule is ever true</param>
         </member>
-        <member name="M:XmasEngineModel.Management.EventManager.RemoveEntity(XmasEngineModel.EntityLib.XmasEntity)">
+        <member name="M:XmasEngineModel.EntityLib.Module.RuleBasedModule`1.PushRuleLayer(System.Type)">
             <summary>
-            Removes the entity from the EventManager
+            Adds a new layer to the Rule hierachy, the new layer supercedes all prioer layers
             </summary>
-            <param name="xmasEntity">The entity to be removed</param>
+            <param name="layer">The layer inform of a type</param>
         </member>
-        <member name="M:XmasEngineModel.Management.EventManager.Register(XmasEngineModel.Management.Trigger)">
+        <member name="T:XmasEngineModel.Management.XmasFactory">
             <summary>
-            Registers a trigger to the EventManager, once registered the trigger will be triggered each time an event is raised on the EventManager that shares an event with the trigger
+            Object factory for the engine's actors to use, should be extended to allow actors to generate new kinds of objects.
             </summary>
-            <param name="trigger">The trigger that is registered</param>
         </member>
-        <member name="M:XmasEngineModel.Management.EventManager.Deregister(XmasEngineModel.Management.Trigger)">
+        <member name="M:XmasEngineModel.Management.XmasFactory.#ctor(XmasEngineModel.Management.ActionManager)">
             <summary>
-            Deregisters a trigger from the Eventmanager so it will no longer be triggered
+            Instantiates a XmasFactory
             </summary>
-            <param name="trigger">The trigger that is deregistered from the eventmanager</param>
+            <param name="actman">The action manager used by the engine</param>
         </member>
-        <member name="M:XmasEngineModel.Management.EventManager.ConstructEventQueue">
+        <member name="M:XmasEngineModel.Management.XmasFactory.CreateTimer(System.Action)">
             <summary>
-            Creates a threadsafe event queue, this queue recieves all events the EventManager raises and stores them in a queue
+            Creates a specially designed timer that queues its action to the engine when the timer has expired, thus this timer is threadsafe
             </summary>
-            <returns>The ThreadSafe EventQueue</returns>
+            <param name="action">The action that the timer executes</param>
+            <returns>The timer</returns>
         </member>
-        <member name="T:XmasEngineModel.Rule.TransformationRule`1">
+        <member name="M:XmasEngineModel.Management.XmasFactory.CreateThread(System.Action)">
             <summary>
-            A set of rules that can come to one or many conclusions
+            Creates a thread with an action that is executed when the thread is started
             </summary>
-            <typeparam name="T"></typeparam>
+            <param name="action">The act</param>
+            <returns></returns>
         </member>
-        <member name="M:XmasEngineModel.Rule.TransformationRule`1.AddPremise(System.Predicate{`0},XmasEngineModel.Rule.Conclusion)">
+        <member name="T:XmasEngineModel.Management.Trigger">
             <summary>
-            Links a rule to a conclusion
+            Trigger is the most basic form of a trigger
             </summary>
-            <param name="p">The rule in form of a predicate</param>
-            <param name="c">The conclusion that is reached if the predicate is true</param>
         </member>
-        <member name="M:XmasEngineModel.Rule.TransformationRule`1.Conclude(`0)">
+        <member name="M:XmasEngineModel.Management.Trigger.CheckCondition(XmasEngineModel.Management.XmasEvent)">
             <summary>
-            Forces the ruleset to come up with a single conclusion. If multiple conclusions are reached a MultiConclusionException is thrown.
+            Checks the condition on the trigger
             </summary>
-            <exception cref="T:XmasEngineModel.Rule.Exceptions.MultiConclusionException"></exception>
-            <param name="t">The object that it concludes over</param>
-            <returns>the reached conclusion</returns>
+            <param name="evt">The event that triggered the trigger</param>
+            <returns>Whether or not the condition is satisfied</returns>
         </member>
-        <member name="M:XmasEngineModel.Rule.TransformationRule`1.MultiConcluding(`0)">
+        <member name="M:XmasEngineModel.Management.Trigger.Execute(XmasEngineModel.Management.XmasEvent)">
             <summary>
-            Makes the ruleset come up with all conclusions it can on a certain object.
+            Executes the action of the trigger
             </summary>
-            <param name="t">The object it is meant to conclude on</param>
-            <returns>The conclusions reached</returns>
+            <param name="evt">The event that triggered the trigger</param>
+        </member>
+        <member name="P:XmasEngineModel.Management.Trigger.Events">
+            <summary>
+            Gets all events on the trigger
+            </summary>
         </member>
         <member name="T:XmasEngineModel.Management.Trigger`1">
             <summary>
@@ -1006,12 +894,124 @@
             Returns the event the trigger is triggered by
             </summary>
         </member>
-        <member name="T:XmasEngineModel.Conversion.XmasConverterToXmas`2">
+        <member name="T:XmasEngineModel.Management.Events.ActionCompletedEvent`1">
             <summary>
-            Converter designed only for converting from a foreign type to a Xmas type
+            Event that is fired when an action has completed in the engine
             </summary>
-            <typeparam name="XmasType">The Xmas type that the foreign type is to be converted into</typeparam>
-            <typeparam name="ForeignType">The foreign type that is to be converted into a Xmas type</typeparam>
+            <typeparam name="TAction">Type of action that has completed</typeparam>
+        </member>
+        <member name="P:XmasEngineModel.Management.Events.ActionCompletedEvent`1.Action">
+            <summary>
+            Gets the action that completed
+            </summary>
+        </member>
+        <member name="T:XmasEngineModel.XmasModel">
+            <summary>
+            The core of the engine, this is responsible for starting all other components used within the model
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.XmasModel.Initialize">
+            <summary>
+            Initialization of the model of the engine
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.XmasModel.OnInitialize">
+            <summary>
+            Called when the engine is initializing
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.XmasModel.Start">
+            <summary>
+            The main method of the model of the engine
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.XmasModel.EngineCrashed(System.Exception@)">
+            <summary>
+            Checks if the engine has momentarily creashed
+            </summary>
+            <param name="exception">The exception that caused the crash</param>
+            <returns>Whether or not the engine crashed</returns>
+        </member>
+        <member name="M:XmasEngineModel.XmasModel.AddActor(XmasEngineModel.XmasActor)">
+            <summary>
+            Makes an actor part of the engine, by providing it with all necessary tools
+            </summary>
+            <param name="actor">The actor to be made part of the engine</param>
+        </member>
+        <member name="P:XmasEngineModel.XmasModel.WorldBuilder">
+            <summary>
+            Gets the object responsible for contructing the world
+            </summary>
+        </member>
+        <member name="T:XmasEngineModel.Rule.RuleHierarchy`2">
+            <summary>
+            The RuleHierarchy is a list of sets of rules, each set of rules is at a certain priority
+            </summary>
+            <typeparam name="TPriority">The type the priority is stored as</typeparam>
+            <typeparam name="TObject">The type of object the rules are deciding over</typeparam>
+        </member>
+        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.AddLayer(`0,XmasEngineModel.Rule.TransformationRule{`1})">
+            <summary>
+            Adds a new priority layer this priority take precedence over all prior layers of priority
+            </summary>
+            <param name="priority">The priority object linking this layer to that priority object</param>
+            <param name="ruleSet">The rule set for the new layer</param>
+        </member>
+        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.GetRule(`0)">
+            <summary>
+            Gets the rule set linked to a certain priorirt object
+            </summary>
+            <param name="p">The priority object</param>
+            <returns>The rule set</returns>
+        </member>
+        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.TryGetRule(`0,XmasEngineModel.Rule.TransformationRule{`1}@)">
+            <summary>
+            Attempts to find a rule set through a priority object
+            </summary>
+            <param name="p">The priority object</param>
+            <param name="rule">The ruleset that is found</param>
+            <returns>Whether or not the attempt was succesful</returns>
+        </member>
+        <member name="M:XmasEngineModel.Rule.RuleHierarchy`2.Conclude(`1)">
+            <summary>
+            This causes the RuleHierarchy to go through all its layer from highest priority to lowest, and see if a layer can come to a conclusion.
+            Once a layer has reached a conclusion then no other priority layers are asked. 
+            If no layers can come to a conclusion then a DontCareConclusion is given.
+            </summary>
+            <param name="t">The object to conclude over</param>
+            <returns>The conclusion</returns>
+        </member>
+        <member name="T:XmasEngineModel.Management.MultiTrigger">
+            <summary>
+            A trigger meant to contain multiple events, conditions and actions at a time
+            </summary>
+        </member>
+        <member name="M:XmasEngineModel.Management.MultiTrigger.RegisterEvent``1">
+            <summary>
+            Registers a type of event that the trigger is triggered by
+            </summary>
+            <typeparam name="T">The event type that triggers the trigger</typeparam>
+        </member>
+        <member name="M:XmasEngineModel.Management.MultiTrigger.DeregisterEvent``1">
+            <summary>
+            Deregisters an event from the trigger, so that the trigger is no longer triggered by that event
+            </summary>
+            <typeparam name="T">The event type that is deregistered</typeparam>
+        </member>
+        <member name="P:XmasEngineModel.Management.MultiTrigger.Events">
+            <summary>
+            Gets a collection of event type that the trigger is triggered by
+            </summary>
+        </member>
+        <member name="P:XmasEngineModel.Management.MultiTrigger.Conditions">
+            <summary>
+            Gets all the predicates that must be satisfied for the trigger to fire
+            </summary>
+        </member>
+        <member name="P:XmasEngineModel.Management.MultiTrigger.Actions">
+            <summary>
+            Gets all actions meant to be fired by the trigger
+            </summary>
         </member>
     </members>
 </doc>
