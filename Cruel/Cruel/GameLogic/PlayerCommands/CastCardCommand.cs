@@ -16,6 +16,7 @@ namespace Cruel.GameLogic.PlayerCommands
         private GameCard card;
         private IEnumerable<IEnumerable<object>> targets;
         private List<Mana> selectedMana;
+        public Spell CastedSpell { get; private set; }
 
         public List<Mana> SelectedMana
         {
@@ -43,14 +44,14 @@ namespace Cruel.GameLogic.PlayerCommands
 
         protected override void Execute()
         {
+            
+            var spell = card.ConstructSpell();
+            this.CastedSpell = spell;
+            int index = 0;
             if (IllegalManaUsed())
-            {
                 throw new ManaMismatchException();
-            }
             else
             {
-                var spell = card.ConstructSpell();
-                int index = 0;
                 foreach (IEnumerable<object> targetList in targets)
                 {
                     spell.SetTarget(index, targetList.ToArray());

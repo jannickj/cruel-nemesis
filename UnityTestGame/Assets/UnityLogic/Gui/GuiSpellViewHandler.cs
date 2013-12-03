@@ -10,5 +10,9 @@ namespace Assets.UnityLogic.Gui
 	{
         public Vector3 FlyToPos { get; set; }
 
+        public void Start()
+        {
+            this.gameObject.transform.position = FlyToPos;
+        }
 	}
 }

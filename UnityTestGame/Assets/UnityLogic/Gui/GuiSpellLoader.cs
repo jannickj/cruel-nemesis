@@ -32,7 +32,23 @@ namespace Assets.UnityLogic.Gui
         private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)
         {
             GameCard card = evt.Action.CastedCard;
+            Spell spell = evt.Action.CastedSpell;
+            
             GameObject gobj = (GameObject)this.Factory.GameObjectFromModel(card);
+
+            Factory.TransformCardToSpell(gobj,spell);
+            var spellview = gobj.GetComponent<GuiSpellViewHandler>();
+            var vec3 = Factory.ConvertPos(new JSLibrary.Data.Point(0, 0));
+            vec3.z += 1f;
+            var scale = gobj.transform.localScale;
+            scale.x = scale.x * 10;
+            scale.y = scale.y * 10;
+            scale.z = scale.z * 10;
+            gobj.transform.localScale = scale;
+            spellview.FlyToPos = vec3;
+            
+
+            
             //gobj.c
         }
 	}

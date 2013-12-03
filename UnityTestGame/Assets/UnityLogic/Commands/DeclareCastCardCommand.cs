@@ -110,7 +110,7 @@ namespace Assets.UnityLogic.Commands
                 if (!this.targetsAtIndex(targetIndex))
                 {
                     var tars = targets.Select(dic => dic.Values).Cast<IEnumerable<object>>();
-                    this.ActionManager.Queue(new CastCardCommand(this.GuiController.GuiInfo.Player, this.gameCard, tars));
+                    this.ActionManager.Queue(new CastCardCommand(this.GuiController.GuiInfo.Player, this.gameCard, tars, new List<Mana>()));
                     this.Finished = true;
                 }
                 
