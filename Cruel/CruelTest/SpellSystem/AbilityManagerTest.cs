@@ -20,6 +20,7 @@ namespace CruelTest.SpellSystem
     {
         private AbilityManager AbilityManager { get; set; }
         private TurnManager TurnManager { get; set; }
+        private List<Mana> mana = new List<Mana>();
 
         public AbilityManagerTest()
         {
@@ -35,7 +36,7 @@ namespace CruelTest.SpellSystem
             MockCard card = new MockCard();
             Player castingPlayer = new Player();
 
-            this.ActionManager.Queue(new CastCardCommand(castingPlayer, card));
+            this.ActionManager.Queue(new CastCardCommand(castingPlayer, card, mana));
             this.Engine.Update();
 
             IEnumerable<Ability> unresolved = AbilityManager.Unresolved;
@@ -57,8 +58,8 @@ namespace CruelTest.SpellSystem
             MockCard card2 = new MockCard();
             card2.AddSpellAction(_ => mustResolve = true);
             
-            this.ActionManager.Queue(new CastCardCommand(players[0], card1));
-            this.ActionManager.Queue(new CastCardCommand(players[0], card2));
+            this.ActionManager.Queue(new CastCardCommand(players[0], card1, mana));
+            this.ActionManager.Queue(new CastCardCommand(players[0], card2, mana));
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[1]));
             this.Engine.Update();
@@ -83,8 +84,8 @@ namespace CruelTest.SpellSystem
             MockCard card2 = new MockCard();
             card2.AddSpellAction(_ => mustResolve = true);
 
-            this.ActionManager.Queue(new CastCardCommand(players[0], card1));
-            this.ActionManager.Queue(new CastCardCommand(players[0], card2));
+            this.ActionManager.Queue(new CastCardCommand(players[0], card1, mana));
+            this.ActionManager.Queue(new CastCardCommand(players[0], card2, mana));
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[1]));
             this.ActionManager.Queue(new PlayerPassPriorityCommand(players[0]));
@@ -109,7 +110,7 @@ namespace CruelTest.SpellSystem
             bool secondPlayerGainPrioOnCast = false;
             this.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => firstPlayerGainPrioOnCast = players[0] == evt.Player));
             this.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(evt => secondPlayerGainPrioOnCast = players[1] == evt.Player));
-            this.ActionManager.Queue(new CastCardCommand(players[1], card));
+            this.ActionManager.Queue(new CastCardCommand(players[1], card, mana));
             this.Engine.Update();
 
             Assert.IsTrue(firstPlayerGainPrioOnCast);

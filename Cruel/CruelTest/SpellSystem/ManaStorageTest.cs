@@ -8,6 +8,8 @@ using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.TurnLogic;
 using Cruel.GameLogic.Actions;
 using Cruel.GameLogic.PlayerCommands;
+using CruelTest.TestComponents;
+using Cruel.GameLogic.Events;
 
 namespace CruelTest.SpellSystem
 {
@@ -48,13 +50,38 @@ namespace CruelTest.SpellSystem
         [TestMethod]
         public void CastCard_PlayerChoosesValidCrystals_CrystalsDischargedAndSpellIsCast()
         {
+            bool spellResolved = false;
 
-        }
+            ManaStorage m = new ManaStorage();
+            m.AddCrystal(Mana.Divine);
+            m.AddCrystal(Mana.Divine);
+            m.AddCrystal(Mana.Arcane);
+            m.chargeAll();
 
-        [TestMethod]
-        public void CastCard_PlayerChoosesInvalidCrystal_CrystalIsNotDischargedAndSpellIsNotPayedFor()
-        {
+            List<Mana> manaCost = new List<Mana>();
+            manaCost.Add(Mana.Divine);
+            manaCost.Add(Mana.Arcane);
 
+            MockCard card = new MockCard();
+            card.ManaCost = manaCost;
+            card.AddSpellAction(_ => spellResolved = true);
+
+            Player[] players = generatePlayersAndStartGame(2);
+            Player owner = players[0];
+            m.Owner = owner;
+
+            List<Mana> selectedMana = new List<Mana>();
+            selectedMana.Add(Mana.Divine);
+            selectedMana.Add(Mana.Arcane);
+
+            this.ActionManager.Queue(new CastCardCommand(owner, card, selectedMana));
+            this.Engine.Update();
+
+            Assert.IsFalse(m.IsCharged(Mana.Divine, 0));
+            Assert.IsTrue(m.IsCharged(Mana.Divine, 1));
+            Assert.IsFalse(m.IsCharged(Mana.Arcane, 0));
+
+            Assert.IsTrue(spellResolved);
         }
 
         private Player[] generatePlayersAndStartGame(int count)
@@ -73,8 +100,11 @@ namespace CruelTest.SpellSystem
 
         private void changeTurn(Player[] players)
         {
-            //TODO: Change turn
-            Engine.Update();
+            for (int i = 0; i < 20; i++)
+            {
+                EventManager.Raise(new PlayerPassedPriorityEvent(players[0]));
+                EventManager.Raise(new PlayerPassedPriorityEvent(players[1]));
+            }
         }
     }
 }
