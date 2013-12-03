@@ -12,6 +12,7 @@ namespace Cruel.GameLogic.SpellSystem
 {
 	public abstract class Ability : EnvironmentAction
 	{
+        public bool PreventResolving { get; set; }
         private Dictionary<int, object[]> targetList = new Dictionary<int, object[]>();
         private Dictionary<int, Predicate<object>> conditionList = new Dictionary<int, Predicate<object>>();
         private bool targetsRemaining = true;
@@ -20,7 +21,20 @@ namespace Cruel.GameLogic.SpellSystem
         {
             get
             {
-                throw new NotImplementedException();
+                int count = targetList.Keys.Max() + 1;
+                object[][] targets = new object[count][];
+                for (int i = 0; i < count; i++)
+                {
+                    object[] tars;
+                    if (targetList.TryGetValue(i, out tars))
+                    {
+                        targets[i] = tars;
+                    }
+                    else
+                        targets[i] = new object[0];
+                    
+                }
+                return targets;
             }
         }
 

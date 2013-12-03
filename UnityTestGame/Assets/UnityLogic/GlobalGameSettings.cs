@@ -38,15 +38,18 @@ namespace Assets.UnityLogic
             var cardspawner = Enumerable.Repeat<Func<GameCard>>(() => new BloodwyrmSpawnCard(), 30).Select(genCard => genCard());
 
             var p1lib = new GameLibrary();
+            Player p = new Player(p1lib, new Hand());
+            var cards1 = cardspawner.ToArray();
+            p1lib.Add(cards1);
             
-            p1lib.Add(cardspawner);
-            Player p = new Player(p1lib,new Hand());
             p.Name = "player 1";
             this.mainPlayer = p;
             this.AddPlayer(p);
             var p2lib = new GameLibrary();
-            p2lib.Add(cardspawner);
-            p = new Player(p2lib,new Hand());
+            p = new Player(p2lib, new Hand());
+            var cards2 = cardspawner.ToArray();
+            p2lib.Add(cards2);
+            
             p.Name = "player 2";
             this.AddPlayer(p);
             

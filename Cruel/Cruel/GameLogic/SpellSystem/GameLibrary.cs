@@ -11,7 +11,7 @@ namespace Cruel.GameLogic.SpellSystem
 {
 	public class GameLibrary : CardCollection
 	{
-        public Player Owner {get;set;}
+        public Player Owner {get; internal set;}
 
         public GameLibrary() {}
 
@@ -63,6 +63,13 @@ namespace Cruel.GameLogic.SpellSystem
         {
             int pos = p % this.cards.Count;
             this.cards.AddBefore(this.cards.ElementAt(p - 1), gc);
+        }
+
+        public override void Add(IEnumerable<GameCard> cards)
+        {
+            base.Add(cards);
+            foreach (GameCard card in cards)
+                card.Owner = this.Owner;
         }
     }
 }

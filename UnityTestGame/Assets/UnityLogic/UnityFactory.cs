@@ -71,6 +71,7 @@ namespace Assets.UnityLogic
             info.SetGraphics(graphic);
 
             var viewhandler = unitobj.gameObject.GetComponent<UnitViewHandler>();
+            viewhandler.Factory = this;
             viewhandler.HealthBar = (Transform)Instantiate(this.HealthBarTemplate);
             viewhandler.HealthBar.GetComponent<HealthbarView>().SetPosition(pos);
             this.gameobjLookUp.Add(unitEnt,unitobj.gameObject);

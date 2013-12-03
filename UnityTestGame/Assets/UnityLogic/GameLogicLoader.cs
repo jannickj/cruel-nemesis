@@ -15,6 +15,7 @@ using Cruel.GameLogic.Modules;
 using Cruel.Map;
 using System.Collections.Generic;
 using Cruel.GameLogic.PlayerCommands;
+using Cruel.GameLogic.SpellSystem;
 
 public class GameLogicLoader : MonoBehaviour {
 
@@ -32,7 +33,9 @@ public class GameLogicLoader : MonoBehaviour {
         //Start turn manager
         TurnManager turnManager = new TurnManager();
         engmodel.AddActor(turnManager);
-        
+
+        AbilityManager abilityManager = new AbilityManager();
+        engmodel.AddActor(abilityManager);
 
         engmodel.EventManager.Register(new Trigger<PlayerJoinedEvent>(OnPlayerJoin));
         Player[] players = Settings.LocalPlayers;

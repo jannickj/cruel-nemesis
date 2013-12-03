@@ -74,6 +74,26 @@ namespace CruelTest.SpellSystem
         }
 
         [TestMethod]
+        public void Targets_HasOneOnFirstTargetZeroOnSecondTargetTwoOnThirdTarget_ReturnsCorrectTargets()
+        {
+            UnitEntity first = new MockUnit();
+
+            UnitEntity Third1 = new MockUnit();
+            UnitEntity Third2 = new MockUnit();
+            Ability abi = new MockAbility(null);
+            abi.SetTarget(0, new object[] { first });
+            abi.SetTarget(2, new object[] { Third1, Third2 });
+
+            var targets = abi.Targets;
+            int secondcount = 0;
+
+            Assert.AreEqual(first, targets[0][0]);
+            Assert.AreEqual(secondcount, targets[1].Length);
+            Assert.AreEqual(Third1, targets[2][0]);
+            Assert.AreEqual(Third2, targets[2][1]);
+        }
+
+        [TestMethod]
         public void FireAbility_TargetConditionFalse_DoesNotResolve()
         {
             bool hasfired = false;

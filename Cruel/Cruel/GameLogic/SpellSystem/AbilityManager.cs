@@ -16,17 +16,29 @@ namespace Cruel.GameLogic.SpellSystem
 
         protected override void OnAddedToEngine()
         {
-            this.EventManager.Register(new Trigger<EnqueueAbilityEvent>(evt => stack.Push(evt.Ability)));
+            this.EventManager.Register(new Trigger<EnqueueAbilityEvent>(OnEnqueueAbility));
             this.EventManager.Register(new Trigger<PhaseChangingEvent>(OnPhaseChange));
         }
 
+        private void OnEnqueueAbility(EnqueueAbilityEvent evt)
+        {
+            stack.Push(evt.Ability);
+           
+        }
+        
         private void OnPhaseChange(PhaseChangingEvent evt)
         {
             if (StackNotEmpty())
             {
                 evt.SetPreventPhase();
                 while (StackNotEmpty())
-                    this.ActionManager.Queue(new FireAbilityAction(stack.Pop()));
+                {
+                    var abi = stack.Pop();
+                    if(!abi.PreventResolving)
+                        this.ActionManager.Queue(new FireAbilityAction(abi));
+
+                    this.EventManager.Raise(new AbilityRemovedFromStackEvent(abi));
+                }
             }
         }
 
