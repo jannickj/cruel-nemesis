@@ -49,7 +49,7 @@ namespace Cruel.GameLogic.PlayerCommands
             this.CastedSpell = spell;
             int index = 0;
             if (IllegalManaUsed())
-                throw new ManaMismatchException();
+                throw new ManaMismatchException(card, castingPlayer, selectedMana);
             else
             {
                 foreach (IEnumerable<object> targetList in targets)

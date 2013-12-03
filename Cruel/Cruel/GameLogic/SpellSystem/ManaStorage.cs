@@ -10,6 +10,7 @@ using Cruel.GameLogic.Events;
 using Cruel.GameLogic;
 using Cruel.GameLogic.PlayerCommands;
 using XmasEngineModel.Management.Events;
+using Cruel.GameLogic.Exceptions;
 
 namespace CruelTest.SpellSystem
 {
@@ -54,7 +55,7 @@ namespace CruelTest.SpellSystem
             {
                 foreach (Mana m in evt.Action.SelectedMana)
                 {
-
+                    SpendOne(m);
                 }
             }                
         }
@@ -66,13 +67,16 @@ namespace CruelTest.SpellSystem
                     m.Charge();
         }
 
-        private void ExpendOne(Mana m)
+        private void SpendOne(Mana m)
         {
             int index = manaCrystals[m].Count() - 1;
-            while (index >= 0)
+            while (!(manaCrystals[m][index].IsCharged))
             {
-                //stuff
+                index--;
+                if (index < 0)
+                    throw new ManaUnavailableException(owner, m);
             }
+            manaCrystals[m][index].Spend();
         }
     }
 }

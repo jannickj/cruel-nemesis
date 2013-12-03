@@ -54,7 +54,13 @@ namespace CruelTest.SpellSystem
         {
             bool spellResolved = false;
 
+            AbilityManager am = new AbilityManager();
+            this.Engine.AddActor(am);
+            TurnManager tm = new TurnManager();
+            this.Engine.AddActor(tm);
+
             ManaStorage m = new ManaStorage();
+            this.Engine.AddActor(m);
             m.AddCrystal(Mana.Divine);
             m.AddCrystal(Mana.Divine);
             m.AddCrystal(Mana.Arcane);
@@ -78,9 +84,12 @@ namespace CruelTest.SpellSystem
 
             this.ActionManager.Queue(new CastCardCommand(owner, card, selectedMana));
             this.Engine.Update();
+            EventManager.Raise(new PlayerPassedPriorityEvent(players[0]));
+            EventManager.Raise(new PlayerPassedPriorityEvent(players[1]));
+            this.Engine.Update();
 
-            Assert.IsFalse(m.IsCharged(Mana.Divine, 0));
-            Assert.IsTrue(m.IsCharged(Mana.Divine, 1));
+            Assert.IsTrue(m.IsCharged(Mana.Divine, 0));
+            Assert.IsFalse(m.IsCharged(Mana.Divine, 1));
             Assert.IsFalse(m.IsCharged(Mana.Arcane, 0));
 
             Assert.IsTrue(spellResolved);
