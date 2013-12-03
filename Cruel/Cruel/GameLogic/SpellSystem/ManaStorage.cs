@@ -35,12 +35,20 @@ namespace CruelTest.SpellSystem
         {
             if (!manaCrystals.ContainsKey(mana))
                 manaCrystals.Add(mana, new List<ManaCrystal>());
-            manaCrystals[mana].Add(new ManaCrystal(mana));                
+            manaCrystals[mana].Add(new ManaCrystal(mana));
+            this.EventManager.Raise(new ManaCrystalAddedEvent(owner, mana, this));  
         }
 
         public bool IsCharged(Mana mana, int p)
         {
             return manaCrystals[mana][p].IsCharged;
+        }
+
+        public int Size(Mana mana)
+        {
+            if (manaCrystals.ContainsKey(mana))
+                return manaCrystals[mana].Count();
+            return 0;
         }
 
         private void OnTurnChanged(PlayersTurnChangedEvent evt)
@@ -65,6 +73,7 @@ namespace CruelTest.SpellSystem
             foreach (List<ManaCrystal> l in manaCrystals.Values)
                 foreach (ManaCrystal m in l)
                     m.Charge();
+            this.EventManager.Raise(new ManaRechargedEvent(owner));
         }
 
         private void SpendOne(Mana m)
@@ -77,6 +86,7 @@ namespace CruelTest.SpellSystem
                     throw new ManaUnavailableException(owner, m);
             }
             manaCrystals[m][index].Spend();
+            this.EventManager.Raise(new ManaCrystalSpentEvent(owner, m));
         }
     }
 }

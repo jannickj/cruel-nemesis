@@ -22,8 +22,26 @@ namespace Assets.UnityLogic
         public Transform TerrainTemplate;
         public Transform UnitTemplate;
         public Transform HealthBarTemplate;
+        public GUITexture ManaBarTemplate;
 
         private Dictionary<object, GameObject> gameobjLookUp = new Dictionary<object, GameObject>();
+
+        public GUITexture CreateManaBar(Mana mana)
+        {
+            var texture = (GUITexture)GameObject.Instantiate(ManaBarTemplate);
+
+            switch (mana)
+            {
+                case Mana.Arcane:
+                    texture.color = Color.blue;
+                    break;
+                case Mana.Fury:
+                    texture.color = Color.red;
+                    break;
+            }
+
+            return texture;
+        }
 
         public object GameObjectFromModel(object modelobj)
         {

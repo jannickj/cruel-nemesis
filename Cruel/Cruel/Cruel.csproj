@@ -46,9 +46,13 @@
     <Compile Include="GameLogic\Actions\FireAbilityAction.cs" />
     <Compile Include="GameLogic\Actions\MoveAction.cs" />
     <Compile Include="GameLogic\Actions\MovePathAction.cs" />
+    <Compile Include="GameLogic\Actions\PlayerGainManaCrystalAction.cs" />
     <Compile Include="GameLogic\Actions\PlayerJoinAction.cs" />
     <Compile Include="GameLogic\Actions\ResetPrioritiesAction.cs" />
     <Compile Include="GameLogic\Events\EnqueueAbilityEvent.cs" />
+    <Compile Include="GameLogic\Events\ManaCrystalAddedEvent.cs" />
+    <Compile Include="GameLogic\Events\ManaCrystalSpentEvent.cs" />
+    <Compile Include="GameLogic\Events\ManaRechargedEvent.cs" />
     <Compile Include="GameLogic\Events\PhaseChangingEvent.cs" />
     <Compile Include="GameLogic\Events\ResetPrioritiesEvent.cs" />
     <Compile Include="GameLogic\Exceptions\ManaMismatchException.cs" />

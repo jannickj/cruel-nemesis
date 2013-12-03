@@ -15,6 +15,7 @@ using Cruel.GameLogic.Modules;
 using Cruel.Map;
 using System.Collections.Generic;
 using Cruel.GameLogic.PlayerCommands;
+using Cruel.GameLogic.SpellSystem;
 
 public class GameLogicLoader : MonoBehaviour {
 
@@ -79,6 +80,9 @@ public class GameLogicLoader : MonoBehaviour {
                 engmodel.ActionManager.Queue(new StartGameCommand());
                 engmodel.ActionManager.Queue(new DrawCardAction(players[0], CardsToStartWith));
                 engmodel.ActionManager.Queue(new DrawCardAction(players[1], CardsToStartWith));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
             }
         }
     }
