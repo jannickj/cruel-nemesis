@@ -17,17 +17,24 @@ namespace Cruel.GameLogic
         public GameLibrary Library { get; private set; }
         public Hand Hand { get; private set; }
         public ManaStorage ManaStorage { get; private set; }
+        public int CurrentXP { get; private set;}
+        public LevelRewarder Rewarder{ get; private set;}
 
-        public Player() : this(null, null, null) { }
+        public Player() : this(null, null, null,null) { }
 
-        public Player(GameLibrary lib, Hand hand, ManaStorage manaStorage)
+        public Player(GameLibrary lib, Hand hand, ManaStorage manaStorage,LevelRewarder rewarder)
         {
+            this.CurrentXP = 0;
+            this.Rewarder = rewarder;
+            if (this.Rewarder != null)
+                Rewarder.Owner = this;
             Library = lib;
             if(lib!=null)
                 Library.Owner = this;
             Hand = hand;
             ManaStorage = manaStorage;
-            ManaStorage.Owner = this;
+            if(manaStorage != null)
+                ManaStorage.Owner = this;
         }
 
         public void Draw(int number)
@@ -64,6 +71,17 @@ namespace Cruel.GameLogic
         {
             if(ManaStorage != null)
                 this.ActionManager.Queue(new AddXmasObjectAction(this.ManaStorage));
+            if (this.Rewarder != null)
+                this.ActionManager.Queue(new AddXmasObjectAction(this.Rewarder));
+        }
+
+        public void AddXP(int xp)
+        {
+            int gainedxp = xp > 0 ? xp : 0;
+            if (gainedxp == 0)
+                return;
+            this.CurrentXP += xp;
+            this.Raise(new PlayerGainedXPEvent(this, gainedxp));
         }
     }
 }

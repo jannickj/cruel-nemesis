@@ -20,6 +20,7 @@ namespace CruelTest.SpellSystem
         public void AddCrystal_NoCrystals_OneCrystalAddedWithoutCharge()
         {
             ManaStorage m = new ManaStorage();
+            this.Engine.AddActor(m);
             m.AddCrystal(Mana.Divine);
             Assert.IsFalse(m.IsCharged(Mana.Divine, 0));
         }

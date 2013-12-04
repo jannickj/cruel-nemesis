@@ -36,6 +36,7 @@ namespace Cruel.GameLogic.SpellSystem
         public Spell ConstructSpell()
         {
             Spell s = new Spell(spells);
+            s.Creator = this;
             foreach (var cond in conditionList)
             {
                 s.SetTargetCondition(cond.Key, cond.Value);

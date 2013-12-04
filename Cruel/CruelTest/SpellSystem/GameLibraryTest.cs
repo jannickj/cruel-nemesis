@@ -17,7 +17,7 @@ namespace CruelTest.SpellSystem
         {
             GameLibrary lib = new GameLibrary();
             Hand h = new Hand();
-            Player p = new Player(lib, h, null);
+            Player p = new Player(lib, h, null,null);
             Engine.AddActor(lib);
             return lib;
         }

@@ -55,9 +55,11 @@
     <Compile Include="GameLogic\Events\ManaCrystalSpentEvent.cs" />
     <Compile Include="GameLogic\Events\ManaRechargedEvent.cs" />
     <Compile Include="GameLogic\Events\PhaseChangingEvent.cs" />
+    <Compile Include="GameLogic\Events\PlayerGainedXPEvent.cs" />
     <Compile Include="GameLogic\Events\ResetPrioritiesEvent.cs" />
     <Compile Include="GameLogic\Exceptions\ManaMismatchException.cs" />
     <Compile Include="GameLogic\Exceptions\ManaUnavailableException.cs" />
+    <Compile Include="GameLogic\PlayerCommands\GainXPCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\StartGameCommand.cs" />
     <Compile Include="GameLogic\Cards\SummonGruntCard.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="GameLogic\TurnLogic\TurnManager.cs" />
     <Compile Include="GameLogic\Unit\GruntUnit.cs" />
     <Compile Include="GameLogic\Unit\UnitEntity.cs" />
+    <Compile Include="GameLogic\LevelRewarder.cs" />
     <Compile Include="Library\PathFinding\Path.cs" />
     <Compile Include="Library\PathFinding\PathFinder.cs" />
     <Compile Include="Library\PathFinding\PathNode.cs" />

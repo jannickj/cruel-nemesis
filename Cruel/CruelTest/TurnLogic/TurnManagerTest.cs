@@ -110,7 +110,7 @@ namespace CruelTest.TurnLogic
 
         private Player ConstructNAddPlayer()
         {
-            Player p = new Player(null,null,null);
+            Player p = new Player(null,null,null,null);
             p.Name = "some player";
             EventManager.Raise(new PlayerJoinedEvent(p));
             return p;

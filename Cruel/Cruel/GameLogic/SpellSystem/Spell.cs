@@ -23,5 +23,7 @@ namespace Cruel.GameLogic.SpellSystem
                 s(this);
             }
         }
+
+        public GameCard Creator { get; internal set; }
     }
 }

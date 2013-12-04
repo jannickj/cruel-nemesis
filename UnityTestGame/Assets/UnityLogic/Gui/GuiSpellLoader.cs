@@ -22,7 +22,7 @@ namespace Assets.UnityLogic.Gui
         public int SpellDistanceFromCenter = 9;
         public int YOffSet = 2;
         private XmasModel engine;
-        private DictionaryList<Player, GameCard> playersCardStack = new DictionaryList<Player, GameCard>();
+        private DictionaryList<Player, Spell> playersCardStack = new DictionaryList<Player, Spell>();
 
         public GuiSpellLoader()
         {
@@ -33,12 +33,16 @@ namespace Assets.UnityLogic.Gui
         {
             this.engine = EngineHandler.EngineModel;
             this.engine.EventManager.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCastCard));
-            this.engine.EventManager.Register(new Trigger<DequeueAbilityEvent>(OnSpellRemovedFromStack));
+            this.engine.EventManager.Register(new Trigger<DequeueAbilityEvent>(evt => evt.Ability is Spell,OnSpellRemovedFromStack));
         }
 
         private void OnSpellRemovedFromStack(DequeueAbilityEvent evt)
         {
-
+            var spell = (Spell)evt.Ability;
+            var card = spell.Creator;
+            var spellobj = Factory.GameObjectFromModel(spell);
+            Factory.RemoveModel(spell);
+            this.playersCardStack.Remove(card.Owner, spell);
         }
 
         private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)
@@ -60,7 +64,7 @@ namespace Assets.UnityLogic.Gui
             gobj.transform.localScale = scale;
             spellview.FlyToPos = vec3;
 
-            playersCardStack.Add(card.Owner, card);
+            playersCardStack.Add(card.Owner, spell);
 
             
             //gobj.c
@@ -69,7 +73,7 @@ namespace Assets.UnityLogic.Gui
         private int YPosFromPlayer(Player p)
         {
 
-            ICollection<GameCard> cards;
+            ICollection<Spell> cards;
             if (!playersCardStack.TryGetValues(p, out cards))
                 return YOffSet;
 
@@ -78,7 +82,7 @@ namespace Assets.UnityLogic.Gui
 
         private float ZPosFromPlayer(Player p)
         {
-            ICollection<GameCard> cards;
+            ICollection<Spell> cards;
             if (!playersCardStack.TryGetValues(p, out cards))
                 return 0;
 

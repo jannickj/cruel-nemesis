@@ -115,5 +115,12 @@ namespace Assets.UnityLogic
         {
             return new Vector3(-(float)point.X, (float)point.Y, 0.0f);
         }
+
+        public void RemoveModel(object model)
+        {
+            var gobj = this.gameobjLookUp[model];
+            GameObject.Destroy(gobj);
+            
+        }
     }
 }
