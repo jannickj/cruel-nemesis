@@ -11,17 +11,27 @@ namespace Assets.UnityLogic.Gui
         private static int BaseHeight = 1080;
         private static int BaseWidth = 1920;
         private GUITexture myGUITexture;
-        Rect curSize;
+        public Rect CurSize {get; set;}
 
         void Awake()
         {
             myGUITexture = this.gameObject.GetComponent("GUITexture") as GUITexture;
-            curSize = myGUITexture.pixelInset;
+            CurSize = myGUITexture.pixelInset;
         }
 
         // Use this for initialization
         void Update()
         {
+            //var size = myGUITexture.pixelInset;
+            //if(size.height != this.lastChangedTo.height)
+            //    curSize.height = size.height;
+            //if(size.width != this.lastChangedTo.width)
+            //    curSize.width = size.width;
+            //if(size.x != this.lastChangedTo.x)
+            //    curSize.x = size.x;
+            //if(size.y != this.lastChangedTo.y)
+            //    curSize.y = size.y;
+
             // Position the billboard in the center, 
             // but respect the picture aspect ratio
             int screenHeight = Screen.height;
@@ -34,17 +44,14 @@ namespace Assets.UnityLogic.Gui
 
             
 
-            float xPos = curSize.x*ratio;
-            float yPos = curSize.y * ratio;
+            float xPos = CurSize.x*ratio;
+            float yPos = CurSize.y * ratio;
 
-            float height = curSize.height * ratio;
-            float width = curSize.width * ratio;
+            float height = CurSize.height * ratio;
+            float width = CurSize.width * ratio;
             
-            
-
-            myGUITexture.pixelInset =
-                new Rect(   xPos,   yPos,
-                            width,  height);
+            myGUITexture.pixelInset = new Rect(xPos, yPos, width, height);
+               
             
         }
 	}
