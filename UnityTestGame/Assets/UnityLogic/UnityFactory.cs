@@ -43,11 +43,9 @@ namespace Assets.UnityLogic
             return texture;
         }
 
-        public object GameObjectFromModel(object modelobj)
+        public GameObject GameObjectFromModel(object modelobj)
         {
-            GameObject gobj = null;
-            gameobjLookUp.TryGetValue(modelobj, out gobj);
-            return gobj;
+            return gameobjLookUp[modelobj];
         }
 
         public Transform CreateTile(TerrainEntity terEnt, TilePosition posinfo)

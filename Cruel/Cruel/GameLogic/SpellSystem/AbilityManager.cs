@@ -37,7 +37,7 @@ namespace Cruel.GameLogic.SpellSystem
                     if(!abi.PreventResolving)
                         this.ActionManager.Queue(new FireAbilityAction(abi));
 
-                    this.EventManager.Raise(new AbilityRemovedFromStackEvent(abi));
+                    this.EventManager.Raise(new DequeueAbilityEvent(abi));
                 }
             }
         }

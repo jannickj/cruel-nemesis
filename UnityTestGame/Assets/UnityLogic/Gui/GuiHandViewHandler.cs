@@ -35,13 +35,13 @@ namespace Assets.UnityLogic.Gui
             this.evtman = evtman;
             this.evtman.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == player, OnCardDrawn));
             this.evtman.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerGainPriority));
-            this.evtman.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCastCard));
+            this.evtman.Register(new Trigger<ActionStartingEvent<CastCardCommand>>(OnCastCard));
         }
 
-        private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)
+        private void OnCastCard(ActionStartingEvent<CastCardCommand> evt)
         {
             GameCard card = evt.Action.CastedCard;
-            
+            Debug.Log("Casting card");
             removeCard(card);
             
         }
@@ -50,18 +50,16 @@ namespace Assets.UnityLogic.Gui
         {
             if (!currentHand.ContainsKey(card))
                 return;
-
             var cardobj = this.currentHand[card];
             this.currentHand.Remove(card);
             cardOrder.Remove(cardobj);
 
             this.PositionHand();
-            cardobj.gameObject.SetActive(false);
         }
 
         private void OnPlayerGainPriority(PlayerGainedPriorityEvent evt)
         {
-            
+            Debug.Log("Setting cards activity");
             foreach(Transform card in cardOrder)
                 card.gameObject.SetActive(this.player.HasPriority);
         }
@@ -72,6 +70,7 @@ namespace Assets.UnityLogic.Gui
            
             cardOrder.AddLast(cardobj);            
             cardobj.parent = playerCam.transform;
+            currentHand.Add(evt.DrawnCard, cardobj);
             
             PositionHand();
             cardobj.gameObject.SetActive(this.player.HasPriority);
