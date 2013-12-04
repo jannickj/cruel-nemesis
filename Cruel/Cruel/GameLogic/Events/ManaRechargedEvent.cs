@@ -9,10 +9,10 @@ namespace Cruel.GameLogic.Events
 {
     public class ManaRechargedEvent : XmasEvent
     {
-        public Player player {get; set;}
+        public Player Owner {get; set;}
         public ManaRechargedEvent(Player p)
         {
-            player = p;
+            Owner = p;
         }
     }
 }

@@ -9,12 +9,12 @@ namespace Cruel.GameLogic.Events
 {
     public class ManaCrystalSpentEvent : XmasEvent
     {
-        public Player owner {get; set;}
-        public Mana crystalType { get; set; }
+        public Player Owner {get; set;}
+        public Mana CrystalType { get; set; }
         public ManaCrystalSpentEvent(Player p, Mana m)
         {
-            owner = p;
-            crystalType = m;
+            Owner = p;
+            CrystalType = m;
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Assets.UnityLogic.Gui
         public GuiInformation GUIInfo;
         public XmasModel Engine;
         public bool reversed;
+        private float translateX = 100;
+        private float translateY = 0;
         private Dictionary<Mana, GUITexture> manaBars = new Dictionary<Mana, GUITexture>();
 
         public void Initialize(UnityFactory factory, GuiInformation info, XmasModel engine, bool reversed)
@@ -24,20 +26,29 @@ namespace Assets.UnityLogic.Gui
             this.GUIInfo = info;
             this.Engine = engine;
             this.reversed = reversed;
-            Engine.EventManager.Register(new Trigger<ManaCrystalAddedEvent>(OnManaAdded));
-            Engine.EventManager.Register(new Trigger<ManaCrystalSpentEvent>(OnManaSpent));
-            Engine.EventManager.Register(new Trigger<ManaRechargedEvent>(OnManaRecharged));
+            Engine.EventManager.Register(new Trigger<ManaCrystalAddedEvent>(evt=>evt.Owner==this.GUIInfo.Player,OnManaAdded));
+            Engine.EventManager.Register(new Trigger<ManaCrystalSpentEvent>(evt => evt.Owner == this.GUIInfo.Player, OnManaSpent));
+            Engine.EventManager.Register(new Trigger<ManaRechargedEvent>(evt => evt.Owner == this.GUIInfo.Player, OnManaRecharged));
         }
 
         private void OnManaAdded(ManaCrystalAddedEvent evt)
         {
-            if (evt.storage.Size(evt.crystalType) > 0)
+            Mana mana = evt.CrystalType;
+            var manaBar = manaBars[mana];
+            Debug.Log(mana);
+            if (evt.Storage.Size(mana) > 0)
             {
-                manaBars[evt.crystalType] = Factory.CreateManaBar(evt.crystalType);
+                manaBar = Factory.CreateManaBar(mana);
+                manaBar.transform.parent = this.GUIInfo.Portrait.transform;
+                if(!reversed)
+                {
+                    var scaler = manaBar.GetComponent<GUITextureAutoScaler>();
+                    
+                }
             }
             else
             {
-                manaBars[evt.crystalType].renderer.material.SetTextureScale("_MainTex", new Vector2(1, (evt.storage.Size(evt.crystalType))));
+                manaBar.renderer.material.SetTextureScale("_MainTex", new Vector2(1, (evt.Storage.Size(evt.CrystalType))));
             }
         }
 
