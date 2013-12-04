@@ -7,6 +7,7 @@ using XmasEngineModel;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.Events;
 using Cruel.GameLogic.SpellSystem;
+using CruelTest.SpellSystem;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -16,8 +17,11 @@ namespace Assets.UnityLogic.Gui
         public GuiInformation GUIInfo;
         public XmasModel Engine;
         public bool reversed;
-        private float translateX = 100;
-        private float translateY = 0;
+        private float translateXBackground = 200;
+        private float translateYBackground = 35;
+        private float translateX = 200;
+        private float translateY = 35;
+        private float spacing = 100;
         private Dictionary<Mana, GUITexture> manaBars = new Dictionary<Mana, GUITexture>();
 
         public void Initialize(UnityFactory factory, GuiInformation info, XmasModel engine, bool reversed)
@@ -34,32 +38,56 @@ namespace Assets.UnityLogic.Gui
         private void OnManaAdded(ManaCrystalAddedEvent evt)
         {
             Mana mana = evt.CrystalType;
-            var manaBar = manaBars[mana];
-            Debug.Log(mana);
-            if (evt.Storage.Size(mana) > 0)
+            if (evt.Storage.Size(mana) == 1)
             {
-                manaBar = Factory.CreateManaBar(mana);
-                manaBar.transform.parent = this.GUIInfo.Portrait.transform;
-                if(!reversed)
-                {
-                    var scaler = manaBar.GetComponent<GUITextureAutoScaler>();
-                    
-                }
+                CreateManaBar(mana);
+                translateX += spacing;
+                translateXBackground += spacing;
+                Debug.Log("Translates: " + translateX + ", " + translateXBackground);
             }
             else
-            {
-                manaBar.renderer.material.SetTextureScale("_MainTex", new Vector2(1, (evt.Storage.Size(evt.CrystalType))));
-            }
+                UpdateManaLevel(evt.CrystalType);
+        }
+
+        private void CreateManaBar(Mana mana)
+        {
+            var emptyBar = Factory.CreateEmptyManaBar();
+            var position = emptyBar.transform.position;
+            position.z = -1;
+            emptyBar.transform.position = position;
+            emptyBar.transform.parent = this.GUIInfo.Portrait.transform;
+            var scaler = emptyBar.GetComponent<GUITextureAutoScaler>();
+            var size = scaler.CurSize;
+            var offsetX = reversed ? (-1 * (translateX + (size.width / 2))) : translateX;
+            size.x += offsetX;
+            size.y -= translateY;
+            scaler.CurSize = size;
+
+            var manaBar = Factory.CreateManaBar(mana);
+            manaBars[mana] = manaBar;
+            manaBar.transform.parent = this.GUIInfo.Portrait.transform;
+            var manaScaler = manaBar.GetComponent<GUITextureAutoScaler>();
+            var manaSize = manaScaler.CurSize;
+            var manaOffsetX = reversed ? (-1 * (translateXBackground + (manaSize.width / 2))) : translateX;
+            manaSize.x += manaOffsetX;
+            manaSize.y -= translateYBackground;
+            manaScaler.CurSize = manaSize;
         }
 
         private void OnManaSpent(ManaCrystalSpentEvent evt)
         {
-
+            UpdateManaLevel(evt.CrystalType);
         }
 
         private void OnManaRecharged(ManaRechargedEvent evt)
         {
 
+        }
+
+        private void UpdateManaLevel(Mana mana)
+        {
+            //ManaStorage manaStorage = this.GUIInfo.Player.ManaStorage;
+            //int maxVal = manaStorage.
         }
 	}
 }

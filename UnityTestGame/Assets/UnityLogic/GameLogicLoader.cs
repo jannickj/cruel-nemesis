@@ -83,7 +83,7 @@ public class GameLogicLoader : MonoBehaviour {
                 engmodel.ActionManager.Queue(new DrawCardAction(players[0], CardsToStartWith));
                 engmodel.ActionManager.Queue(new DrawCardAction(players[1], CardsToStartWith));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
-                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Fury));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
             }
         }

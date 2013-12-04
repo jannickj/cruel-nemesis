@@ -86,7 +86,7 @@ namespace CruelTest.SpellSystem
                     throw new ManaUnavailableException(owner, m);
             }
             manaCrystals[m][index].Spend();
-            this.EventManager.Raise(new ManaCrystalSpentEvent(owner, m));
+            this.EventManager.Raise(new ManaCrystalSpentEvent(owner, m, this));
         }
     }
 }
