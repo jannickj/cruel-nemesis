@@ -294,6 +294,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &121065637
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 121065640}
+  - 23: {fileID: 121065639}
+  - 102: {fileID: 121065638}
+  m_Layer: 0
+  m_Name: New Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!102 &121065638
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121065637}
+  m_Text: 
+  m_OffsetZ: 0
+  m_CharacterSize: 1
+  m_LineSpacing: 1
+  m_Anchor: 0
+  m_Alignment: 0
+  m_TabSize: 4
+  m_FontSize: 0
+  m_FontStyle: 0
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+--- !u!23 &121065639
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121065637}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!4 &121065640
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121065637}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 11.8092232, y: .856193542, z: 5.39580345}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &138595596
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +404,9 @@ MonoBehaviour:
   TerrainTemplate: {fileID: 400000, guid: 7cc8d6f559a6a1748a86e8ad2b8b0d6d, type: 2}
   UnitTemplate: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
   HealthBarTemplate: {fileID: 400000, guid: 19be0c746e6eb5f4e81a9c069b45c6ab, type: 2}
-  ManaBarTemplate: {fileID: 0}
+  ManaBarTemplate: {fileID: 13100000, guid: 784b1fc16072de54ca51f5ff19d19e56, type: 2}
+  EmptyManaBarTemplate: {fileID: 13100000, guid: fe3145f439902ff4e97c6a95a7d4f086,
+    type: 2}
 --- !u!1 &161923065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,9 +2574,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EngineHandler: {fileID: 326927666}
   Factory: {fileID: 138595598}
-  Settings: {fileID: 412707700}
+  Settings: {fileID: 0}
   SpellDistanceFromCenter: 9
-  YOffSet: 4
+  YOffSet: 2
 --- !u!1001 &1323288758
 Prefab:
   m_ObjectHideFlags: 0

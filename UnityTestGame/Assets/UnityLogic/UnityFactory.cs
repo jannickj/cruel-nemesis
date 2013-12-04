@@ -23,8 +23,14 @@ namespace Assets.UnityLogic
         public Transform UnitTemplate;
         public Transform HealthBarTemplate;
         public GUITexture ManaBarTemplate;
+        public GUITexture EmptyManaBarTemplate;
 
         private Dictionary<object, GameObject> gameobjLookUp = new Dictionary<object, GameObject>();
+
+        public GUITexture CreateEmptyManaBar()
+        {
+            return (GUITexture)GameObject.Instantiate(EmptyManaBarTemplate);
+        }
 
         public GUITexture CreateManaBar(Mana mana)
         {

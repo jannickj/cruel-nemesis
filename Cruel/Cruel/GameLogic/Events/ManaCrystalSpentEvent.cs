@@ -4,17 +4,20 @@ using System.Linq;
 using System.Text;
 using XmasEngineModel.Management;
 using Cruel.GameLogic.SpellSystem;
+using CruelTest.SpellSystem;
 
 namespace Cruel.GameLogic.Events
 {
     public class ManaCrystalSpentEvent : XmasEvent
     {
-        public Player owner {get; set;}
-        public Mana crystalType { get; set; }
-        public ManaCrystalSpentEvent(Player p, Mana m)
+        public Player Owner {get; set;}
+        public Mana CrystalType { get; set; }
+        public ManaStorage Storage { get; set; }
+        public ManaCrystalSpentEvent(Player p, Mana m, ManaStorage storage)
         {
-            owner = p;
-            crystalType = m;
+            Owner = p;
+            CrystalType = m;
+            Storage = storage;
         }
     }
 }
