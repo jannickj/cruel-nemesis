@@ -110,7 +110,7 @@ namespace Assets.UnityLogic.Commands
                     this.GuiController.GuiView.unDrawRoute(mousePath);
                     mousePath = default(Path<TileWorld, TilePosition>);
 
-                    QueueDelcareAction(this.lastFoundEnemy);
+                    QueueDeclareAction(this.lastFoundEnemy);
                     this.enemySelected = this.lastFoundEnemy != null;
                     
                     
@@ -125,7 +125,7 @@ namespace Assets.UnityLogic.Commands
                     lastpos = this.unitEntity.PositionAs<TilePosition>();
                 else
                     lastpos = this.fullroute.Last.Value.Road.Last.Value;
-                QueueDelcareAction();
+                QueueDeclareAction();
                 this.refindMouse = true;
             }
             else if (Input.GetButtonDown("accept") || enemySelected)
@@ -138,7 +138,7 @@ namespace Assets.UnityLogic.Commands
             
         }
 
-        private void QueueDelcareAction(UnitEntity attackUnit = null)
+        private void QueueDeclareAction(UnitEntity attackUnit = null)
         {
             Path<TileWorld, TilePosition> fullpath;
             if (fullroute.Count == 0)
