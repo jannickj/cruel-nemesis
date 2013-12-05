@@ -26,7 +26,7 @@ namespace Assets.UnityLogic.Game
 
         private static IEnumerable<int> GenerateXPInterval()
         {
-            return new int[] { 0, 100, 300, 500, 800, 1000 };
+            return new int[] { 1, 100, 300, 500, 800, 1000 };
         }
 	}
 }

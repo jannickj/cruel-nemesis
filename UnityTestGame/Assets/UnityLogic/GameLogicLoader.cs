@@ -16,6 +16,7 @@ using Cruel.Map;
 using System.Collections.Generic;
 using Cruel.GameLogic.PlayerCommands;
 using Cruel.GameLogic.SpellSystem;
+using XmasEngineModel.Management.Actions;
 
 public class GameLogicLoader : MonoBehaviour {
 
@@ -82,9 +83,21 @@ public class GameLogicLoader : MonoBehaviour {
                 engmodel.ActionManager.Queue(new StartGameCommand());
                 engmodel.ActionManager.Queue(new DrawCardAction(players[0], CardsToStartWith));
                 engmodel.ActionManager.Queue(new DrawCardAction(players[1], CardsToStartWith));
+                engmodel.ActionManager.Queue(new SimpleAction(_=>
+                {
+                    players[0].AddXP(1);
+                    players[1].AddXP(1);
+                    engmodel.ActionManager.Queue(new SimpleAction(_1 =>
+                    {
+                        players[0].ManaStorage.chargeAll();
+                        players[1].ManaStorage.chargeAll();
+                    }));
+                }));
+                engmodel.ActionManager.Queue(new GainXPCommand(players[1], 1));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
-                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Fury));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
+                
             }
         }
     }

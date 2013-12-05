@@ -31,7 +31,7 @@ namespace CruelTest.SpellSystem
             this.EventManager.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCardCast));
         }
 
-        public int getChargedCount(Mana mana)
+        public int GetChargedCount(Mana mana)
         {
             int count = 0;
             foreach (ManaCrystal m in manaCrystals[mana])
@@ -58,6 +58,11 @@ namespace CruelTest.SpellSystem
             if (manaCrystals.ContainsKey(mana))
                 return manaCrystals[mana].Count();
             return 0;
+        }
+
+        public IEnumerable<Mana> getAllTypes()
+        {
+            return manaCrystals.Keys;
         }
 
         private void OnTurnChanged(PlayersTurnChangedEvent evt)
