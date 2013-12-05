@@ -86,8 +86,11 @@ namespace Assets.UnityLogic.Gui
 
         private void UpdateManaLevel(Mana mana)
         {
-            //ManaStorage manaStorage = this.GUIInfo.Player.ManaStorage;
-            //int maxVal = manaStorage.
+            ManaStorage manaStorage = this.GUIInfo.Player.ManaStorage;
+            int maxVal = manaStorage.Size(mana);
+            int curVal;
+            foreach (List<ManaCrystal> l in manaStorage.Values)
+                foreach (ManaCrystal m in l)
         }
 	}
 }
