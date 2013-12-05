@@ -17,10 +17,11 @@ namespace Assets.UnityLogic.Gui
         public GuiInformation GUIInfo;
         public XmasModel Engine;
         public bool reversed;
+        private float manaBarHeight = 188;
         private float translateXBackground = 200;
-        private float translateYBackground = 35;
+        private float translateYBackground = 37;
         private float translateX = 200;
-        private float translateY = 35;
+        private float translateY = 37;
         private float spacing = 100;
         private Dictionary<Mana, GUITexture> manaBars = new Dictionary<Mana, GUITexture>();
 
@@ -33,12 +34,14 @@ namespace Assets.UnityLogic.Gui
             Engine.EventManager.Register(new Trigger<ManaCrystalAddedEvent>(evt=>evt.Owner==this.GUIInfo.Player,OnManaAdded));
             Engine.EventManager.Register(new Trigger<ManaCrystalSpentEvent>(evt => evt.Owner == this.GUIInfo.Player, OnManaSpent));
             Engine.EventManager.Register(new Trigger<ManaRechargedEvent>(evt => evt.Owner == this.GUIInfo.Player, OnManaRecharged));
+
+
         }
 
         private void OnManaAdded(ManaCrystalAddedEvent evt)
         {
             Mana mana = evt.CrystalType;
-            if (evt.Storage.Size(mana) == 1)
+            if (!manaBars.ContainsKey(mana))
             {
                 CreateManaBar(mana);
                 translateX += spacing;
@@ -81,13 +84,22 @@ namespace Assets.UnityLogic.Gui
 
         private void OnManaRecharged(ManaRechargedEvent evt)
         {
-
+            foreach (Mana m in evt.Owner.ManaStorage.getAllTypes())
+                UpdateManaLevel(m);
         }
 
         private void UpdateManaLevel(Mana mana)
         {
-            //ManaStorage manaStorage = this.GUIInfo.Player.ManaStorage;
-            //int maxVal = manaStorage.
+            ManaStorage manaStorage = this.GUIInfo.Player.ManaStorage;
+            float maxVal = manaStorage.Size(mana);
+            float curVal = manaStorage.GetChargedCount(mana);
+            var manaBar = manaBars[mana];
+            var scaler = manaBar.GetComponent<GUITextureAutoScaler>();
+            var size = scaler.CurSize;
+            float newHeight = (manaBarHeight * curVal) / maxVal;
+            var difference = size.height - newHeight;
+            var newSize = new Rect(size.xMin, size.yMin+difference, size.width, newHeight);
+            scaler.CurSize = newSize;
         }
 	}
 }

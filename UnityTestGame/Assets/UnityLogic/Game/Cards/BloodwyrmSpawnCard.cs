@@ -19,6 +19,7 @@ namespace Assets.UnityLogic.Game.Cards
             this.RegisterModule(new GraphicsModule("bloodwyrm_spawn"));
             this.SetTargetCondition(0, obj => obj is TerrainEntity);
             this.TargetCounts = new int[] { 1 };
+            this.ManaCost = new List<Mana>(new Mana[] { Mana.Arcane });
         }
 
 

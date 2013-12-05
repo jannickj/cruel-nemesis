@@ -2574,7 +2574,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EngineHandler: {fileID: 326927666}
   Factory: {fileID: 138595598}
-  Settings: {fileID: 0}
+  Settings: {fileID: 412707700}
   SpellDistanceFromCenter: 9
   YOffSet: 2
 --- !u!1001 &1323288758
