@@ -6,6 +6,8 @@ using XmasEngineModel;
 using XmasEngineModel.Management;
 using CruelTest.TestComponents;
 using XmasEngineExtensions.TileExtension;
+using XmasEngineModel.Management.Events;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CruelTest
 {
@@ -13,10 +15,18 @@ namespace CruelTest
     {
         public XmasModel Engine { get; private set; }
 
+        
+
         public EngineTest()
             : this(new TileWorldBuilder(new JSLibrary.Data.Size(1, 1)))
         {
             
+        }
+
+        public void FailTestOnEngineCrash()
+        {
+            this.Engine.EventManager.Register(new Trigger<ActionFailedEvent>(evt => Assert.Fail(evt.Exception.Message)));
+            this.Engine.EventManager.Register(new Trigger<TriggerFailedEvent>(evt => Assert.Fail(evt.Exception.Message)));
         }
 
 

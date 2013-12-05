@@ -28,7 +28,7 @@ namespace CruelTest.SpellSystem
         protected override void OnAddedToEngine()
         {
             this.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(OnTurnChanged));
-            this.EventManager.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCardCast));
+            //this.EventManager.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCardCast));
         }
 
         public void AddCrystal(Cruel.GameLogic.SpellSystem.Mana mana)
@@ -57,16 +57,16 @@ namespace CruelTest.SpellSystem
                 chargeAll();
         }
 
-        private void OnCardCast(ActionCompletedEvent<CastCardCommand> evt)
-        {
-            if (evt.Action.CastingPlayer == owner)
-            {
-                foreach (Mana m in evt.Action.SelectedMana)
-                {
-                    SpendOne(m);
-                }
-            }                
-        }
+        //private void OnCardCast(ActionCompletedEvent<CastCardCommand> evt)
+        //{
+        //    if (evt.Action.CastingPlayer == owner)
+        //    {
+        //        foreach (Mana m in evt.Action.SelectedMana)
+        //        {
+        //            Spend(m);
+        //        }
+        //    }                
+        //}
 
         public void chargeAll()
         {
@@ -76,7 +76,14 @@ namespace CruelTest.SpellSystem
             this.EventManager.Raise(new ManaRechargedEvent(owner));
         }
 
-        private void SpendOne(Mana m)
+        public void Spend(IEnumerable<Mana> manas)
+        {
+            foreach (var m in manas)
+                Spend(m);
+
+        }
+
+        public void Spend(Mana m)
         {
             int index = manaCrystals[m].Count() - 1;
             while (!(manaCrystals[m][index].IsCharged))

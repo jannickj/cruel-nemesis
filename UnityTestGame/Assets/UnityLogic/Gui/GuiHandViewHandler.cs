@@ -35,13 +35,12 @@ namespace Assets.UnityLogic.Gui
             this.evtman = evtman;
             this.evtman.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == player, OnCardDrawn));
             this.evtman.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerGainPriority));
-            this.evtman.Register(new Trigger<ActionStartingEvent<CastCardCommand>>(OnCastCard));
+            this.evtman.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCastCard));
         }
 
-        private void OnCastCard(ActionStartingEvent<CastCardCommand> evt)
+        private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)
         {
             GameCard card = evt.Action.CastedCard;
-            Debug.Log("Casting card");
             removeCard(card);
             
         }
@@ -59,7 +58,6 @@ namespace Assets.UnityLogic.Gui
 
         private void OnPlayerGainPriority(PlayerGainedPriorityEvent evt)
         {
-            Debug.Log("Setting cards activity");
             foreach(Transform card in cardOrder)
                 card.gameObject.SetActive(this.player.HasPriority);
         }

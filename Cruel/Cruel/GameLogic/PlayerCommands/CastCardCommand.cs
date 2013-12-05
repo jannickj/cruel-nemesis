@@ -15,10 +15,10 @@ namespace Cruel.GameLogic.PlayerCommands
         private Player castingPlayer;
         private GameCard card;
         private IEnumerable<IEnumerable<object>> targets;
-        private List<Mana> selectedMana;
+        private Mana[] selectedMana;
         public Spell CastedSpell { get; private set; }
 
-        public List<Mana> SelectedMana
+        public Mana[] SelectedMana
         {
             get { return selectedMana; }
         }
@@ -28,18 +28,18 @@ namespace Cruel.GameLogic.PlayerCommands
             get { return castingPlayer; }
         }
 
-        public CastCardCommand(Player castingPlayer, GameCard card, List<Mana> selectedMana)
+        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<Mana> selectedMana)
             : this(castingPlayer, card, new IEnumerable<object>[0], selectedMana)
         {
 
         }
 
-        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<IEnumerable<object>> targets, List<Mana> selectedMana)
+        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<IEnumerable<object>> targets, IEnumerable<Mana> selectedMana)
         {
             this.castingPlayer = castingPlayer;
             this.card = card;
             this.targets = targets;
-            this.selectedMana = selectedMana;
+            this.selectedMana = selectedMana.ToArray();
         }
 
         protected override void Execute()
@@ -52,6 +52,9 @@ namespace Cruel.GameLogic.PlayerCommands
                 throw new ManaMismatchException(card, castingPlayer, selectedMana);
             else
             {
+                if(selectedMana.Length > 0)
+                    this.castingPlayer.ManaStorage.Spend(selectedMana);
+                
                 foreach (IEnumerable<object> targetList in targets)
                 {
                     spell.SetTarget(index, targetList.ToArray());

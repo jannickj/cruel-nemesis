@@ -16,6 +16,8 @@ namespace CruelTest.SpellSystem
     [TestClass]
     public class ManaStorageTest : EngineTest
     {
+
+
         [TestMethod]
         public void AddCrystal_NoCrystals_OneCrystalAddedWithoutCharge()
         {
@@ -53,6 +55,7 @@ namespace CruelTest.SpellSystem
         [TestMethod]
         public void CastCard_PlayerChoosesValidCrystals_CrystalsDischargedAndSpellIsCast()
         {
+            this.FailTestOnEngineCrash();
             bool spellResolved = false;
 
             AbilityManager am = new AbilityManager();
@@ -61,7 +64,8 @@ namespace CruelTest.SpellSystem
             this.Engine.AddActor(tm);
 
             ManaStorage m = new ManaStorage();
-            this.Engine.AddActor(m);
+            Player[] players = generatePlayersAndStartGame(new Player[]{new Player(null,null,m,null),new Player()});
+            this.Engine.Update();
             m.AddCrystal(Mana.Divine);
             m.AddCrystal(Mana.Divine);
             m.AddCrystal(Mana.Arcane);
@@ -75,9 +79,10 @@ namespace CruelTest.SpellSystem
             card.ManaCost = manaCost;
             card.AddSpellAction(_ => spellResolved = true);
 
-            Player[] players = generatePlayersAndStartGame(2);
+
+            
             Player owner = players[0];
-            m.Owner = owner;
+            
 
             List<Mana> selectedMana = new List<Mana>();
             selectedMana.Add(Mana.Divine);
@@ -96,18 +101,26 @@ namespace CruelTest.SpellSystem
             Assert.IsTrue(spellResolved);
         }
 
+        private Player[] generatePlayersAndStartGame(IEnumerable<Player> players)
+        {
+
+            foreach(var p in players)
+            {
+                this.ActionManager.Queue(new PlayerJoinAction(p));
+            }
+            this.ActionManager.Queue(new StartGameCommand());
+            this.Engine.Update();
+            return players.ToArray();
+        }
+
         private Player[] generatePlayersAndStartGame(int count)
         {
             List<Player> players = new List<Player>();
             for (int i = 0; i < count; i++)
             {
-                Player p = new Player();
-                this.ActionManager.Queue(new PlayerJoinAction(p));
-                players.Add(p);
+                players.Add(new Player());
             }
-            this.ActionManager.Queue(new StartGameCommand());
-            this.Engine.Update();
-            return players.ToArray();
+            return generatePlayersAndStartGame(players);
         }
 
         private void changeTurn(Player[] players)

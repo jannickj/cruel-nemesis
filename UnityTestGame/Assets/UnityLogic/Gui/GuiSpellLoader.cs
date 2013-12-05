@@ -51,7 +51,6 @@ namespace Assets.UnityLogic.Gui
             Spell spell = evt.Action.CastedSpell;
             int xpos = XPosFromPlayer(card.Owner);
             int ypos = YPosFromPlayer(card.Owner);
-            Debug.Log(ypos);
             GameObject gobj = this.Factory.GameObjectFromModel(card);
             Factory.TransformCardToSpell(gobj,spell);
             var spellview = gobj.GetComponent<GuiSpellViewHandler>();
