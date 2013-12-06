@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -44,6 +44,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\BruteGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\DragonGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\FireballGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\GoblinPikerGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\GruntGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\MonkGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\SerpentGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\WarhoundGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\TextureGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Commands\BuyXpCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
      <Compile Include="Assets\UnityLogic\Commands\DeclareCastCardCommand.cs" />
@@ -53,14 +63,21 @@
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\BruteCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\FireballCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\GoblinPikerCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\LightningBoltCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\MonkCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\SerpentCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\WarhoundCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameCardWithSpellEffect.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameFactory.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameLevelRewards.cs" />
      <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
+     <Compile Include="Assets\UnityLogic\GraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\Gui\CardInformation.cs" />
      <Compile Include="Assets\UnityLogic\Gui\CardViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\GUIButtonHandler.cs" />
@@ -85,14 +102,9 @@
      <Compile Include="Assets\UnityLogic\Unit\Frame.cs" />
      <Compile Include="Assets\UnityLogic\Unit\HealthbarView.cs" />
      <Compile Include="Assets\UnityLogic\Unit\StandardUnitAnimations.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitControllerHandler.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitInformation.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitTypes\DragonGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitTypes\GruntGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
-     <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
      <Compile Include="Assets\UnityLogic\UnityFactory.cs" />
      <None Include="Assets\dlls\XmasEngineModel.xml" />
