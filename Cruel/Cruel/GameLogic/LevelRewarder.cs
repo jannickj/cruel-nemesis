@@ -14,7 +14,7 @@ namespace Cruel.GameLogic
         public Player Owner { get; internal set; }
         public int CurrentLevel { get; private set; }
         private int[] xpIntervals;
-        public Dictionary<int, Action<LevelRewarder>> rewards = new Dictionary<int, Action<LevelRewarder>>();
+        private Dictionary<int, Action<LevelRewarder>> rewards = new Dictionary<int, Action<LevelRewarder>>();
         public int MaxLevel { get; private set; }
 
         public LevelRewarder(IEnumerable<int> xpIntervals)

@@ -79,8 +79,21 @@ namespace Assets.UnityLogic.Gui
                     };
                 }
             }
+
+            var buyXp = this.guiinfo.GetComponent<GUIButtonHandler>();
+            buyXp.MouseDownEvent += new EventHandler(buyXp_MouseDownEvent);
             
         }
+
+        void buyXp_MouseDownEvent(object sender, EventArgs e)
+        {
+            if (!this.hasPriority)
+                return;
+
+            this.PerformCommand(new BuyXpCommand());
+        }
+
+        
 
         // Update is called once per frame
         void Update()

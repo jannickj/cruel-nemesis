@@ -10,18 +10,19 @@ namespace Assets.UnityLogic.Game
 {
 	public class GameLevelRewards : LevelRewarder
 	{
-        private Mana reward;
+        public Mana MainManaType { get; private set; }
+
 
         public GameLevelRewards(Mana reward) : base(GenerateXPInterval())
         {
-            this.reward = reward;
+            this.MainManaType = reward;
             for (int i = 0; i < this.MaxLevel; i++)
                 this.SetReward(i, lr => Rewards());
         }
 
         private void Rewards()
         {
-            this.ActionManager.Queue(new PlayerGainManaCrystalAction(this.Owner, reward));
+            this.ActionManager.Queue(new PlayerGainManaCrystalAction(this.Owner, MainManaType));
         }
 
         private static IEnumerable<int> GenerateXPInterval()
