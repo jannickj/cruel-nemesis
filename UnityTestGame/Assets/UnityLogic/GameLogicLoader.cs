@@ -94,7 +94,9 @@ public class GameLogicLoader : MonoBehaviour {
                     }));
                 }));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
-                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
+                engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
                 
             }
