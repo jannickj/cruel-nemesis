@@ -6,27 +6,27 @@ using UnityEngine;
 
 namespace Assets.UnityLogic.Unit
 {
-	public abstract class UnitGraphics
+	public abstract class TextureGraphics
 	{
-        private Dictionary<StandardUnitAnimations, UnitAnimation> animations = new Dictionary<StandardUnitAnimations, UnitAnimation>();
+        private Dictionary<StandardUnitAnimations, TextureAnimation> animations = new Dictionary<StandardUnitAnimations, TextureAnimation>();
 
      
 
         public abstract void LoadAnimations();
 
-        protected void SetAnimation(StandardUnitAnimations aniId, UnitAnimation ani)
+        protected void SetAnimation(StandardUnitAnimations aniId, TextureAnimation ani)
         {
             this.animations[aniId] = ani;
         }
 
 
 
-        public UnitAnimation GetAnimation(StandardUnitAnimations ani)
+        public TextureAnimation GetAnimation(StandardUnitAnimations ani)
         {
             return animations[ani];
         }
 
-        public UnitAnimation[] Animations 
+        public TextureAnimation[] Animations 
         {
             get
             {

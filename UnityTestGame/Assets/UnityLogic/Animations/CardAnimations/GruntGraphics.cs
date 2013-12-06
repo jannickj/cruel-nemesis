@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.UnityLogic.Unit.UnitTypes
 {
-    public class GruntGraphics : UnitGraphics
+    public class GruntGraphics : TextureGraphics
     {
         public GruntGraphics()
         {
@@ -15,7 +15,7 @@ namespace Assets.UnityLogic.Unit.UnitTypes
 
         public override void LoadAnimations()
         {
-            var idle_ani = new UnitAnimation("grunt_idle", 3, 3);
+            var idle_ani = new TextureAnimation("grunt_idle", 3, 3);
             idle_ani.Frames = Enumerable.Range(1, 6).ToArray();
             idle_ani.FrameRepeats = Enumerable.Repeat<int>(50, 6).ToArray();
             this.SetAnimation(StandardUnitAnimations.Idle, idle_ani);

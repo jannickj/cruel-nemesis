@@ -10,10 +10,10 @@ namespace Assets.UnityLogic.Unit
 {
 	public class UnitInformation : MonoBehaviour
 	{
-        private UnitGraphics graphics;
+        private TextureGraphics graphics;
         private UnitEntity entity;
 
-        public UnitGraphics Graphics
+        public TextureGraphics Graphics
         {
             get { return graphics; }
             
@@ -24,7 +24,7 @@ namespace Assets.UnityLogic.Unit
             get { return entity; }
         }
         
-        public void SetGraphics(UnitGraphics graphics)
+        public void SetGraphics(TextureGraphics graphics)
         {
             this.graphics = graphics;
         }
