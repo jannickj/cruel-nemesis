@@ -35,6 +35,22 @@ namespace Cruel.GameLogic
             this.rewards[level] = reward;
         }
 
+        public int XPOfThisLevel()
+        {
+            if (CurrentLevel == 0)
+                return 0;
+            else
+                return xpIntervals[CurrentLevel - 1];
+        }
+
+        public int XPOfNextLevel()
+        {
+            if (this.MaxLevel < CurrentLevel)
+                return -1;
+            else
+                return xpIntervals[CurrentLevel];
+        }
+
         private void OnPlayerGainXP(PlayerGainedXPEvent evt)
         {
             CheckLevelUp();

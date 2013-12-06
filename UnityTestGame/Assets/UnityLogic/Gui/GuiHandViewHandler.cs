@@ -10,6 +10,7 @@ using Cruel.GameLogic;
 using Cruel.GameLogic.SpellSystem;
 using XmasEngineModel.Management.Events;
 using Cruel.GameLogic.PlayerCommands;
+using Assets.UnityLogic.Game.Modules;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -64,8 +65,15 @@ namespace Assets.UnityLogic.Gui
 
         private void OnCardDrawn(CardDrawnEvent evt)
         {
+            
+
             Transform cardobj = Factory.CreateCard(evt.DrawnCard);
-           
+            
+            if(evt.DrawnCard.HasModule<GraphicsModule>())
+            {
+                var graphics = evt.DrawnCard.Module<GraphicsModule>();
+                cardobj.renderer.material.SetTexture("_MainTex", TextureDictionary.GetTexture("cards_" + graphics.TextureId));
+            }
             cardOrder.AddLast(cardobj);            
             cardobj.parent = playerCam.transform;
             currentHand.Add(evt.DrawnCard, cardobj);

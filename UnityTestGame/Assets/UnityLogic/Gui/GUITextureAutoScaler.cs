@@ -11,12 +11,34 @@ namespace Assets.UnityLogic.Gui
         private static int BaseHeight = 1080;
         private static int BaseWidth = 1920;
         private GUITexture myGUITexture;
-        public Rect CurSize {get; set;}
+        bool initSize = false;
+        public Rect CurSize { get; set; }
+        //public Rect CurSize
+        //{
+        //    get
+        //    {
+        //        if (!initSize)
+        //        {
+        //            myGUITexture = this.gameObject.GetComponent("GUITexture") as GUITexture;
+        //            curSize = myGUITexture.pixelInset;
+        //            initSize = true;
+        //        }
+        //        return curSize;
+        //    }
+        //    set
+        //    {
+        //        curSize = value;
+        //    }
+
+        //}
+        
 
         void Awake()
         {
+            //var curSize = CurSize;
             myGUITexture = this.gameObject.GetComponent("GUITexture") as GUITexture;
             CurSize = myGUITexture.pixelInset;
+            
         }
 
         // Use this for initialization

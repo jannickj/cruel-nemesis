@@ -13,6 +13,8 @@ namespace Assets.UnityLogic.Gui
         private UnityFactory Factory;
         private GuiInformation ginfo;
         private bool isNotMainPlayer;
+        private float initwidth;
+        private GUITextureAutoScaler xpscaler;
 
         public void Initialize(UnityFactory Factory, GuiInformation ginfo, bool isNotMainPlayer)
         {
@@ -20,11 +22,31 @@ namespace Assets.UnityLogic.Gui
             this.ginfo = ginfo;
             this.isNotMainPlayer = isNotMainPlayer;
             ginfo.Player.Register(new Trigger<PlayerGainedXPEvent>(OnXPGain));
+            xpscaler = this.ginfo.XPBar.GetComponent<GUITextureAutoScaler>();
+            initwidth = xpscaler.CurSize.width;
+            CheckXp();
         }
 
         private void OnXPGain(PlayerGainedXPEvent evt)
         {
+            CheckXp();
+        }
 
+        private void CheckXp()
+        {
+            float xpCur = this.ginfo.Player.CurrentXP;
+            float xpForNextLevel = (float)this.ginfo.Player.Rewarder.XPOfNextLevel();
+            float xpForThisLevel = (float)this.ginfo.Player.Rewarder.XPOfThisLevel();
+            Debug.Log("Cur Level " + this.ginfo.Player.Rewarder.CurrentLevel);
+            Debug.Log("XpCur = " + xpCur + " xpNext = " + xpForNextLevel + " xpThis "+xpForThisLevel);
+            Debug.Log("XpCurDiff = " + (xpCur - xpForThisLevel) + " xpNextDiff = " + (xpForNextLevel - xpForThisLevel));
+            float xppct = xpForNextLevel == -1 ? 1 : (xpCur - xpForThisLevel)/(xpForNextLevel-xpForThisLevel);
+            Debug.Log("Xppct = " + xppct);
+
+            var rect = this.xpscaler.CurSize;
+
+            rect.width = this.initwidth - (this.initwidth * xppct);
+            this.xpscaler.CurSize = rect;
         }
     }
 }

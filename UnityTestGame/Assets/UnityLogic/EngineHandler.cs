@@ -5,6 +5,7 @@ using System;
 using Cruel.Map;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
+using Assets.UnityLogic.Game;
 
 public class EngineHandler : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class EngineHandler : MonoBehaviour {
         XmasWorldBuilder builder = retreiveBuilderFromMap();
         EventManager evtman = new EventManager();
         ActionManager actman = new ActionManager(evtman);
-        XmasFactory factory = new XmasFactory(actman);
+        XmasFactory factory = new GameFactory(actman);
         engine = new XmasModel(builder, actman, evtman, factory);
 
         
