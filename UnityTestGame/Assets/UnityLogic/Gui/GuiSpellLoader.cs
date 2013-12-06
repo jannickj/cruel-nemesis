@@ -11,6 +11,7 @@ using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Events;
 using JSLibrary.Data;
 using Cruel.GameLogic;
+using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -43,6 +44,7 @@ namespace Assets.UnityLogic.Gui
             var spellobj = Factory.GameObjectFromModel(spell);
             Factory.RemoveModel(spell);
             this.playersCardStack.Remove(card.Owner, spell);
+            TextureGraphics graphic = GraphicFactory.ConstuctCardGraphic(card.GetType());
         }
 
         private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)

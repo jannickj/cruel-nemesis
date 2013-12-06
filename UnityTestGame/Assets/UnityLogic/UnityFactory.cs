@@ -89,7 +89,7 @@ namespace Assets.UnityLogic
             unitobj.gameObject.AddComponent<UnitControllerHandler>();
 
             info.SetEntity(unitEnt);
-            UnitGraphics graphic = UnitGraphicFactory.ConstuctUnitGraphic(unitEnt.getUnitType());
+            TextureGraphics graphic = GraphicFactory.ConstuctUnitGraphic(unitEnt.getUnitType());
             info.SetGraphics(graphic);
 
             var viewhandler = unitobj.gameObject.GetComponent<UnitViewHandler>();
@@ -99,6 +99,12 @@ namespace Assets.UnityLogic
             this.gameobjLookUp.Add(unitEnt,unitobj.gameObject);
             return unitobj;
         }
+
+        //public Transform CreateGraphic(TextureAnimation animation)
+        //{
+        //    var graphicsObj = (Transform)Instantiate(UnitTemplate);
+        //
+        //}
 
         public void TransformCardToSpell(GameObject cardObj, Spell spell)
         {

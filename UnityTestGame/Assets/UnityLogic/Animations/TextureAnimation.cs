@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.UnityLogic.Unit
 {
-	public class UnitAnimation
+	public class TextureAnimation
 	{
         private string textureId;
         private Texture texture;
@@ -16,7 +16,7 @@ namespace Assets.UnityLogic.Unit
         private int columns;
         private int rows;
 
-        public UnitAnimation(string textureId, int columns, int rows)
+        public TextureAnimation(string textureId, int columns, int rows)
         {
             this.textureId = textureId;
             this.columns = columns;

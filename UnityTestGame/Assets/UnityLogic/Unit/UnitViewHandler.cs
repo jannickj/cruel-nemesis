@@ -14,7 +14,7 @@ public class UnitViewHandler : MonoBehaviour {
     public UnityFactory Factory;
 
     private UnitEntity entity;
-    private UnitGraphics graphics;
+    private TextureGraphics graphics;
     private StandardUnitAnimations curAni = StandardUnitAnimations.Idle;
     private GameObject healthbar;
 
@@ -67,7 +67,7 @@ public class UnitViewHandler : MonoBehaviour {
 
     public void UpdateFrame()
     {
-        UnitAnimation ani = graphics.GetAnimation(this.curAni);
+        TextureAnimation ani = graphics.GetAnimation(this.curAni);
         ani.NextFrame();
         setFrame(ani.CurrentFrame());
 
