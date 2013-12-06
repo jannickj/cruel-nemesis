@@ -44,6 +44,11 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\DragonGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\FireballGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\GruntGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\TextureGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Commands\BuyXpCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
      <Compile Include="Assets\UnityLogic\Commands\DeclareCastCardCommand.cs" />
@@ -54,6 +59,7 @@
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\FireballCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\LightningBoltCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameCardWithSpellEffect.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameFactory.cs" />
@@ -61,6 +67,7 @@
      <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
+     <Compile Include="Assets\UnityLogic\GraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\Gui\CardInformation.cs" />
      <Compile Include="Assets\UnityLogic\Gui\CardViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\Controls\GUIButtonHandler.cs" />
@@ -85,14 +92,9 @@
      <Compile Include="Assets\UnityLogic\Unit\Frame.cs" />
      <Compile Include="Assets\UnityLogic\Unit\HealthbarView.cs" />
      <Compile Include="Assets\UnityLogic\Unit\StandardUnitAnimations.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitControllerHandler.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitInformation.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitTypes\DragonGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Unit\UnitTypes\GruntGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
-     <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />
      <Compile Include="Assets\UnityLogic\UnitHandler.cs" />
      <Compile Include="Assets\UnityLogic\UnityFactory.cs" />
      <None Include="Assets\dlls\XmasEngineModel.xml" />
