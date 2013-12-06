@@ -11,6 +11,10 @@ namespace Cruel.GameLogic.Unit
         public DragonUnit(Player owner) : base(owner)
         {
             this.RegisterModule(new MoveModule(5));
+            this.Module<AttackModule>().AttackRange = 1;
+            this.Module<AttackModule>().Damage = 5;
+            this.Module<HealthModule>().MaxHealth = 5;
+            this.Module<HealthModule>().Health = 5;
         }
     }
 }
