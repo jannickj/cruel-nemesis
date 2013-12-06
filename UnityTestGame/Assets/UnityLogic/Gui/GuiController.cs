@@ -80,7 +80,7 @@ namespace Assets.UnityLogic.Gui
                 }
             }
 
-            var buyXp = this.guiinfo.GetComponent<GUIButtonHandler>();
+            var buyXp = this.guiinfo.XPButton.GetComponent<GUIButtonHandler>();
             buyXp.MouseDownEvent += new EventHandler(buyXp_MouseDownEvent);
             
         }

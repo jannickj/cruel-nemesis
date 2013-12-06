@@ -405,7 +405,8 @@ MonoBehaviour:
   UnitTemplate: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
   HealthBarTemplate: {fileID: 400000, guid: 19be0c746e6eb5f4e81a9c069b45c6ab, type: 2}
   ManaBarTemplate: {fileID: 13100000, guid: 784b1fc16072de54ca51f5ff19d19e56, type: 2}
-  EmptyManaBarTemplate: {fileID: 0}
+  EmptyManaBarTemplate: {fileID: 13100000, guid: fe3145f439902ff4e97c6a95a7d4f086,
+    type: 2}
 --- !u!1 &161923065
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +451,12 @@ MonoBehaviour:
   Factory: {fileID: 138595598}
   PlayerLogo_Friendly: {fileID: 166209100}
   HealthBar_Friendly: {fileID: 228194537}
+  XPBar_Friendly: {fileID: 691855887}
+  XPButton_Friendly: {fileID: 1102843967}
   PlayerLogo_Opponent: {fileID: 552535308}
   HealthBar_Opponent: {fileID: 556842754}
+  XPBar_Opponent: {fileID: 1440017662}
+  XPButton_Opponent: {fileID: 1351448804}
   Phases:
   - {fileID: 468049801}
   - {fileID: 1997481658}
@@ -2373,6 +2378,7 @@ GameObject:
   - 4: {fileID: 1102843966}
   - 131: {fileID: 1102843967}
   - 114: {fileID: 1102843968}
+  - 114: {fileID: 1102843969}
   m_Layer: 0
   m_Name: buy_xp
   m_TagString: Untagged
@@ -2419,6 +2425,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1102843969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102843965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1167701204
@@ -2939,6 +2956,7 @@ GameObject:
   - 4: {fileID: 1351448802}
   - 131: {fileID: 1351448804}
   - 114: {fileID: 1351448803}
+  - 114: {fileID: 1351448805}
   m_Layer: 0
   m_Name: buy_xp
   m_TagString: Untagged
@@ -2987,6 +3005,17 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!114 &1351448805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1351448801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1411955442
 Prefab:
   m_ObjectHideFlags: 0

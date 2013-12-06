@@ -73,6 +73,7 @@
      <Compile Include="Assets\UnityLogic\Gui\GuiSpellLoader.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiSpellViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiViewHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Gui\GuiXPBarViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\PhaseSkipController.cs" />
      <Compile Include="Assets\UnityLogic\GuiLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
