@@ -53,6 +53,8 @@
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\LightningBoltCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameCardWithSpellEffect.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameFactory.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameLevelRewards.cs" />
@@ -86,6 +88,7 @@
      <Compile Include="Assets\UnityLogic\Unit\UnitControllerHandler.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitInformation.cs" />
+     <Compile Include="Assets\UnityLogic\Unit\UnitTypes\DragonGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitTypes\GruntGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Unit\UnitViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\UnitGraphicFactory.cs" />

@@ -15,6 +15,7 @@ namespace Assets.UnityLogic
         static UnitGraphicFactory()
         {
             linkUnitToGraphic<GruntUnit, GruntGraphics>();
+            linkUnitToGraphic<DragonUnit, DragonGraphics>();
         }
 
         public static UnitGraphics ConstuctUnitGraphic(Type unittype)

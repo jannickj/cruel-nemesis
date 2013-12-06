@@ -115,6 +115,7 @@
     <Compile Include="GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
     <Compile Include="GameLogic\TurnLogic\Phases.cs" />
     <Compile Include="GameLogic\TurnLogic\TurnManager.cs" />
+    <Compile Include="GameLogic\Unit\DragonUnit.cs" />
     <Compile Include="GameLogic\Unit\GruntUnit.cs" />
     <Compile Include="GameLogic\Unit\UnitEntity.cs" />
     <Compile Include="GameLogic\LevelRewarder.cs" />

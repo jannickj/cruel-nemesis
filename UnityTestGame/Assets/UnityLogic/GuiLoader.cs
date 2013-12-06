@@ -20,9 +20,14 @@ namespace Assets.UnityLogic
 
         public GUITexture PlayerLogo_Friendly;
         public GUITexture HealthBar_Friendly;
+        public GUITexture XPBar_Friendly;
+        public GUITexture XPButton_Friendly;
 
         public GUITexture PlayerLogo_Opponent;
         public GUITexture HealthBar_Opponent;
+        public GUITexture XPBar_Opponent;
+        public GUITexture XPButton_Opponent;
+        
 
         public GUITexture[] Phases;
         public GUITexture[] StopPhases_Main;
@@ -46,21 +51,25 @@ namespace Assets.UnityLogic
                 var pgui = this.guiLookup[player];
                 var ginfo = pgui.Value;
                 var gobj = pgui.Key;
-                bool reverseManaBar;
+                bool isNotMainPlayer;
 
                 if (Settings.MainPlayer == player)
                 {
                     ginfo.Portrait = PlayerLogo_Friendly;
                     ginfo.HealthBar = HealthBar_Friendly;
+                    ginfo.XPBar = XPBar_Friendly;
+                    ginfo.XPButton = XPButton_Friendly;
                     ginfo.FocusColor = Color.green;
-                    reverseManaBar = false;
+                    isNotMainPlayer = false;
                 }
                 else
                 {
                     ginfo.Portrait = PlayerLogo_Opponent;
                     ginfo.HealthBar = HealthBar_Opponent;
+                    ginfo.XPBar = XPBar_Opponent;
+                    ginfo.XPButton = XPButton_Opponent;
                     ginfo.FocusColor = Color.blue;
-                    reverseManaBar = true;
+                    isNotMainPlayer = true;
                 }
 
                 ginfo.SetSkipPhaseButton(player, StopPhases_Main);
@@ -81,9 +90,13 @@ namespace Assets.UnityLogic
                 handview.Factory = Factory;
                 handview.Initialize(Camera.main, 0.5f, 0.5f, 0.25f, 0.25f, Engine.EngineModel.EventManager, player);
 
+                var xpviewer = gobj.AddComponent<GuiXPBarViewHandler>();
+                xpviewer.Initialize(Factory, ginfo, isNotMainPlayer);
+
+
                 gobj.AddComponent<GUIManaViewHandler>();
                 var manaview = gobj.GetComponent<GUIManaViewHandler>();
-                manaview.Initialize(Factory, ginfo, Engine.EngineModel, reverseManaBar);
+                manaview.Initialize(Factory, ginfo, Engine.EngineModel, isNotMainPlayer);
 
                 if (Settings.LocalPlayers.Any(p => p == player))
                 {

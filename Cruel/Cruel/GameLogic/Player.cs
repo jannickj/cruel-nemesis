@@ -80,7 +80,7 @@ namespace Cruel.GameLogic
             int gainedxp = xp > 0 ? xp : 0;
             if (gainedxp == 0)
                 return;
-            this.CurrentXP += xp;
+            this.CurrentXP += gainedxp;
             this.Raise(new PlayerGainedXPEvent(this, gainedxp));
         }
     }

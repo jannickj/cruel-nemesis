@@ -38,6 +38,7 @@ namespace Assets.UnityLogic
             UnityEngine.Object.DontDestroyOnLoad(this);
 
             var cardspawner = Enumerable.Repeat<Func<GameCard>>(() => new BloodwyrmSpawnCard(), 30).Select(genCard => genCard());
+            var dragonspawner = Enumerable.Repeat<Func<GameCard>>(() => new DragonCard(), 30).Select(genCard => genCard());
 
             var p1lib = new GameLibrary();
             Player p = new Player(p1lib,new Hand(), new ManaStorage(), new GameLevelRewards(Mana.Arcane));
@@ -49,7 +50,7 @@ namespace Assets.UnityLogic
 
             var p2lib = new GameLibrary();
             p = new Player(p2lib, new Hand(), new ManaStorage(), new GameLevelRewards(Mana.Fury));
-            var cards2 = cardspawner.ToArray();
+            var cards2 = dragonspawner.ToArray();
             p2lib.Add(cards2);
             p.Name = "player 2";
             this.AddPlayer(p);
