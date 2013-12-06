@@ -20,6 +20,9 @@ namespace Assets.UnityLogic.Gui
 
         public Player Player { get; set; }
 
+        public GUITexture XPBar { get; set; }
+        public GUITexture XPButton { get; set; }
+
         public GUITexture Portrait { get; set; }
 
         public GUITexture HealthBar { get; set; }
