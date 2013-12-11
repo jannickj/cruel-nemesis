@@ -12,6 +12,7 @@ using Cruel.GameLogic.Actions;
 using System.Collections.Generic;
 using Assets.UnityLogic.Animations;
 using XmasEngineExtensions.TileExtension;
+using JSLibrary.Data;
 
 public class UnitViewHandler : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class UnitViewHandler : MonoBehaviour {
     private Queue<GameObjectAnimation> awaitingAnimations = new Queue<GameObjectAnimation>();
     private Queue<HandShake> moveHandShakes = new Queue<HandShake>();
     private GameObjectAnimation currentGObjAni = null;
+    private Vector direction;
 
 	// Use this for initialization
 	void Start () 
@@ -32,7 +34,7 @@ public class UnitViewHandler : MonoBehaviour {
         UnitInformation info = this.gameObject.GetComponent<UnitInformation>();
         entity = info.Entity;
         graphics = info.Graphics;
-        
+        direction = new Vector(entity.PositionAs<TilePosition>().Point, new Point(0, 0)).Direction;
         //this.gameObject.renderer.material.color = info.ControllerInfo.FocusColor;
         entity.Register(new Trigger<ActionHandShakeInqueryEvent<MoveAction>>(evt => evt.Action.HandShakeRequired = true));
         entity.Register(new Trigger<ActionStartingEvent<MoveAction>>(OnStartMoveAction));
@@ -90,6 +92,10 @@ public class UnitViewHandler : MonoBehaviour {
 
         var moveani = new MoveTransformAnimation(worldCurPos, worldEndPos, speed);
         moveani.Reset();
+        moveani.Begining += (_, _1) =>
+            {
+                this.direction = (new Vector(currentPos, endPos)).Direction;
+            };
         this.awaitingAnimations.Enqueue(moveani);
         
 
@@ -131,7 +137,10 @@ public class UnitViewHandler : MonoBehaviour {
         TextureAnimation ani = graphics.GetAnimation(this.curAni);
         ani.NextFrame();
         var scale = this.transform.localScale;
-        this.transform.localScale = new Vector3(ani.HeightToWidthAspect(scale.y), scale.y, scale.z);
+        var newX = ani.HeightToWidthAspect(scale.y);
+        if (direction.X != 0)
+            newX = newX * direction.X;
+        this.transform.localScale = new Vector3(newX, scale.y, scale.z);
         setFrame(ani.CurrentFrame());
 
     }

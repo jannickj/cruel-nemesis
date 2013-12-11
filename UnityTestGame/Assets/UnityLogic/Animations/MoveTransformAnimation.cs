@@ -30,7 +30,7 @@ namespace Assets.UnityLogic.Animations
             this.genSpeed = () => speed;
         }
 
-        public void Reset()
+        protected override void  ResetInternal()
         {
             cur = genFrom();
             goal = genTo();
