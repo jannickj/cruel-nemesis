@@ -134,7 +134,11 @@ public class UnitViewHandler : MonoBehaviour {
 
     public void UpdateFrame()
     {
-        TextureAnimation ani = graphics.GetAnimation(this.curAni);
+        TextureAnimation ani;
+        if (graphics.HasAnimation(this.curAni))
+            ani = graphics.GetAnimation(this.curAni);
+        else
+            ani = graphics.GetAnimation(StandardUnitAnimations.Idle);
         ani.NextFrame();
         var scale = this.transform.localScale;
         var newX = ani.HeightToWidthAspect(scale.y);

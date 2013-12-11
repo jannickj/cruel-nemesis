@@ -19,6 +19,10 @@ namespace Assets.UnityLogic.Unit
             this.animations[aniId] = ani;
         }
 
+        public bool HasAnimation(StandardUnitAnimations ani)
+        {
+            return animations.ContainsKey(ani);
+        }
 
 
         public TextureAnimation GetAnimation(StandardUnitAnimations ani)

@@ -103,7 +103,11 @@ PlayerSettings:
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - m_Icon: {fileID: 0}
+      m_Size: 128
   m_BuildTargetBatching: []
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
@@ -141,10 +145,13 @@ PlayerSettings:
   ps3SaveGameSlots: 1
   ps3TrialMode: 0
   flashStrippingLevel: 2
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    data:
+      first: 1
+      second: 
   metroPackageName: UnityTestGame
   metroPackageLogo: 
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -154,7 +161,7 @@ PlayerSettings:
   metroTileLogo: 
   metroTileWideLogo: 
   metroTileSmallLogo: 
-  metroTileShortName: 
+  metroTileShortName: UnityTestGame
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroTileForegroundText: 1
@@ -162,7 +169,20 @@ PlayerSettings:
   metroSplashScreenImage: 
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
-  metroCapabilities: {}
+  metroCapabilities:
+    EnterpriseAuthentication: 0
+    InternetClient: 0
+    InternetClientServer: 0
+    Location: 0
+    Microphone: 0
+    MusicLibrary: 0
+    PicturesLibrary: 0
+    PrivateNetworkClientServer: 0
+    Proximity: 0
+    RemovableStorage: 0
+    SharedUserCertificates: 0
+    VideosLibrary: 0
+    WebCam: 0
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 
