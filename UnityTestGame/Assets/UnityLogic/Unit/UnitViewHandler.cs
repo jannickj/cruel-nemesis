@@ -7,6 +7,11 @@ using Cruel.GameLogic.Events;
 using Cruel.GameLogic.Events.UnitEvents;
 using Cruel.GameLogic.Modules;
 using Assets.UnityLogic;
+using XmasEngineModel.Management.Events;
+using Cruel.GameLogic.Actions;
+using System.Collections.Generic;
+using Assets.UnityLogic.Animations;
+using XmasEngineExtensions.TileExtension;
 
 public class UnitViewHandler : MonoBehaviour {
 
@@ -14,9 +19,12 @@ public class UnitViewHandler : MonoBehaviour {
     public UnityFactory Factory;
 
     private UnitEntity entity;
-    private TextureGraphics graphics;
+    private UnitGraphic graphics;
     private StandardUnitAnimations curAni = StandardUnitAnimations.Idle;
-    private GameObject healthbar;
+
+    private Queue<GameObjectAnimation> awaitingAnimations = new Queue<GameObjectAnimation>();
+    private Queue<HandShake> moveHandShakes = new Queue<HandShake>();
+    private GameObjectAnimation currentGObjAni = null;
 
 	// Use this for initialization
 	void Start () 
@@ -25,11 +33,16 @@ public class UnitViewHandler : MonoBehaviour {
         entity = info.Entity;
         graphics = info.Graphics;
         
-        this.gameObject.renderer.material.color = info.ControllerInfo.FocusColor;
+        //this.gameObject.renderer.material.color = info.ControllerInfo.FocusColor;
+        entity.Register(new Trigger<ActionHandShakeInqueryEvent<MoveAction>>(evt => evt.Action.HandShakeRequired = true));
+        entity.Register(new Trigger<ActionStartingEvent<MoveAction>>(OnStartMoveAction));
         entity.Register(new Trigger<BeginMoveEvent>(OnUnitBeginMove));
         entity.Register(new Trigger<UnitTakesDamageEvent>(OnTakeDamage));
-
+        entity.Register(new Trigger<ActionStartingEvent<MovePathAction>>(OnUnitBeginPathMove));
+        entity.Register(new Trigger<ActionCompletedEvent<MovePathAction>>(OnUnitFinishPathMove));
+        
         this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
+        this.HealthBar.parent = this.transform;
         setFrame(currentFrame());
 	}
 	
@@ -38,7 +51,27 @@ public class UnitViewHandler : MonoBehaviour {
     {
         
         UpdateFrame();
+        UpdateAnimation();
 	}
+
+    private void OnStartMoveAction(ActionStartingEvent<MoveAction> evt)
+    {
+        if(evt.HandShakeNeeded)
+            this.moveHandShakes.Enqueue(evt.HandShake);
+    }
+
+    private void OnUnitBeginPathMove(ActionStartingEvent<MovePathAction> evt)
+    {
+        this.curAni = StandardUnitAnimations.Move;
+    }
+
+    private void OnUnitFinishPathMove(ActionCompletedEvent<MovePathAction> evt)
+    {
+        if (this.currentGObjAni == null)
+            this.curAni = StandardUnitAnimations.Idle;
+        else
+            this.currentGObjAni.Completed += (_, _1) => this.curAni = StandardUnitAnimations.Idle;
+    }
 
     private void OnTakeDamage(UnitTakesDamageEvent evt)
     {
@@ -47,9 +80,19 @@ public class UnitViewHandler : MonoBehaviour {
 
     private void OnUnitBeginMove(BeginMoveEvent evt)
     {
-        Vector3 v = Factory.ConvertUnitPos(evt.To);
-        this.gameObject.transform.localPosition = v;
-        this.HealthBar.GetComponent<HealthbarView>().SetPosition(evt.To);
+        var currentPos = evt.From;
+        var endPos = evt.To;
+
+        var worldCurPos = Factory.ConvertUnitPos(currentPos);
+        var worldEndPos = Factory.ConvertUnitPos(endPos);
+
+        var speed = Factory.ConvertDurationToSpeed(entity.Module<MoveModule>().MoveDuration);
+
+        var moveani = new MoveTransformAnimation(worldCurPos, worldEndPos, speed);
+        moveani.Reset();
+        this.awaitingAnimations.Enqueue(moveani);
+        
+
     }
 
     private Frame currentFrame()
@@ -63,12 +106,32 @@ public class UnitViewHandler : MonoBehaviour {
         this.renderer.material.SetTexture("_MainTex", f.Texture);
         this.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
         this.renderer.material.SetTextureScale("_MainTex", f.Size);
+
+    }
+
+    public void UpdateAnimation()
+    {
+        if (this.currentGObjAni == null)
+        {
+            if (this.awaitingAnimations.Count > 0)
+            {
+                this.currentGObjAni = this.awaitingAnimations.Dequeue();
+            }
+            else if (this.moveHandShakes.Count > 0)
+                this.moveHandShakes.Dequeue().PerformHandShake();
+        }
+
+        if (this.currentGObjAni != null)
+            if (this.currentGObjAni.Update(this.gameObject))
+                this.currentGObjAni = null;
     }
 
     public void UpdateFrame()
     {
         TextureAnimation ani = graphics.GetAnimation(this.curAni);
         ani.NextFrame();
+        var scale = this.transform.localScale;
+        this.transform.localScale = new Vector3(ani.HeightToWidthAspect(scale.y), scale.y, scale.z);
         setFrame(ani.CurrentFrame());
 
     }

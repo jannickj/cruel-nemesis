@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.UnityLogic.Unit.UnitTypes
 {
-	public class DragonGraphics : TextureGraphics
+	public class DragonGraphics : UnitGraphic
 	{
         public DragonGraphics()
         {

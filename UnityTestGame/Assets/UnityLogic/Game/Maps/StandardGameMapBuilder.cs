@@ -9,17 +9,17 @@ using XmasEngineModel.EntityLib;
 using Cruel.Map.Terrain;
 using Cruel.GameLogic.Unit;
 using Cruel.GameLogic;
+using Cruel.GameLogic.Map;
+using Assets.UnityLogic.Game.Heroes;
 
-namespace Cruel.Map
+namespace Assets.UnityLogic.Game.Maps
 {
-	public class StandardGameMapBuilder : TileWorldBuilder
+    public class StandardGameMapBuilder : GameMapBuilder
 	{
-        private const int HEIGHT = 8;
-        private const int WIDTH = 6;
-        private Player[] players = new Player[2];
 
 
-        public StandardGameMapBuilder() : base(new Size(HEIGHT,WIDTH))
+
+        public StandardGameMapBuilder() 
         {
             Func<XmasEntity> D = () => new TerrainEntity(TerrainTypes.Default);
 
@@ -39,38 +39,30 @@ namespace Cruel.Map
 					D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D,  
 					D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D, D
 				};
-
-            this.AddMapOfEntities(map, HEIGHT*2+1, WIDTH*2+1);
+            this.AddMapOfEntities(map, DEFAULT_HEIGHT * 2 + 1, DEFAULT_WIDTH * 2 + 1);
 
             Func<XmasEntity> O = null;
-            Func<XmasEntity> F = () => new GruntUnit(players[0]);
-            Func<XmasEntity> E = () => new GruntUnit(players[1]);
+            Func<XmasEntity> W = () => new WizardHero(Players[0]);
+            Func<XmasEntity> L = () => new WarlordHero(Players[1]);
 
             Func<XmasEntity>[] unitmap =
 				{
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
-					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
-					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
-					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
-					O, F, O, O, O, O, O, O, O, O, O, O, O, O, O, E, O, 
+					O, W, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O,  
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O,  
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O
 				};
-            this.AddMapOfEntities(unitmap, HEIGHT * 2 + 1, WIDTH * 2 + 1);
-           
+            this.AddMapOfEntities(unitmap, DEFAULT_HEIGHT * 2 + 1, DEFAULT_WIDTH * 2 + 1);
         }
 
-
-        public void SetPlayers(Player player, Player player2)
-        {
-            this.players[0] = player;
-            this.players[1] = player2;
-        }
     }
 }

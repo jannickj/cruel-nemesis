@@ -6,7 +6,7 @@ using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Animations.CardAnimations
 {
-	public class SerpentGraphics : TextureGraphics
+	public class SerpentGraphics : UnitGraphic
 	{
         public SerpentGraphics()
         {

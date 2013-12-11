@@ -6,6 +6,7 @@ using Cruel.Map;
 using XmasEngineModel.Management;
 using XmasEngineModel.Management.Events;
 using Assets.UnityLogic.Game;
+using Assets.UnityLogic.Game.Maps;
 
 public class EngineHandler : MonoBehaviour {
 

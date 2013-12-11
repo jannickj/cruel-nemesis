@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Cruel.GameLogic.Map;
 
-namespace Cruel.Map
+namespace Assets.UnityLogic.Game.Maps
 {
     /// <summary>
     /// All map types of the engine
@@ -11,7 +12,11 @@ namespace Cruel.Map
 	public enum MapTypes
 	{
         [MapType(typeof(StandardGameMapBuilder))]
-        Standard
+        Standard,
+        [MapType(typeof(TestMapBuilder))]
+        Test
+
+
 	}
 
 

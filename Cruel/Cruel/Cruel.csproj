@@ -62,7 +62,6 @@
     <Compile Include="GameLogic\PlayerCommands\GainXPCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\StartGameCommand.cs" />
-    <Compile Include="GameLogic\Cards\SummonGruntCard.cs" />
     <Compile Include="GameLogic\Events\AbilityResolvesEvent.cs" />
     <Compile Include="GameLogic\Events\AbilityTargetInvalidEvent.cs" />
     <Compile Include="GameLogic\Events\BeginMoveEvent.cs" />
@@ -89,8 +88,7 @@
     <Compile Include="GameLogic\Events\UnitEvents\UnitIsAttackedEvent.cs" />
     <Compile Include="GameLogic\Events\UnitEvents\UnitTakesDamageEvent.cs" />
     <Compile Include="GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
-    <Compile Include="GameLogic\Map\MapTypes.cs" />
-    <Compile Include="GameLogic\Map\StandardGameMapBuilder.cs" />
+    <Compile Include="GameLogic\Map\GameMapBuilder.cs" />
     <Compile Include="GameLogic\Map\Terrain\TerrainEntity.cs" />
     <Compile Include="GameLogic\Map\Terrain\TextureType.cs" />
     <Compile Include="GameLogic\Map\TilePathFinder.cs" />
@@ -115,8 +113,7 @@
     <Compile Include="GameLogic\TurnLogic\MoveAllUnitsAction.cs" />
     <Compile Include="GameLogic\TurnLogic\Phases.cs" />
     <Compile Include="GameLogic\TurnLogic\TurnManager.cs" />
-    <Compile Include="GameLogic\Unit\DragonUnit.cs" />
-    <Compile Include="GameLogic\Unit\GruntUnit.cs" />
+    <Compile Include="GameLogic\Unit\HeroUnit.cs" />
     <Compile Include="GameLogic\Unit\UnitEntity.cs" />
     <Compile Include="GameLogic\LevelRewarder.cs" />
     <Compile Include="Library\PathFinding\Path.cs" />
@@ -137,6 +134,9 @@
       <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>
       <Name>XmasEngineModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameLogic\Cards\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

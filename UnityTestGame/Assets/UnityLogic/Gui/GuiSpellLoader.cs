@@ -44,7 +44,7 @@ namespace Assets.UnityLogic.Gui
             var spellobj = Factory.GameObjectFromModel(spell);
             Factory.RemoveModel(spell);
             this.playersCardStack.Remove(card.Owner, spell);
-            TextureGraphics graphic = GraphicFactory.ConstuctCardGraphic(card.GetType());
+            UnitGraphic graphic = GraphicFactory.ConstuctCardGraphic(card.GetType());
         }
 
         private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)

@@ -6,7 +6,7 @@ using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Animations.CardAnimations
 {
-	public class GoblinPikerGraphics : TextureGraphics
+	public class GoblinPikerGraphics : UnitGraphic
 	{
         public GoblinPikerGraphics()
         {

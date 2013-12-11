@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.UnityLogic.Unit
 {
-	public abstract class TextureGraphics
+	public abstract class UnitGraphic
 	{
         private Dictionary<StandardUnitAnimations, TextureAnimation> animations = new Dictionary<StandardUnitAnimations, TextureAnimation>();
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.UnityLogic.Unit.UnitTypes
 {
-    public class GruntGraphics : TextureGraphics
+    public class GruntGraphics : UnitGraphic
     {
         public GruntGraphics()
         {

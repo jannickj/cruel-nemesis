@@ -89,7 +89,7 @@ namespace Assets.UnityLogic
             unitobj.gameObject.AddComponent<UnitControllerHandler>();
 
             info.SetEntity(unitEnt);
-            TextureGraphics graphic = GraphicFactory.ConstuctUnitGraphic(unitEnt.getUnitType());
+            UnitGraphic graphic = GraphicFactory.ConstuctUnitGraphic(unitEnt.getUnitType());
             info.SetGraphics(graphic);
 
             var viewhandler = unitobj.gameObject.GetComponent<UnitViewHandler>();
@@ -133,6 +133,11 @@ namespace Assets.UnityLogic
             var gobj = this.gameobjLookUp[model];
             GameObject.Destroy(gobj);
             
+        }
+
+        public float ConvertDurationToSpeed(int msDur)
+        {
+            return (TerrainTemplate.localScale.x / (float)msDur)*1000 ;
         }
     }
 }

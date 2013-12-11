@@ -9,6 +9,7 @@ using Cruel.GameLogic.Unit;
 using XmasEngineModel.Management.Actions;
 using XmasEngineExtensions.TileExtension;
 using UnityEngine;
+using Assets.UnityLogic.Game.Unit;
 
 namespace Assets.UnityLogic.Game.Cards
 {

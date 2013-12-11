@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.UnityLogic.Unit.Animations
 {
-	class FireballGraphics : TextureGraphics
+	class FireballGraphics : UnitGraphic
 	{
         public FireballGraphics()
         {

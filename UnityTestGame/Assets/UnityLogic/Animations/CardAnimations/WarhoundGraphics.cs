@@ -6,7 +6,7 @@ using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Animations.CardAnimations
 {
-	public class WarhoundGraphics : TextureGraphics
+	public class WarhoundGraphics : UnitGraphic
 	{
         public WarhoundGraphics()
         {

@@ -6,7 +6,7 @@ using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Animations.CardAnimations
 {
-	public class BruteGraphics : TextureGraphics
+	public class BruteGraphics : UnitGraphic
 	{
         public BruteGraphics()
         {

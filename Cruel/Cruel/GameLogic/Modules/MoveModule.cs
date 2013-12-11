@@ -28,7 +28,7 @@ namespace Cruel.GameLogic.Modules
             }
         }
 
-        public MoveModule(int movelength, int moveDuration = 200)
+        public MoveModule(int movelength, int moveDuration = 50)
         {
             this.moveLength = movelength;
             this.moveDuration = moveDuration;

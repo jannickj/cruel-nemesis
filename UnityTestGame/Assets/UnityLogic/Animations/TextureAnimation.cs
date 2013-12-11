@@ -82,5 +82,13 @@ namespace Assets.UnityLogic.Unit
         {
             get { return textureId; }
         }
+
+        public float HeightToWidthAspect(float height)
+        {
+            float iH = texture.height/(float)this.rows;
+            float iW = texture.width/(float)this.columns;
+            float aspect = iW/iH;
+            return height * aspect;
+        }
     }
 }

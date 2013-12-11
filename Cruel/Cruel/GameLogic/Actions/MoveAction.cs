@@ -45,6 +45,16 @@ namespace Cruel.GameLogic.Actions
             }
         }
 
+        public Point CalculateEndPoint()
+        {
+            var curp = ((TilePosition)this.Source.Position).Point;
+            var thep = v;
+            if (usePoint)
+                thep = new Vector(curp, toward);
+
+            return curp + thep;
+        }
+
         protected override void Execute()
         {
 
@@ -52,7 +62,6 @@ namespace Cruel.GameLogic.Actions
             var unit = (UnitEntity)this.Source;
             TilePosition p = (TilePosition)this.World.GetEntityPosition(this.Source);
             Point currentPos = p.Point;
-
             if (usePoint)
                 v = new Vector(currentPos, toward);
 

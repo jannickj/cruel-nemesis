@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Cruel.GameLogic.Modules;
+using Cruel.GameLogic.Unit;
+using Cruel.GameLogic;
 
-namespace Cruel.GameLogic.Unit
+namespace Assets.UnityLogic.Game.Unit
 {
     public class DragonUnit : UnitEntity
     {

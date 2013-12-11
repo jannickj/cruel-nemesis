@@ -17,6 +17,8 @@ using System.Collections.Generic;
 using Cruel.GameLogic.PlayerCommands;
 using Cruel.GameLogic.SpellSystem;
 using XmasEngineModel.Management.Actions;
+using Cruel.GameLogic.Map;
+using Assets.UnityLogic.Game.Maps;
 
 public class GameLogicLoader : MonoBehaviour {
 

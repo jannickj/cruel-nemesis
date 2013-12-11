@@ -24,7 +24,10 @@ namespace Cruel.GameLogic.Actions
                 this.AddAction(ent, new MoveAction(pos.Point, durPerMove));
             }
             this.SingleActionCompleted += new UnaryValueHandler<XmasAction>(MovePathAction_SingleActionCompleted);
+            this.AddRaiseActionEvent(ent);
         }
+
+      
 
         void MovePathAction_SingleActionCompleted(object sender, UnaryValueEvent<XmasAction> evt)
         {

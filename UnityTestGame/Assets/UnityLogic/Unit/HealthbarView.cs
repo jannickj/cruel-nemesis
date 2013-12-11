@@ -14,7 +14,7 @@ namespace Assets.UnityLogic.Unit
 
         public void SetPosition(Point p)
         {
-            this.transform.position = new Vector3(-((float)p.X), ((float)p.Y)+1.2f, 0.7f);
+            this.transform.position = new Vector3(-((float)p.X)-0.1f, ((float)p.Y)+1.3f, 0.8f);
         }
 
         public void SetHealthPct(float pct)

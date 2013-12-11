@@ -20,6 +20,7 @@ namespace Assets.UnityLogic.Commands
 {
 	public class DeclareMoveAttackUnitCommand : Command
 	{
+        private Color originalColor;
         private UnitEntity unitEntity;
         private GameObject unit;
         private TilePosition lastpos;
@@ -35,6 +36,7 @@ namespace Assets.UnityLogic.Commands
             
             this.unit = unit;
             this.unitEntity = unitEntity;
+            this.originalColor = this.unit.renderer.material.color;
             this.unit.renderer.material.color = Color.red;
             this.lastpos = (TilePosition)unitEntity.Position;
         }
@@ -130,7 +132,7 @@ namespace Assets.UnityLogic.Commands
             }
             else if (Input.GetButtonDown("accept") || enemySelected)
             {
-                this.unit.renderer.material.color = this.GuiController.GuiInfo.FocusColor;
+                this.unit.renderer.material.color = originalColor;
                 if(mousePath.Map !=null)
                     this.GuiController.GuiView.unDrawRoute(this.mousePath);
                 Finished = true;
