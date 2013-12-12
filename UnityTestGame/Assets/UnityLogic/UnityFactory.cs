@@ -73,7 +73,7 @@ namespace Assets.UnityLogic
 
         public  Vector3 ConvertUnitPos(Point pos)
         {
-            return new Vector3(-(float)pos.X, (float)pos.Y + 0.5f, 0.3f);
+            return new Vector3(-(float)pos.X, (float)pos.Y + 0.3f, 0.7f);
         }
 
         public Transform CreateUnit(UnitEntity unitEnt, TilePosition posinfo)

@@ -119,6 +119,48 @@ namespace CruelTest.SpellSystem
 
         }
 
+        [TestMethod]
+        public void InjectedAbilities_TwoAbilitiesFirstAbilityTriggerAnotherAbility_AbilityIsResolvedBeforeLastAbility()
+        {
+            //Given that two spells are on the stack, if one of those spells trigger something then the triggered ability must be resolved before the last spell
+            //For instance if a player summons a creature and another kill something else in responds
+            //The death of that creature might trigger something that prevents the creature from being summoned.
+
+            bool secondAbilityFired = false;
+            bool isSecondAbilityFired = false;
+            MockAbility injectedAbility = new MockAbility(() => isSecondAbilityFired = secondAbilityFired);
+            MockAbility FirstAbility = new MockAbility(() => this.EventManager.Raise(new EnqueueAbilityEvent(injectedAbility)));
+            MockAbility SecondAbility = new MockAbility(() => secondAbilityFired = true);
+
+            this.EventManager.Raise(new EnqueueAbilityEvent(SecondAbility));
+            this.EventManager.Raise(new EnqueueAbilityEvent(FirstAbility));
+            this.EventManager.Raise(new PhaseChangedEvent(Phases.Draw,Phases.Main));
+            this.Engine.Update();
+            this.Engine.Update();
+
+            Assert.IsFalse(isSecondAbilityFired);
+
+        }
+
+        [TestMethod]
+        public void InjectedAbilities_AnAbilityInjectsANewAbility_InjectedAbilityIsResolvedWithoutPhaseChange()
+        {
+            
+
+            bool isInjectedResolved = false;
+            MockAbility injectedAbility = new MockAbility(() => isInjectedResolved = true);
+            MockAbility FirstAbility = new MockAbility(() => this.EventManager.Raise(new EnqueueAbilityEvent(injectedAbility)));
+
+            this.EventManager.Raise(new EnqueueAbilityEvent(FirstAbility));
+            this.EventManager.Raise(new PhaseChangedEvent(Phases.Draw, Phases.Main));
+            this.Engine.Update();
+            this.Engine.Update();
+
+            Assert.IsTrue(isInjectedResolved);
+
+        }
+
+
         private Player[] generatePlayersAndStartGame(int count)
         {
             List<Player> players = new List<Player>();

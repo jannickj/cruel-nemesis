@@ -141,7 +141,7 @@ public class UnitViewHandler : MonoBehaviour {
             ani = graphics.GetAnimation(StandardUnitAnimations.Idle);
         ani.NextFrame();
         var scale = this.transform.localScale;
-        var newX = ani.HeightToWidthAspect(scale.y);
+        var newX = ani.HeightToWidthAspect(scale.z);
         if (direction.X != 0)
             newX = newX * direction.X;
         this.transform.localScale = new Vector3(newX, scale.y, scale.z);

@@ -7,8 +7,7 @@ namespace Cruel.GameLogic.Unit
 {
     public class HeroUnit : UnitEntity
     {
-        public HeroUnit(Player owner)
-            : base(owner)
+        public HeroUnit(Player owner) : base(owner)
         {
 
         }
