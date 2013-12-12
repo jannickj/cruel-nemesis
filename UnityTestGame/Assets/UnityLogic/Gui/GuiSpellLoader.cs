@@ -12,6 +12,7 @@ using Cruel.GameLogic.Events;
 using JSLibrary.Data;
 using Cruel.GameLogic;
 using Assets.UnityLogic.Unit;
+using Assets.UnityLogic.Animations;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -24,6 +25,8 @@ namespace Assets.UnityLogic.Gui
         public int YOffSet = 2;
         private XmasModel engine;
         private DictionaryList<Player, Spell> playersCardStack = new DictionaryList<Player, Spell>();
+        private SpellGraphics runningSpellAnimations = null;
+        private Queue<HandShake> spellAwaiting = new Queue<HandShake>();
 
         public GuiSpellLoader()
         {
@@ -35,6 +38,30 @@ namespace Assets.UnityLogic.Gui
             this.engine = EngineHandler.EngineModel;
             this.engine.EventManager.Register(new Trigger<ActionCompletedEvent<CastCardCommand>>(OnCastCard));
             this.engine.EventManager.Register(new Trigger<DequeueAbilityEvent>(evt => evt.Ability is Spell,OnSpellRemovedFromStack));
+            
+        }
+
+        public void Update()
+        {
+            
+
+            if (runningSpellAnimations == null)
+            {
+                if (spellAwaiting.Count == 0)
+                    return;
+
+                Spell spell = (Spell)spellAwaiting.Peek().Action;
+                runningSpellAnimations = Factory.CreateSpellGraphic(spell);
+            }
+            
+            runningSpellAnimations.Update();
+
+            if (runningSpellAnimations.IsFinished)
+            {
+                spellAwaiting.Dequeue().PerformHandShake();
+                runningSpellAnimations = null;
+            }
+            
         }
 
         private void OnSpellRemovedFromStack(DequeueAbilityEvent evt)
@@ -44,7 +71,10 @@ namespace Assets.UnityLogic.Gui
             var spellobj = Factory.GameObjectFromModel(spell);
             Factory.RemoveModel(spell);
             this.playersCardStack.Remove(card.Owner, spell);
-            UnitGraphic graphic = GraphicFactory.ConstuctCardGraphic(card.GetType());
+
+
+            spellAwaiting.Enqueue(spell.ObtainHandShake());
+
         }
 
         private void OnCastCard(ActionCompletedEvent<CastCardCommand> evt)

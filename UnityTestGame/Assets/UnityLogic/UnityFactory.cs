@@ -11,6 +11,7 @@ using Assets.UnityLogic.Gui;
 using JSLibrary.Data;
 using Assets.UnityLogic.Unit;
 using Cruel.GameLogic.Unit;
+using Assets.UnityLogic.Animations;
 
 namespace Assets.UnityLogic
 {
@@ -24,6 +25,8 @@ namespace Assets.UnityLogic
         public Transform HealthBarTemplate;
         public GUITexture ManaBarTemplate;
         public GUITexture EmptyManaBarTemplate;
+        public Transform SquareTemplate;
+        public Transform SpriteSquareTemplate;
 
         private Dictionary<object, GameObject> gameobjLookUp = new Dictionary<object, GameObject>();
 
@@ -76,6 +79,14 @@ namespace Assets.UnityLogic
             return new Vector3(-(float)pos.X, (float)pos.Y + 0.3f, 0.7f);
         }
 
+        public SpellGraphics CreateSpellGraphic(Spell spell)
+        {
+            var graphic = (SpellGraphics)GraphicFactory.ConstuctGraphic(spell.Creator.GetType());
+            graphic.Spell = spell;
+            graphic.Initialize(this);
+            return graphic;
+        }
+
         public Transform CreateUnit(UnitEntity unitEnt, TilePosition posinfo)
         {
             var pos = posinfo.Point;
@@ -89,7 +100,9 @@ namespace Assets.UnityLogic
             unitobj.gameObject.AddComponent<UnitControllerHandler>();
 
             info.SetEntity(unitEnt);
-            UnitGraphic graphic = GraphicFactory.ConstuctUnitGraphic(unitEnt.getUnitType());
+            UnitGraphics graphic = (UnitGraphics)GraphicFactory.ConstuctGraphic(unitEnt.getUnitType());
+            graphic.SetUnitObj(unitobj.gameObject);
+            graphic.Initialize(this);
             info.SetGraphics(graphic);
 
             var viewhandler = unitobj.gameObject.GetComponent<UnitViewHandler>();
@@ -98,6 +111,18 @@ namespace Assets.UnityLogic
             viewhandler.HealthBar.GetComponent<HealthbarView>().SetPosition(pos);
             this.gameobjLookUp.Add(unitEnt,unitobj.gameObject);
             return unitobj;
+        }
+
+        public GameObject Create1by1Sprite()
+        {
+            var sobj = (Transform)Instantiate(SpriteSquareTemplate);
+            return sobj.gameObject;
+        }
+
+        public GameObject Create1by1Squre()
+        {
+            var sobj = (Transform)Instantiate(SquareTemplate);
+            return sobj.gameObject;
         }
 
         //public Transform CreateGraphic(TextureAnimation animation)
@@ -128,6 +153,11 @@ namespace Assets.UnityLogic
             return new Vector3(-(float)point.X, (float)point.Y, 0.0f);
         }
 
+        public Vector3 ConvertPos(Point point, float height)
+        {
+            return new Vector3(-(float)point.X, (float)point.Y, height);
+        }
+
         public void RemoveModel(object model)
         {
             var gobj = this.gameobjLookUp[model];
@@ -138,6 +168,26 @@ namespace Assets.UnityLogic
         public float ConvertDurationToSpeed(int msDur)
         {
             return (TerrainTemplate.localScale.x / (float)msDur)*1000 ;
+        }
+
+        public Texture LoadTexture(string texid)
+        {
+            return TextureDictionary.GetTexture(texid);
+        }
+
+        public Texture LoadUnitTexture(string texid)
+        {
+            return LoadTexture("unit_" + texid);
+        }
+
+        public Texture LoadHeroTexture(string texid)
+        {
+            return LoadUnitTexture("heroes_" + texid);
+        }
+
+        internal Texture LoadSpellTexture(string texid)
+        {
+            return LoadTexture("spell_" + texid);
         }
     }
 }

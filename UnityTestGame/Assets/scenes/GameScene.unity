@@ -407,6 +407,8 @@ MonoBehaviour:
   ManaBarTemplate: {fileID: 13100000, guid: 784b1fc16072de54ca51f5ff19d19e56, type: 2}
   EmptyManaBarTemplate: {fileID: 13100000, guid: fe3145f439902ff4e97c6a95a7d4f086,
     type: 2}
+  SquareTemplate: {fileID: 400000, guid: 568a4b5141594d345abda139c30f43e5, type: 2}
+  SpriteSquareTemplate: {fileID: 400000, guid: 58d076110580fa241add9b3058f0d384, type: 2}
 --- !u!1 &161923065
 GameObject:
   m_ObjectHideFlags: 0

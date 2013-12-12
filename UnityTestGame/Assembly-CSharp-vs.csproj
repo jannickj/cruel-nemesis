@@ -44,20 +44,25 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\BruteGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\DragonGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\FireballGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\GoblinPikerGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\GruntGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\MonkGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\SerpentGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\CardAnimations\WarhoundGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\GameGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\GameObjectAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\HeroAnimations\WizardGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\LoopingAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\MoveTransformAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\ParallelAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SizeChangeAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\FireballGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SpellGraphic.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TransformAnimation.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\UnitGameObjectGraphic.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\BruteGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\DragonGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\GoblinPikerGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\GruntGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\MonkGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\SerpentGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\WarhoundGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Commands\BuyXpCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
      <Compile Include="Assets\UnityLogic\Commands\DeclareCastCardCommand.cs" />
@@ -105,6 +110,7 @@
      <Compile Include="Assets\UnityLogic\Gui\PhaseSkipController.cs" />
      <Compile Include="Assets\UnityLogic\GuiLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
+     <Compile Include="Assets\UnityLogic\MirrorSettingsView.cs" />
      <Compile Include="Assets\UnityLogic\ResourceLoader.cs" />
      <Compile Include="Assets\UnityLogic\SpellInformation.cs" />
      <Compile Include="Assets\UnityLogic\SpriteView.cs" />

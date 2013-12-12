@@ -3,28 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Assets.UnityLogic.Unit;
+using UnityEngine;
 
 namespace Assets.UnityLogic.Animations.CardAnimations
 {
-	public class WizardGraphics : UnitGraphic
+	public class WizardGraphics : UnitGraphics
 	{
         public WizardGraphics()
         {
     
         }
 
-        public override void LoadAnimations()
+        protected override void Prepare()
         {
             TextureAnimation ani;
-            ani = new TextureAnimation("heroes_wizard_idle", 6,5);
+            Texture tex;
+            tex = Factory.LoadHeroTexture("wizard_idle");
+            ani = new TextureAnimation(tex, 6,5);
             ani.Frames = Enumerable.Range(1, 30).ToArray();
             ani.FrameRepeats = Enumerable.Repeat<int>(3, 30).ToArray();
-            this.SetAnimation(StandardUnitAnimations.Idle, ani);
+            this.SetUnitAnimation(StandardUnitAnimations.Idle, ani);
 
-            ani = new TextureAnimation("heroes_wizard_walking", 4, 3);
+            tex = Factory.LoadHeroTexture("wizard_walking");
+            ani = new TextureAnimation(tex, 4, 3);
             ani.Frames = Enumerable.Range(1, 12).ToArray();
             ani.FrameRepeats = Enumerable.Repeat<int>(3, 12).ToArray();
-            this.SetAnimation(StandardUnitAnimations.Move, ani);
+            this.SetUnitAnimation(StandardUnitAnimations.Move, ani);
         }
     }
 }

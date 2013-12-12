@@ -11,6 +11,7 @@ namespace Assets.UnityLogic.Animations
         public event EventHandler Completed;
         public event EventHandler Begining;
         private bool firstUpdate = true;
+        public bool AutoLooping { get; set; }
 
 
         public void Reset()
@@ -39,8 +40,13 @@ namespace Assets.UnityLogic.Animations
 
             bool val = UpdateInternal(obj);
             if (val)
+            {
                 if (Completed != null)
                     Completed(this, new EventArgs());
+
+                if (AutoLooping)
+                    Reset();
+            }
             return val;
         }
            

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using Assets.UnityLogic.Animations;
 
 namespace Assets.UnityLogic.Unit
 {
-	public class TextureAnimation
+	public class TextureAnimation : GameObjectAnimation
 	{
-        private string textureId;
         private Texture texture;
         private int frameIndex = 0;
         private int frameRepeated = 0;
@@ -16,9 +16,9 @@ namespace Assets.UnityLogic.Unit
         private int columns;
         private int rows;
 
-        public TextureAnimation(string textureId, int columns, int rows)
+        public TextureAnimation(Texture tex, int columns, int rows)
         {
-            this.textureId = textureId;
+            this.texture = tex;
             this.columns = columns;
             this.rows = rows;
 
@@ -29,15 +29,6 @@ namespace Assets.UnityLogic.Unit
         public int[] Frames { get; set; }
 
         public int[] FrameRepeats { get; set; }
-
-        /// <summary>
-        /// Resets the frame
-        /// </summary>
-        public void Reset()
-        {
-            frameIndex = 0;
-            frameRepeated = 0;
-        }
 
         /// <summary>
         /// Moves the animation to the next frame if the frame was the last frame false is returned
@@ -72,16 +63,7 @@ namespace Assets.UnityLogic.Unit
             return new Frame(OffSet, TileSize,this.texture);
         }
 
-        public void SetTexture(Texture tex)
-        {
-            this.texture = tex;
-        }
 
-
-        public string TextureId
-        {
-            get { return textureId; }
-        }
 
         public float HeightToWidthAspect(float height)
         {
@@ -89,6 +71,41 @@ namespace Assets.UnityLogic.Unit
             float iW = texture.width/(float)this.columns;
             float aspect = iW/iH;
             return height * aspect;
+        }
+
+        protected override void ResetInternal()
+        {
+            frameIndex = 0;
+            frameRepeated = 0;
+            
+        }
+
+        private void setFrame(GameObject obj, Frame f)
+        {
+
+            obj.renderer.material.SetTexture("_MainTex", f.Texture);
+            obj.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
+            obj.renderer.material.SetTextureScale("_MainTex", f.Size);
+
+        }
+
+        protected override bool UpdateInternal(GameObject obj)
+        {
+            var scale = obj.transform.localScale;
+            var newX = HeightToWidthAspect(scale.z);
+            var newZ = scale.z;
+            var settings = obj.GetComponent<MirrorSettingsView>();
+            if(settings!=null)
+                if(settings.HorizontalMirroring)
+                    newX = newX * -1;
+
+            
+            obj.transform.localScale = new Vector3(newX, scale.y, scale.z);
+            var lastFrame = NextFrame();
+
+            setFrame(obj, CurrentFrame());
+
+            return !lastFrame;
         }
     }
 }

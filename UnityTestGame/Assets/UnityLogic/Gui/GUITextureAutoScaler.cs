@@ -11,7 +11,7 @@ namespace Assets.UnityLogic.Gui
         private static int BaseHeight = 1080;
         private static int BaseWidth = 1920;
         private GUITexture myGUITexture;
-        bool initSize = false;
+        //bool initSize = false;
         public Rect CurSize { get; set; }
         //public Rect CurSize
         //{

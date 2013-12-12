@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using Assets.UnityLogic.Unit;
 
-namespace Assets.UnityLogic.Animations.CardAnimations
+namespace Assets.UnityLogic.Animations.UnitAnimations
 {
-	public class BruteGraphics : UnitGraphic
+	public class BruteGraphics : UnitGraphics
 	{
         public BruteGraphics()
         {
     
         }
 
-        public override void LoadAnimations()
+        protected override void Prepare()
         {
-            var idle_ani = new TextureAnimation("brute", 1,1);
+            var idle_ani = new TextureAnimation(this.Factory.LoadUnitTexture("brute"), 1,1);
             idle_ani.Frames = Enumerable.Range(1, 1).ToArray();
             idle_ani.FrameRepeats = Enumerable.Repeat<int>(50, 1).ToArray();
-            this.SetAnimation(StandardUnitAnimations.Idle, idle_ani);
+            this.SetUnitAnimation(StandardUnitAnimations.Idle, idle_ani);
         }
     }
 }

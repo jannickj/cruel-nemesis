@@ -20,8 +20,7 @@ public class UnitViewHandler : MonoBehaviour {
     public UnityFactory Factory;
 
     private UnitEntity entity;
-    private UnitGraphic graphics;
-    private StandardUnitAnimations curAni = StandardUnitAnimations.Idle;
+    private UnitGraphics graphics;
 
     private Queue<GameObjectAnimation> awaitingAnimations = new Queue<GameObjectAnimation>();
     private Queue<HandShake> moveHandShakes = new Queue<HandShake>();
@@ -45,7 +44,7 @@ public class UnitViewHandler : MonoBehaviour {
         
         this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
         this.HealthBar.parent = this.transform;
-        setFrame(currentFrame());
+        this.graphics.UseUnitAnimation(StandardUnitAnimations.Idle);
 	}
 	
 	// Update is called once per frame
@@ -64,15 +63,15 @@ public class UnitViewHandler : MonoBehaviour {
 
     private void OnUnitBeginPathMove(ActionStartingEvent<MovePathAction> evt)
     {
-        this.curAni = StandardUnitAnimations.Move;
+        this.graphics.UseUnitAnimation(StandardUnitAnimations.Move);
     }
 
     private void OnUnitFinishPathMove(ActionCompletedEvent<MovePathAction> evt)
     {
         if (this.currentGObjAni == null)
-            this.curAni = StandardUnitAnimations.Idle;
+            this.graphics.UseUnitAnimation(StandardUnitAnimations.Idle);
         else
-            this.currentGObjAni.Completed += (_, _1) => this.curAni = StandardUnitAnimations.Idle;
+            this.currentGObjAni.Completed += (_, _1) => this.graphics.UseUnitAnimation(StandardUnitAnimations.Idle);
     }
 
     private void OnTakeDamage(UnitTakesDamageEvent evt)
@@ -101,19 +100,6 @@ public class UnitViewHandler : MonoBehaviour {
 
     }
 
-    private Frame currentFrame()
-    {
-        return graphics.GetAnimation(curAni).CurrentFrame();
-    }
-
-    private void setFrame(Frame f)
-    {
-        
-        this.renderer.material.SetTexture("_MainTex", f.Texture);
-        this.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
-        this.renderer.material.SetTextureScale("_MainTex", f.Size);
-
-    }
 
     public void UpdateAnimation()
     {
@@ -134,18 +120,12 @@ public class UnitViewHandler : MonoBehaviour {
 
     public void UpdateFrame()
     {
-        TextureAnimation ani;
-        if (graphics.HasAnimation(this.curAni))
-            ani = graphics.GetAnimation(this.curAni);
-        else
-            ani = graphics.GetAnimation(StandardUnitAnimations.Idle);
-        ani.NextFrame();
-        var scale = this.transform.localScale;
-        var newX = ani.HeightToWidthAspect(scale.z);
-        if (direction.X != 0)
-            newX = newX * direction.X;
-        this.transform.localScale = new Vector3(newX, scale.y, scale.z);
-        setFrame(ani.CurrentFrame());
+        var settings = this.GetComponent<MirrorSettingsView>();
+        if (settings != null)
+        {
+            settings.HorizontalMirroring = direction.X > 0 ? false : direction.X < 0 ? true : settings.HorizontalMirroring;
+        }
+        this.graphics.Update();
 
     }
 
