@@ -11,7 +11,7 @@ namespace Cruel.GameLogic.SpellSystem
 	{
         private List<Action<Spell>> effects = new List<Action<Spell>>();
 
-        public Spell(List<Action<Spell>> effects)
+        public Spell(Player controller, List<Action<Spell>> effects) : base(controller)
         {
             this.effects = effects;
         }

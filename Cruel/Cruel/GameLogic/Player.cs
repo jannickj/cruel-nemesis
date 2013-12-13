@@ -8,6 +8,7 @@ using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Events;
 using CruelTest.SpellSystem;
 using XmasEngineModel.Management.Actions;
+using Cruel.GameLogic.Unit;
 
 namespace Cruel.GameLogic
 {
@@ -19,6 +20,7 @@ namespace Cruel.GameLogic
         public ManaStorage ManaStorage { get; private set; }
         public int CurrentXP { get; private set;}
         public LevelRewarder Rewarder{ get; private set;}
+        public HeroUnit Hero { get; internal set; }
 
         public Player() : this(null, null, null,null) { }
 

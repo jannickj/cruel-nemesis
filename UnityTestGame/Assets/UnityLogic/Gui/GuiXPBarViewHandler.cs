@@ -37,12 +37,8 @@ namespace Assets.UnityLogic.Gui
             float xpCur = this.ginfo.Player.CurrentXP;
             float xpForNextLevel = (float)this.ginfo.Player.Rewarder.XPOfNextLevel();
             float xpForThisLevel = (float)this.ginfo.Player.Rewarder.XPOfThisLevel();
-            Debug.Log("Cur Level " + this.ginfo.Player.Rewarder.CurrentLevel);
-            Debug.Log("XpCur = " + xpCur + " xpNext = " + xpForNextLevel + " xpThis "+xpForThisLevel);
-            Debug.Log("XpCurDiff = " + (xpCur - xpForThisLevel) + " xpNextDiff = " + (xpForNextLevel - xpForThisLevel));
             float xppct = xpForNextLevel == -1 ? 1 : (xpCur - xpForThisLevel)/(xpForNextLevel-xpForThisLevel);
-            Debug.Log("Xppct = " + xppct);
-
+            
             var rect = this.xpscaler.CurSize;
 
             rect.width = this.initwidth - (this.initwidth * xppct);

@@ -46,7 +46,6 @@ namespace Assets.UnityLogic.Gui
                 CreateManaBar(mana);
                 translateX += spacing;
                 translateXBackground += spacing;
-                Debug.Log("Translates: " + translateX + ", " + translateXBackground);
             }
             else
                 UpdateManaLevel(evt.CrystalType);

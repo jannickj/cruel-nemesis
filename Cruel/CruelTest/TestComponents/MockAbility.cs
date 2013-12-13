@@ -12,7 +12,7 @@ namespace CruelTest.TestComponents
     {
         private Action OnFiring;
 
-        public MockAbility(Action OnFiring)
+        public MockAbility(Action OnFiring) : base(null)
         {
             this.OnFiring = OnFiring;
             //this.EventManager.Register(new Trigger<AbilityTargetInvalidEvent>(_ => targetBecomesInvalid = true));

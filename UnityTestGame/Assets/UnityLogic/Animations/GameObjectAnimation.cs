@@ -49,6 +49,14 @@ namespace Assets.UnityLogic.Animations
             }
             return val;
         }
-           
-	}
+
+        protected virtual void InternalSetup(GameObject gobj)
+        {
+        }
+
+        public void Setup(GameObject gobj)
+        {
+            InternalSetup(gobj);
+        }
+    }
 }

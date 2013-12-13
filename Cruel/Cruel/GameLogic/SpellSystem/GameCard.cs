@@ -35,7 +35,7 @@ namespace Cruel.GameLogic.SpellSystem
 
         public Spell ConstructSpell()
         {
-            Spell s = new Spell(spells);
+            Spell s = new Spell(this.Owner,spells);
             s.Creator = this;
             foreach (var cond in conditionList)
             {

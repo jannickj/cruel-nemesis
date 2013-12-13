@@ -9,7 +9,7 @@ namespace Cruel.GameLogic.Unit
     {
         public HeroUnit(Player owner) : base(owner)
         {
-
+            owner.Hero = this;
         }
     }
 }

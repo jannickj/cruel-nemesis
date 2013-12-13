@@ -34,7 +34,7 @@ namespace Assets.UnityLogic.Unit
         /// Moves the animation to the next frame if the frame was the last frame false is returned
         /// </summary>
         /// <returns></returns>
-        public bool NextFrame()
+        private bool NextFrame()
         {
             frameRepeated++;
             if (FrameRepeats[frameIndex] < frameRepeated)
@@ -87,6 +87,11 @@ namespace Assets.UnityLogic.Unit
             obj.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
             obj.renderer.material.SetTextureScale("_MainTex", f.Size);
 
+        }
+
+        protected override void InternalSetup(GameObject gobj)
+        {
+            setFrame(gobj, CurrentFrame());
         }
 
         protected override bool UpdateInternal(GameObject obj)
