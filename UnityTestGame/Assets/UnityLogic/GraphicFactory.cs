@@ -33,6 +33,7 @@ namespace Assets.UnityLogic
             linkCardToGraphic<FireballCard, FireballGraphics>();
             //linkCardToGraphic<BloodwyrmSpawnCard, FireballGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
+            linkUnitToGraphic<WarlordHero, WarlordGraphics>();
         }
 
         public static GameGraphics ConstuctGraphic(Type modeltype)

@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,6 +46,7 @@
   <ItemGroup>
      <Compile Include="Assets\UnityLogic\Animations\GameGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\GameObjectAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\HeroAnimations\WarlordGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\HeroAnimations\WizardGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\LoopingAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\MoveTransformAnimation.cs" />
@@ -55,6 +56,7 @@
      <Compile Include="Assets\UnityLogic\Animations\SpellGraphic.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TransformAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\ArcherGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\BruteGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\DragonGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\GoblinPikerGraphics.cs" />
@@ -71,6 +73,7 @@
      <Compile Include="Assets\UnityLogic\Commands\ToggleStopPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\ArcherCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BruteCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
@@ -89,8 +92,14 @@
      <Compile Include="Assets\UnityLogic\Game\Maps\StandardGameMapBuilder.cs" />
      <Compile Include="Assets\UnityLogic\Game\Maps\TestMapBuilder.cs" />
      <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\ArcherUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\BruteUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\DragonUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\GoblinPikerUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\GruntUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\MonkUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\SerpentUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\WarhoundUnit.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
      <Compile Include="Assets\UnityLogic\GraphicFactory.cs" />

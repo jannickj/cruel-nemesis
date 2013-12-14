@@ -53,7 +53,7 @@ namespace Assets.UnityLogic.Game.Maps
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
-					O, W, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
+					O, W, O, O, O, O, O, O, O, O, O, O, O, O, O, L, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
 					O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, O, 
