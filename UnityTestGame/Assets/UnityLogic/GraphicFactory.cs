@@ -12,6 +12,7 @@ using Assets.UnityLogic.Game.Heroes;
 using Assets.UnityLogic.Animations.CardAnimations;
 using Assets.UnityLogic.Animations;
 using Assets.UnityLogic.Animations.UnitAnimations;
+using Assets.UnityLogic.Game.Units;
 
 namespace Assets.UnityLogic
 {
@@ -22,9 +23,15 @@ namespace Assets.UnityLogic
         static GraphicFactory()
         {
             linkUnitToGraphic<GruntUnit, GruntGraphics>();
+            linkUnitToGraphic<ArcherUnit, ArcherGraphics>();
+            linkUnitToGraphic<BruteUnit, BruteGraphics>();
+            linkUnitToGraphic<GoblinPikerUnit, GoblinPikerGraphics>();
+            linkUnitToGraphic<MonkUnit, MonkGraphics>();
+            linkUnitToGraphic<SerpentUnit, SerpentGraphics>();
+            linkUnitToGraphic<WarhoundUnit, WarhoundGraphics>();
             linkUnitToGraphic<DragonUnit, DragonGraphics>();
-            //linkCardToGraphic<FireballCard, FireballGraphics>();
-            linkCardToGraphic<BloodwyrmSpawnCard, FireballGraphics>();
+            linkCardToGraphic<FireballCard, FireballGraphics>();
+            //linkCardToGraphic<BloodwyrmSpawnCard, FireballGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
         }
 
