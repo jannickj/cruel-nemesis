@@ -27,6 +27,7 @@ namespace Assets.UnityLogic
         public GUITexture EmptyManaBarTemplate;
         public Transform SquareTemplate;
         public Transform SpriteSquareTemplate;
+        public GUIText TextTemplate;
 
         private Dictionary<object, GameObject> gameobjLookUp = new Dictionary<object, GameObject>();
 
@@ -185,9 +186,14 @@ namespace Assets.UnityLogic
             return LoadUnitTexture("heroes_" + texid);
         }
 
-        internal Texture LoadSpellTexture(string texid)
+        public Texture LoadSpellTexture(string texid)
         {
             return LoadTexture("spell_" + texid);
+        }
+
+        public GUIText CreateText()
+        {
+            return (GUIText)Instantiate(this.TextTemplate);
         }
     }
 }

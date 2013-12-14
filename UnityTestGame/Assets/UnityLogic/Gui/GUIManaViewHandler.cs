@@ -59,21 +59,21 @@ namespace Assets.UnityLogic.Gui
             emptyBar.transform.position = position;
             emptyBar.transform.parent = this.GUIInfo.Portrait.transform;
             var scaler = emptyBar.GetComponent<GUITextureAutoScaler>();
-            var size = scaler.CurSize;
+            var size = scaler.CurPlacement;
             var offsetX = reversed ? (-1 * (translateX + (size.width / 2))) : translateX;
             size.x += offsetX;
             size.y -= translateY;
-            scaler.CurSize = size;
+            scaler.CurPlacement = size;
 
             var manaBar = Factory.CreateManaBar(mana);
             manaBars[mana] = manaBar;
             manaBar.transform.parent = this.GUIInfo.Portrait.transform;
             var manaScaler = manaBar.GetComponent<GUITextureAutoScaler>();
-            var manaSize = manaScaler.CurSize;
+            var manaSize = manaScaler.CurPlacement;
             var manaOffsetX = reversed ? (-1 * (translateXBackground + (manaSize.width / 2))) : translateX;
             manaSize.x += manaOffsetX;
             manaSize.y -= translateYBackground;
-            manaScaler.CurSize = manaSize;
+            manaScaler.CurPlacement = manaSize;
         }
 
         private void OnManaSpent(ManaCrystalSpentEvent evt)
@@ -94,11 +94,11 @@ namespace Assets.UnityLogic.Gui
             float curVal = manaStorage.GetChargedCount(mana);
             var manaBar = manaBars[mana];
             var scaler = manaBar.GetComponent<GUITextureAutoScaler>();
-            var size = scaler.CurSize;
+            var size = scaler.CurPlacement;
             float newHeight = (manaBarHeight * curVal) / maxVal;
             var difference = size.height - newHeight;
             var newSize = new Rect(size.xMin, size.yMin+difference, size.width, newHeight);
-            scaler.CurSize = newSize;
+            scaler.CurPlacement = newSize;
         }
 	}
 }

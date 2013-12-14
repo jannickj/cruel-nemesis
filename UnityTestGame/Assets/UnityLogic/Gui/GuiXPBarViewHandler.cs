@@ -23,7 +23,7 @@ namespace Assets.UnityLogic.Gui
             this.isNotMainPlayer = isNotMainPlayer;
             ginfo.Player.Register(new Trigger<PlayerGainedXPEvent>(OnXPGain));
             xpscaler = this.ginfo.XPBar.GetComponent<GUITextureAutoScaler>();
-            initwidth = xpscaler.CurSize.width;
+            initwidth = xpscaler.CurPlacement.width;
             CheckXp();
         }
 
@@ -39,10 +39,10 @@ namespace Assets.UnityLogic.Gui
             float xpForThisLevel = (float)this.ginfo.Player.Rewarder.XPOfThisLevel();
             float xppct = xpForNextLevel == -1 ? 1 : (xpCur - xpForThisLevel)/(xpForNextLevel-xpForThisLevel);
             
-            var rect = this.xpscaler.CurSize;
+            var rect = this.xpscaler.CurPlacement;
 
             rect.width = this.initwidth - (this.initwidth * xppct);
-            this.xpscaler.CurSize = rect;
+            this.xpscaler.CurPlacement = rect;
         }
     }
 }

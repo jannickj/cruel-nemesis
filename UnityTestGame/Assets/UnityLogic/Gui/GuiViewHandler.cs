@@ -14,6 +14,7 @@ using Cruel.Map.Terrain;
 using Cruel.GameLogic.TurnLogic;
 using JSLibrary.Data;
 using Assets.UnityLogic.Game.Modules;
+using Cruel.GameLogic.Modules;
 
 namespace Assets.UnityLogic.Gui
 {
@@ -21,18 +22,27 @@ namespace Assets.UnityLogic.Gui
 	{
         public MapHandler MapHandler;
         private GuiInformation guiinfo;
+        public UnityFactory Factory;
         public EngineHandler Engine;
         private XmasModel engmodel;
         private Player currentTurnOwner;
         private Dictionary<XmasEntity, Path<TileWorld, TilePosition>> routes = new Dictionary<XmasEntity, Path<TileWorld, TilePosition>>();
         private Dictionary<Point, Stack<Color>> drawnSquares = new Dictionary<Point, Stack<Color>>();
         private Color defaultColor = Color.white;
+        private GUIText HpText;
+
+        private static Vector2 HPTEXT_OFFSET = new Vector2(9, 30);
 
         public void Initialize()
         {
             
             guiinfo = this.gameObject.GetComponent<GuiInformation>();
-
+            HpText = Factory.CreateText();
+            HpText.transform.parent = guiinfo.HealthBar.transform;
+            var hpBarPos = this.guiinfo.HealthBar.GetComponent<GUITextureAutoScaler>().CurPlacement;
+            hpBarPos.x += HPTEXT_OFFSET.x;
+            hpBarPos.y += HPTEXT_OFFSET.y;
+            HpText.GetComponent<GUITextureAutoScaler>().CurPlacement = hpBarPos;
             engmodel = Engine.EngineModel;
 
             engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerPriority));
@@ -41,8 +51,15 @@ namespace Assets.UnityLogic.Gui
             engmodel.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(evt => evt.Player == this.guiinfo.Player,OnPlayerDeclare));
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChangedEvt));
             engmodel.EventManager.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == this.guiinfo.Player, OnPlayerDrawCard));
+            updateHpText();
         }
 
+        private void updateHpText()
+        {
+            var hpmod = this.guiinfo.Player.Hero.Module<HealthModule>();
+            HpText.text = hpmod.Health + " / " + hpmod.MaxHealth;
+
+        }
 
         void Update()
         {

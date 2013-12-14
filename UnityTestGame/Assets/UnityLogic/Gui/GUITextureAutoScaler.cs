@@ -10,9 +10,10 @@ namespace Assets.UnityLogic.Gui
 	{
         private static int BaseHeight = 1080;
         private static int BaseWidth = 1920;
-        private GUITexture myGUITexture;
+        private Action<Rect> setRectFunc;
+        private Func<Rect> getRectFunc;
         //bool initSize = false;
-        public Rect CurSize { get; set; }
+        public Rect CurPlacement { get; set; }
         //public Rect CurSize
         //{
         //    get
@@ -36,8 +37,22 @@ namespace Assets.UnityLogic.Gui
         void Awake()
         {
             //var curSize = CurSize;
-            myGUITexture = this.gameObject.GetComponent("GUITexture") as GUITexture;
-            CurSize = myGUITexture.pixelInset;
+            //Debug.Log();
+            //this.gameObject.GetComponent<GUIText>().p
+            var guitexture = this.gameObject.GetComponent<GUITexture>();
+            if (guitexture != null)
+            {
+                this.setRectFunc = rect => guitexture.pixelInset = rect;
+                this.getRectFunc = () => guitexture.pixelInset;
+            }
+
+            var guitext = this.gameObject.GetComponent<GUIText>();
+            if (guitext != null)
+                this.setRectFunc = rect => guitext.pixelOffset = new Vector2(rect.x, rect.y);
+
+            //myGUITexture = this.gameObject.GetComponent("GUITexture") as GUITexture;
+            if (getRectFunc != null)
+                CurPlacement = getRectFunc();
             
         }
 
@@ -66,14 +81,13 @@ namespace Assets.UnityLogic.Gui
 
             
 
-            float xPos = CurSize.x*ratio;
-            float yPos = CurSize.y * ratio;
+            float xPos = CurPlacement.x*ratio;
+            float yPos = CurPlacement.y * ratio;
 
-            float height = CurSize.height * ratio;
-            float width = CurSize.width * ratio;
-            
-            myGUITexture.pixelInset = new Rect(xPos, yPos, width, height);
-               
+            float height = CurPlacement.height * ratio;
+            float width = CurPlacement.width * ratio;
+            if(setRectFunc!=null)
+                this.setRectFunc(new Rect(xPos, yPos, width, height));
             
         }
 	}

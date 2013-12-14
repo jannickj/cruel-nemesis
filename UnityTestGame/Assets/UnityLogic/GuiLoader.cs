@@ -81,6 +81,7 @@ namespace Assets.UnityLogic
                 gobj.AddComponent<GuiViewHandler>();
                 var guiview = gobj.GetComponent<GuiViewHandler>();
                 guiview.Engine = this.Engine;
+                guiview.Factory = Factory;
                 guiview.MapHandler = this.MapHandler;
 
                 guiview.Initialize();
