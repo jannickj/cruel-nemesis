@@ -409,6 +409,7 @@ MonoBehaviour:
     type: 2}
   SquareTemplate: {fileID: 400000, guid: 568a4b5141594d345abda139c30f43e5, type: 2}
   SpriteSquareTemplate: {fileID: 400000, guid: 58d076110580fa241add9b3058f0d384, type: 2}
+  TextTemplate: {fileID: 13200000, guid: 1c2d83b6cffbcc444bfb5da8ca8b4c3a, type: 2}
 --- !u!1 &161923065
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,7 @@
      <Compile Include="Assets\UnityLogic\Animations\SpellGraphic.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TransformAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\ArcherGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\BruteGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\DragonGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\GoblinPikerGraphics.cs" />
@@ -71,6 +72,7 @@
      <Compile Include="Assets\UnityLogic\Commands\ToggleStopPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\ArcherCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BruteCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
@@ -89,8 +91,14 @@
      <Compile Include="Assets\UnityLogic\Game\Maps\StandardGameMapBuilder.cs" />
      <Compile Include="Assets\UnityLogic\Game\Maps\TestMapBuilder.cs" />
      <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\ArcherUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\BruteUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\DragonUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\GoblinPikerUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\GruntUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\MonkUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\SerpentUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\WarhoundUnit.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
      <Compile Include="Assets\UnityLogic\GraphicFactory.cs" />
