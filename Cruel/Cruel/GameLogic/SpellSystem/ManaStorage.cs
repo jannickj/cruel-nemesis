@@ -33,11 +33,28 @@ namespace CruelTest.SpellSystem
 
         public int GetChargedCount(Mana mana)
         {
+            if (!manaCrystals.ContainsKey(mana))
+                return 0;
             int count = 0;
             foreach (ManaCrystal m in manaCrystals[mana])
                 if (m.IsCharged)
                     count++;
             return count;
+        }
+
+        public bool CheckMana(IEnumerable<Mana> mana)
+        {
+            int i;
+            foreach (Mana type in Enum.GetValues(typeof(Mana)))
+            {
+                i = 0;
+                foreach (Mana m in mana)
+                    if (m == type)
+                        i++;
+                if (!manaCrystals.ContainsKey(type) || GetChargedCount(type) < i)
+                    return false;
+            }
+            return true;
         }
 
         public void AddCrystal(Cruel.GameLogic.SpellSystem.Mana mana)
