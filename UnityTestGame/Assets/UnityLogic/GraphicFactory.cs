@@ -13,6 +13,7 @@ using Assets.UnityLogic.Animations.CardAnimations;
 using Assets.UnityLogic.Animations;
 using Assets.UnityLogic.Animations.UnitAnimations;
 using Assets.UnityLogic.Game.Units;
+using Assets.UnityLogic.Animations.SpellAnimations;
 using Assets.UnityLogic.Exceptions;
 using Assets.UnityLogic.Game;
 
@@ -32,9 +33,10 @@ namespace Assets.UnityLogic
             linkUnitToGraphic<SerpentUnit, SerpentGraphics>();
             linkUnitToGraphic<WarhoundUnit, WarhoundGraphics>();
             linkUnitToGraphic<DragonUnit, DragonGraphics>();
-            linkCardToGraphic<FireballCard, FireballGraphics>();
-            //linkCardToGraphic<BloodwyrmSpawnCard, FireballGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
+
+            linkCardToGraphic<FireballCard, FireballGraphics>();
+            linkCardToGraphic<InspirationCard, InspirationGraphics>();
             linkUnitToGraphic<WarlordHero, WarlordGraphics>();
             linkCardToGraphic<SummoningSingleCard, SummoningGraphics>();
         }
