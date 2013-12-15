@@ -35,11 +35,12 @@ namespace Assets.UnityLogic.Gui
         public ControllerType ControllerType { get; set; }
 
         private GuiInformation guiinfo;
-        public PhaseSkipController SkipController { get; set; }
+        public PhaseSkipToController SkipController { get; set; }
         public List<Player> JoinedPlayers { get; set; }
         private XmasModel engmodel;
         private bool hasPriority;
         private bool allowedToDeclare = false;
+
         // Use this for initialization
         public void Initialize()
         {
@@ -74,10 +75,24 @@ namespace Assets.UnityLogic.Gui
                     {
                         if (this.hasPriority && this.ControllerType == ControllerType.Shared || this.ControllerType == ControllerType.Full)
                         {
-                            this.PerformCommand(new ToggleStopPriorityCommand(SkipController, selectedPlayer, selectedPhase));
+                            //this.PerformCommand(new ToggleStopPriorityCommand(SkipController, selectedPlayer, selectedPhase));
                         }
                     };
                 }
+            }
+
+            foreach (Phases ph in (Phases[])Enum.GetValues(typeof(Phases)))
+            {
+                var texture = guiinfo[ph];
+                var buttonhandler = texture.GetComponent<GUIButtonHandler>();
+                var selectedPhase = ph;
+
+                buttonhandler.MouseDownEvent += (sender, evt) =>
+                    {
+                        if(hasPriority)
+                            this.PerformCommand(new SkipToPhaseCommand(SkipController, selectedPhase));
+                    };
+
             }
 
             var buyXp = this.guiinfo.XPButton.GetComponent<GUIButtonHandler>();

@@ -88,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &17371547
 Transform:
   m_ObjectHideFlags: 0
@@ -957,6 +957,7 @@ GameObject:
   - 4: {fileID: 386602792}
   - 131: {fileID: 386602793}
   - 114: {fileID: 386602794}
+  - 114: {fileID: 386602795}
   m_Layer: 0
   m_Name: phases_main2
   m_TagString: Untagged
@@ -1003,6 +1004,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &386602795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 386602791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &401321988
@@ -1264,6 +1276,7 @@ GameObject:
   - 4: {fileID: 468049800}
   - 131: {fileID: 468049801}
   - 114: {fileID: 468049802}
+  - 114: {fileID: 468049803}
   m_Layer: 0
   m_Name: phases_draw
   m_TagString: Untagged
@@ -1310,6 +1323,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &468049803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468049799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &514188147
@@ -1840,6 +1864,7 @@ GameObject:
   - 4: {fileID: 653046951}
   - 131: {fileID: 653046952}
   - 114: {fileID: 653046953}
+  - 114: {fileID: 653046954}
   m_Layer: 0
   m_Name: phases_battle
   m_TagString: Untagged
@@ -1886,6 +1911,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &653046954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 653046950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &653209206
@@ -1973,7 +2009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &670758783
 Transform:
   m_ObjectHideFlags: 0
@@ -2203,6 +2239,7 @@ GameObject:
   - 4: {fileID: 815806730}
   - 131: {fileID: 815806731}
   - 114: {fileID: 815806732}
+  - 114: {fileID: 815806733}
   m_Layer: 0
   m_Name: phases_move
   m_TagString: Untagged
@@ -2249,6 +2286,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &815806733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 815806729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &845239627
@@ -2901,6 +2949,7 @@ GameObject:
   - 4: {fileID: 1350728993}
   - 131: {fileID: 1350728994}
   - 114: {fileID: 1350728995}
+  - 114: {fileID: 1350728996}
   m_Layer: 0
   m_Name: phases_endcombat
   m_TagString: Untagged
@@ -2947,6 +2996,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1350728996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1350728992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1351448801
@@ -3231,6 +3291,7 @@ GameObject:
   - 4: {fileID: 1555541611}
   - 131: {fileID: 1555541610}
   - 114: {fileID: 1555541612}
+  - 114: {fileID: 1555541613}
   m_Layer: 0
   m_Name: phases_declare
   m_TagString: Untagged
@@ -3277,6 +3338,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1555541613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1555541609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1582029964
@@ -3483,6 +3555,7 @@ GameObject:
   - 4: {fileID: 1798134936}
   - 131: {fileID: 1798134935}
   - 114: {fileID: 1798134937}
+  - 114: {fileID: 1798134938}
   m_Layer: 0
   m_Name: phases_begin_combat
   m_TagString: Untagged
@@ -3529,6 +3602,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1798134938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798134934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1888969238
@@ -3612,6 +3696,7 @@ GameObject:
   - 4: {fileID: 1889768624}
   - 131: {fileID: 1889768625}
   - 114: {fileID: 1889768626}
+  - 114: {fileID: 1889768627}
   m_Layer: 0
   m_Name: phases_react
   m_TagString: Untagged
@@ -3658,6 +3743,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1889768627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1889768623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1968437253
@@ -3763,6 +3859,7 @@ GameObject:
   - 4: {fileID: 1997481657}
   - 131: {fileID: 1997481658}
   - 114: {fileID: 1997481659}
+  - 114: {fileID: 1997481660}
   m_Layer: 0
   m_Name: phases_main
   m_TagString: Untagged
@@ -3809,6 +3906,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1997481660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997481656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2044777793
@@ -3892,6 +4000,7 @@ GameObject:
   - 4: {fileID: 2051072577}
   - 131: {fileID: 2051072578}
   - 114: {fileID: 2051072579}
+  - 114: {fileID: 2051072580}
   m_Layer: 0
   m_Name: phases_end
   m_TagString: Untagged
@@ -3938,6 +4047,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9415311c545fb4491a2a40838625de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2051072580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2051072576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6feef6deb4a24541981dd221322b479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2145068737

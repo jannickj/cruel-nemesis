@@ -53,6 +53,7 @@
      <Compile Include="Assets\UnityLogic\Animations\ParallelAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SizeChangeAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\FireballGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\InspirationGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\SummoningGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellGraphic.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
@@ -71,6 +72,7 @@
      <Compile Include="Assets\UnityLogic\Commands\DeclareCastCardCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\DeclareMoveAttackUnitCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\PassPriorityCommand.cs" />
+     <Compile Include="Assets\UnityLogic\Commands\SkipToPhaseCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\ToggleStopPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
@@ -81,8 +83,10 @@
      <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\FireballCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\GoblinPikerCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\InspirationCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\LightningBoltCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\MonkCard.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Cards\RaiseDeadCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\SerpentCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\WarhoundCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\GameCardWithSpellEffect.cs" />
@@ -120,6 +124,7 @@
      <Compile Include="Assets\UnityLogic\Gui\GuiViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\GuiXPBarViewHandler.cs" />
      <Compile Include="Assets\UnityLogic\Gui\PhaseSkipController.cs" />
+     <Compile Include="Assets\UnityLogic\Gui\PhaseSkipToController.cs" />
      <Compile Include="Assets\UnityLogic\GuiLoader.cs" />
      <Compile Include="Assets\UnityLogic\MapHandler.cs" />
      <Compile Include="Assets\UnityLogic\MirrorSettingsView.cs" />

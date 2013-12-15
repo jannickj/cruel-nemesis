@@ -27,7 +27,7 @@ namespace Assets.UnityLogic.Gui
 
         public GUITexture HealthBar { get; set; }
 
-        private GUITexture this[Phases phase]
+        public GUITexture this[Phases phase]
         {
             get
             {
@@ -42,6 +42,7 @@ namespace Assets.UnityLogic.Gui
                 return this.manacrystals[(int)manatype];
             }
         }
+
 
         public void SetPhaseColor(Phases phase, Color color)
         {
