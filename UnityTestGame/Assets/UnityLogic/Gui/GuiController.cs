@@ -28,6 +28,7 @@ namespace Assets.UnityLogic.Gui
     public class GuiController : MonoBehaviour
     {
         public EngineHandler Engine;
+        public UnityFactory Factory;
         public Camera PlayerCamera;
         private HashSet<Command> runningCommands = new HashSet<Command>();
         private HashSet<Command> awaitingCommands = new HashSet<Command>();
@@ -60,26 +61,26 @@ namespace Assets.UnityLogic.Gui
 
             
 
-            foreach (var player in this.JoinedPlayers)
-            {
-                foreach(Phases phase in (Phases[])Enum.GetValues(typeof(Phases)))
-                {
-                    var texture = guiinfo.GetSkipPhaseButton(player, phase);
-                    if (texture == null)
-                        continue;
+            //foreach (var player in this.JoinedPlayers)
+            //{
+            //    foreach(Phases phase in (Phases[])Enum.GetValues(typeof(Phases)))
+            //    {
+            //        var texture = guiinfo.GetSkipPhaseButton(player, phase);
+            //        if (texture == null)
+            //            continue;
 
-                    var buttonHandler = texture.GetComponent<GUIButtonHandler>();
-                    var selectedPlayer = player;
-                    var selectedPhase = phase;
-                    buttonHandler.MouseDownEvent += (sender, evt) =>
-                    {
-                        if (this.hasPriority && this.ControllerType == ControllerType.Shared || this.ControllerType == ControllerType.Full)
-                        {
-                            //this.PerformCommand(new ToggleStopPriorityCommand(SkipController, selectedPlayer, selectedPhase));
-                        }
-                    };
-                }
-            }
+            //        var buttonHandler = texture.GetComponent<GUIButtonHandler>();
+            //        var selectedPlayer = player;
+            //        var selectedPhase = phase;
+            //        buttonHandler.MouseDownEvent += (sender, evt) =>
+            //        {
+            //            if (this.hasPriority && this.ControllerType == ControllerType.Shared || this.ControllerType == ControllerType.Full)
+            //            {
+            //                //this.PerformCommand(new ToggleStopPriorityCommand(SkipController, selectedPlayer, selectedPhase));
+            //            }
+            //        };
+            //    }
+            //}
 
             foreach (Phases ph in (Phases[])Enum.GetValues(typeof(Phases)))
             {
@@ -138,7 +139,7 @@ namespace Assets.UnityLogic.Gui
 
                     if (cardinfo != null)
                     {
-                        this.PerformCommand(new DeclareCastCardCommand(cardinfo.Card));
+                        this.PerformCommand(new DeclareCastCardCommand(cardinfo.Card,selectedObject));
                         return;
                     }
 

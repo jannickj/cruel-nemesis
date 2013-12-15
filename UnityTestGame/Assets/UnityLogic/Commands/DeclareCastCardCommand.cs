@@ -17,13 +17,15 @@ namespace Assets.UnityLogic.Commands
         private object modelSelected;
         private bool selectedAccepted = false;
         private List<Dictionary<GameObject, object>> targets = new List<Dictionary<GameObject, object>>();
+        private GameObject cardobj;
 
-        public DeclareCastCardCommand(GameCard gameCard)
+        public DeclareCastCardCommand(GameCard gameCard, GameObject cardobj)
         {
             // TODO: Complete member initialization
             this.gameCard = gameCard;
+            this.cardobj = cardobj;
+            this.cardobj.renderer.material.color = Color.red;
             targetsAtIndex(0);
-            
         }
 
         private bool targetsAtIndex(int index)
@@ -41,7 +43,7 @@ namespace Assets.UnityLogic.Commands
         {
             var objs = this.GuiController.GetGameObjectsOnMouse().Where(gobj => !this.targets[targetIndex].ContainsKey(gobj));
             GameObject newSelected = null;
-  
+            
 
             foreach (GameObject gobj in objs)
             {
@@ -111,6 +113,7 @@ namespace Assets.UnityLogic.Commands
                 {
                     var tars = targets.Select(dic => dic.Values).Cast<IEnumerable<object>>();
                     this.ActionManager.Queue(new CastCardCommand(this.GuiController.GuiInfo.Player, this.gameCard, tars, this.gameCard.ManaCost));
+                    this.cardobj.renderer.material.color = Color.white;
                     this.Finished = true;
                 }
                 

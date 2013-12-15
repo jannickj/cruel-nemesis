@@ -29,7 +29,7 @@ namespace Assets.UnityLogic.Gui
             // TODO: Complete member initialization
             this.guiinfo = guiinfo;
             this.owner = owner;
-            owner.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => { currentPlayersTurn = evt.PlayersTurn; }));
+            owner.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => { currentPlayersTurn = evt.PlayersTurn; shouldSkipToPhase = false; }));
             owner.EventManager.Register(new Trigger<PhaseChangedEvent>(evt => { lastGainPrio = null; prioritiesHasBeenReset = false; curPhase = evt.NewPhase; }));
             owner.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(this.OnPlayerGainPriority));
             owner.EventManager.Register(new Trigger<ResetPrioritiesEvent>(evt => prioritiesHasBeenReset = true));
@@ -61,7 +61,8 @@ namespace Assets.UnityLogic.Gui
 
         private void CheckIfShouldSkip()
         {
-
+            if (currentPlayersTurn != this.owner)
+                owner.ActionManager.Queue(new PlayerPassPriorityCommand(owner));
             if (!shouldSkipToPhase || prioritiesHasBeenReset)
                 return;
 
