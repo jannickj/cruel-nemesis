@@ -13,6 +13,7 @@ using Assets.UnityLogic.Animations.CardAnimations;
 using Assets.UnityLogic.Animations;
 using Assets.UnityLogic.Animations.UnitAnimations;
 using Assets.UnityLogic.Game.Units;
+using Assets.UnityLogic.Animations.SpellAnimations;
 
 namespace Assets.UnityLogic
 {
@@ -30,9 +31,10 @@ namespace Assets.UnityLogic
             linkUnitToGraphic<SerpentUnit, SerpentGraphics>();
             linkUnitToGraphic<WarhoundUnit, WarhoundGraphics>();
             linkUnitToGraphic<DragonUnit, DragonGraphics>();
-            linkCardToGraphic<FireballCard, FireballGraphics>();
-            //linkCardToGraphic<BloodwyrmSpawnCard, FireballGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
+
+            linkCardToGraphic<FireballCard, FireballGraphics>();
+            linkCardToGraphic<InspirationCard, InspirationGraphics>();
         }
 
         public static GameGraphics ConstuctGraphic(Type modeltype)
