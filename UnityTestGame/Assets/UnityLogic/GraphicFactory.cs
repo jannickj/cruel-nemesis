@@ -13,6 +13,8 @@ using Assets.UnityLogic.Animations.CardAnimations;
 using Assets.UnityLogic.Animations;
 using Assets.UnityLogic.Animations.UnitAnimations;
 using Assets.UnityLogic.Game.Units;
+using Assets.UnityLogic.Exceptions;
+using Assets.UnityLogic.Game;
 
 namespace Assets.UnityLogic
 {
@@ -22,7 +24,7 @@ namespace Assets.UnityLogic
 
         static GraphicFactory()
         {
-            linkUnitToGraphic<GruntUnit, GruntGraphics>();
+            linkUnitToGraphic<UnitEntity, DefaultUnitGraphics>();
             linkUnitToGraphic<ArcherUnit, ArcherGraphics>();
             linkUnitToGraphic<BruteUnit, BruteGraphics>();
             linkUnitToGraphic<GoblinPikerUnit, GoblinPikerGraphics>();
@@ -34,11 +36,19 @@ namespace Assets.UnityLogic
             //linkCardToGraphic<BloodwyrmSpawnCard, FireballGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
             linkUnitToGraphic<WarlordHero, WarlordGraphics>();
+            linkCardToGraphic<SummoningSingleCard, SummoningGraphics>();
         }
 
         public static GameGraphics ConstuctGraphic(Type modeltype)
         {
-            var g = (GameGraphics)Activator.CreateInstance(modelToGraphicTypeLookUp[modeltype]);
+            var mtype = modeltype;
+            while (!modelToGraphicTypeLookUp.ContainsKey(mtype))
+            {
+                mtype = mtype.BaseType;
+                if (mtype == typeof(object))
+                    throw new GraphicsNotFoundException(modeltype);
+            }
+            var g = (GameGraphics)Activator.CreateInstance(modelToGraphicTypeLookUp[mtype]);
             return g;
         }
 

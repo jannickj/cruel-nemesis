@@ -13,7 +13,7 @@ using Assets.UnityLogic.Game.Unit;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-	public class BloodwyrmSpawnCard : GameCardWithSpellEffect
+    public class BloodwyrmSpawnCard : SummoningSingleCard
 	{
         public BloodwyrmSpawnCard()
         {

@@ -13,7 +13,7 @@ using Assets.UnityLogic.Game.Units;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-    public class BruteCard : GameCardWithSpellEffect
+    public class BruteCard : SummoningSingleCard
 	{
         public BruteCard()
         {

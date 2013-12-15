@@ -10,7 +10,7 @@ using Assets.UnityLogic.Game.Units;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-	class MonkCard : GameCardWithSpellEffect
+    class MonkCard : SummoningSingleCard
 	{
         public MonkCard()
         {

@@ -62,6 +62,15 @@ namespace Cruel.GameLogic.PlayerCommands
                 }
                 this.EventManager.Raise(new EnqueueAbilityEvent(spell));
                 this.RunAction(new ResetPrioritiesAction());
+                
+                Trigger<DequeueAbilityEvent> trig = null;
+                Action<DequeueAbilityEvent> action = evt => 
+                    {
+                        this.card.Owner.Library.AddBottom(this.CastedCard);
+                        this.EventManager.Deregister(trig);
+                    };
+                trig = new Trigger<DequeueAbilityEvent>(evt => evt.Ability == spell,action);
+                this.EventManager.Register(trig);
             }
         }
 

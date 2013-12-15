@@ -83,6 +83,7 @@ public class GameLogicLoader : MonoBehaviour {
                 gamestarted = true;
                 engmodel.Initialize();
                 engmodel.ActionManager.Queue(new StartGameCommand());
+                engmodel.EventManager.Register(new Trigger<PlayersTurnChangedEvent>(evt => engmodel.ActionManager.Queue(new DrawCardAction(evt.PlayersTurn, 1))));
                 engmodel.ActionManager.Queue(new DrawCardAction(players[0], CardsToStartWith));
                 engmodel.ActionManager.Queue(new DrawCardAction(players[1], CardsToStartWith));
                 engmodel.ActionManager.Queue(new SimpleAction(_=>

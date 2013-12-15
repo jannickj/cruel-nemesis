@@ -53,6 +53,7 @@
      <Compile Include="Assets\UnityLogic\Animations\ParallelAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SizeChangeAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\FireballGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\SummoningGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellGraphic.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TransformAnimation.cs" />
@@ -73,6 +74,7 @@
      <Compile Include="Assets\UnityLogic\Commands\ToggleStopPriorityCommand.cs" />
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
+     <Compile Include="Assets\UnityLogic\Exceptions\GraphicsNotFoundException.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\ArcherCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Cards\BruteCard.cs" />
@@ -92,6 +94,7 @@
      <Compile Include="Assets\UnityLogic\Game\Maps\StandardGameMapBuilder.cs" />
      <Compile Include="Assets\UnityLogic\Game\Maps\TestMapBuilder.cs" />
      <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
+     <Compile Include="Assets\UnityLogic\Game\SummoningGameCard.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\ArcherUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\BruteUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\DragonUnit.cs" />

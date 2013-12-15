@@ -10,7 +10,7 @@ using Assets.UnityLogic.Game.Units;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-	class WarhoundCard : GameCardWithSpellEffect
+    class WarhoundCard : SummoningSingleCard
 	{
         public WarhoundCard()
         {

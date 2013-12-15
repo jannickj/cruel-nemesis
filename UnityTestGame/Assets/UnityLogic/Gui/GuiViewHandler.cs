@@ -37,12 +37,6 @@ namespace Assets.UnityLogic.Gui
         {
             
             guiinfo = this.gameObject.GetComponent<GuiInformation>();
-            HpText = Factory.CreateText();
-            HpText.transform.parent = guiinfo.HealthBar.transform;
-            var hpBarPos = this.guiinfo.HealthBar.GetComponent<GUITextureAutoScaler>().CurPlacement;
-            hpBarPos.x += HPTEXT_OFFSET.x;
-            hpBarPos.y += HPTEXT_OFFSET.y;
-            HpText.GetComponent<GUITextureAutoScaler>().CurPlacement = hpBarPos;
             engmodel = Engine.EngineModel;
 
             engmodel.EventManager.Register(new Trigger<PlayerGainedPriorityEvent>(OnPlayerPriority));
@@ -51,6 +45,19 @@ namespace Assets.UnityLogic.Gui
             engmodel.EventManager.Register(new Trigger<PlayerDeclareMoveAttackEvent>(evt => evt.Player == this.guiinfo.Player,OnPlayerDeclare));
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChangedEvt));
             engmodel.EventManager.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == this.guiinfo.Player, OnPlayerDrawCard));
+            setupHpText();
+        }
+
+        private void setupHpText()
+        {
+            HpText = Factory.CreateText();
+            HpText.transform.parent = guiinfo.HealthBar.transform;
+            var hpBarPos = this.guiinfo.HealthBar.GetComponent<GUITextureAutoScaler>().CurPlacement;
+            hpBarPos.x += HPTEXT_OFFSET.x;
+            hpBarPos.y += HPTEXT_OFFSET.y;
+            HpText.color = Color.red;
+            HpText.GetComponent<GUITextureAutoScaler>().CurPlacement = hpBarPos;
+            
             updateHpText();
         }
 

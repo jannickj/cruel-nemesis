@@ -11,7 +11,7 @@ using Assets.UnityLogic.Game.Unit;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-    public class DragonCard : GameCardWithSpellEffect
+    public class DragonCard : SummoningSingleCard
 	{
         public DragonCard()
         {

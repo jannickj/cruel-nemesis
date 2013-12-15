@@ -10,7 +10,7 @@ using XmasEngineModel.Management.Actions;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-	class GoblinPikerCard : GameCardWithSpellEffect
+    class GoblinPikerCard : SummoningSingleCard
 	{
         public GoblinPikerCard()
         {

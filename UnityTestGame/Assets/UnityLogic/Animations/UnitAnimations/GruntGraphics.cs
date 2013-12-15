@@ -7,9 +7,9 @@ using Assets.UnityLogic.Unit;
 
 namespace Assets.UnityLogic.Animations.UnitAnimations
 {
-    public class GruntGraphics : UnitGraphics
+    public class DefaultUnitGraphics : UnitGraphics
     {
-        public GruntGraphics()
+        public DefaultUnitGraphics()
         {
             
         }

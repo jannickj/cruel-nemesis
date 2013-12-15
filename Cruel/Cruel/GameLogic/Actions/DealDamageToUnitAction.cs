@@ -23,9 +23,8 @@ namespace Cruel.GameLogic.Actions
         protected override void Execute()
         {
             HealthModule hmod = this.Target.Module<HealthModule>();
-            var hp = hmod.Health;
-            hp -= Damage;
-            hmod.Health = hp < 0 ? 0 : hp;
+            
+            hmod.IncreaseCurrentHealth(Damage);
             this.Source.Raise(new UnitDealsDamageEvent(Source, Target, Damage));
             var dmgtaker = Target;
             var dmgdealer = (UnitEntity)Source;

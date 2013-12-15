@@ -15,8 +15,7 @@ namespace Assets.UnityLogic.Game.Unit
             this.RegisterModule(new MoveModule(5));
             this.Module<AttackModule>().AttackRange = 1;
             this.Module<AttackModule>().Damage = 6;
-            this.Module<HealthModule>().MaxHealth = 6;
-            this.Module<HealthModule>().Health = 6;
+            this.Module<HealthModule>().SetStartingHealth(6);
         }
     }
 }
