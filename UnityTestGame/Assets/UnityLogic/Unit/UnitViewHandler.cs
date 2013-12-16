@@ -48,7 +48,7 @@ public class UnitViewHandler : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () 
+    void Update() 
     {
         
         UpdateFrame();
@@ -59,6 +59,7 @@ public class UnitViewHandler : MonoBehaviour {
     private void OnUnitDeath(UnitDieEvent evt)
     {
         graphics.UseUnitAnimation(StandardUnitAnimations.Death);
+        this.HealthBar.gameObject.SetActive(false);
     }
 
     private void OnStartMoveAction(ActionStartingEvent<MoveAction> evt)

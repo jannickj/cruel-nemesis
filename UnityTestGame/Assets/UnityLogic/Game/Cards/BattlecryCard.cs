@@ -25,7 +25,7 @@ namespace Assets.UnityLogic.Game.Cards
 
         protected override void OnSpellEffect(Spell spell)
         {
-            var targetPos = (TilePosition)((TerrainEntity)spell.Targets[0][0]).Position;
+            var targetPos = spell.Controller.Hero.PositionAs<TilePosition>();
 
             Point[] area = new Point[]
             {                

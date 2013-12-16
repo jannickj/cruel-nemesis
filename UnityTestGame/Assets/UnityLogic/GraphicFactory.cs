@@ -35,6 +35,7 @@ namespace Assets.UnityLogic
             linkUnitToGraphic<DragonUnit, DragonGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
             linkUnitToGraphic<WarlordHero, WarlordGraphics>();
+            linkUnitToGraphic<ZombieUnit, ZombieGraphics>();
 
             linkCardToGraphic<FireballCard, FireballGraphics>();
             linkCardToGraphic<RaiseDeadCard, RaiseDeadGraphics>();

@@ -25,6 +25,7 @@ public class UnitHandler : MonoBehaviour {
 	void Start () {
         XmasModel eng = Engine.EngineModel;
         eng.EventManager.Register(new Trigger<EntityAddedEvent>(ent => ent.AddedXmasEntity is UnitEntity,OnUnitEntity));
+        eng.EventManager.Register(new Trigger<EntityRemovedEvent>(ent => ent.RemovedXmasEntity is UnitEntity,OnUnitRemoved));
 	}
 	
 	// Update is called once per frame
@@ -32,7 +33,10 @@ public class UnitHandler : MonoBehaviour {
 	
 	}
 
-
+    private void OnUnitRemoved(EntityRemovedEvent evt)
+    {
+        GameObject.Destroy(Factory.GameObjectFromModel(evt.RemovedXmasEntity));
+    }
 
     private void OnUnitEntity(EntityAddedEvent evt)
     {

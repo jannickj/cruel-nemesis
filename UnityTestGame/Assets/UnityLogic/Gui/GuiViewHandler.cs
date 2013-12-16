@@ -65,7 +65,7 @@ namespace Assets.UnityLogic.Gui
             var pos = HpText.transform.position;
             pos.z += 10f;
             HpText.transform.position = pos;
-            HpText.color = Color.red;
+            HpText.color = Color.black;
             HpText.GetComponent<GUITextureAutoScaler>().CurPlacement = hpBarPos;
             
             updateHpText();

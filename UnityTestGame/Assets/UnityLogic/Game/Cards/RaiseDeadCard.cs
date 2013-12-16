@@ -36,6 +36,7 @@ namespace Assets.UnityLogic.Game.Cards
                 new Point(-1,-1),
                 new Point(-1,1),
                 new Point(1,-1),
+                new Point(0,0),
                 new Point(0,1),
                 new Point(0,-1),
                 new Point(1,0),
@@ -46,7 +47,7 @@ namespace Assets.UnityLogic.Game.Cards
             {
                 var targets = this.World.GetEntities(tile).OfType<UnitEntity>();
                 foreach (UnitEntity target in targets)
-                    if (target.Module<HealthModule>().Health == 0)
+                    if (target.Module<HealthModule>().IsDead())
                     {
                         if (targets.Count() == 1)
                         {

@@ -199,6 +199,7 @@ namespace Assets.UnityLogic.Gui
             RaycastHit[] hits = Physics.RaycastAll(ray);
             foreach (RaycastHit hit in hits)
             {
+                
                 if (!objs.Contains(hit.collider.gameObject))
                 {
                     objs.Add(hit.collider.gameObject);

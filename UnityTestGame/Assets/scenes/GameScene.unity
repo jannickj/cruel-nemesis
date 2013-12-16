@@ -393,7 +393,7 @@ MonoBehaviour:
   Engine: {fileID: 326927666}
   CardTemplate: {fileID: 400000, guid: a2dc6cb3e708a4646be2e01e28f0a825, type: 2}
   TerrainTemplate: {fileID: 400000, guid: 7cc8d6f559a6a1748a86e8ad2b8b0d6d, type: 2}
-  UnitTemplate: {fileID: 400000, guid: c6f3bba5de2a7de49a62ad528b501398, type: 2}
+  UnitTemplate: {fileID: 400000, guid: e98ca438c9b181b40810eed2173063eb, type: 2}
   HealthBarTemplate: {fileID: 400000, guid: 19be0c746e6eb5f4e81a9c069b45c6ab, type: 2}
   ManaBarTemplate: {fileID: 13100000, guid: 784b1fc16072de54ca51f5ff19d19e56, type: 2}
   EmptyManaBarTemplate: {fileID: 13100000, guid: fe3145f439902ff4e97c6a95a7d4f086,

@@ -83,9 +83,14 @@ namespace Assets.UnityLogic.Unit
 
         private void setFrame(GameObject obj, Frame f)
         {
-            obj.renderer.material.SetTexture("_MainTex", f.Texture);
-            obj.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
-            obj.renderer.material.SetTextureScale("_MainTex", f.Size);
+            var mat = obj.renderer.material;
+            var texstring = "_MainTex";
+            if(mat.GetTexture(texstring) != f.Texture)
+                mat.SetTexture(texstring, f.Texture);
+            if(mat.GetTextureOffset(texstring) != f.OffSet)
+                mat.SetTextureOffset(texstring, f.OffSet);
+            if(mat.GetTextureScale(texstring) != f.Size)
+                mat.SetTextureScale(texstring, f.Size);
 
         }
 

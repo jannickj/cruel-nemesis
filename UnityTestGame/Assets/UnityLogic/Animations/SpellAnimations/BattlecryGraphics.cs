@@ -21,7 +21,7 @@ namespace Assets.UnityLogic.Animations.SpellAnimations
             effect.transform.localScale = new UnityEngine.Vector3(size, size, size);
             effect.transform.position = Factory.ConvertPos(Spell.Controller.Hero.PositionAs<TilePosition>().Point, 0.8f);
             ParallelAnimation parallelani = new ParallelAnimation();
-            TextureAnimation texani = new TextureAnimation(this.Factory.LoadSpellTexture("inspiration"), 5, 4);
+            TextureAnimation texani = new TextureAnimation(this.Factory.LoadSpellTexture("battlecry"), 5, 4);
             texani.Frames = Enumerable.Range(1, 20).ToArray();
             texani.FrameRepeats = new int[] { 1, 1, 1, 1, 1, 
                                               1, 1, 1, 1, 1, 
