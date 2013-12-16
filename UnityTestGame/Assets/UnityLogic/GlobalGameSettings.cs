@@ -88,6 +88,8 @@ namespace Assets.UnityLogic
                 deck.Add(new BruteCard());
             for (int i = 0; i < 3; i++)
                 deck.Add(new DragonCard());
+            for (int i = 0; i < 2; i++)
+                deck.Add(new BattlecryCard());
 
             return deck;
         }
