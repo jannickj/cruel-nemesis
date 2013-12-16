@@ -14,7 +14,20 @@ namespace Assets.UnityLogic.Animations.UnitAnimations
     
         }
 
-        protected override void Prepare()
+        protected override void PrepareUnitAnimations()
+        {
+            TextureAnimation ani;
+            Texture tex;
+            tex = Factory.LoadHeroTexture("archer_walking");
+            ani = new TextureAnimation(tex, 4, 3);
+            ani.Frames = Enumerable.Range(1, 12).ToArray();
+            ani.FrameRepeats = Enumerable.Repeat<int>(3, 12).ToArray();
+            this.SetUnitAnimation(StandardUnitAnimations.Move, ani);
+
+        }
+
+
+        public override TextureAnimation GenerateIdleAnimation()
         {
             TextureAnimation ani;
             Texture tex;
@@ -22,13 +35,7 @@ namespace Assets.UnityLogic.Animations.UnitAnimations
             ani = new TextureAnimation(tex, 6, 5);
             ani.Frames = Enumerable.Range(1, 30).ToArray();
             ani.FrameRepeats = Enumerable.Repeat<int>(3, 30).ToArray();
-            this.SetUnitAnimation(StandardUnitAnimations.Idle, ani);
-
-            tex = Factory.LoadHeroTexture("archer_walking");
-            ani = new TextureAnimation(tex, 4, 3);
-            ani.Frames = Enumerable.Range(1, 12).ToArray();
-            ani.FrameRepeats = Enumerable.Repeat<int>(3, 12).ToArray();
-            this.SetUnitAnimation(StandardUnitAnimations.Move, ani);
+            return ani;
         }
-	}
+    }
 }

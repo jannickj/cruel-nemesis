@@ -17,11 +17,7 @@ namespace Cruel.GameLogic.Modules
 
         public HealthModule(int maxhealth)
         {
-            if (maxhealth > 1)
-            {
-                this.health = maxhealth;
-                this.maxHealth = maxhealth;
-            }
+            SetStartingHealth(maxhealth);
         }
 
         public void SetStartingHealth(int maxhp)
@@ -81,8 +77,11 @@ namespace Cruel.GameLogic.Modules
                 newhp = maxHealth;
             if (inc < 0)
                 newhp = 0;
+           
 
             health = newhp;
+            if (IsDead())
+                this.Host.Raise(new UnitDieEvent());
             this.Host.Raise(new UnitHealthChangedEvent(oldhp, newhp));
         }
 

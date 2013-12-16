@@ -48,9 +48,9 @@
      <Compile Include="Assets\UnityLogic\Animations\GameObjectAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\HeroAnimations\WarlordGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\HeroAnimations\WizardGraphics.cs" />
-     <Compile Include="Assets\UnityLogic\Animations\LoopingAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\MoveTransformAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\ParallelAnimation.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SequenceAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SizeChangeAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\FireballGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\InspirationGraphics.cs" />

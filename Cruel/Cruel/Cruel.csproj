@@ -57,6 +57,7 @@
     <Compile Include="GameLogic\Events\PhaseChangingEvent.cs" />
     <Compile Include="GameLogic\Events\PlayerGainedXPEvent.cs" />
     <Compile Include="GameLogic\Events\ResetPrioritiesEvent.cs" />
+    <Compile Include="GameLogic\Events\UnitEvents\UnitDieEvent.cs" />
     <Compile Include="GameLogic\Events\UnitEvents\UnitHealthChangedEvent.cs" />
     <Compile Include="GameLogic\Events\UnitEvents\UnitMaxHealthChangedEvent.cs" />
     <Compile Include="GameLogic\Events\UnitEvents\UnitRevivedEvent.cs" />

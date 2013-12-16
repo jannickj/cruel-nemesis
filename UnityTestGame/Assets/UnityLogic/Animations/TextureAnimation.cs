@@ -53,8 +53,8 @@ namespace Assets.UnityLogic.Unit
         public Frame CurrentFrame()
         {
 
-            int uindex = frameIndex % columns;
-            int vindex = frameIndex / columns;
+            int uindex = (this.Frames[frameIndex]-1) % columns;
+            int vindex = (this.Frames[frameIndex]-1) / columns;
 
             float offx = uindex * TileSize.x;
             float offy = 1.0f - TileSize.y - vindex * TileSize.y;
@@ -82,7 +82,6 @@ namespace Assets.UnityLogic.Unit
 
         private void setFrame(GameObject obj, Frame f)
         {
-
             obj.renderer.material.SetTexture("_MainTex", f.Texture);
             obj.renderer.material.SetTextureOffset("_MainTex", f.OffSet);
             obj.renderer.material.SetTextureScale("_MainTex", f.Size);
@@ -106,11 +105,16 @@ namespace Assets.UnityLogic.Unit
 
             
             obj.transform.localScale = new Vector3(newX, scale.y, scale.z);
-            var lastFrame = NextFrame();
+            
 
             setFrame(obj, CurrentFrame());
-
+            var lastFrame = NextFrame();
             return !lastFrame;
+        }
+
+        public override string ToString()
+        {
+            return "Texture Animation at frame " + this.frameIndex +" with frame "+Frames[this.frameIndex];
         }
     }
 }

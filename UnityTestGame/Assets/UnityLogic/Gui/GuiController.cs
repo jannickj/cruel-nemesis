@@ -151,7 +151,7 @@ namespace Assets.UnityLogic.Gui
 
                         var ent = unitinfo.Entity;
 
-                        if (ent.Module<UnitInfoModule>().Controller != this.guiinfo.Player)
+                        if (ent.Module<UnitInfoModule>().Controller != this.guiinfo.Player || ent.Module<HealthModule>().IsDead())
                             return;
 
                         this.PerformCommand(new DeclareMoveAttackUnitCommand(selectedObject, ent));

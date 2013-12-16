@@ -11,6 +11,7 @@ namespace Assets.UnityLogic.Unit
         Attack,
         Move,
         Block,
-        Cast        
+        Cast,
+        Death
 	}
 }

@@ -24,7 +24,7 @@ namespace Cruel.GameLogic.Actions
         {
             HealthModule hmod = this.Target.Module<HealthModule>();
             
-            hmod.IncreaseCurrentHealth(Damage);
+            hmod.IncreaseCurrentHealth(-Damage);
             this.Source.Raise(new UnitDealsDamageEvent(Source, Target, Damage));
             var dmgtaker = Target;
             var dmgdealer = (UnitEntity)Source;

@@ -41,6 +41,14 @@ namespace Assets.UnityLogic.Commands
 
         public override void Update()
         {
+            if (Input.GetButtonDown("deselect_object") || !this.GuiController.GuiInfo.Player.ManaStorage.CheckMana(this.gameCard.ManaCost))
+            {
+                this.cardobj.renderer.material.color = Color.white;
+                RestoreColor();
+                this.Finished = true;
+                return;
+            }
+
             var objs = this.GuiController.GetGameObjectsOnMouse().Where(gobj => !this.targets[targetIndex].ContainsKey(gobj));
             GameObject newSelected = null;
             

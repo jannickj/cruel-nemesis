@@ -41,7 +41,7 @@ public class UnitViewHandler : MonoBehaviour {
         entity.Register(new Trigger<UnitTakesDamageEvent>(OnTakeDamage));
         entity.Register(new Trigger<ActionStartingEvent<MovePathAction>>(OnUnitBeginPathMove));
         entity.Register(new Trigger<ActionCompletedEvent<MovePathAction>>(OnUnitFinishPathMove));
-        
+        entity.Register(new Trigger<UnitDieEvent>(OnUnitDeath));
         this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
         this.HealthBar.parent = this.transform;
         this.graphics.UseUnitAnimation(StandardUnitAnimations.Idle);
@@ -54,6 +54,11 @@ public class UnitViewHandler : MonoBehaviour {
         UpdateFrame();
         UpdateAnimation();
 	}
+
+    private void OnUnitDeath(UnitDieEvent evt)
+    {
+        graphics.UseUnitAnimation(StandardUnitAnimations.Death);
+    }
 
     private void OnStartMoveAction(ActionStartingEvent<MoveAction> evt)
     {

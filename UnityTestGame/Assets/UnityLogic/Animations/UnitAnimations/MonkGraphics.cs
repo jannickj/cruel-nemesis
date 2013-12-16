@@ -13,12 +13,13 @@ namespace Assets.UnityLogic.Animations.UnitAnimations
     
         }
 
-        protected override void Prepare()
+
+        public override TextureAnimation GenerateIdleAnimation()
         {
-            var idle_ani = new TextureAnimation(this.Factory.LoadUnitTexture("monk"), 1,1);
+            var idle_ani = new TextureAnimation(this.Factory.LoadUnitTexture("monk"), 1, 1);
             idle_ani.Frames = Enumerable.Range(1, 1).ToArray();
             idle_ani.FrameRepeats = Enumerable.Repeat<int>(50, 1).ToArray();
-            this.SetUnitAnimation(StandardUnitAnimations.Idle, idle_ani);
+            return idle_ani;
         }
     }
 }
