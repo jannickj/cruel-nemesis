@@ -51,7 +51,7 @@ namespace CruelTest.SpellSystem
                 foreach (Mana m in mana)
                     if (m == type)
                         i++;
-                if (!manaCrystals.ContainsKey(type) || GetChargedCount(type) < i)
+                if ((i > 0 && !manaCrystals.ContainsKey(type)) || GetChargedCount(type) < i)
                     return false;
             }
             return true;
