@@ -37,8 +37,10 @@ namespace Assets.UnityLogic
             linkUnitToGraphic<WarlordHero, WarlordGraphics>();
 
             linkCardToGraphic<FireballCard, FireballGraphics>();
+            linkCardToGraphic<RaiseDeadCard, RaiseDeadGraphics>();
             linkCardToGraphic<LightningBoltCard, LightningBoltGraphics>();
-            linkCardToGraphic<InspirationCard, InspirationGraphics>();            
+            linkCardToGraphic<InspirationCard, InspirationGraphics>();
+            linkCardToGraphic<BattlecryCard, BattlecryGraphics>();
             linkCardToGraphic<SummoningSingleCard, SummoningGraphics>();
         }
 

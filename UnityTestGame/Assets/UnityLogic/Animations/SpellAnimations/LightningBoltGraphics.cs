@@ -20,6 +20,8 @@ namespace Assets.UnityLogic.Animations.SpellAnimations
         protected override void Prepare()
         {
             var effect = Factory.Create1by1Sprite();
+            float size = 0.3f;
+            effect.transform.localScale = new UnityEngine.Vector3(size, size, size);
             var target = ((XmasEntity)Spell.Targets[0][0]);
             effect.transform.position = Factory.ConvertPos(target.PositionAs<TilePosition>().Point, 0.8f);
             ParallelAnimation parallelani = new ParallelAnimation();
