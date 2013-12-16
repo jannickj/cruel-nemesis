@@ -54,6 +54,7 @@
      <Compile Include="Assets\UnityLogic\Animations\SizeChangeAnimation.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\FireballGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\InspirationGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\LightningBoltGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellAnimations\SummoningGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\SpellGraphic.cs" />
      <Compile Include="Assets\UnityLogic\Animations\TextureAnimation.cs" />
@@ -66,6 +67,7 @@
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\MonkGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\SerpentGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\WarhoundGraphics.cs" />
+     <Compile Include="Assets\UnityLogic\Animations\UnitAnimations\ZombieGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Animations\UnitGraphics.cs" />
      <Compile Include="Assets\UnityLogic\Commands\BuyXpCommand.cs" />
      <Compile Include="Assets\UnityLogic\Commands\Command.cs" />
@@ -107,6 +109,7 @@
      <Compile Include="Assets\UnityLogic\Game\Units\MonkUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\SerpentUnit.cs" />
      <Compile Include="Assets\UnityLogic\Game\Units\WarhoundUnit.cs" />
+     <Compile Include="Assets\UnityLogic\Game\Units\ZombieUnit.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
      <Compile Include="Assets\UnityLogic\GraphicFactory.cs" />

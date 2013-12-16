@@ -10,6 +10,8 @@ using Cruel.GameLogic.SpellSystem;
 using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
 using Cruel.GameLogic.Actions;
+using XmasEngineModel.Management.Actions;
+using Assets.UnityLogic.Game.Units;
 
 namespace Assets.UnityLogic.Game.Cards
 {
@@ -43,9 +45,16 @@ namespace Assets.UnityLogic.Game.Cards
             foreach (TilePosition tile in tileArea)
             {
                 var targets = this.World.GetEntities(tile).OfType<UnitEntity>();
-                //foreach(UnitEntity target in targets)
-                    //if(target.Module<HealthModule>().Health == 0)
-                        //stuff
+                foreach (UnitEntity target in targets)
+                    if (target.Module<HealthModule>().Health == 0)
+                    {
+                        if (targets.Count() == 1)
+                        {
+                            var unit = new ZombieUnit(this.Owner);
+                            spell.RunAction(new AddEntityAction(unit, tile.GenerateSpawn()));
+                        }
+                        spell.RunAction(new RemoveEntityAction(target));
+                    }
             }
             
         }

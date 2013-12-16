@@ -34,10 +34,11 @@ namespace Assets.UnityLogic
             linkUnitToGraphic<WarhoundUnit, WarhoundGraphics>();
             linkUnitToGraphic<DragonUnit, DragonGraphics>();
             linkUnitToGraphic<WizardHero, WizardGraphics>();
+            linkUnitToGraphic<WarlordHero, WarlordGraphics>();
 
             linkCardToGraphic<FireballCard, FireballGraphics>();
-            linkCardToGraphic<InspirationCard, InspirationGraphics>();
-            linkUnitToGraphic<WarlordHero, WarlordGraphics>();
+            linkCardToGraphic<LightningBoltCard, LightningBoltGraphics>();
+            linkCardToGraphic<InspirationCard, InspirationGraphics>();            
             linkCardToGraphic<SummoningSingleCard, SummoningGraphics>();
         }
 
