@@ -33,8 +33,8 @@ namespace Cruel.GameLogic.Modules
 
         public void ResetToStartingHealth()
         {
-            this.IncreaseMaxHealth(originalHP - this.maxHealth);
-            this.IncreaseCurrentHealth(originalHP - this.health);
+            this.ChangeMaxHealth(originalHP - this.maxHealth);
+            this.ChangeCurrentHealth(originalHP - this.health);
         }
 
         public bool IsDead()
@@ -66,16 +66,16 @@ namespace Cruel.GameLogic.Modules
         /// Increase/Decrease the current health of unit
         /// </summary>
         /// <param name="inc">a positive value increases the current health, while a negative decreases it</param>
-        public void IncreaseCurrentHealth(int inc)
+        public void ChangeCurrentHealth(int inc)
         {
             if (IsDead())
                 return;
 
             int oldhp = health;
             int newhp = health+inc;
-            if (inc > maxHealth)
+            if (newhp > maxHealth)
                 newhp = maxHealth;
-            if (inc < 0)
+            if (newhp < 0)
                 newhp = 0;
            
 
@@ -99,7 +99,7 @@ namespace Cruel.GameLogic.Modules
         /// Increase/Decrease the max health of unit
         /// </summary>
         /// <param name="inc">a positive value increases the max health, while a negative decreases it</param>
-        public void IncreaseMaxHealth(int inc)
+        public void ChangeMaxHealth(int inc)
         {
             int newMax = this.maxHealth+inc;
             int oldMax = this.maxHealth;
@@ -107,7 +107,7 @@ namespace Cruel.GameLogic.Modules
                 newMax = 1;
             this.maxHealth = newMax;
             this.Host.Raise(new UnitMaxHealthChangedEvent(oldMax, newMax));
-            this.IncreaseCurrentHealth(inc);
+            this.ChangeCurrentHealth(inc);
         }
 
 

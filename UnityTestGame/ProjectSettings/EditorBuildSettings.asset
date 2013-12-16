@@ -7,3 +7,7 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/scenes/GameScene.unity
+  - enabled: 1
+    path: Assets/scenes/Player2won.unity
+  - enabled: 1
+    path: Assets/scenes/Player1won.unity

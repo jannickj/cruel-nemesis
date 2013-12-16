@@ -19,6 +19,7 @@ using Cruel.GameLogic.SpellSystem;
 using XmasEngineModel.Management.Actions;
 using Cruel.GameLogic.Map;
 using Assets.UnityLogic.Game.Maps;
+using Cruel.GameLogic.Events.UnitEvents;
 
 public class GameLogicLoader : MonoBehaviour {
 
@@ -66,7 +67,8 @@ public class GameLogicLoader : MonoBehaviour {
 
     void OnGUI()
     {
-        if (Event.current.type == EventType.keyDown && Input.GetButton("start_game"))
+        //if (Event.current.type == EventType.keyDown && Input.GetButton("start_game"))
+        if(true)
         {
             
             if (!gamestarted)
@@ -74,6 +76,7 @@ public class GameLogicLoader : MonoBehaviour {
                 if (players.Count != 2)
                 {
                     Debug.Log("Cannot start game atleast 2 players must join");
+                    return;
                 }
 
                 StandardGameMapBuilder builder = (StandardGameMapBuilder)engmodel.WorldBuilder;
@@ -98,7 +101,8 @@ public class GameLogicLoader : MonoBehaviour {
                 }));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[0], Mana.Arcane));
                 engmodel.ActionManager.Queue(new PlayerGainManaCrystalAction(players[1], Mana.Fury));
-                
+                players[0].Hero.Register(new Trigger<UnitDieEvent>(evt => Application.LoadLevel(1)));
+                players[1].Hero.Register(new Trigger<UnitDieEvent>(evt => Application.LoadLevel(2)));
             }
         }
     }

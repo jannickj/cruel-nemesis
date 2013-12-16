@@ -8,6 +8,7 @@ namespace Cruel.Map.Terrain
 	public enum TerrainTypes
 	{
         Default,
-        Test
+        Test,
+        Grass
 	}
 }

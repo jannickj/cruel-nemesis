@@ -21,7 +21,7 @@ namespace Assets.UnityLogic.Game.Maps
 
         public StandardGameMapBuilder() 
         {
-            Func<XmasEntity> D = () => new TerrainEntity(TerrainTypes.Default);
+            Func<XmasEntity> D = () => new TerrainEntity(TerrainTypes.Grass);
 
             Func<XmasEntity>[] map =
 				{

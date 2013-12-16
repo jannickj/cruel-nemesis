@@ -23,7 +23,9 @@ namespace Assets.UnityLogic.Animations.SpellAnimations
             float size = 0.3f;
             effect.transform.localScale = new UnityEngine.Vector3(size, size, size);
             var target = ((XmasEntity)Spell.Targets[0][0]);
-            effect.transform.position = Factory.ConvertPos(target.PositionAs<TilePosition>().Point, 0.8f);
+            var pos = Factory.ConvertPos(target.PositionAs<TilePosition>().Point, 0.8f);
+            pos.y += 0.5f;
+            effect.transform.position = pos;
             ParallelAnimation parallelani = new ParallelAnimation();
             TextureAnimation texani = new TextureAnimation(this.Factory.LoadSpellTexture("lightningbolt"), 5, 5);
             texani.Frames = Enumerable.Range(1, 20).ToArray();

@@ -75,6 +75,8 @@ namespace Cruel.GameLogic
                 this.ActionManager.Queue(new AddXmasObjectAction(this.ManaStorage));
             if (this.Rewarder != null)
                 this.ActionManager.Queue(new AddXmasObjectAction(this.Rewarder));
+            if (this.Library != null)
+                this.ActionManager.Queue(new AddXmasObjectAction(this.Library));
         }
 
         public void AddXP(int xp)

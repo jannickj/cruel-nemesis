@@ -67,6 +67,7 @@ namespace Assets.UnityLogic.Unit
 
         public float HeightToWidthAspect(float height)
         {
+            
             float iH = texture.height/(float)this.rows;
             float iW = texture.width/(float)this.columns;
             float aspect = iW/iH;
@@ -103,7 +104,6 @@ namespace Assets.UnityLogic.Unit
                 if(settings.HorizontalMirroring)
                     newX = newX * -1;
 
-            
             obj.transform.localScale = new Vector3(newX, scale.y, scale.z);
             
 

@@ -30,8 +30,10 @@ namespace Assets.UnityLogic.Gui
         private Dictionary<Point, Stack<Color>> drawnSquares = new Dictionary<Point, Stack<Color>>();
         private Color defaultColor = Color.white;
         private GUIText HpText;
+        private float initHPWidth;
+        public bool isNotMainPlayer;
 
-        private static Vector2 HPTEXT_OFFSET = new Vector2(9, 30);
+        private static Vector2 HPTEXT_OFFSET = new Vector2(250, 30);
 
         public void Initialize()
         {
@@ -46,6 +48,7 @@ namespace Assets.UnityLogic.Gui
             engmodel.EventManager.Register(new Trigger<PhaseChangedEvent>(OnPhaseChangedEvt));
             engmodel.EventManager.Register(new Trigger<CardDrawnEvent>(evt => evt.Player == this.guiinfo.Player, OnPlayerDrawCard));
             setupHpText();
+            this.initHPWidth = this.guiinfo.HealthBar.GetComponent<GUITextureAutoScaler>().CurPlacement.width;
         }
 
         private void setupHpText()
@@ -53,8 +56,15 @@ namespace Assets.UnityLogic.Gui
             HpText = Factory.CreateText();
             HpText.transform.parent = guiinfo.HealthBar.transform;
             var hpBarPos = this.guiinfo.HealthBar.GetComponent<GUITextureAutoScaler>().CurPlacement;
-            hpBarPos.x += HPTEXT_OFFSET.x;
+            if(this.isNotMainPlayer)
+                hpBarPos.x += HPTEXT_OFFSET.x;
+            else
+                hpBarPos.x += HPTEXT_OFFSET.x;
             hpBarPos.y += HPTEXT_OFFSET.y;
+
+            var pos = HpText.transform.position;
+            pos.z += 10f;
+            HpText.transform.position = pos;
             HpText.color = Color.red;
             HpText.GetComponent<GUITextureAutoScaler>().CurPlacement = hpBarPos;
             
@@ -63,6 +73,7 @@ namespace Assets.UnityLogic.Gui
 
         private void updateHpText()
         {
+            
             var hpmod = this.guiinfo.Player.Hero.Module<HealthModule>();
             HpText.text = hpmod.Health + " / " + hpmod.MaxHealth;
 
@@ -70,7 +81,17 @@ namespace Assets.UnityLogic.Gui
 
         void Update()
         {
+            SetHealthPct(this.guiinfo.Player.Hero.Module<HealthModule>().HealthPct);
+            updateHpText();
+        }
 
+        public void SetHealthPct(float pct)
+        {
+            var val = ( pct / 100f);
+            var tex = this.guiinfo.HealthBar.GetComponent<GUITextureAutoScaler>();
+            var rect = tex.CurPlacement;
+            rect.width = val * initHPWidth;
+            tex.CurPlacement = rect;
         }
 
         private void OnPlayerDrawCard(CardDrawnEvent evt)

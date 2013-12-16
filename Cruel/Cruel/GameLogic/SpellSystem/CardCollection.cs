@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using XmasEngineModel.EntityLib;
 using JSLibrary;
+using XmasEngineModel.Management.Actions;
 
 namespace Cruel.GameLogic.SpellSystem
 {
@@ -48,6 +49,14 @@ namespace Cruel.GameLogic.SpellSystem
         {
             Random rng = new Random();
             return TakeCardAt(rng.Next(cards.Count));
+        }
+
+        protected override void OnAddedToEngine()
+        {
+            foreach (var card in this.cards)
+            {
+                this.ActionManager.Queue(new AddXmasObjectAction(card));
+            }
         }
 	}
 }

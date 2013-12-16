@@ -53,6 +53,7 @@ public class UnitViewHandler : MonoBehaviour {
         
         UpdateFrame();
         UpdateAnimation();
+        
 	}
 
     private void OnUnitDeath(UnitDieEvent evt)
@@ -81,8 +82,11 @@ public class UnitViewHandler : MonoBehaviour {
 
     private void OnTakeDamage(UnitTakesDamageEvent evt)
     {
+        //Debug.Log(this.entity.Module<HealthModule>().Health+ " / "+entity.Module<HealthModule>().MaxHealth);
         this.HealthBar.GetComponent<HealthbarView>().SetHealthPct(this.entity.Module<HealthModule>().HealthPct);
     }
+
+    
 
     private void OnUnitBeginMove(BeginMoveEvent evt)
     {

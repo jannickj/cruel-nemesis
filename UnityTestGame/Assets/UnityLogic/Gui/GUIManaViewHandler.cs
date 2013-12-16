@@ -24,6 +24,7 @@ namespace Assets.UnityLogic.Gui
         private float translateY = 37;
         private float spacing = 100;
         private Dictionary<Mana, GUITexture> manaBars = new Dictionary<Mana, GUITexture>();
+        private Dictionary<Mana, GUIText> manaTexts = new Dictionary<Mana, GUIText>();
 
         public void Initialize(UnityFactory factory, GuiInformation info, XmasModel engine, bool reversed)
         {
@@ -74,6 +75,12 @@ namespace Assets.UnityLogic.Gui
             manaSize.x += manaOffsetX;
             manaSize.y -= translateYBackground;
             manaScaler.CurPlacement = manaSize;
+            var manaText = Factory.CreateText();
+            manaText.color = Color.white;
+            manaText.transform.parent = this.GUIInfo.Portrait.transform;
+            manaText.GetComponent<GUITextureAutoScaler>().CurPlacement = manaScaler.CurPlacement;
+            manaTexts.Add(mana, manaText);
+            UpdateMana();
         }
 
         private void OnManaSpent(ManaCrystalSpentEvent evt)
@@ -81,10 +88,15 @@ namespace Assets.UnityLogic.Gui
             UpdateManaLevel(evt.CrystalType);
         }
 
+        private void UpdateMana()
+        {
+            foreach (Mana m in this.GUIInfo.Player.ManaStorage.getAllTypes())
+                UpdateManaLevel(m);
+        }
+
         private void OnManaRecharged(ManaRechargedEvent evt)
         {
-            foreach (Mana m in evt.Owner.ManaStorage.getAllTypes())
-                UpdateManaLevel(m);
+            UpdateMana();
         }
 
         private void UpdateManaLevel(Mana mana)
@@ -99,6 +111,7 @@ namespace Assets.UnityLogic.Gui
             var difference = size.height - newHeight;
             var newSize = new Rect(size.xMin, size.yMin+difference, size.width, newHeight);
             scaler.CurPlacement = newSize;
+            this.manaTexts[mana].text = curVal + " / " + maxVal;
         }
 	}
 }

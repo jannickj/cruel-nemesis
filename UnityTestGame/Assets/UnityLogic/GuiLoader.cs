@@ -83,7 +83,7 @@ namespace Assets.UnityLogic
                 guiview.Engine = this.Engine;
                 guiview.Factory = Factory;
                 guiview.MapHandler = this.MapHandler;
-
+                guiview.isNotMainPlayer = isNotMainPlayer;
                 guiview.Initialize();
 
                 gobj.AddComponent<GuiHandViewHandler>();

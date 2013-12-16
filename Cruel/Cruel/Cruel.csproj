@@ -94,7 +94,7 @@
     <Compile Include="GameLogic\Exceptions\IllegalPlayerPriorityException.cs" />
     <Compile Include="GameLogic\Map\GameMapBuilder.cs" />
     <Compile Include="GameLogic\Map\Terrain\TerrainEntity.cs" />
-    <Compile Include="GameLogic\Map\Terrain\TextureType.cs" />
+    <Compile Include="GameLogic\Map\Terrain\TerrainType.cs" />
     <Compile Include="GameLogic\Map\TilePathFinder.cs" />
     <Compile Include="GameLogic\Modules\AttackModule.cs" />
     <Compile Include="GameLogic\Modules\HealthModule.cs" />

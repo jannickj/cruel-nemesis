@@ -115,7 +115,8 @@ namespace Assets.UnityLogic.Commands
                     
                                         
                     fullroute.AddLast(mousePath);
-                    this.lastpos = mousePath.Road.Last.Value;
+                    if(mousePath.Road.Last != null)
+                        this.lastpos = mousePath.Road.Last.Value;
                     this.GuiController.GuiView.unDrawRoute(mousePath);
                     mousePath = default(Path<TileWorld, TilePosition>);
 
