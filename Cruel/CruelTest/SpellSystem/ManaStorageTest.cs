@@ -101,6 +101,24 @@ namespace CruelTest.SpellSystem
             Assert.IsTrue(spellResolved);
         }
 
+        [TestMethod]
+        public void TestCheckMana_ValidManaCost_ReturnsTrue()
+        {
+            ManaStorage m = new ManaStorage();
+            this.Engine.AddActor(m);
+
+            m.AddCrystal(Mana.Divine);
+            m.AddCrystal(Mana.Divine);
+            m.AddCrystal(Mana.Arcane);
+            m.chargeAll();
+
+            List<Mana> cost = new List<Mana>();
+            cost.Add(Mana.Divine);
+            cost.Add(Mana.Arcane);
+
+            Assert.IsTrue(m.CheckMana(cost));
+        }
+
         private Player[] generatePlayersAndStartGame(IEnumerable<Player> players)
         {
 

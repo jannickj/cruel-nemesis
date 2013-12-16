@@ -36,7 +36,8 @@ namespace Assets.UnityLogic.Game.Cards
                 new Point(0,1),
                 new Point(0,-1),
                 new Point(1,0),
-                new Point(-1,0)
+                new Point(-1,0),
+                new Point(0,0)
             };
             TilePosition[] tileArea = area.Select(pos => new TilePosition(targetPos.Point + pos)).ToArray();
             foreach (TilePosition tile in tileArea)

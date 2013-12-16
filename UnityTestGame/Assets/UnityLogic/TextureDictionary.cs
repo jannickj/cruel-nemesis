@@ -21,12 +21,15 @@ namespace Assets.UnityLogic
         public static Texture GetTexture(TerrainTypes type)
         {
             
-            return loadedtexdic["terrain_"+type.ToString().ToLower()];
+            return GetTexture("terrain_"+type.ToString());
         }
 
         public static Texture GetTexture(string textureid)
         {
-            return loadedtexdic[textureid];
+            var texid = textureid.ToLower();
+            if(!loadedtexdic.ContainsKey(texid))
+                throw new Exception("Texture: "+texid+", does not exist");
+            return loadedtexdic[texid];
         }
 
         public static void LoadTextures()

@@ -2,27 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Cruel.GameLogic.Unit;
-using Cruel.GameLogic.Modules;
 using Assets.UnityLogic.Game.Modules;
 using Cruel.Map.Terrain;
 using Cruel.GameLogic.SpellSystem;
 using XmasEngineExtensions.TileExtension;
 using JSLibrary.Data;
-using Cruel.GameLogic.Actions;
-using XmasEngineModel.Management.Actions;
-using Assets.UnityLogic.Game.Units;
+using Cruel.GameLogic.Unit;
+using Cruel.GameLogic.Modules;
 
 namespace Assets.UnityLogic.Game.Cards
 {
-	public class RaiseDeadCard : GameCardWithSpellEffect
+	public class BattlecryCard : GameCardWithSpellEffect
 	{
-        public RaiseDeadCard()
+        public BattlecryCard()
         {
-            this.RegisterModule(new GraphicsModule("raise_dead"));
-            this.SetTargetCondition(0, obj => obj is TerrainEntity);
+            this.RegisterModule(new GraphicsModule("battlecry"));
+            this.SetTargetCondition(0, _ => true);
             this.TargetCounts = new int[] { 1 };
-            this.ManaCost = new List<Mana>(new Mana[] { Mana.Arcane, Mana.Arcane, Mana.Arcane });
+            this.ManaCost = new List<Mana>(new Mana[] { Mana.Fury, Mana.Fury, Mana.Fury });
         }
 
 
@@ -46,15 +43,7 @@ namespace Assets.UnityLogic.Game.Cards
             {
                 var targets = this.World.GetEntities(tile).OfType<UnitEntity>();
                 foreach (UnitEntity target in targets)
-                    if (target.Module<HealthModule>().Health == 0)
-                    {
-                        if (targets.Count() == 1)
-                        {
-                            var unit = new ZombieUnit(this.Owner);
-                            spell.RunAction(new AddEntityAction(unit, tile.GenerateSpawn()));
-                        }
-                        spell.RunAction(new RemoveEntityAction(target));
-                    }
+                    target.Module<AttackModule>().Damage += 2;
             }
             
         }

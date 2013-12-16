@@ -15,17 +15,17 @@ namespace Assets.UnityLogic.Game.Cards
 	{
         public LightningBoltCard()
         {
-            //this.RegisterModule(new GraphicsModule("bloodwyrm_spawn"));    TODO: Make graphic!
+            this.RegisterModule(new GraphicsModule("lightningbolt"));
             this.SetTargetCondition(0, obj => obj is UnitEntity);
             this.TargetCounts = new int[] { 1 };
-            this.ManaCost = new List<Mana>(new Mana[] { Mana.Fury });
+            this.ManaCost = new List<Mana>(new Mana[] { Mana.Arcane });
         }
 
 
         protected override void OnSpellEffect(Spell spell)
         {
             var target = (UnitEntity)spell.Targets[0][0];
-            spell.RunAction(target,new DealDamageToUnitAction(target, 3));
+            spell.RunAction(target,new DealDamageToUnitAction(target, 2));
             
         }
 	}
