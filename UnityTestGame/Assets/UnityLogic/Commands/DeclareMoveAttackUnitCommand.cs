@@ -67,6 +67,7 @@ namespace Assets.UnityLogic.Commands
                     var entities = this.World.GetEntities(tilepos).OfType<UnitEntity>();
                     attackUnit = entities.FirstOrDefault(ent => ent.Module<UnitInfoModule>().Controller != this.GuiController.GuiInfo.Player);
                     
+                    RemoveColorOfLastFound();
                     if (attackUnit == null)
                     {
                         hasPath = path.FindFirst(lastpos, tilepos, out foundPath);
@@ -80,23 +81,29 @@ namespace Assets.UnityLogic.Commands
                             var pointP = pos.Point;
                             int difx = Math.Abs(pointP.X - mousePoint.X);
                             int dify = Math.Abs(pointP.Y - mousePoint.Y);
-                            int attackrange = attackUnit.Module<AttackModule>().AttackRange;
+                            int attackrange = unitEntity.Module<AttackModule>().AttackRange;
                             return attackrange >= difx && attackrange >= dify;
                             
                         };
                         hasPath = path.FindFirst(lastpos, goalcond, pos => new Vector(pos.Point, mousePoint).Distance, out foundPath);
                         this.lastFoundEnemy = attackUnit;
+                        var gobj= this.GuiController.Factory.GameObjectFromModel(attackUnit);
+                        gobj.renderer.material.color = Color.red;
+                        
                         
                     }
                     
                     if (hasPath)
                     {
-                        mousePath = new Path<TileWorld,TilePosition>(foundPath.Map,foundPath.Road.Skip(1));
+                        int movelength = unitEntity.Module<MoveModule>().MoveLength-this.pathLength();
+                        
+                        mousePath = new Path<TileWorld,TilePosition>(foundPath.Map,foundPath.Road.Skip(1).Take(movelength));
                     }
                     
                     view.drawRoute(mousePath,this.GuiController.GuiInfo.FocusColor);
                     if (oldMousePath.Map != null)
                         view.unDrawRoute(oldMousePath);
+                    
                 }
             }
 
@@ -130,14 +137,20 @@ namespace Assets.UnityLogic.Commands
                 QueueDeclareAction();
                 this.refindMouse = true;
             }
-            else if (Input.GetButtonDown("accept") || enemySelected)
+            else if (Input.GetButtonDown("accept") || enemySelected || this.unitEntity.Module<MoveModule>().MoveLength == pathLength())
             {
                 this.unit.renderer.material.color = originalColor;
                 if(mousePath.Map !=null)
                     this.GuiController.GuiView.unDrawRoute(this.mousePath);
+                RemoveColorOfLastFound();
                 Finished = true;
             }
             
+        }
+
+        private int pathLength()
+        {
+            return this.fullroute.Sum(p => p.Road.Count);
         }
 
         private void QueueDeclareAction(UnitEntity attackUnit = null)
@@ -158,6 +171,15 @@ namespace Assets.UnityLogic.Commands
             }
             this.unitEntity.QueueAction(declareAction);
 
+        }
+
+        private void RemoveColorOfLastFound()
+        {
+            if (lastFoundEnemy != null)
+            {
+                var lastFoundGobj = GuiController.Factory.GameObjectFromModel(lastFoundEnemy);
+                lastFoundGobj.renderer.material.color = Color.white;
+            }
         }
     }
 }

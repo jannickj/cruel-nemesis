@@ -106,6 +106,7 @@ namespace Assets.UnityLogic
                     controller.Engine = this.Engine;
                     controller.JoinedPlayers = this.joinedPlayers;
                     controller.SkipController = new PhaseSkipToController(ginfo, player);
+                    controller.Factory = Factory;
                     controller.Initialize();
                     if (Settings.LocalPlayers.Count() > 1)
                         controller.ControllerType = ControllerType.Shared;
