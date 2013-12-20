@@ -78,11 +78,12 @@ namespace Assets.UnityLogic.Commands
                         
                         Predicate<TilePosition> goalcond = pos => 
                         {
-                            var pointP = pos.Point;
-                            int difx = Math.Abs(pointP.X - mousePoint.X);
-                            int dify = Math.Abs(pointP.Y - mousePoint.Y);
-                            int attackrange = unitEntity.Module<AttackModule>().AttackRange;
-                            return attackrange >= difx && attackrange >= dify;
+                            //var pointP = pos.Point;
+                            //int difx = Math.Abs(pointP.X - mousePoint.X);
+                            //int dify = Math.Abs(pointP.Y - mousePoint.Y);
+                            //int attackrange = unitEntity.Module<AttackModule>().AttackRange;
+                            //return attackrange >= difx && attackrange >= dify;
+                            return unitEntity.Module<AttackModule>().CanReachPoint(pos.Point, mousePoint);
                             
                         };
                         hasPath = path.FindFirst(lastpos, goalcond, pos => new Vector(pos.Point, mousePoint).Distance, out foundPath);
