@@ -10,9 +10,8 @@ using Cruel.GameLogic.Exceptions;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
-    public class CastCardCommand : EnvironmentAction
+    public class CastCardCommand : PlayerCommand
     {
-        private Player castingPlayer;
         private GameCard card;
         private IEnumerable<IEnumerable<object>> targets;
         private Mana[] selectedMana;
@@ -23,20 +22,16 @@ namespace Cruel.GameLogic.PlayerCommands
             get { return selectedMana; }
         }
 
-        public Player CastingPlayer
-        {
-            get { return castingPlayer; }
-        }
+        
 
-        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<Mana> selectedMana)
-            : this(castingPlayer, card, new IEnumerable<object>[0], selectedMana)
+        public CastCardCommand(Player player, GameCard card, IEnumerable<Mana> selectedMana)
+            : this(player, card, new IEnumerable<object>[0], selectedMana)
         {
 
         }
 
-        public CastCardCommand(Player castingPlayer, GameCard card, IEnumerable<IEnumerable<object>> targets, IEnumerable<Mana> selectedMana)
+        public CastCardCommand(Player player, GameCard card, IEnumerable<IEnumerable<object>> targets, IEnumerable<Mana> selectedMana) : base(player)
         {
-            this.castingPlayer = castingPlayer;
             this.card = card;
             this.targets = targets;
             this.selectedMana = selectedMana.ToArray();
@@ -49,11 +44,11 @@ namespace Cruel.GameLogic.PlayerCommands
             this.CastedSpell = spell;
             int index = 0;
             if (IllegalManaUsed())
-                throw new ManaMismatchException(card, castingPlayer, selectedMana);
+                throw new ManaMismatchException(card, Player, selectedMana);
             else
             {
                 if(selectedMana.Length > 0)
-                    this.castingPlayer.ManaStorage.Spend(selectedMana);
+                    this.Player.ManaStorage.Spend(selectedMana);
                 
                 foreach (IEnumerable<object> targetList in targets)
                 {

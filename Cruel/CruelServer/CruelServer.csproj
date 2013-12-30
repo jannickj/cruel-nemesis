@@ -73,6 +73,10 @@
       <Project>{935B3FA0-D1DE-4395-A69C-8F64159791F9}</Project>
       <Name>XmasEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CruelNetwork\CruelNetwork.csproj">
+      <Project>{D1415705-FAA9-49C9-94B8-70F501EFF794}</Project>
+      <Name>CruelNetwork</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cruel\Cruel.csproj">
       <Project>{1FE60322-8F95-49A4-B036-71A42B04E9BE}</Project>
       <Name>Cruel</Name>

@@ -64,6 +64,7 @@
     <Compile Include="GameLogic\Exceptions\ManaMismatchException.cs" />
     <Compile Include="GameLogic\Exceptions\ManaUnavailableException.cs" />
     <Compile Include="GameLogic\PlayerCommands\GainXPCommand.cs" />
+    <Compile Include="GameLogic\PlayerCommands\PlayerCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\StartGameCommand.cs" />
     <Compile Include="GameLogic\Events\AbilityResolvesEvent.cs" />

@@ -12,20 +12,21 @@ using Cruel.GameLogic.Modules;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
-	public class DeclareMoveAttackCommand : EntityXmasAction
+	public class DeclareMoveAttackCommand : PlayerCommand
 	{
-
+        private UnitEntity moveUnit = null;
         private UnitEntity attackUnit = null;
         private Path<TileWorld, TilePosition> path;
         private Player player;
 
-        public DeclareMoveAttackCommand(Player player, Path<TileWorld, TilePosition> movePath)
+        public DeclareMoveAttackCommand(Player player, UnitEntity moveUnit, Path<TileWorld, TilePosition> movePath) : base(player)
         {
             this.player = player;
             this.path = movePath;
         }
 
-        public DeclareMoveAttackCommand(Player player, Path<TileWorld, TilePosition> movePath, UnitEntity Attack) : this(player, movePath)
+        public DeclareMoveAttackCommand(Player player, UnitEntity moveUnit, Path<TileWorld, TilePosition> movePath, UnitEntity Attack)
+            : this(player, moveUnit, movePath)
         {
             this.attackUnit = Attack;
         }
@@ -34,9 +35,9 @@ namespace Cruel.GameLogic.PlayerCommands
 
         protected override void Execute()
         {
-            MovePathAction ma = new MovePathAction(this.Source, path, this.Source.Module<MoveModule>().MoveDuration);
+            MovePathAction ma = new MovePathAction(this.moveUnit, path, this.moveUnit.Module<MoveModule>().MoveDuration);
             AttackUnitAction aa = new AttackUnitAction(this.attackUnit);
-            PlayerDeclareMoveAttackEvent evt = new PlayerDeclareMoveAttackEvent(player,(UnitEntity)this.Source,this.attackUnit,ma,aa);
+            PlayerDeclareMoveAttackEvent evt = new PlayerDeclareMoveAttackEvent(player,this.moveUnit,this.attackUnit,ma,aa);
             this.EventManager.Raise(evt);
         }
     }

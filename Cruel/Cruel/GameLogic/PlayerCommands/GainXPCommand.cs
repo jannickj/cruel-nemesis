@@ -8,15 +8,13 @@ using Cruel.GameLogic.SpellSystem;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
-    public class GainXPCommand : EnvironmentAction
+    public class GainXPCommand : PlayerCommand
     {
-        public Player Player { get; private set; }
         public int XP { get; private set; }
         public Mana SelectedMana { get; private set; }
 
-        public GainXPCommand(Player player, int Xp, Mana selectedMana)
+        public GainXPCommand(Player player, int Xp, Mana selectedMana) : base(player)
         {
-            this.Player = player;
             this.XP = Xp;
             this.SelectedMana = selectedMana;
         }

@@ -7,19 +7,18 @@ using Cruel.GameLogic.Events;
 
 namespace Cruel.GameLogic.PlayerCommands
 {
-	public class PlayerPassPriorityCommand : EnvironmentAction
+	public class PlayerPassPriorityCommand : PlayerCommand
 	{
-        private Player player;
 
-        public PlayerPassPriorityCommand(Player player)
+        public PlayerPassPriorityCommand(Player player) : base(player)
         {
-            this.player = player;
+            
         }
 
 
         protected override void Execute()
         {
-            this.EventManager.Raise(new PlayerPassedPriorityEvent(player));
+            this.EventManager.Raise(new PlayerPassedPriorityEvent(Player));
         }
     }
 }

@@ -40,10 +40,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CruelConnection.cs" />
+    <Compile Include="MessageConverter\DeclareMoveAttackConverter.cs" />
+    <Compile Include="MessageConvertionTool.cs" />
+    <Compile Include="Packets\CommandMessage.cs" />
+    <Compile Include="Packets\DeclareMoveAttackMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Streaming\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\XmasEngine\JSLibrary\JSLibrary\JSLibrary\JSLibrary.csproj">
+      <Project>{02121C4A-B1FB-46B8-BDE8-C5C6CA28C036}</Project>
+      <Name>JSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineController\XmasEngineController.csproj">
+      <Project>{0FAE1368-42FC-48F7-A82B-58CF276188C1}</Project>
+      <Name>XmasEngineController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineExtensions\XmasEngineExtensions.csproj">
+      <Project>{F0965EBC-FEAF-4445-A43B-998D0A8D249D}</Project>
+      <Name>XmasEngineExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineModel\XmasEngineModel.csproj">
+      <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>
+      <Name>XmasEngineModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineView\XmasEngineView.csproj">
+      <Project>{99F1F1F4-2DF4-4C9E-8A33-5CD538D2C002}</Project>
+      <Name>XmasEngineView</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngine\XmasEngine.csproj">
+      <Project>{935B3FA0-D1DE-4395-A69C-8F64159791F9}</Project>
+      <Name>XmasEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cruel\Cruel.csproj">
+      <Project>{1FE60322-8F95-49A4-B036-71A42B04E9BE}</Project>
+      <Name>Cruel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
