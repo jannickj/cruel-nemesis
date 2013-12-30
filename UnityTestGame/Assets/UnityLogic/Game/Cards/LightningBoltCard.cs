@@ -8,6 +8,7 @@ using Cruel.GameLogic.SpellSystem;
 using Cruel.GameLogic.Unit;
 using XmasEngineModel.Management.Actions;
 using Cruel.GameLogic.Actions;
+using Cruel.GameLogic.Modules;
 
 namespace Assets.UnityLogic.Game.Cards
 {
@@ -16,7 +17,7 @@ namespace Assets.UnityLogic.Game.Cards
         public LightningBoltCard()
         {
             this.RegisterModule(new GraphicsModule("lightningbolt"));
-            this.SetTargetCondition(0, obj => obj is UnitEntity);
+            this.SetTargetCondition(0, obj => obj is UnitEntity && !((UnitEntity)obj).Module<HealthModule>().IsDead());
             this.TargetCounts = new int[] { 1 };
             this.ManaCost = new List<Mana>(new Mana[] { Mana.Arcane });
         }

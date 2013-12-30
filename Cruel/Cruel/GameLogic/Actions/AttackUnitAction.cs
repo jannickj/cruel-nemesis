@@ -32,7 +32,7 @@ namespace Cruel.GameLogic.Actions
             float dist = v.Distance;
             float attackrange = (int)attmod.AttackRange;
 
-            if (dist > attackrange)
+            if (!attmod.CanReachPoint(s.Point, e.Point))
                 return;
 
             int dmg = attmod.Damage;
