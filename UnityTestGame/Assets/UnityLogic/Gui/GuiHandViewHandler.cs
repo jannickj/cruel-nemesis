@@ -10,7 +10,7 @@ using Cruel.GameLogic;
 using Cruel.GameLogic.SpellSystem;
 using XmasEngineModel.Management.Events;
 using Cruel.GameLogic.PlayerCommands;
-using Assets.UnityLogic.Game.Modules;
+using CruelGameData.GameLogic.Game.Modules;
 
 namespace Assets.UnityLogic.Gui
 {

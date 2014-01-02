@@ -5,9 +5,9 @@ using System.Text;
 using Cruel.GameLogic;
 using UnityEngine;
 using Cruel.GameLogic.SpellSystem;
-using Assets.UnityLogic.Game.Cards;
 using CruelTest.SpellSystem;
-using Assets.UnityLogic.Game;
+using CruelGameData.GameLogic.Game;
+using CruelGameData.GameLogic.Game.Cards;
 
 namespace Assets.UnityLogic
 {

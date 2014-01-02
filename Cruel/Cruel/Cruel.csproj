@@ -49,6 +49,8 @@
     <Compile Include="GameLogic\Actions\PlayerGainManaCrystalAction.cs" />
     <Compile Include="GameLogic\Actions\PlayerJoinAction.cs" />
     <Compile Include="GameLogic\Actions\ResetPrioritiesAction.cs" />
+    <Compile Include="GameLogic\CruelEngine.cs" />
+    <Compile Include="GameLogic\CruelEngineFactory.cs" />
     <Compile Include="GameLogic\Events\DequeueAbilityEvent.cs" />
     <Compile Include="GameLogic\Events\EnqueueAbilityEvent.cs" />
     <Compile Include="GameLogic\Events\ManaCrystalAddedEvent.cs" />
@@ -63,6 +65,7 @@
     <Compile Include="GameLogic\Events\UnitEvents\UnitRevivedEvent.cs" />
     <Compile Include="GameLogic\Exceptions\ManaMismatchException.cs" />
     <Compile Include="GameLogic\Exceptions\ManaUnavailableException.cs" />
+    <Compile Include="GameLogic\GameFactory.cs" />
     <Compile Include="GameLogic\PlayerCommands\GainXPCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerCommand.cs" />
     <Compile Include="GameLogic\PlayerCommands\PlayerPassPriorityCommand.cs" />
@@ -145,8 +148,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(SolutionDir)..\UnityTestGame\Assets\dlls"
-xcopy /y "$(TargetDir)*.xml" "$(SolutionDir)..\UnityTestGame\Assets\dlls"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

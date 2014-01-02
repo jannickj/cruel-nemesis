@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D1415705-FAA9-49C9-94B8-70F501EFF794}</ProjectGuid>
+    <ProjectGuid>{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CruelNetwork</RootNamespace>
-    <AssemblyName>CruelNetwork</AssemblyName>
+    <RootNamespace>CruelGameData</RootNamespace>
+    <AssemblyName>CruelGameData</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -22,7 +22,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\CruelNetwork.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,20 +41,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CruelClientManager.cs" />
-    <Compile Include="CruelClientConnector.cs" />
-    <Compile Include="CruelConnection.cs" />
-    <Compile Include="CruelServer.cs" />
-    <Compile Include="MessageConverter\DeclareMoveAttackConverter.cs" />
-    <Compile Include="CruelMessageTool.cs" />
-    <Compile Include="Messages\CreateGame.cs" />
-    <Compile Include="Messages\GameMessages\CommandMessage.cs" />
-    <Compile Include="Messages\GameMessages\DeclareMoveAttackMessage.cs" />
-    <Compile Include="Messages\JoinGame.cs" />
+    <Compile Include="GameLogic\Game\Cards\ArcherCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\BattlecryCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\BruteCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\DragonCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\FireballCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\GoblinPikerCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\InspirationCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\LightningBoltCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\MonkCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\RaiseDeadCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\SerpentCard.cs" />
+    <Compile Include="GameLogic\Game\Cards\WarhoundCard.cs" />
+    <Compile Include="GameLogic\Game\GameCardWithSpellEffect.cs" />
+    <Compile Include="GameLogic\Game\GameLevelRewards.cs" />
+    <Compile Include="GameLogic\Game\Heroes\WarlordHero.cs" />
+    <Compile Include="GameLogic\Game\Heroes\WizardHero.cs" />
+    <Compile Include="GameLogic\Game\Maps\MapTypes.cs" />
+    <Compile Include="GameLogic\Game\Maps\StandardGameMapBuilder.cs" />
+    <Compile Include="GameLogic\Game\Maps\TestMapBuilder.cs" />
+    <Compile Include="GameLogic\Game\Modules\GraphicsModule.cs" />
+    <Compile Include="GameLogic\Game\SummoningGameCard.cs" />
+    <Compile Include="GameLogic\Game\Units\ArcherUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\BruteUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\DragonUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\GoblinPikerUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\GruntUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\MonkUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\SerpentUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\WarhoundUnit.cs" />
+    <Compile Include="GameLogic\Game\Units\ZombieUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Streaming\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\XmasEngine\JSLibrary\JSLibrary\JSLibrary\JSLibrary.csproj">
@@ -89,12 +106,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\UnityTestGame\Assets\dlls"
-xcopy /y "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\UnityTestGame\Assets\dlls"</PostBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(SolutionDir)..\UnityTestGame\Assets\dlls"
+xcopy /y "$(TargetDir)*.xml" "$(SolutionDir)..\UnityTestGame\Assets\dlls"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

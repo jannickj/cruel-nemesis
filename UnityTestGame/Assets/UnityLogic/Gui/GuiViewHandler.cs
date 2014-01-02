@@ -13,7 +13,6 @@ using Cruel.Library.PathFinding;
 using Cruel.Map.Terrain;
 using Cruel.GameLogic.TurnLogic;
 using JSLibrary.Data;
-using Assets.UnityLogic.Game.Modules;
 using Cruel.GameLogic.Modules;
 
 namespace Assets.UnityLogic.Gui

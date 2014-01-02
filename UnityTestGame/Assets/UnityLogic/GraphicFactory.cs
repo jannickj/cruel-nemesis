@@ -5,17 +5,17 @@ using System.Text;
 using Cruel.GameLogic.Unit;
 using Assets.UnityLogic.Unit;
 using Cruel.GameLogic.SpellSystem;
-using Assets.UnityLogic.Game.Cards;
 using Assets.UnityLogic.Unit.Animations;
-using Assets.UnityLogic.Game.Unit;
-using Assets.UnityLogic.Game.Heroes;
 using Assets.UnityLogic.Animations.CardAnimations;
 using Assets.UnityLogic.Animations;
 using Assets.UnityLogic.Animations.UnitAnimations;
-using Assets.UnityLogic.Game.Units;
 using Assets.UnityLogic.Animations.SpellAnimations;
 using Assets.UnityLogic.Exceptions;
-using Assets.UnityLogic.Game;
+using CruelGameData.GameLogic.Game.Units;
+using CruelGameData.GameLogic.Game.Cards;
+using CruelGameData.GameLogic.Game;
+using CruelGameData.GameLogic.Game.Heroes;
+using CruelGameData.GameLogic.Game.Unit;
 
 namespace Assets.UnityLogic
 {

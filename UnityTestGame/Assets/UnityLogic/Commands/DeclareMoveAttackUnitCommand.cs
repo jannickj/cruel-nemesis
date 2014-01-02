@@ -165,13 +165,13 @@ namespace Assets.UnityLogic.Commands
 
             DeclareMoveAttackCommand declareAction;
             if (attackUnit == null)
-                declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath);
+                declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, unitEntity, fullpath);
             else
             {
-                declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, fullpath, attackUnit);
+                declareAction = new DeclareMoveAttackCommand(this.GuiController.GuiInfo.Player, unitEntity, fullpath, attackUnit);
 
             }
-            this.unitEntity.QueueAction(declareAction);
+            this.ActionManager.Queue(declareAction);
 
         }
 

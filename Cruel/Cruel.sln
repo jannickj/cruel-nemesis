@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CruelServer", "CruelServer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CruelNetwork", "CruelNetwork\CruelNetwork.csproj", "{D1415705-FAA9-49C9-94B8-70F501EFF794}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CruelGameData", "CruelGameData\CruelGameData.csproj", "{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Cruel.vsmdi
@@ -141,6 +143,16 @@ Global
 		{D1415705-FAA9-49C9-94B8-70F501EFF794}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D1415705-FAA9-49C9-94B8-70F501EFF794}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D1415705-FAA9-49C9-94B8-70F501EFF794}.Release|x86.ActiveCfg = Release|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

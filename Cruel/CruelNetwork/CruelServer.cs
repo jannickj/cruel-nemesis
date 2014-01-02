@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using CruelNetwork;
 using JSLibrary.Network.Data;
 
-namespace CruelServer
+namespace CruelNetwork
 {
     public class CruelServer : MultiClientServer
     {

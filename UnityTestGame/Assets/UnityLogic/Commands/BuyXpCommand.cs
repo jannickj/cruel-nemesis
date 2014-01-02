@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Assets.UnityLogic.Game;
 using Cruel.GameLogic.PlayerCommands;
+using CruelGameData.GameLogic.Game;
 
 namespace Assets.UnityLogic.Commands
 {

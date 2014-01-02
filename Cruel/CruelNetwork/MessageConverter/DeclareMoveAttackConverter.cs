@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using JSLibrary.Conversion;
 using XmasEngineModel;
-using CruelNetwork.Packets;
+using CruelNetwork.Messages;
 using Cruel.GameLogic.PlayerCommands;
+using CruelNetwork.Messages.GameMessages;
 
 namespace CruelNetwork.PacketConverter
 {
