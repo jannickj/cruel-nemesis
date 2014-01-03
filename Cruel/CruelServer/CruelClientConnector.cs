@@ -26,9 +26,13 @@ namespace CruelServer
         {
             var stream = this.Client.GetStream();
 
-            var packet = (JSPacket)binaryFormatter.Deserialize(stream);
+            while (true)
+            {
+                var packet = (JSPacket)binaryFormatter.Deserialize(stream);
 
-            var message = messageTool.Open(packet);
+                var message = messageTool.Open(packet);
+                message.Execute();
+            }
         }
     }
 }

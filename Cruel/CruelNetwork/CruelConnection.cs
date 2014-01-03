@@ -22,6 +22,7 @@ namespace CruelNetwork
         {
             this.stream = stream;
             this.presolver = presolver;
+            this.formatter = formatter;
         }
 
         public void UpdateRecieving()
@@ -36,10 +37,18 @@ namespace CruelNetwork
             JSPacket[] packets;
             packetRecieved.WaitOne();
             lock (this)
+            {
                 packets = packetQueue.ToArray();
+                packetQueue.Clear();
+            }
 
             foreach (JSPacket packet in packets)
                 formatter.Serialize(stream, packet);
+        }
+
+        public void QueueMessage(JSMessage message)
+        {
+            QueuePacket(presolver.Pack(message));
         }
 
         public void QueuePacket(JSPacket packet)

@@ -11,13 +11,16 @@ using JSLibrary.Network.Data;
 
 namespace CruelServer
 {
-    public class CruelServer : MultiClientServer
+    public class CruelServerApp : MultiClientServer
     {
-        public CruelServer(ServerFactory factory, TcpListener listener)
+        private CruelClientManager ClientManager;
+
+        public CruelServerApp(ServerFactory factory, TcpListener listener, CruelClientManager ClientManager)
             : base(factory, listener)
         {
-            
+            this.ClientManager = ClientManager;
         }
+
 
         public override ClientConnector CreateConnector()
         {

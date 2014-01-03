@@ -50,6 +50,7 @@
     <Compile Include="Library\PathFinding\PathFinderTest.cs" />
     <Compile Include="Map\TilePathFinderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScenarioTests\ServerClientTest.cs" />
     <Compile Include="SpellSystem\AbilityTest.cs" />
     <Compile Include="SpellSystem\CardTest.cs" />
     <Compile Include="SpellSystem\GameLibraryTest.cs" />
@@ -78,6 +79,18 @@
     <ProjectReference Include="..\..\XmasEngine\XmasProject\XmasEngineModel\XmasEngineModel.csproj">
       <Project>{70ABBB17-6A3C-429C-B27E-0F56AACB9F69}</Project>
       <Name>XmasEngineModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CruelGameData\CruelGameData.csproj">
+      <Project>{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}</Project>
+      <Name>CruelGameData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CruelNetwork\CruelNetwork.csproj">
+      <Project>{D1415705-FAA9-49C9-94B8-70F501EFF794}</Project>
+      <Name>CruelNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CruelServer\CruelServer.csproj">
+      <Project>{EED27826-CB1F-44E2-A9D1-02971E3A053A}</Project>
+      <Name>CruelServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cruel\Cruel.csproj">
       <Project>{1FE60322-8F95-49A4-B036-71A42B04E9BE}</Project>

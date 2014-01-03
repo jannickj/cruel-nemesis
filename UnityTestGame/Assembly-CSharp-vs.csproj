@@ -18,7 +18,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_1;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;UNITY_4_2_2;UNITY_4_2;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_WIN</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -80,38 +80,6 @@
      <Compile Include="Assets\UnityLogic\DebugMessenger.cs" />
      <Compile Include="Assets\UnityLogic\EngineHandler.cs" />
      <Compile Include="Assets\UnityLogic\Exceptions\GraphicsNotFoundException.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\ArcherCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\BattlecryCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\BloodwyrmSpawnCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\BruteCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\DragonCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\FireballCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\GoblinPikerCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\InspirationCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\LightningBoltCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\MonkCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\RaiseDeadCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\SerpentCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Cards\WarhoundCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\GameCardWithSpellEffect.cs" />
-     <Compile Include="Assets\UnityLogic\Game\GameFactory.cs" />
-     <Compile Include="Assets\UnityLogic\Game\GameLevelRewards.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Heroes\WarlordHero.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Heroes\WizardHero.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Maps\MapTypes.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Maps\StandardGameMapBuilder.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Maps\TestMapBuilder.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Modules\GraphicsModule.cs" />
-     <Compile Include="Assets\UnityLogic\Game\SummoningGameCard.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\ArcherUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\BruteUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\DragonUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\GoblinPikerUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\GruntUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\MonkUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\SerpentUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\WarhoundUnit.cs" />
-     <Compile Include="Assets\UnityLogic\Game\Units\ZombieUnit.cs" />
      <Compile Include="Assets\UnityLogic\GameLogicLoader.cs" />
      <Compile Include="Assets\UnityLogic\GlobalGameSettings.cs" />
      <Compile Include="Assets\UnityLogic\GraphicFactory.cs" />
@@ -152,8 +120,17 @@
  <Reference Include="Cruel">
  <HintPath>Assets\dlls\Cruel.dll</HintPath>
  </Reference>
+ <Reference Include="CruelGameData">
+ <HintPath>Assets\dlls\CruelGameData.dll</HintPath>
+ </Reference>
+ <Reference Include="CruelNetwork">
+ <HintPath>Assets\dlls\CruelNetwork.dll</HintPath>
+ </Reference>
  <Reference Include="JSLibrary">
  <HintPath>Assets\dlls\JSLibrary.dll</HintPath>
+ </Reference>
+ <Reference Include="XmasEngine">
+ <HintPath>Assets\dlls\XmasEngine.dll</HintPath>
  </Reference>
  <Reference Include="XmasEngineController">
  <HintPath>Assets\dlls\XmasEngineController.dll</HintPath>

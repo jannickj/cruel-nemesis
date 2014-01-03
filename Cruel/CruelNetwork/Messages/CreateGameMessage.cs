@@ -6,7 +6,7 @@ using JSLibrary.Network.Data;
 
 namespace CruelNetwork.Messages
 {
-    public class CreateGame : JSMessage
+    public class CreateGameMessage : CruelMessage
     {
         protected override void OnSerialize(JSPacket packet)
         {

@@ -17,9 +17,9 @@ namespace CruelServer
         {
             TcpListener listener = new TcpListener(IPAddress.Parse("localhost"),4000);
             var ServerFactor = new ServerFactory();
+            var clientManager = new CruelClientManager();
 
-
-            CruelServer server = new CruelServer(ServerFactor, listener);
+            CruelServerApp server = new CruelServerApp(ServerFactor, listener, clientManager);
 
             server.Start();
 

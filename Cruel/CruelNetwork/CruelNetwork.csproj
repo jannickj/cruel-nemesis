@@ -37,7 +37,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -48,7 +47,8 @@
     <Compile Include="CruelServer.cs" />
     <Compile Include="MessageConverter\DeclareMoveAttackConverter.cs" />
     <Compile Include="CruelMessageTool.cs" />
-    <Compile Include="Messages\CreateGame.cs" />
+    <Compile Include="Messages\CreateGameMessage.cs" />
+    <Compile Include="Messages\CruelMessage.cs" />
     <Compile Include="Messages\GameMessages\CommandMessage.cs" />
     <Compile Include="Messages\GameMessages\DeclareMoveAttackMessage.cs" />
     <Compile Include="Messages\JoinGame.cs" />
@@ -82,6 +82,10 @@
       <Project>{935B3FA0-D1DE-4395-A69C-8F64159791F9}</Project>
       <Name>XmasEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CruelGameData\CruelGameData.csproj">
+      <Project>{11DFBEB9-798E-4349-B2D9-6834CAC78D5A}</Project>
+      <Name>CruelGameData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cruel\Cruel.csproj">
       <Project>{1FE60322-8F95-49A4-B036-71A42B04E9BE}</Project>
       <Name>Cruel</Name>
@@ -89,8 +93,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)..\UnityTestGame\Assets\dlls"
-xcopy /y "$(TargetDir)$(TargetName).xml" "$(SolutionDir)..\UnityTestGame\Assets\dlls"</PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(TargetDir)*.dll" "$(SolutionDir)..\UnityTestGame\Assets\dlls"
+xcopy /y "$(TargetDir)*.xml" "$(SolutionDir)..\UnityTestGame\Assets\dlls"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

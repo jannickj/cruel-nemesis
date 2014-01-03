@@ -25,7 +25,7 @@ namespace Cruel.GameLogic
         }
 
 
-        public CruelEngine(TurnLogic.TurnManager turnManager, SpellSystem.AbilityManager abilityManager, Map.GameMapBuilder mapbuilder, ActionManager actman, EventManager evtman, GameFactory factory)
+        public CruelEngine(TurnManager turnManager, AbilityManager abilityManager, Map.GameMapBuilder mapbuilder, ActionManager actman, EventManager evtman, GameFactory factory)
             : base(mapbuilder, actman, evtman, factory)
         {
             // TODO: Complete member initialization
